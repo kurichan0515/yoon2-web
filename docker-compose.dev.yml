@@ -1,4 +1,3 @@
-version: '3.8'
 
 services:
   # 開発用React アプリケーション
@@ -28,7 +27,7 @@ services:
 
   # Firebase Emulator Suite (開発用)
   firebase-emulator-dev:
-    image: node:18-alpine
+    image: node:20-alpine
     working_dir: /app
     ports:
       - "4000:4000"  # Firebase Emulator UI
@@ -40,13 +39,8 @@ services:
       - firebase_export:/app/firebase-export
     command: >
       sh -c "
-        npm install -g firebase-tools &&
-        firebase emulators:start 
-          --project=demo-project 
-          --import=./firebase-export 
-          --export-on-exit=./firebase-export
-          --ui
-      "
+      npm install -g firebase-tools &&
+      firebase emulators:start --project=demo-project --import=./firebase-export --export-on-exit=./firebase-export --ui"
     environment:
       - FIREBASE_PROJECT=demo-project
     networks:

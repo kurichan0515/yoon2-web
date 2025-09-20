@@ -23,7 +23,7 @@ if ! command -v docker &> /dev/null; then
     exit 1
 fi
 
-if ! command -v docker-compose &> /dev/null; then
+if ! command -v docker compose &> /dev/null; then
     echo "❌ Docker Composeがインストールされていません"
     echo "   Docker Composeをインストールしてください"
     exit 1
@@ -48,7 +48,7 @@ echo "📁 必要なディレクトリを作成しました"
 
 # Dockerイメージのビルド
 echo "🔨 Dockerイメージをビルド中..."
-docker-compose -f docker-compose.dev.yml build
+docker compose -f docker-compose.dev.yml build
 
 if [ $? -eq 0 ]; then
     echo "✅ Dockerイメージのビルドが完了しました"

@@ -1,6 +1,6 @@
 # React アプリケーション用のDockerfile
-FROM node:18-alpine
-
+FROM node:20-alpine
+RUN apk add openjdk17-jre
 # 作業ディレクトリを設定
 WORKDIR /app
 
