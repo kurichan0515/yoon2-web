@@ -17,7 +17,16 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "docker:dev": "docker-compose -f docker-compose.dev.yml up",
+    "docker:build": "docker-compose -f docker-compose.dev.yml build",
+    "docker:down": "docker-compose -f docker-compose.dev.yml down",
+    "docker:logs": "docker-compose -f docker-compose.dev.yml logs -f",
+    "docker:setup": "./scripts/docker-setup.sh",
+    "firebase:emulator": "firebase emulators:start",
+    "firebase:deploy": "firebase deploy",
+    "firebase:login": "firebase login",
+    "firebase:init": "firebase init"
   },
   "eslintConfig": {
     "extends": [

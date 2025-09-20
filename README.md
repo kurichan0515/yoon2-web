@@ -1,71 +1,118 @@
-# Getting Started with Create React App
+# 耳かき屋さん ホームページ
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+友達の耳かき屋さんのホームページを作成するプロジェクトです。
 
-## Available Scripts
+## 概要
 
-In the project directory, you can run:
+このプロジェクトは、React（フロントエンド）とFirebase（バックエンド）を使用して耳かき屋さんのホームページを構築します。
 
-### `npm start`
+## 主な機能
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **店舗情報の表示**
+- **SNS連携**
+  - X（旧Twitter）アカウント情報の表示
+  - Instagramアカウント情報の表示
+- **予約機能**
+  - オンライン予約システム
+  - 予約情報の管理
+- **レスポンシブデザイン**
+  - モバイル・タブレット・デスクトップ対応
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 技術スタック
 
-### `npm test`
+### フロントエンド
+- **React** (v19.1.1) - UIライブラリ
+- **React DOM** (v19.1.1) - DOM操作
+- **Create React App** - 開発環境
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### バックエンド・ホスティング
+- **Firebase** (v12.3.0) - バックエンドサービス
+  - Firebase Hosting - 静的サイトホスティング
+  - Firebase Firestore - データベース（予約情報管理）
+  - Firebase Authentication - 認証機能（必要に応じて）
 
-### `npm run build`
+## セットアップ
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 前提条件
+- Node.js (v14以上)
+- npm または yarn
+- Firebase CLI
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### インストール
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. リポジトリをクローン
+```bash
+git clone <repository-url>
+cd react-firebase-project
+```
 
-### `npm run eject`
+2. 依存関係をインストール
+```bash
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. Firebase CLIをインストール（まだの場合）
+```bash
+npm install -g firebase-tools
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. Firebaseにログイン
+```bash
+firebase login
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+5. Firebaseプロジェクトを初期化
+```bash
+firebase init
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 開発
 
-## Learn More
+### 開発サーバーの起動
+```bash
+npm start
+```
+ブラウザで [http://localhost:3000](http://localhost:3000) を開いて確認できます。
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### テストの実行
+```bash
+npm test
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### プロダクションビルド
+```bash
+npm run build
+```
 
-### Code Splitting
+## デプロイ
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Firebase Hostingへのデプロイ
+```bash
+npm run build
+firebase deploy
+```
 
-### Analyzing the Bundle Size
+## プロジェクト構造
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+src/
+├── components/          # Reactコンポーネント
+├── pages/              # ページコンポーネント
+├── services/           # Firebase関連のサービス
+├── styles/             # CSS/スタイルファイル
+├── utils/              # ユーティリティ関数
+└── App.js              # メインアプリケーション
+```
 
-### Making a Progressive Web App
+## 今後の実装予定
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- [ ] 店舗情報ページ
+- [ ] SNS連携機能（X、Instagram）
+- [ ] 予約システム
+- [ ] 予約管理画面
+- [ ] レスポンシブデザインの最適化
+- [ ] SEO対策
 
-### Advanced Configuration
+## ライセンス
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# React-FireBase
+このプロジェクトは個人使用のためのものです。

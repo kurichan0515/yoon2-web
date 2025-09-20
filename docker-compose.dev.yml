@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  # 開発用React アプリケーション
+  react-app-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - NODE_ENV=development
+      - REACT_APP_FIREBASE_API_KEY=${REACT_APP_FIREBASE_API_KEY}
+      - REACT_APP_FIREBASE_AUTH_DOMAIN=${REACT_APP_FIREBASE_AUTH_DOMAIN}
+      - REACT_APP_FIREBASE_PROJECT_ID=${REACT_APP_FIREBASE_PROJECT_ID}
+      - REACT_APP_FIREBASE_STORAGE_BUCKET=${REACT_APP_FIREBASE_STORAGE_BUCKET}
+      - REACT_APP_FIREBASE_MESSAGING_SENDER_ID=${REACT_APP_FIREBASE_MESSAGING_SENDER_ID}
+      - REACT_APP_FIREBASE_APP_ID=${REACT_APP_FIREBASE_APP_ID}
+      - REACT_APP_TWITTER_URL=${REACT_APP_TWITTER_URL}
+      - REACT_APP_INSTAGRAM_URL=${REACT_APP_INSTAGRAM_URL}
+    command: npm start
+    networks:
+      - dev-network
+
+  # Firebase Emulator Suite (開発用)
+  firebase-emulator-dev:
+    image: node:18-alpine
+    working_dir: /app
+    ports:
+      - "4000:4000"  # Firebase Emulator UI
+      - "5000:5000"  # Firestore Emulator
+      - "5001:5001"  # Authentication Emulator
+      - "9000:9000"  # Hosting Emulator
+    volumes:
+      - .:/app
+      - firebase_export:/app/firebase-export
+    command: >
+      sh -c "
+        npm install -g firebase-tools &&
+        firebase emulators:start 
+          --project=demo-project 
+          --import=./firebase-export 
+          --export-on-exit=./firebase-export
+          --ui
+      "
+    environment:
+      - FIREBASE_PROJECT=demo-project
+    networks:
+      - dev-network
+
+  # テスト用データベース
+  test-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: ear_cleaning_test
+      POSTGRES_USER: test_user
+      POSTGRES_PASSWORD: test_password
+    ports:
+      - "5433:5432"
+    volumes:
+      - test_db_data:/var/lib/postgresql/data
+    networks:
+      - dev-network
+
+volumes:
+  firebase_export:
+  test_db_data:
+
+networks:
+  dev-network:
+    driver: bridge
