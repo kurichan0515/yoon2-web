@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import appConfig from '../config/appConfig';
 import './SocialFeed.css';
 
@@ -7,6 +7,7 @@ const SocialFeed = () => {
   const { social } = appConfig;
 
   // モックデータ（実際のAPI連携時は削除）
+  /*
   const mockTweets = [
     {
       id: 1,
@@ -27,6 +28,7 @@ const SocialFeed = () => {
       likes: 15
     }
   ];
+  */
 
   const mockInstagramPosts = [
     {
@@ -39,7 +41,7 @@ const SocialFeed = () => {
     {
       id: 2,
       image: "https://via.placeholder.com/300x300?text=施術風景",
-      caption: "プロの技術で快適な耳かきをお届けします #プロの技術 #耳かき屋さん",
+      caption: "イヤーエステと耳つぼで心身のリラクゼーション #イヤーエステ #耳つぼジュエリー #yoon²",
       date: "2024-12-14",
       likes: 18
     },

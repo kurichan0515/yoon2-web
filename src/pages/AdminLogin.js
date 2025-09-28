@@ -65,7 +65,7 @@ const AdminLogin = ({ onLoginSuccess }) => {
       <div className="login-container">
         <div className="login-header">
           <h1>管理者ログイン</h1>
-          <p>耳かき屋さん 管理システム</p>
+          <p>yoon² 管理システム</p>
         </div>
 
         <form onSubmit={handleSubmit} className="login-form">

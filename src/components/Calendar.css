@@ -1,0 +1,397 @@
+/* カレンダーコンポーネントのスタイル */
+
+.calendar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.calendar-header h2 {
+  color: #333;
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.calendar-legend {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+}
+
+.legend-color.hotpepper {
+  background-color: #ff6b6b;
+}
+
+.legend-color.direct {
+  background-color: #4caf50;
+}
+
+.calendar-wrapper {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+}
+
+/* React Big Calendar のカスタマイズ */
+.rbc-calendar {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.rbc-header {
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 5px;
+  font-weight: 600;
+  color: #333;
+}
+
+.rbc-month-view {
+  border: none;
+}
+
+.rbc-date-cell {
+  text-align: center;
+  padding: 5px;
+}
+
+.rbc-off-range-bg {
+  background-color: #fafafa;
+}
+
+.rbc-today {
+  background-color: #e3f2fd;
+}
+
+.rbc-event {
+  border-radius: 4px !important;
+  border: none !important;
+  font-size: 12px !important;
+  padding: 2px 4px !important;
+  margin: 1px 0 !important;
+}
+
+.rbc-event:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.rbc-event.rbc-selected {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #3174ad;
+}
+
+.rbc-toolbar {
+  margin-bottom: 20px;
+  padding: 0 10px;
+}
+
+.rbc-toolbar button {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin: 0 2px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.rbc-toolbar button:hover {
+  background-color: #f5f5f5;
+  border-color: #3174ad;
+}
+
+.rbc-toolbar button.rbc-active {
+  background-color: #3174ad;
+  color: white;
+  border-color: #3174ad;
+}
+
+.rbc-toolbar-label {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 15px;
+}
+
+/* ローディング表示 */
+.calendar-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  color: #666;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3174ad;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* エラー表示 */
+.calendar-error {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.calendar-error h3 {
+  color: #d32f2f;
+  margin-bottom: 10px;
+}
+
+.retry-button {
+  background-color: #3174ad;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 15px;
+  transition: background-color 0.2s;
+}
+
+.retry-button:hover {
+  background-color: #2563eb;
+}
+
+/* イベント詳細モーダル */
+.event-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.event-modal {
+  background: white;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.event-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.event-modal-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1.3rem;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.close-button:hover {
+  background-color: #f5f5f5;
+}
+
+.event-modal-content {
+  padding: 20px;
+}
+
+.event-info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.event-title {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.event-title h4 {
+  margin: 0;
+  color: #333;
+  font-size: 1.1rem;
+  flex: 1;
+}
+
+.event-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+  white-space: nowrap;
+}
+
+.event-badge.hotpepper {
+  background-color: #ff6b6b;
+}
+
+.event-badge.direct {
+  background-color: #4caf50;
+}
+
+.event-info > div {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.event-info strong {
+  color: #555;
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+.event-info span,
+.event-info p {
+  color: #333;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.event-description p,
+.event-notes p {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 4px;
+  border-left: 3px solid #3174ad;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .calendar-container {
+    padding: 15px;
+    margin: 10px;
+  }
+
+  .calendar-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .calendar-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .calendar-legend {
+    gap: 15px;
+  }
+
+  .rbc-calendar {
+    font-size: 12px;
+  }
+
+  .rbc-toolbar {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .rbc-btn-group {
+    display: flex;
+    gap: 5px;
+  }
+
+  .rbc-toolbar button {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  .event-modal {
+    margin: 10px;
+    max-height: 90vh;
+  }
+
+  .event-modal-header {
+    padding: 15px;
+  }
+
+  .event-modal-content {
+    padding: 15px;
+  }
+
+  .event-info strong {
+    min-width: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .rbc-calendar {
+    height: 400px !important;
+  }
+  
+  .calendar-wrapper {
+    overflow-x: auto;
+  }
+  
+  .event-title {
+    flex-direction: column;
+    gap: 5px;
+  }
+}

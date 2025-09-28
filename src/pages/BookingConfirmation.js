@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import appConfig from '../config/appConfig';
 import './BookingConfirmation.css';
 
-const BookingConfirmation = () => {
-  const location = useLocation();
+const BookingConfirmation = ({ bookingData: passedBookingData }) => {
   const [bookingData, setBookingData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // URLパラメータまたはstateから予約データを取得
-    const params = new URLSearchParams(location.search);
-    const bookingId = params.get('id') || location.state?.bookingId;
+    // propsから予約データを取得、またはURLパラメータから取得
+    if (passedBookingData) {
+      setBookingData(passedBookingData);
+      setIsLoading(false);
+      return;
+    }
+
+    // URLパラメータから予約データを取得
+    const params = new URLSearchParams(window.location.search);
+    const bookingId = params.get('id');
     
     if (bookingId) {
       // 実際の実装では、Firebaseから予約データを取得
@@ -33,7 +38,7 @@ const BookingConfirmation = () => {
     }
     
     setIsLoading(false);
-  }, [location]);
+  }, [passedBookingData]);
 
   const getServiceInfo = (serviceId) => {
     return appConfig.shop.services.find(service => service.id === serviceId) || 

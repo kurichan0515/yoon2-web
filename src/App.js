@@ -6,17 +6,23 @@ import Home from './pages/Home';
 import ShopInfo from './pages/ShopInfo';
 import Booking from './pages/Booking';
 import BookingConfirmation from './pages/BookingConfirmation';
+import CalendarPage from './pages/CalendarPage';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import { onAuthStateChange, checkAdminRole } from './services/authService';
+import appConfig from './config/appConfig';
+import { logConfigValidation } from './utils/configValidator';
 import './App.css';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false); // 管理者機能用
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // 設定検証（開発モードのみ）
+    logConfigValidation(appConfig);
+
     // URLパラメータをチェック
     const urlParams = new URLSearchParams(window.location.search);
     const adminParam = urlParams.get('admin');
@@ -62,6 +68,8 @@ function App() {
         return <Booking />;
       case 'booking-confirmation':
         return <BookingConfirmation />;
+      case 'calendar':
+        return <CalendarPage />;
       case 'admin-login':
         return <AdminLogin onLoginSuccess={handleAdminLogin} />;
       case 'admin-dashboard':

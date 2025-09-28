@@ -17,8 +17,8 @@ const ShopInfo = () => {
             <div className="shop-details">
               <h3>{shop.name}</h3>
               <p className="shop-description">
-                プロの技術で快適な耳かきをお届けします。経験豊富なスタッフが、
-                丁寧で安全な耳かきサービスを提供いたします。
+                イヤーエステと耳つぼで心身のバランスを整える専門サロンです。
+                プロの技術で深いリラクゼーションと健康をサポートいたします。
               </p>
             </div>
             <div className="shop-image">
@@ -52,11 +52,17 @@ const ShopInfo = () => {
                 <p><strong>駐車場:</strong> {shop.access.parking}</p>
               </div>
             </div>
-            <div className="map-placeholder">
-              <div className="map-container">
-                <span>地図</span>
-                <p>Google Maps 埋め込み予定</p>
-              </div>
+            <div className="map-container">
+              <iframe
+                src={`https://www.google.com/maps/embed/v1/place?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY || 'YOUR_API_KEY'}&q=${encodeURIComponent(shop.address)}&zoom=16&language=ja`}
+                width="100%"
+                height="300"
+                style={{ border: 0, borderRadius: '8px' }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="yoon²ゆんゆん 店舗位置"
+              ></iframe>
             </div>
           </div>
         </section>

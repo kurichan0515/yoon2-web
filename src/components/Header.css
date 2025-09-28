@@ -1,9 +1,21 @@
-/* ヘッダーのスタイル */
+/* エレガントなヘッダーデザイン */
 .header {
-  background-color: #2c3e50;
-  color: white;
-  padding: 1rem 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--color-border);
+  transition: all 0.3s ease;
+  padding: var(--spacing-md) 0;
+}
+
+.header-scrolled {
+  padding: var(--spacing-sm) 0;
+  box-shadow: var(--shadow-light);
+  background-color: rgba(255, 255, 255, 0.98);
 }
 
 .header-container {
@@ -12,52 +24,211 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1rem;
+  padding: 0 var(--spacing-md);
+}
+
+/* ロゴエリア */
+.header-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .header-title {
+  font-family: var(--font-primary);
+  font-size: 2rem;
+  font-weight: 400;
   margin: 0;
-  font-size: 1.5rem;
-  font-weight: bold;
+  color: var(--color-text-primary);
+  letter-spacing: 0.5px;
+  line-height: 1;
 }
 
+.header-subtitle {
+  font-family: var(--font-secondary);
+  font-size: 0.75rem;
+  color: var(--color-text-light);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 2px;
+  font-weight: 300;
+}
+
+/* ナビゲーション */
 .header-nav {
   display: flex;
-  gap: 2rem;
+  align-items: center;
+  gap: var(--spacing-xl);
 }
 
 .nav-link {
   background: none;
   border: none;
-  color: white;
+  color: var(--color-text-secondary);
   text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  transition: background-color 0.3s;
+  padding: var(--spacing-xs) 0;
+  font-family: var(--font-secondary);
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
   cursor: pointer;
-  font-size: 1rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-accent);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
 }
 
 .nav-link:hover {
-  background-color: rgba(255,255,255,0.1);
+  color: var(--color-text-primary);
+}
+
+.nav-link:hover::after {
+  width: 100%;
 }
 
 .nav-link.active {
-  background-color: rgba(255,255,255,0.2);
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* 予約ボタン */
+.nav-link-booking {
+  background-color: var(--color-accent) !important;
+  color: var(--color-white) !important;
+  padding: var(--spacing-sm) var(--spacing-lg) !important;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  box-shadow: var(--shadow-light);
+  margin-left: var(--spacing-sm);
+}
+
+.nav-link-booking::after {
+  display: none;
+}
+
+.nav-link-booking:hover {
+  background-color: #b8956a !important;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-medium);
+}
+
+/* モバイルメニュートグル */
+.mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  position: relative;
+  z-index: 1001;
+}
+
+.mobile-menu-toggle span {
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-text-primary);
+  margin: 3px 0;
+  transition: all 0.3s ease;
+  border-radius: 1px;
+}
+
+.mobile-menu-toggle-open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-toggle-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-toggle-open span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
 }
 
 /* レスポンシブデザイン */
-@media (max-width: 768px) {
-  .header-container {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
+@media (max-width: 992px) {
   .header-nav {
-    gap: 1rem;
+    gap: var(--spacing-lg);
   }
   
   .nav-link {
-    padding: 0.5rem;
+    font-size: 0.85rem;
   }
 }
+
+@media (max-width: 768px) {
+  .header-container {
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .header-title {
+    font-size: 1.8rem;
+  }
+  
+  .mobile-menu-toggle {
+    display: flex;
+  }
+  
+  .header-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background-color: var(--color-white);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-xl);
+    transition: right 0.3s ease;
+    box-shadow: var(--shadow-heavy);
+  }
+  
+  .header-nav-open {
+    right: 0;
+  }
+  
+  .nav-link {
+    font-size: 1.1rem;
+    padding: var(--spacing-sm) 0;
+  }
+  
+  .nav-link-booking {
+    margin-left: 0;
+    margin-top: var(--spacing-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: var(--spacing-sm) 0;
+  }
+  
+  .header-scrolled {
+    padding: var(--spacing-xs) 0;
+  }
+  
+  .header-title {
+    font-size: 1.6rem;
+  }
+  
+  .header-subtitle {
+    font-size: 0.7rem;
+  }
+}
+
+/* メインコンテンツのマージントップ調整はApp.cssで行います */

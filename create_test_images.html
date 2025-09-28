@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>料金プラン画像生成ツール</title>
+    <style>
+        body { font-family: 'Arial', sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .image-generator { background: #f5f5f5; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        .btn { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; margin: 5px; }
+        .btn:hover { background: #0056b3; }
+        canvas { border: 1px solid #ddd; margin: 10px 0; display: block; }
+        .download-link { display: inline-block; margin: 10px 0; padding: 8px 16px; background: #28a745; color: white; text-decoration: none; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>yoon² 料金プラン画像生成ツール</h1>
+        <p>このツールで各メニューの画像を生成し、適切なディレクトリに配置してください。</p>
+        
+        <div class="image-generator">
+            <h3>おすすめメニュー画像</h3>
+            <button class="btn" onclick="generateRecommendImage()">おすすめメニュー画像を生成</button>
+            <canvas id="recommendCanvas" width="400" height="300" style="display:none;"></canvas>
+            <a id="recommendDownload" class="download-link" style="display:none;" download="recommend-menu.jpg">recommend-menu.jpg をダウンロード</a>
+        </div>
+
+        <div class="image-generator">
+            <h3>耳つぼメニュー画像</h3>
+            <button class="btn" onclick="generateMimituboImage()">耳つぼメニュー画像を生成</button>
+            <canvas id="mimituboCanvas" width="400" height="300" style="display:none;"></canvas>
+            <a id="mimituboDownload" class="download-link" style="display:none;" download="mimitubo-menu.jpg">mimitubo-menu.jpg をダウンロード</a>
+        </div>
+
+        <div class="image-generator">
+            <h3>イヤーエステ・ドライヘッドスパ画像</h3>
+            <button class="btn" onclick="generateEarEsteImage()">イヤーエステメニュー画像を生成</button>
+            <canvas id="earEsteCanvas" width="400" height="300" style="display:none;"></canvas>
+            <a id="earEsteDownload" class="download-link" style="display:none;" download="ear-este-menu.jpg">ear-este-menu.jpg をダウンロード</a>
+        </div>
+
+        <div style="background: #fff3cd; padding: 15px; margin: 20px 0; border-radius: 4px; border-left: 4px solid #ffc107;">
+            <strong>配置方法:</strong><br>
+            1. 上記のボタンで画像を生成・ダウンロード<br>
+            2. ダウンロードした画像を <code>public/images/menus/</code> フォルダに配置<br>
+            3. ブラウザを更新してページを確認
+        </div>
+    </div>
+
+    <script>
+        function generateRecommendImage() {
+            const canvas = document.getElementById('recommendCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // グラデーション背景
+            const gradient = ctx.createLinearGradient(0, 0, 400, 300);
+            gradient.addColorStop(0, '#c9a96e');
+            gradient.addColorStop(1, '#8b6914');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 400, 300);
+            
+            // タイトル
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 24px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('おすすめメニュー', 200, 40);
+            
+            // メニュー1
+            ctx.font = '16px Arial';
+            ctx.fillText('【yoon²極メニュー】', 200, 80);
+            ctx.fillText('イヤーエステ×ドライヘッドスパ', 200, 100);
+            ctx.fillText('100分 ¥11,000', 200, 120);
+            
+            // メニュー2
+            ctx.fillText('【yoon²最上級メニュー】', 200, 160);
+            ctx.fillText('耳つぼジュエリー付き💎', 200, 180);
+            ctx.fillText('イヤーエステ×ドライヘッドスパ', 200, 200);
+            ctx.fillText('100分 ¥12,500', 200, 220);
+            
+            // 割引情報
+            ctx.fillText('次回予約で200円引き', 200, 260);
+            
+            // ブランド名
+            ctx.font = 'italic 14px Arial';
+            ctx.fillText('yoon²', 200, 290);
+            
+            canvas.style.display = 'block';
+            
+            // ダウンロードリンク
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                const link = document.getElementById('recommendDownload');
+                link.href = url;
+                link.style.display = 'inline-block';
+            }, 'image/jpeg', 0.9);
+        }
+        
+        function generateMimituboImage() {
+            const canvas = document.getElementById('mimituboCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // グラデーション背景
+            const gradient = ctx.createLinearGradient(0, 0, 400, 300);
+            gradient.addColorStop(0, '#e8d5b7');
+            gradient.addColorStop(1, '#c9a96e');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 400, 300);
+            
+            // タイトル
+            ctx.fillStyle = '#4a4a4a';
+            ctx.font = 'bold 24px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('耳つぼ', 200, 40);
+            
+            // メニュー項目
+            ctx.font = '16px Arial';
+            ctx.fillText('ご新規様　¥4,000', 200, 80);
+            ctx.fillText('ペア割新規　¥3,800', 200, 110);
+            ctx.fillText('リピーター様　¥3,500', 200, 140);
+            ctx.fillText('両耳10個　¥2,500', 200, 170);
+            
+            // 注記
+            ctx.font = '14px Arial';
+            ctx.fillStyle = '#c9a96e';
+            ctx.fillText('付け放題メニューのみ', 200, 210);
+            ctx.fillText('次回予約で200円引き', 200, 230);
+            
+            // ブランド名
+            ctx.font = 'italic 14px Arial';
+            ctx.fillText('yoon²', 200, 280);
+            
+            canvas.style.display = 'block';
+            
+            // ダウンロードリンク
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                const link = document.getElementById('mimituboDownload');
+                link.href = url;
+                link.style.display = 'inline-block';
+            }, 'image/jpeg', 0.9);
+        }
+        
+        function generateEarEsteImage() {
+            const canvas = document.getElementById('earEsteCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // グラデーション背景
+            const gradient = ctx.createLinearGradient(0, 0, 400, 300);
+            gradient.addColorStop(0, '#f4f1eb');
+            gradient.addColorStop(1, '#e8d5b7');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 400, 300);
+            
+            // タイトル
+            ctx.fillStyle = '#4a4a4a';
+            ctx.font = 'bold 20px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('イヤーエステ', 200, 30);
+            
+            // イヤーエステメニュー
+            ctx.font = '14px Arial';
+            ctx.fillText('【新規/男性】お試し価格 40分 ¥4,500', 200, 60);
+            ctx.fillText('【新規/女性】お試し価格 40分 ¥4,000', 200, 80);
+            ctx.fillText('40分コース　¥5,000', 200, 100);
+            ctx.fillText('60分コース　¥7,000', 200, 120);
+            
+            // ドライヘッドスパ
+            ctx.font = 'bold 18px Arial';
+            ctx.fillText('ドライヘッドスパ', 200, 160);
+            ctx.font = '14px Arial';
+            ctx.fillText('40分コース　¥4,800', 200, 180);
+            ctx.fillText('60分コース　¥6,800', 200, 200);
+            
+            // 割引情報
+            ctx.fillStyle = '#c9a96e';
+            ctx.fillText('次回予約で200円引き', 200, 230);
+            
+            // ブランド名
+            ctx.font = 'italic 14px Arial';
+            ctx.fillText('yoon²', 200, 280);
+            
+            canvas.style.display = 'block';
+            
+            // ダウンロードリンク
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                const link = document.getElementById('earEsteDownload');
+                link.href = url;
+                link.style.display = 'inline-block';
+            }, 'image/jpeg', 0.9);
+        }
+    </script>
+</body>
+</html>

@@ -20,7 +20,7 @@ const AdminHeader = ({ onLogout }) => {
       <div className="admin-header-container">
         <div className="admin-header-left">
           <h1 className="admin-header-title">管理者ダッシュボード</h1>
-          <span className="admin-subtitle">耳かき屋さん 管理システム</span>
+          <span className="admin-subtitle">yoon² 管理システム</span>
         </div>
         
         <div className="admin-header-right">

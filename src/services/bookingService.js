@@ -186,7 +186,7 @@ export const sendBookingConfirmationEmail = async (bookingData) => {
     // 実際の実装では、Firebase Functionsや外部メールサービスを使用
     console.log('予約確認メール送信:', {
       to: bookingData.email,
-      subject: '予約確認 - 耳かき屋さん',
+      subject: '予約確認 - yoon²',
       body: `お名前: ${bookingData.name}\n予約日時: ${bookingData.date} ${bookingData.time}\nサービス: ${bookingData.service}`
     });
     

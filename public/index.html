@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+    <title>yoon²ゆんゆん - イヤーエステ・耳つぼ専門店</title>
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/12.3.0/firebase-app-compat.js"></script>
@@ -49,6 +49,13 @@
     <p id="load">Firebase SDK Loading&hellip;</p>
 
     <script>
+      // 検証環境での認証チェック（staging環境のみ）
+      if (window.location.hostname.includes('staging') || window.location.hostname.includes('test')) {
+        if (!sessionStorage.getItem('stagingAuth')) {
+          window.location.href = '/staging-auth.html';
+        }
+      }
+      
       document.addEventListener('DOMContentLoaded', function() {
         const loadEl = document.querySelector('#load');
         // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
