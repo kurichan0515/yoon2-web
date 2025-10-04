@@ -1,38 +1,358 @@
-/* 予約ページのスタイル */
+/* 予約ページ - LPに合わせたエレガントなデザイン */
+
 .booking-page {
   min-height: 100vh;
-  padding: 2rem 0;
-  background-color: #f8f9fa;
+  background-color: var(--color-background);
+  overflow-x: hidden;
 }
 
-.booking-page .container {
+/* Hero Section */
+.booking-hero {
+  position: relative;
+  min-height: calc(100vh - 100px);
+  margin-top: 0;
+  padding-top: 120px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  color: var(--color-text-primary);
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" style="stop-color:rgba(255,255,255,0.1)"/><stop offset="100%" style="stop-color:rgba(255,255,255,0)"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>') no-repeat center center;
+  background-size: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(244, 241, 235, 0.1);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
   max-width: 800px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: var(--spacing-xxl) 0;
 }
 
-.booking-page h1 {
+.hero-content h1 {
+  font-family: var(--font-primary);
+  font-size: 3.5rem;
+  font-weight: 300;
+  margin: var(--spacing-sm) 0 var(--spacing-md);
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+}
+
+.hero-description {
+  font-family: var(--font-secondary);
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin: 0;
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Section Labels */
+.section-label {
+  font-family: var(--font-secondary);
+  font-size: 0.8rem;
+  color: var(--color-accent);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 500;
+  display: block;
+  margin-bottom: var(--spacing-sm);
+}
+
+/* セクション共通スタイル */
+.section {
+  padding: var(--spacing-xxl) 0;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.section.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-header {
   text-align: center;
-  color: #2c3e50;
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-xxl);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-header h2 {
+  font-family: var(--font-primary);
   font-size: 2.5rem;
+  font-weight: 400;
+  margin: var(--spacing-sm) 0 var(--spacing-md);
+  color: var(--color-text-primary);
 }
 
-.booking-description {
-  text-align: center;
-  color: #7f8c8d;
-  margin-bottom: 3rem;
+.section-header p {
+  font-family: var(--font-secondary);
+  color: var(--color-text-secondary);
   font-size: 1.1rem;
   line-height: 1.6;
 }
 
+/* 予約フォームセクション */
+.booking-form-section {
+  background: var(--color-white);
+}
+
+/* 予約の流れセクション */
+.booking-flow-section {
+  background: var(--color-background);
+}
+
+.booking-flow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-xl);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.flow-step {
+  background: var(--color-white);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-light);
+  border: 1px solid var(--color-border);
+  text-align: center;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.flow-step:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-medium);
+}
+
+.step-number {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--color-accent), #b8956a);
+  color: var(--color-white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-secondary);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 auto var(--spacing-lg);
+  box-shadow: var(--shadow-light);
+}
+
+.step-content h4 {
+  font-family: var(--font-primary);
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0 0 var(--spacing-sm);
+  color: var(--color-text-primary);
+}
+
+.step-content p {
+  font-family: var(--font-secondary);
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* よくある質問セクション */
+.faq-section {
+  background: var(--color-white);
+}
+
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.faq-item {
+  background: linear-gradient(135deg, var(--color-primary) 0%, rgba(244, 241, 235, 0.5) 100%);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-medium);
+}
+
+.faq-item h4 {
+  font-family: var(--font-primary);
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0 0 var(--spacing-md);
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+}
+
+.faq-item p {
+  font-family: var(--font-secondary);
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: 1.7;
+  font-size: 0.95rem;
+  padding-left: var(--spacing-lg);
+}
+
+/* 注意事項セクション */
+.notes-section {
+  background: var(--color-background);
+}
+
+.notes-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-xl);
+}
+
+.note-card {
+  background: var(--color-white);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-light);
+  border: 1px solid var(--color-border);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.note-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-medium);
+}
+
+.note-icon {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-md);
+  display: block;
+}
+
+.note-card h4 {
+  font-family: var(--font-primary);
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0 0 var(--spacing-md);
+  color: var(--color-text-primary);
+}
+
+.note-card p {
+  font-family: var(--font-secondary);
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
-  .booking-page h1 {
+  .booking-hero {
+    margin-top: 0;
+    padding-top: 100px;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-description {
+    font-size: 1rem;
+  }
+  
+  .section {
+    padding: var(--spacing-xl) 0;
+  }
+  
+  .section-header h2 {
     font-size: 2rem;
   }
   
-  .booking-description {
-    font-size: 1rem;
+  .booking-flow {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+  
+  .notes-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+  }
+  
+  .faq-item h4 {
+    font-size: 1.1rem;
+  }
+  
+  .faq-item p {
+    font-size: 0.9rem;
+    padding-left: var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .booking-hero {
+    margin-top: 0;
+    padding-top: 90px;
+  }
+  
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .section-header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .flow-step,
+  .faq-item,
+  .note-card {
+    padding: var(--spacing-lg);
+  }
+  
+  .step-number {
+    width: 50px;
+    height: 50px;
+    font-size: 1.3rem;
+  }
+  
+  .notes-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .note-icon {
+    font-size: 2.5rem;
   }
 }

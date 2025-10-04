@@ -42,6 +42,9 @@ const CalendarPage = () => {
 
   // 初期化
   useEffect(() => {
+    // ページの一番上にスクロール
+    window.scrollTo(0, 0);
+    
     fetchAvailableSlots(selectedDate);
     fetchMonthlyStats(selectedDate);
   }, [selectedDate]);
@@ -69,9 +72,10 @@ const CalendarPage = () => {
       {/* ページヘッダー */}
       <div className="calendar-page-header">
         <div className="header-content">
+          <span className="section-label">Calendar</span>
           <h1>予約状況カレンダー</h1>
           <p className="header-description">
-            ホットペッパービューティーとの連携により、リアルタイムの予約状況をご確認いただけます。
+            お気軽にLINEでご予約・お問い合わせください。
           </p>
         </div>
       </div>
@@ -142,80 +146,31 @@ const CalendarPage = () => {
             )}
           </div>
 
-          {/* 月間統計パネル */}
-          <div className="sidebar-panel">
-            <h3>今月の統計</h3>
-            {loadingStats ? (
-              <div className="loading-stats">
-                <div className="loading-spinner-small"></div>
-                <p>読み込み中...</p>
-              </div>
-            ) : monthlyStats ? (
-              <div className="monthly-stats">
-                <div className="stat-item">
-                  <span className="stat-label">総予約数</span>
-                  <span className="stat-value">{monthlyStats.totalBookings}件</span>
-                </div>
-                <div className="stat-item">
-                  <span className="stat-label">ホットペッパー</span>
-                  <span className="stat-value">{monthlyStats.hotPepperBookings}件</span>
-                </div>
-                <div className="stat-item">
-                  <span className="stat-label">直接予約</span>
-                  <span className="stat-value">{monthlyStats.directBookings}件</span>
-                </div>
-                
-                {Object.keys(monthlyStats.serviceBreakdown).length > 0 && (
-                  <div className="service-breakdown">
-                    <h4>サービス別</h4>
-                    {Object.entries(monthlyStats.serviceBreakdown).map(([service, count]) => (
-                      <div key={service} className="service-stat">
-                        <span className="service-name">{service}</span>
-                        <span className="service-count">{count}件</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ) : (
-              <p className="no-stats">統計情報がありません</p>
-            )}
-          </div>
 
           {/* 予約方法案内 */}
           <div className="sidebar-panel booking-info">
             <h3>ご予約について</h3>
             <div className="booking-methods">
-              <div className="booking-method">
-                <h4>ホットペッパービューティー</h4>
-                <p>24時間オンライン予約可能</p>
-                <a 
-                  href="https://beauty.hotpepper.jp/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="booking-link hotpepper"
-                >
-                  ホットペッパーで予約
-                </a>
-              </div>
-              <div className="booking-method">
-                <h4>お電話での予約</h4>
-                <p>営業時間内にお気軽にお電話ください</p>
-                <a href="tel:080-8478-1163" className="booking-link phone">
-                  080-8478-1163
-                </a>
-              </div>
-              <div className="booking-method">
-                <h4>LINEでの予約</h4>
-                <p>LINEでも予約を承っております</p>
+              <div className="booking-method primary">
+                <h4>公式LINEで予約</h4>
+                <p>24時間受付・お気軽にメッセージください</p>
                 <a 
                   href="https://lin.ee/lyyKSqu" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="booking-link line"
+                  className="booking-link line primary"
                 >
-                  LINEで予約
+                  💬 LINEで予約・お問い合わせ
                 </a>
+                <p className="method-note">おすすめの予約方法です</p>
+              </div>
+              <div className="booking-method">
+                <h4>お電話でのお問い合わせ</h4>
+                <p>※お電話に出ることができません</p>
+                <a href="tel:080-8478-1163" className="booking-link phone disabled">
+                  📞 080-8478-1163
+                </a>
+                <p className="phone-note">緊急時のみご利用ください</p>
               </div>
             </div>
           </div>

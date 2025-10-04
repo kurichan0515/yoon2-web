@@ -1,112 +1,290 @@
-/* 予約フォームのスタイル */
+/* 予約・お問い合わせ誘導のスタイル */
 .booking-form-container {
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
 }
 
-.booking-form-container h2 {
+.booking-redirect-header {
   text-align: center;
+  margin-bottom: 3rem;
+}
+
+.booking-redirect-header h2 {
+  color: #2c3e50;
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.booking-description {
+  color: #5a6c7d;
+  font-size: 1.1rem;
+  line-height: 1.6;
   margin-bottom: 2rem;
+}
+
+/* 予約方法セクション */
+.booking-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.booking-method {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.booking-method.primary {
+  border: 3px solid #00c300;
+  transform: scale(1.02);
+}
+
+.booking-method.secondary {
+  border: 2px solid #e0e0e0;
+}
+
+.booking-method:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.method-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.method-icon {
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.method-header h3 {
+  color: #2c3e50;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 0;
+  flex: 1;
+}
+
+.recommended-badge {
+  background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.method-content {
+  margin-left: 0;
+}
+
+.method-description {
+  color: #5a6c7d;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.method-benefits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0, 195, 0, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
   color: #2c3e50;
 }
 
-.booking-form {
+.benefit-icon {
+  font-size: 1.2rem;
+}
+
+/* 予約ボタン */
+.booking-button {
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group label {
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-  color: #34495e;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1rem;
-  transition: border-color 0.3s;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: #3498db;
-  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
-}
-
-.form-group input.error,
-.form-group select.error,
-.form-group textarea.error {
-  border-color: #e74c3c;
-  box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.2);
-}
-
-.error-message {
-  color: #e74c3c;
-  font-size: 0.9rem;
-  margin-top: 0.5rem;
-  display: block;
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
-.submit-btn {
-  background-color: #3498db;
-  color: white;
-  padding: 1rem 2rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  width: 100%;
+  padding: 1.2rem 2rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 12px;
   font-size: 1.1rem;
-  font-weight: bold;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: white;
 }
 
-.submit-btn:hover:not(:disabled) {
-  background-color: #2980b9;
+.booking-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.6s;
 }
 
-.submit-btn:disabled {
-  background-color: #bdc3c7;
-  cursor: not-allowed;
+.booking-button:hover::before {
+  left: 100%;
 }
 
-.alert {
-  padding: 1rem;
-  border-radius: 4px;
-  margin-bottom: 1rem;
+.line-booking {
+  background: linear-gradient(45deg, #00c300, #00e600);
+  box-shadow: 0 4px 15px rgba(0, 195, 0, 0.3);
+}
+
+.line-booking:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 195, 0, 0.4);
+}
+
+
+.button-icon {
+  font-size: 1.3rem;
+}
+
+.method-note {
+  margin-top: 1rem;
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  font-style: italic;
   text-align: center;
+  background: rgba(255,255,255,0.5);
+  padding: 0.8rem;
+  border-radius: 8px;
 }
 
-.alert-success {
-  background-color: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
+/* サービスプレビュー */
+.services-preview {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
-.alert-error {
-  background-color: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
+.services-preview h3 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.service-card {
+  background: #d4b276;
+  color: white;
+  padding: 1.5rem 1rem;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-3px);
+}
+
+.service-card h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.service-duration {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  margin: 0.3rem 0;
+}
+
+.service-price {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0.5rem 0 0 0;
+}
+
+.services-note {
+  text-align: center;
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+/* 注意事項 */
+.booking-notes {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.booking-notes h3 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+}
+
+.booking-notes ul {
+  list-style: none;
+  padding: 0;
+}
+
+.booking-notes li {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+  color: #5a6c7d;
+  line-height: 1.6;
+}
+
+.booking-notes li::before {
+  content: '💡';
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1.2rem;
 }
 
 /* レスポンシブデザイン */
@@ -116,7 +294,66 @@
     padding: 1.5rem;
   }
   
-  .form-row {
-    grid-template-columns: 1fr;
+  .booking-redirect-header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .booking-methods {
+    gap: 1.5rem;
+  }
+  
+  .booking-method {
+    padding: 1.5rem;
+  }
+  
+  .method-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  
+  .method-header h3 {
+    font-size: 1.4rem;
+  }
+  
+  .method-benefits {
+    justify-content: center;
+  }
+  
+  .services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.8rem;
+  }
+  
+  .service-card {
+    padding: 1rem 0.8rem;
+  }
+  
+  .booking-notes {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .booking-form-container {
+    margin: 0.5rem;
+    padding: 1rem;
+  }
+  
+  .booking-redirect-header h2 {
+    font-size: 1.6rem;
+  }
+  
+  .booking-method {
+    padding: 1rem;
+  }
+  
+  .booking-button {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .services-grid {
+    grid-template-columns: 1fr 1fr;
   }
 }

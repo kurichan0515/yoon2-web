@@ -8,10 +8,12 @@
 /* Hero Section */
 .hero {
   position: relative;
-  min-height: 100vh;
+  min-height: calc(100vh - 100px); /* ヘッダー分を差し引く */
+  margin-top: 0; /* main-contentのmargin-topを相殺しない */
+  padding-top: 120px; /* ヘッダー分のパディングを追加（余裕を持たせる） */
   display: flex;
   align-items: center;
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  background: var(--color-primary);
   color: var(--color-text-primary);
 }
 
@@ -147,7 +149,7 @@
 .image-placeholder {
   width: 100%;
   height: 400px;
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  background: var(--color-primary);
   border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
@@ -237,7 +239,7 @@
   width: 100%;
   max-width: 400px;
   height: 300px;
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  background: var(--color-primary);
   border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
@@ -504,6 +506,11 @@
 }
 
 @media (max-width: 768px) {
+  .hero {
+    margin-top: -80px; /* モバイルでのヘッダー分を調整 */
+    padding-top: 80px;
+  }
+  
   .hero-content h1 {
     font-size: 3rem;
   }
@@ -558,6 +565,11 @@
 }
 
 @media (max-width: 480px) {
+  .hero {
+    margin-top: -70px; /* 小さい画面でのヘッダー分を調整 */
+    padding-top: 70px;
+  }
+  
   .hero-content {
     padding: var(--spacing-xl) 0;
   }

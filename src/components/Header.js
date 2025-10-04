@@ -54,13 +54,13 @@ const Header = ({ currentPage, onPageChange }) => {
             className={`nav-link ${currentPage === 'booking' ? 'active' : ''}`}
             onClick={() => handleNavClick('booking')}
           >
-            予約
+            予約・お問い合わせ
           </button>
           <button 
             className="nav-link nav-link-booking"
             onClick={() => handleNavClick('booking')}
           >
-            今すぐ予約
+            LINEで予約
           </button>
         </nav>
 

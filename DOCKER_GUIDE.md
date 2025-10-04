@@ -221,10 +221,10 @@ docker volume rm react-firebase-project_test_db_data
 
 ```bash
 # 本番用イメージのビルド
-docker build -t ear-cleaning-app .
+docker build -t yoon2-app .
 
 # 本番用コンテナの起動
-docker run -p 3000:3000 ear-cleaning-app
+docker run -p 3000:3000 yoon2-app
 ```
 
 ### Firebase Hostingへのデプロイ

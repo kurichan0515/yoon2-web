@@ -43,6 +43,8 @@ const appConfig = {
     hours: {
       open: process.env.REACT_APP_SHOP_HOURS_OPEN || "10:00",
       close: process.env.REACT_APP_SHOP_HOURS_CLOSE || "20:00",
+      weekday: process.env.REACT_APP_SHOP_HOURS_WEEKDAY || "10:00 - 20:00",
+      weekend: process.env.REACT_APP_SHOP_HOURS_WEEKEND || "10:00 - 20:00",
       note: process.env.REACT_APP_SHOP_HOURS_NOTE || "営業時間外でも対応できることがあります。お気軽にお問い合わせください。"
     },
     holidays: process.env.REACT_APP_SHOP_HOLIDAYS || "不定休",

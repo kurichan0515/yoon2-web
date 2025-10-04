@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import SocialFeed from '../components/SocialFeed';
-import QRCodes from '../components/QRCodes';
 import appConfig from '../config/appConfig';
 import './Home.css';
 
@@ -9,6 +8,9 @@ const Home = ({ onNavigateToBooking }) => {
   const sectionsRef = useRef([]);
 
   useEffect(() => {
+    // ページの一番上にスクロール
+    window.scrollTo(0, 0);
+    
     // Intersection Observer for animations
     const observer = new IntersectionObserver(
       (entries) => {
@@ -54,7 +56,7 @@ const Home = ({ onNavigateToBooking }) => {
                 onClick={() => onNavigateToBooking('booking')} 
                 className="btn-primary hero-cta"
               >
-                今すぐ予約する
+                LINEで予約・お問い合わせ
               </button>
               <button 
                 onClick={() => onNavigateToBooking('shop')} 
@@ -82,20 +84,6 @@ const Home = ({ onNavigateToBooking }) => {
                 ドライヘッドスパとの組み合わせで、頭部全体の疲れを解消し、
                 日常のストレスから解放される特別な時間をお過ごしいただけます。
               </p>
-              <div className="about-features">
-                <div className="feature-item">
-                  <span className="feature-icon">✨</span>
-                  <span>イヤーエステ</span>
-                </div>
-                <div className="feature-item">
-                  <span className="feature-icon">💎</span>
-                  <span>耳つぼジュエリー</span>
-                </div>
-                <div className="feature-item">
-                  <span className="feature-icon">🌸</span>
-                  <span>ドライヘッドスパ</span>
-                </div>
-              </div>
             </div>
             <div className="about-image">
               <div className="image-placeholder">
@@ -225,43 +213,7 @@ const Home = ({ onNavigateToBooking }) => {
         </div>
       </section>
 
-      {/* Vision Section */}
-      <section className="vision-section section" ref={addToRefs}>
-        <div className="container">
-          <div className="vision-content">
-            <div className="vision-image">
-              <div className="image-placeholder">
-                <span>店内の様子</span>
-              </div>
-            </div>
-            <div className="vision-text">
-              <span className="section-label">Our Vision</span>
-              <h2>心身のバランスを整える</h2>
-              <p>
-                イヤーエステと耳つぼの力で、お客様の心身のバランスを整えることが私たちの使命です。
-                プロの技術と心のこもったサービスで、深いリラクゼーションと健康をサポートいたします。
-              </p>
-              <div className="vision-stats">
-                <div className="stat-item">
-                  <span className="stat-number">1000+</span>
-                  <span className="stat-label">お客様</span>
-                </div>
-                <div className="stat-item">
-                  <span className="stat-number">5</span>
-                  <span className="stat-label">年の実績</span>
-                </div>
-                <div className="stat-item">
-                  <span className="stat-number">100%</span>
-                  <span className="stat-label">満足度</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* QR Codes Section */}
-      <QRCodes />
 
       {/* Social Section */}
       <section className="social-section section" ref={addToRefs}>

@@ -1,47 +1,47 @@
-/* カレンダーコンポーネントのスタイル */
+/* カレンダーコンポーネント - LPに合わせたエレガントなデザイン */
 
 .calendar-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background: var(--color-white);
+  padding: var(--spacing-xl);
 }
 
 .calendar-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-xl);
   flex-wrap: wrap;
-  gap: 15px;
+  gap: var(--spacing-md);
 }
 
 .calendar-header h2 {
-  color: #333;
+  font-family: var(--font-primary);
+  color: var(--color-text-primary);
   margin: 0;
   font-size: 1.8rem;
+  font-weight: 400;
 }
 
 .calendar-legend {
   display: flex;
-  gap: 20px;
+  gap: var(--spacing-lg);
   flex-wrap: wrap;
 }
 
 .legend-item {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  color: #666;
+  gap: var(--spacing-xs);
+  font-family: var(--font-secondary);
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
 }
 
 .legend-color {
   width: 16px;
   height: 16px;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(0,0,0,0.1);
 }
 
 .legend-color.hotpepper {
@@ -53,23 +53,28 @@
 }
 
 .calendar-wrapper {
-  background: #fff;
-  border-radius: 8px;
+  background: var(--color-white);
+  border-radius: var(--radius-md);
   overflow: hidden;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-light);
 }
 
-/* React Big Calendar のカスタマイズ */
+/* React Big Calendar のエレガントなカスタマイズ */
 .rbc-calendar {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: var(--font-secondary), var(--font-japanese);
+  color: var(--color-text-primary);
 }
 
 .rbc-header {
-  background-color: #f5f5f5;
-  border-bottom: 1px solid #ddd;
-  padding: 10px 5px;
-  font-weight: 600;
-  color: #333;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--spacing-md) var(--spacing-sm);
+  font-weight: 500;
+  color: var(--color-text-primary);
+  font-family: var(--font-secondary);
+  letter-spacing: 0.5px;
+  text-align: center;
 }
 
 .rbc-month-view {
@@ -78,119 +83,117 @@
 
 .rbc-date-cell {
   text-align: center;
-  padding: 5px;
+  padding: var(--spacing-sm);
+  border-right: 1px solid var(--color-border);
+  transition: background-color 0.2s ease;
+}
+
+.rbc-date-cell:hover {
+  background-color: rgba(244, 241, 235, 0.3);
 }
 
 .rbc-off-range-bg {
-  background-color: #fafafa;
+  background-color: var(--color-background);
+  color: var(--color-text-light);
 }
 
 .rbc-today {
-  background-color: #e3f2fd;
+  background-color: rgba(201, 169, 110, 0.1);
+  border: 1px solid rgba(201, 169, 110, 0.3);
+}
+
+.rbc-day-bg {
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.rbc-month-row {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.rbc-date-cell > a {
+  color: var(--color-text-primary);
+  font-weight: 500;
+  text-decoration: none;
+  padding: var(--spacing-xs);
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+.rbc-date-cell > a:hover {
+  background-color: var(--color-accent);
+  color: var(--color-white);
 }
 
 .rbc-event {
-  border-radius: 4px !important;
+  border-radius: var(--radius-sm) !important;
   border: none !important;
-  font-size: 12px !important;
-  padding: 2px 4px !important;
+  font-size: 0.75rem !important;
+  padding: 2px 6px !important;
   margin: 1px 0 !important;
+  font-family: var(--font-secondary) !important;
+  font-weight: 500 !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
 }
 
 .rbc-event:hover {
-  opacity: 0.8;
-  cursor: pointer;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15) !important;
 }
 
-.rbc-event.rbc-selected {
-  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #3174ad;
+.rbc-event:focus {
+  outline: 2px solid var(--color-accent) !important;
+  outline-offset: 1px !important;
 }
 
+.rbc-event-content {
+  font-size: 0.75rem;
+  line-height: 1.2;
+}
+
+/* ツールバー */
 .rbc-toolbar {
-  margin-bottom: 20px;
-  padding: 0 10px;
+  background: var(--color-white);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 0;
 }
 
 .rbc-toolbar button {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 8px 12px;
-  margin: 0 2px;
-  font-size: 14px;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-secondary);
+  font-size: 0.85rem;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
+  margin: 0 2px;
 }
 
 .rbc-toolbar button:hover {
-  background-color: #f5f5f5;
-  border-color: #3174ad;
+  background: var(--color-primary);
+  border-color: var(--color-accent);
+  color: var(--color-text-primary);
 }
 
+.rbc-toolbar button:active,
 .rbc-toolbar button.rbc-active {
-  background-color: #3174ad;
-  color: white;
-  border-color: #3174ad;
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-white);
+  box-shadow: var(--shadow-light);
 }
 
 .rbc-toolbar-label {
-  font-size: 18px;
-  font-weight: 600;
-  color: #333;
-  margin: 0 15px;
-}
-
-/* ローディング表示 */
-.calendar-loading {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 400px;
-  color: #666;
-}
-
-.loading-spinner {
-  width: 40px;
-  height: 40px;
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #3174ad;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-bottom: 15px;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* エラー表示 */
-.calendar-error {
-  text-align: center;
-  padding: 40px;
-  color: #666;
-}
-
-.calendar-error h3 {
-  color: #d32f2f;
-  margin-bottom: 10px;
-}
-
-.retry-button {
-  background-color: #3174ad;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  margin-top: 15px;
-  transition: background-color 0.2s;
-}
-
-.retry-button:hover {
-  background-color: #2563eb;
+  font-family: var(--font-primary);
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  margin: 0 var(--spacing-md);
 }
 
 /* イベント詳細モーダル */
@@ -200,198 +203,260 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  padding: 20px;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .event-modal {
-  background: white;
-  border-radius: 8px;
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-heavy);
   max-width: 500px;
-  width: 100%;
+  width: 90%;
   max-height: 80vh;
   overflow-y: auto;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .event-modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 20px 10px;
-  border-bottom: 1px solid #eee;
+  padding: var(--spacing-lg) var(--spacing-xl);
+  border-bottom: 1px solid var(--color-border);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
 
 .event-modal-header h3 {
+  font-family: var(--font-primary);
+  font-size: 1.4rem;
+  font-weight: 400;
   margin: 0;
-  color: #333;
-  font-size: 1.3rem;
+  color: var(--color-text-primary);
 }
 
 .close-button {
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 1.5rem;
+  color: var(--color-text-secondary);
   cursor: pointer;
-  color: #666;
-  padding: 0;
-  width: 30px;
-  height: 30px;
+  padding: var(--spacing-xs);
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+  line-height: 1;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  transition: background-color 0.2s;
 }
 
 .close-button:hover {
-  background-color: #f5f5f5;
+  background: rgba(0, 0, 0, 0.1);
+  color: var(--color-text-primary);
 }
 
 .event-modal-content {
-  padding: 20px;
+  padding: var(--spacing-xl);
 }
 
 .event-info {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: var(--spacing-md);
 }
 
 .event-title {
   display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
 }
 
 .event-title h4 {
+  font-family: var(--font-primary);
+  font-size: 1.3rem;
+  font-weight: 400;
   margin: 0;
-  color: #333;
-  font-size: 1.1rem;
-  flex: 1;
+  color: var(--color-text-primary);
 }
 
 .event-badge {
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: 500;
-  color: white;
-  white-space: nowrap;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-xl);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .event-badge.hotpepper {
-  background-color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+  color: #e53e3e;
+  border: 1px solid rgba(255, 107, 107, 0.3);
 }
 
 .event-badge.direct {
-  background-color: #4caf50;
+  background: rgba(76, 175, 80, 0.1);
+  color: #2e7d32;
+  border: 1px solid rgba(76, 175, 80, 0.3);
 }
 
 .event-info > div {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: var(--spacing-sm);
 }
 
-.event-info strong {
-  color: #555;
+.event-info > div strong {
+  font-family: var(--font-secondary);
+  font-weight: 600;
+  color: var(--color-text-primary);
   min-width: 80px;
-  flex-shrink: 0;
+  font-size: 0.9rem;
 }
 
-.event-info span,
-.event-info p {
-  color: #333;
+.event-info > div span,
+.event-info > div p {
+  font-family: var(--font-secondary);
+  color: var(--color-text-secondary);
   margin: 0;
   line-height: 1.5;
+  font-size: 0.9rem;
 }
 
-.event-description p,
-.event-notes p {
-  background-color: #f9f9f9;
-  padding: 10px;
-  border-radius: 4px;
-  border-left: 3px solid #3174ad;
-  margin: 0;
-  white-space: pre-wrap;
+/* ローディング・エラー表示 */
+.calendar-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xxl);
+  color: var(--color-text-light);
 }
 
-/* レスポンシブ対応 */
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--color-border);
+  border-top: 3px solid var(--color-accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: var(--spacing-md);
+}
+
+.calendar-error {
+  text-align: center;
+  padding: var(--spacing-xxl);
+  color: var(--color-text-secondary);
+}
+
+.calendar-error h3 {
+  font-family: var(--font-primary);
+  color: #e53e3e;
+  margin-bottom: var(--spacing-md);
+}
+
+.retry-button {
+  background: var(--color-accent);
+  color: var(--color-white);
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-secondary);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: var(--spacing-md);
+}
+
+.retry-button:hover {
+  background-color: #b8956a;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-light);
+}
+
+/* レスポンシブデザイン */
 @media (max-width: 768px) {
   .calendar-container {
-    padding: 15px;
-    margin: 10px;
+    padding: var(--spacing-md);
   }
-
+  
   .calendar-header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    gap: var(--spacing-sm);
   }
-
-  .calendar-header h2 {
-    font-size: 1.5rem;
-  }
-
+  
   .calendar-legend {
-    gap: 15px;
+    gap: var(--spacing-md);
   }
-
-  .rbc-calendar {
-    font-size: 12px;
-  }
-
+  
   .rbc-toolbar {
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
+    padding: var(--spacing-sm);
   }
-
-  .rbc-btn-group {
-    display: flex;
-    gap: 5px;
+  
+  .rbc-toolbar-label {
+    font-size: 1rem;
+    margin: 0 var(--spacing-sm);
   }
-
-  .rbc-toolbar button {
-    padding: 6px 10px;
-    font-size: 13px;
-  }
-
+  
   .event-modal {
-    margin: 10px;
-    max-height: 90vh;
+    width: 95%;
+    margin: var(--spacing-sm);
   }
-
+  
   .event-modal-header {
-    padding: 15px;
+    padding: var(--spacing-md) var(--spacing-lg);
   }
-
+  
   .event-modal-content {
-    padding: 15px;
-  }
-
-  .event-info strong {
-    min-width: 70px;
+    padding: var(--spacing-lg);
   }
 }
 
 @media (max-width: 480px) {
-  .rbc-calendar {
-    height: 400px !important;
+  .calendar-container {
+    padding: var(--spacing-sm);
   }
   
-  .calendar-wrapper {
-    overflow-x: auto;
+  .calendar-header h2 {
+    font-size: 1.4rem;
   }
   
-  .event-title {
-    flex-direction: column;
-    gap: 5px;
+  .legend-item {
+    font-size: 0.8rem;
+  }
+  
+  .rbc-toolbar button {
+    padding: var(--spacing-xs);
+    font-size: 0.75rem;
+  }
+  
+  .event-modal-header h3 {
+    font-size: 1.2rem;
   }
 }
