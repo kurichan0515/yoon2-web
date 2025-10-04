@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import SocialFeed from '../components/SocialFeed';
+import { trackPageView } from '../services/analyticsService';
 import appConfig from '../config/appConfig';
 import './Home.css';
 
@@ -10,6 +11,11 @@ const Home = ({ onNavigateToBooking }) => {
   useEffect(() => {
     // ページの一番上にスクロール
     window.scrollTo(0, 0);
+    
+    // インプレッションを記録
+    trackPageView('Home', {
+      section: 'main'
+    });
     
     // Intersection Observer for animations
     const observer = new IntersectionObserver(
@@ -94,7 +100,7 @@ const Home = ({ onNavigateToBooking }) => {
         </div>
       </section>
 
-      {/* Menu Section */}
+      {/* Menu Section - Simplified */}
       <section className="menu-section section" ref={addToRefs}>
         <div className="container">
           <div className="section-header">
@@ -102,111 +108,64 @@ const Home = ({ onNavigateToBooking }) => {
             <h2>サービスメニュー</h2>
             <p>お客様のご要望に合わせたイヤーエステ・耳つぼ・ドライヘッドスパメニューをご用意しております</p>
           </div>
-          <div className="menu-categories">
-            {/* おすすめメニュー */}
-            <div className="menu-category recommend-menu">
-              <div className="category-content-wrapper">
-                <div className="category-text-content">
-                  <h3 className="category-title">おすすめメニュー</h3>
-                  <div className="menu-grid">
-                    {appConfig.shop.services.filter(service => service.category === 'recommend').map(service => (
-                      <div key={service.id} className="menu-card featured">
-                        <div className="menu-content">
-                          <h4>{service.name}</h4>
-                          <p className="menu-duration">{service.duration}</p>
-                          <p className="menu-price">¥{service.price.toLocaleString()}</p>
-                          <p className="menu-description">{service.description}</p>
-                          <p className="next-discount">次回予約で200円引き</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="category-image-content">
-                  <img 
-                    src="/images/menus/recommend-menu.jpg" 
-                    alt="おすすめメニュー - yoon²極メニューと最上級メニュー"
-                    className="menu-category-image"
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                      e.target.nextElementSibling.style.display = 'flex';
-                    }}
-                  />
-                  <div className="image-placeholder menu-category-placeholder" style={{display: 'none'}}>
-                    <span>おすすめメニュー画像</span>
-                  </div>
-                </div>
+          <div className="simplified-menu-grid">
+            {/* おすすめメニュー画像 */}
+            <div className="menu-image-card" onClick={() => onNavigateToBooking('course')}>
+              <img 
+                src="/images/menus/recommend-menu.jpg" 
+                alt="おすすめメニュー"
+                className="menu-image"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextElementSibling.style.display = 'flex';
+                }}
+              />
+              <div className="image-placeholder menu-image-placeholder" style={{display: 'none'}}>
+                <span>おすすめメニュー</span>
+              </div>
+              <div className="menu-image-overlay">
+                <h3>おすすめメニュー</h3>
+                <p>詳細を見る</p>
               </div>
             </div>
 
-            {/* 耳つぼメニュー */}
-            <div className="menu-category mimitubo-menu">
-              <div className="category-content-wrapper">
-                <div className="category-image-content">
-                  <img 
-                    src="/images/menus/mimitubo-menu.jpg" 
-                    alt="耳つぼメニュー - 各種料金設定"
-                    className="menu-category-image"
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                      e.target.nextElementSibling.style.display = 'flex';
-                    }}
-                  />
-                  <div className="image-placeholder menu-category-placeholder" style={{display: 'none'}}>
-                    <span>耳つぼメニュー画像</span>
-                  </div>
-                </div>
-                <div className="category-text-content">
-                  <h3 className="category-title">耳つぼ</h3>
-                  <div className="menu-grid">
-                    {appConfig.shop.services.filter(service => service.category === 'mimitubo').map(service => (
-                      <div key={service.id} className="menu-card">
-                        <div className="menu-content">
-                          <h4>{service.name}</h4>
-                          <p className="menu-price">¥{service.price.toLocaleString()}</p>
-                          <p className="menu-description">{service.description}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  <p className="menu-note">付け放題メニューのみ　次回予約で200円引き</p>
-                </div>
+            {/* 耳つぼメニュー画像 */}
+            <div className="menu-image-card" onClick={() => onNavigateToBooking('course')}>
+              <img 
+                src="/images/menus/mimitubo-menu.jpg" 
+                alt="耳つぼメニュー"
+                className="menu-image"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextElementSibling.style.display = 'flex';
+                }}
+              />
+              <div className="image-placeholder menu-image-placeholder" style={{display: 'none'}}>
+                <span>耳つぼメニュー</span>
+              </div>
+              <div className="menu-image-overlay">
+                <h3>耳つぼメニュー</h3>
+                <p>詳細を見る</p>
               </div>
             </div>
 
-            {/* イヤーエステ・ドライヘッドスパ */}
-            <div className="menu-category ear-este-menu">
-              <div className="category-content-wrapper">
-                <div className="category-text-content">
-                  <h3 className="category-title">イヤーエステ・ドライヘッドスパ</h3>
-                  <div className="menu-grid">
-                    {appConfig.shop.services.filter(service => service.category === 'ear-este' || service.category === 'dry-head').map(service => (
-                      <div key={service.id} className="menu-card">
-                        <div className="menu-content">
-                          <h4>{service.name}</h4>
-                          <p className="menu-duration">{service.duration}</p>
-                          <p className="menu-price">¥{service.price.toLocaleString()}</p>
-                          <p className="menu-description">{service.description}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  <p className="menu-note">次回予約で200円引き</p>
-                </div>
-                <div className="category-image-content">
-                  <img 
-                    src="/images/menus/ear-este-menu.jpg" 
-                    alt="イヤーエステ・ドライヘッドスパメニュー - 料金表"
-                    className="menu-category-image"
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                      e.target.nextElementSibling.style.display = 'flex';
-                    }}
-                  />
-                  <div className="image-placeholder menu-category-placeholder" style={{display: 'none'}}>
-                    <span>イヤーエステ・ドライヘッドスパメニュー画像</span>
-                  </div>
-                </div>
+            {/* イヤーエステ・ドライヘッドスパメニュー画像 */}
+            <div className="menu-image-card" onClick={() => onNavigateToBooking('course')}>
+              <img 
+                src="/images/menus/ear-este-menu.jpg" 
+                alt="イヤーエステ・ドライヘッドスパメニュー"
+                className="menu-image"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextElementSibling.style.display = 'flex';
+                }}
+              />
+              <div className="image-placeholder menu-image-placeholder" style={{display: 'none'}}>
+                <span>イヤーエステ・ドライヘッドスパメニュー</span>
+              </div>
+              <div className="menu-image-overlay">
+                <h3>イヤーエステ・ドライヘッドスパ</h3>
+                <p>詳細を見る</p>
               </div>
             </div>
           </div>

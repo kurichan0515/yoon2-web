@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import Calendar from '../components/Calendar';
-import { getAvailableTimeSlots, getMonthlyBookingStats } from '../services/calendarService';
+import { getPublicAvailableTimeSlots, getMonthlyBookingStats } from '../services/calendarService';
 import './CalendarPage.css';
 
 const CalendarPage = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [availableSlots, setAvailableSlots] = useState([]);
-  const [monthlyStats, setMonthlyStats] = useState(null);
+  // const [monthlyStats, setMonthlyStats] = useState(null); // 未使用のためコメントアウト
   const [loadingSlots, setLoadingSlots] = useState(false);
-  const [loadingStats, setLoadingStats] = useState(false);
+  // const [loadingStats, setLoadingStats] = useState(false); // 未使用のためコメントアウト
 
-  // 利用可能時間を取得
+  // 利用可能時間を取得（プライバシー保護版）
   const fetchAvailableSlots = async (date) => {
     try {
       setLoadingSlots(true);
-      const slots = await getAvailableTimeSlots(date);
+      const slots = await getPublicAvailableTimeSlots(date);
       setAvailableSlots(slots);
     } catch (error) {
       console.error('利用可能時間取得エラー:', error);
@@ -132,11 +132,6 @@ const CalendarPage = () => {
                       <span className="status">
                         {slot.available ? '空き' : '予約済み'}
                       </span>
-                      {!slot.available && slot.booking && (
-                        <span className="booking-type">
-                          ({slot.booking.isHotPepperBooking ? 'HP' : '直接'})
-                        </span>
-                      )}
                     </div>
                   ))
                 ) : (

@@ -1,90 +1,142 @@
-// 認証関連のFirebaseサービス
+// Firebase Authentication サービス
 import { 
-  signInWithEmailAndPassword,
-  signOut,
+  getAuth, 
+  signInWithEmailAndPassword, 
+  signOut, 
   onAuthStateChanged,
-  createUserWithEmailAndPassword
+  createUserWithEmailAndPassword,
+  updateProfile
 } from 'firebase/auth';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
-import { auth, db } from '../firebase/config';
+import { db } from '../firebase/config';
 
-// 管理者ログイン
-export const signInAdmin = async (email, password) => {
-  try {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
-    
-    // 管理者権限をチェック
-    const isAdmin = await checkAdminRole(user.uid);
-    if (!isAdmin) {
-      await signOut(auth);
-      throw new Error('管理者権限がありません');
+class AuthService {
+  constructor() {
+    this.auth = getAuth();
+    this.isInitialized = false;
+  }
+
+  // 管理者ログイン
+  async signInAdmin(email, password) {
+    try {
+      const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
+      const user = userCredential.user;
+      
+      // 管理者権限をチェック
+      const isAdmin = await this.checkAdminRole(user.uid);
+      if (!isAdmin) {
+        await this.signOut();
+        throw new Error('管理者権限がありません');
+      }
+      
+      return user;
+    } catch (error) {
+      console.error('管理者ログインエラー:', error);
+      throw error;
     }
-    
-    return user;
-  } catch (error) {
-    console.error('ログインエラー:', error);
-    throw error;
   }
-};
 
-// 管理者権限のチェック
-export const checkAdminRole = async (uid) => {
-  try {
-    const userDoc = await getDoc(doc(db, 'users', uid));
-    if (userDoc.exists()) {
-      const userData = userDoc.data();
-      return userData.role === 'admin';
+  // 管理者権限をチェック
+  async checkAdminRole(uid) {
+    try {
+      const adminDoc = await getDoc(doc(db, 'admins', uid));
+      return adminDoc.exists() && adminDoc.data().isAdmin === true;
+    } catch (error) {
+      console.error('管理者権限チェックエラー:', error);
+      return false;
     }
-    return false;
-  } catch (error) {
-    console.error('権限チェックエラー:', error);
-    return false;
   }
-};
 
-// 管理者ユーザーの作成
-export const createAdminUser = async (email, password, adminData) => {
-  try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
+  // 管理者アカウント作成（初期設定用）
+  async createAdminAccount(email, password, displayName) {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
+      const user = userCredential.user;
+      
+      // プロフィール更新
+      await updateProfile(user, {
+        displayName: displayName
+      });
+      
+      // Firestoreに管理者情報を保存
+      await setDoc(doc(db, 'admins', user.uid), {
+        email: email,
+        displayName: displayName,
+        isAdmin: true,
+        createdAt: new Date(),
+        lastLogin: null
+      });
+      
+      return user;
+    } catch (error) {
+      console.error('管理者アカウント作成エラー:', error);
+      throw error;
+    }
+  }
+
+  // ログアウト
+  async signOut() {
+    try {
+      await signOut(this.auth);
+    } catch (error) {
+      console.error('ログアウトエラー:', error);
+      throw error;
+    }
+  }
+
+  // 認証状態の監視
+  onAuthStateChange(callback) {
+    return onAuthStateChanged(this.auth, callback);
+  }
+
+  // 現在のユーザーを取得
+  getCurrentUser() {
+    return this.auth.currentUser;
+  }
+
+  // 管理者権限の確認（同期版）
+  async isAdmin() {
+    const user = this.getCurrentUser();
+    if (!user) return false;
     
-    // ユーザードキュメントを作成
-    await setDoc(doc(db, 'users', user.uid), {
-      email: user.email,
-      role: 'admin',
-      createdAt: new Date(),
-      ...adminData
-    });
-    
-    return user;
-  } catch (error) {
-    console.error('管理者ユーザー作成エラー:', error);
-    throw error;
+    return await this.checkAdminRole(user.uid);
   }
-};
 
-// ログアウト
-export const signOutAdmin = async () => {
-  try {
-    await signOut(auth);
-  } catch (error) {
-    console.error('ログアウトエラー:', error);
-    throw error;
+  // 管理者情報を更新
+  async updateAdminInfo(uid, data) {
+    try {
+      await setDoc(doc(db, 'admins', uid), {
+        ...data,
+        updatedAt: new Date()
+      }, { merge: true });
+    } catch (error) {
+      console.error('管理者情報更新エラー:', error);
+      throw error;
+    }
   }
-};
 
-// 認証状態の監視
-export const onAuthStateChange = (callback) => {
-  return onAuthStateChanged(auth, callback);
-};
+  // ログイン履歴を記録
+  async recordLogin(uid) {
+    try {
+      await this.updateAdminInfo(uid, {
+        lastLogin: new Date()
+      });
+    } catch (error) {
+      console.error('ログイン履歴記録エラー:', error);
+    }
+  }
+}
 
-// 現在のユーザーを取得
-export const getCurrentUser = () => {
-  return auth.currentUser;
-};
+// シングルトンインスタンス
+const authService = new AuthService();
 
-// 認証状態をチェック
-export const isAuthenticated = () => {
-  return !!auth.currentUser;
-};
+export default authService;
+
+// 個別関数もエクスポート
+export const signInAdmin = (email, password) => authService.signInAdmin(email, password);
+export const signOutAdmin = () => authService.signOut();
+export const onAuthStateChange = (callback) => authService.onAuthStateChange(callback);
+export const checkAdminRole = (uid) => authService.checkAdminRole(uid);
+export const getCurrentUser = () => authService.getCurrentUser();
+export const isAdmin = () => authService.isAdmin();
+export const createAdminAccount = (email, password, displayName) => authService.createAdminAccount(email, password, displayName);

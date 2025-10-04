@@ -55,7 +55,8 @@ const AdminLogin = ({ onLoginSuccess }) => {
       'auth/user-disabled': 'このアカウントは無効化されています',
       'auth/too-many-requests': 'ログイン試行回数が多すぎます。しばらく待ってから再試行してください',
       'auth/network-request-failed': 'ネットワークエラーが発生しました',
-      'auth/invalid-credential': '認証情報が無効です'
+      'auth/invalid-credential': '認証情報が無効です',
+      'auth/email-already-in-use': 'このメールアドレスは既に使用されています'
     };
     return errorMessages[errorCode] || 'ログインに失敗しました';
   };

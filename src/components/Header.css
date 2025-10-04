@@ -194,8 +194,9 @@
     justify-content: center;
     align-items: center;
     gap: var(--spacing-xl);
-    transition: right 0.3s ease;
+    transition: right 0.3s ease, transform 0.3s ease;
     box-shadow: var(--shadow-heavy);
+    z-index: 999;
   }
   
   .header-nav-open {
@@ -210,6 +211,27 @@
   .nav-link-booking {
     margin-left: 0;
     margin-top: var(--spacing-lg);
+  }
+  
+  /* コース作成リンクのスタイル */
+  .nav-link[data-page="course-create"] {
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    box-shadow: var(--shadow-light);
+    margin-top: var(--spacing-md);
+  }
+  
+  .nav-link[data-page="course-create"]:hover {
+    background-color: #b8956a;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-medium);
+  }
+  
+  .nav-link[data-page="course-create"]::after {
+    display: none;
   }
 }
 

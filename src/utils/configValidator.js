@@ -162,8 +162,10 @@ export const logConfigValidation = (config) => {
   }
 };
 
-export default {
+const configValidator = {
   validateConfig,
   getConfigSummary,
   logConfigValidation
 };
+
+export default configValidator;

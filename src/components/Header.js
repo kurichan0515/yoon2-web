@@ -62,6 +62,13 @@ const Header = ({ currentPage, onPageChange }) => {
           >
             LINEで予約
           </button>
+          <button 
+            className={`nav-link ${currentPage === 'course-create' ? 'active' : ''}`}
+            onClick={() => handleNavClick('course-create')}
+            data-page="course-create"
+          >
+            コース作成
+          </button>
         </nav>
 
         <button 

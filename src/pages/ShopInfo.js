@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { trackPageView } from '../services/analyticsService';
 import appConfig from '../config/appConfig';
 import './ShopInfo.css';
 
@@ -15,6 +16,11 @@ const ShopInfo = () => {
   useEffect(() => {
     // ページの一番上にスクロール
     window.scrollTo(0, 0);
+    
+    // インプレッションを記録
+    trackPageView('ShopInfo', {
+      section: 'main'
+    });
     
     // Intersection Observer for animations
     const observer = new IntersectionObserver(
