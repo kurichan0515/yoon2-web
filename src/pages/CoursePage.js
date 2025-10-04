@@ -37,9 +37,6 @@ const CoursePage = ({ onNavigate }) => {
     ? courses 
     : courses.filter(course => course.category === selectedCategory);
 
-  const handleBackToHome = () => {
-    onNavigate('home');
-  };
 
   if (loading) {
     return (
@@ -57,9 +54,6 @@ const CoursePage = ({ onNavigate }) => {
         <div className="error-container">
           <h2>エラーが発生しました</h2>
           <p>{error}</p>
-          <button onClick={handleBackToHome} className="btn-primary">
-            ホームに戻る
-          </button>
         </div>
       </div>
     );
@@ -70,9 +64,6 @@ const CoursePage = ({ onNavigate }) => {
       <div className="container">
         {/* ヘッダー */}
         <div className="course-header">
-          <button onClick={handleBackToHome} className="back-button">
-            ← ホームに戻る
-          </button>
           <h1>コース一覧</h1>
           <p>お客様のご要望に合わせたイヤーエステ・耳つぼ・ドライヘッドスパメニューをご用意しております</p>
         </div>
@@ -98,48 +89,47 @@ const CoursePage = ({ onNavigate }) => {
 
         {/* コース一覧 */}
         <div className="courses-grid">
-          {filteredCourses.map(course => (
-            <div key={course.id} className="course-card">
-              <div className="course-image">
-                <img 
-                  src={course.image} 
-                  alt={course.name}
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                    e.target.nextElementSibling.style.display = 'flex';
-                  }}
-                />
-                <div className="image-placeholder" style={{display: 'none'}}>
-                  <span>{course.name}</span>
-                </div>
-              </div>
-              <div className="course-content">
-                <div className="course-header-info">
-                  <h3>{course.name}</h3>
-                  <span className="course-category">
-                    {COURSE_CATEGORY_LABELS[course.category]}
-                  </span>
-                </div>
-                <p className="course-description">{course.description}</p>
-                <div className="course-details">
-                  <div className="course-duration">
-                    <span className="detail-label">時間:</span>
-                    <span className="detail-value">{course.duration}</span>
-                  </div>
-                  <div className="course-price">
-                    <span className="detail-label">価格:</span>
-                    <span className="detail-value">¥{course.price.toLocaleString()}</span>
+          {filteredCourses.map(course => {
+            // yoon²極メニューと最上級メニューをグループ化
+            const isGroupedCourse = course.name.includes('極メニュー') || course.name.includes('最上級メニュー');
+            
+            return (
+              <div key={course.id} className={`course-card ${isGroupedCourse ? 'grouped-course' : ''}`}>
+                <div className="course-image">
+                  <img 
+                    src={course.image} 
+                    alt={course.name}
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextElementSibling.style.display = 'flex';
+                    }}
+                  />
+                  <div className="image-placeholder" style={{display: 'none'}}>
+                    <span>{course.name}</span>
                   </div>
                 </div>
-                <button 
-                  className="btn-primary course-button"
-                  onClick={() => onNavigate('booking')}
-                >
-                  予約する
-                </button>
+                <div className="course-content">
+                  <div className="course-header-info">
+                    <h3>{course.name}</h3>
+                    <span className="course-category">
+                      {COURSE_CATEGORY_LABELS[course.category]}
+                    </span>
+                  </div>
+                  <p className="course-description">{course.description}</p>
+                  <div className="course-details">
+                    <div className="course-duration">
+                      <span className="detail-label">時間:</span>
+                      <span className="detail-value">{course.duration}</span>
+                    </div>
+                    <div className="course-price">
+                      <span className="detail-label">価格:</span>
+                      <span className="detail-value">¥{course.price.toLocaleString()}</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {filteredCourses.length === 0 && (
@@ -154,3 +144,4 @@ const CoursePage = ({ onNavigate }) => {
 };
 
 export default CoursePage;
+

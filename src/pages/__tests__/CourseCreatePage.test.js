@@ -136,3 +136,4 @@ describe('CourseCreatePage Component', () => {
     expect(fileInput).toBeInTheDocument();
   });
 });
+

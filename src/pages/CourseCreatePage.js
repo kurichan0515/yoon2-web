@@ -87,18 +87,12 @@ const CourseCreatePage = ({ onNavigate }) => {
     }
   };
 
-  const handleBackToHome = () => {
-    onNavigate('home');
-  };
 
   return (
     <div className="course-create-page">
       <div className="container">
         {/* ヘッダー */}
         <div className="create-header">
-          <button onClick={handleBackToHome} className="back-button">
-            ← ホームに戻る
-          </button>
           <h1>コース作成</h1>
           <p>新しいコースを作成して、お客様に提供するサービスを追加してください</p>
         </div>
@@ -225,14 +219,6 @@ const CourseCreatePage = ({ onNavigate }) => {
             {/* ボタン */}
             <div className="form-actions">
               <button
-                type="button"
-                onClick={handleBackToHome}
-                className="btn-secondary"
-                disabled={isSubmitting}
-              >
-                キャンセル
-              </button>
-              <button
                 type="submit"
                 className="btn-primary"
                 disabled={isSubmitting}
@@ -248,3 +234,4 @@ const CourseCreatePage = ({ onNavigate }) => {
 };
 
 export default CourseCreatePage;
+

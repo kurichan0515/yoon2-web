@@ -33,21 +33,21 @@ const SocialFeed = () => {
   const mockInstagramPosts = [
     {
       id: 1,
-      image: "https://via.placeholder.com/300x300?text=店内の様子",
+      image: "/images/social/shop-interior.jpg",
       caption: "今日の店内の様子です #イヤーエステ #リラックス #松山 #清水町 #yoon²",
       date: "2024-12-15",
       likes: 24
     },
     {
       id: 2,
-      image: "https://via.placeholder.com/300x300?text=施術風景",
+      image: "/images/social/treatment-scene.jpg",
       caption: "イヤーエステと耳つぼで心身のリラクゼーション #イヤーエステ #耳つぼジュエリー #yoon²",
       date: "2024-12-14",
       likes: 18
     },
     {
       id: 3,
-      image: "https://via.placeholder.com/300x300?text=お客様の声",
+      image: "/images/social/customer-voice.jpg",
       caption: "お客様の声をいただきました #お客様の声 #ありがとう #リピート",
       date: "2024-12-13",
       likes: 31
@@ -88,7 +88,17 @@ const SocialFeed = () => {
               {mockInstagramPosts.map(post => (
                 <div key={post.id} className="instagram-post">
                   <div className="post-image">
-                    <img src={post.image} alt="Instagram post" />
+                    <img 
+                      src={post.image} 
+                      alt="Instagram post"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.nextElementSibling.style.display = 'flex';
+                      }}
+                    />
+                    <div className="image-placeholder" style={{display: 'none'}}>
+                      <span>画像を読み込み中...</span>
+                    </div>
                   </div>
                   <div className="post-content">
                     <p>{post.caption}</p>

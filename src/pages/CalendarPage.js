@@ -9,16 +9,49 @@ const CalendarPage = () => {
   // const [monthlyStats, setMonthlyStats] = useState(null); // 未使用のためコメントアウト
   const [loadingSlots, setLoadingSlots] = useState(false);
   // const [loadingStats, setLoadingStats] = useState(false); // 未使用のためコメントアウト
+  const [error, setError] = useState(null);
 
   // 利用可能時間を取得（プライバシー保護版）
   const fetchAvailableSlots = async (date) => {
     try {
       setLoadingSlots(true);
+      setError(null);
       const slots = await getPublicAvailableTimeSlots(date);
       setAvailableSlots(slots);
     } catch (error) {
       console.error('利用可能時間取得エラー:', error);
-      setAvailableSlots([]);
+      setError('カレンダーデータの取得に失敗しました');
+      
+      // ローカル・検証環境のみモックデータを表示
+      const isLocalOrDev = process.env.NODE_ENV === 'development' || 
+                          window.location.hostname === 'localhost' || 
+                          window.location.hostname.includes('dev') ||
+                          window.location.hostname.includes('staging') ||
+                          window.location.hostname.includes('web.app') ||
+                          window.location.hostname.includes('firebaseapp.com');
+      
+      console.log('カレンダー環境チェック:', {
+        NODE_ENV: process.env.NODE_ENV,
+        hostname: window.location.hostname,
+        isLocalOrDev: isLocalOrDev
+      });
+      
+      if (isLocalOrDev) {
+        setAvailableSlots([
+          { time: '10:00', available: true },
+          { time: '11:00', available: false },
+          { time: '12:00', available: true },
+          { time: '13:00', available: true },
+          { time: '14:00', available: false },
+          { time: '15:00', available: true },
+          { time: '16:00', available: true },
+          { time: '17:00', available: false },
+          { time: '18:00', available: true },
+          { time: '19:00', available: true }
+        ]);
+      } else {
+        setAvailableSlots([]);
+      }
     } finally {
       setLoadingSlots(false);
     }
@@ -27,16 +60,16 @@ const CalendarPage = () => {
   // 月間統計を取得
   const fetchMonthlyStats = async (date) => {
     try {
-      setLoadingStats(true);
+      // setLoadingStats(true); // コメントアウト
       const year = date.getFullYear();
       const month = date.getMonth() + 1;
       const stats = await getMonthlyBookingStats(year, month);
-      setMonthlyStats(stats);
+      // setMonthlyStats(stats); // コメントアウト
     } catch (error) {
       console.error('月間統計取得エラー:', error);
-      setMonthlyStats(null);
+      // setMonthlyStats(null); // コメントアウト
     } finally {
-      setLoadingStats(false);
+      // setLoadingStats(false); // コメントアウト
     }
   };
 
@@ -84,6 +117,12 @@ const CalendarPage = () => {
       <div className="calendar-page-content">
         {/* カレンダー表示 */}
         <div className="calendar-section">
+          {error && (
+            <div className="error-message">
+              <p>⚠️ {error}</p>
+              <p>モックデータを表示しています</p>
+            </div>
+          )}
           <Calendar onDateSelect={handleDateSelect} />
         </div>
 

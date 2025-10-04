@@ -1,3 +1,13 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+
+# 管理画面のクローラー除外
+Disallow: /system/
+Disallow: /admin/
+
+# その他の除外パス
+Disallow: /api/
+Disallow: /_next/
+Disallow: /static/
+
+Sitemap: https://your-domain.com/sitemap.xml

@@ -81,3 +81,4 @@ describe('Home Component', () => {
     expect(screen.getByText('イヤーエステ・ドライヘッドスパメニュー')).toBeInTheDocument();
   });
 });
+

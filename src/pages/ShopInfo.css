@@ -6,6 +6,16 @@
   overflow-x: hidden;
 }
 
+/* Googleマップコンテナー */
+.map-container {
+  width: 100%;
+  height: 300px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: var(--spacing-md);
+}
+
 /* Hero Section */
 .shop-hero {
   position: relative;
@@ -787,6 +797,20 @@
   border-radius: 8px;
   font-size: 14px;
   color: #666;
+}
+
+/* レスポンシブデザイン - マップ */
+@media (max-width: 768px) {
+  .map-container {
+    height: 250px;
+    margin-top: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .map-container {
+    height: 200px;
+  }
 }
 
 /* QRコードセクション レスポンシブ */

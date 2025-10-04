@@ -128,11 +128,17 @@ const ShopInfo = () => {
                 </div>
               </div>
             </div>
-            <div className="map-placeholder">
-              <div className="map-content">
-                <span>地図</span>
-                <p>Google Mapで詳細な場所をご確認いただけます</p>
-              </div>
+            <div className="map-container">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.1234567890123!2d132.7654321!3d33.1234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDA3JzI0LjQiTiAxMzLCsDQ1JzU1LjYiRQ!5e0!3m2!1sja!2sjp!4v1234567890123!5m2!1sja!2sjp"
+                width="100%"
+                height="300"
+                style={{ border: 0, borderRadius: '8px' }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="yoon²ゆんゆん 店舗位置"
+              ></iframe>
             </div>
           </div>
         </div>
@@ -171,34 +177,10 @@ const ShopInfo = () => {
         </div>
       </section>
 
-      {/* サービスメニューセクション */}
-      <section className="section services-section" ref={addToRefs}>
-        <div className="container">
-          <div className="section-header">
-            <span className="section-label">Services</span>
-            <h2>サービスメニュー</h2>
-            <p>お客様のご要望に合わせた施術をご提供いたします</p>
-          </div>
-          <div className="services-grid">
-            {shop?.services?.map(service => (
-              <div key={service.id} className="service-card">
-                <div className="service-content">
-                  <h4>{service.name}</h4>
-                  <div className="service-details">
-                    <span className="service-duration">{service.duration}</span>
-                    <span className="service-price">¥{service.price.toLocaleString()}</span>
-                  </div>
-                  <p className="service-description">{service.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
 
-      {/* お問い合わせ・QRコードセクション */}
-      <section className="section qr-codes-section" ref={addToRefs}>
+      {/* お問い合わせセクション */}
+      <section className="section contact-section" ref={addToRefs}>
         <div className="container">
           <div className="section-header">
             <span className="section-label">Contact</span>
@@ -206,64 +188,10 @@ const ShopInfo = () => {
             <p>お気軽にお問い合わせください</p>
           </div>
           
-          <div className="qr-codes-container">
-            <div className="qr-code-card">
-              <div className="qr-code-header">
-                <span className="qr-icon">💬</span>
-                <h3>公式LINE</h3>
-                <p>24時間受付・お気軽にメッセージください</p>
-              </div>
-              <div className="qr-code-image">
-                <img src="/images/qu-codes/line-qr-code.png" alt="LINE QRコード" />
-              </div>
-              <div className="qr-code-footer">
-                <p className="qr-instruction">QRコードを読み取って友だち追加</p>
-                <a 
-                  href={social.line.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="btn-primary qr-button"
-                >
-                  LINEで予約・お問い合わせ
-                </a>
-              </div>
-            </div>
-
-            <div className="qr-code-card">
-              <div className="qr-code-header">
-                <span className="qr-icon">📷</span>
-                <h3>公式Instagram</h3>
-                <p>最新情報やお得なキャンペーン情報をお届けします</p>
-              </div>
-              <div className="qr-code-image">
-                <img src="/images/qu-codes/instagram-qr-code.jpg" alt="Instagram QRコード" />
-              </div>
-              <div className="qr-code-footer">
-                <p className="qr-instruction">@yoo.n.yoo.n</p>
-                <a 
-                  href={social.instagram.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="btn-secondary qr-button"
-                >
-                  Instagramを見る
-                </a>
-              </div>
-            </div>
-          </div>
-
           <div className="contact-info">
             <div className="contact-note">
               <h4>📞 お電話でのお問い合わせについて</h4>
               <p>お電話に出ることができません。ご予約やお問い合わせは<strong>公式LINE</strong>にメッセージをお願いします。</p>
-            </div>
-            
-            <div className="qr-note">
-              <p>
-                <strong>📱 QRコードについて:</strong><br/>
-                上記のQRコードはプレースホルダーです。実際のLINEとInstagramのQRコード画像に置き換えることで、
-                お客様がスマートフォンで直接アクセスできるようになります。
-              </p>
             </div>
           </div>
         </div>

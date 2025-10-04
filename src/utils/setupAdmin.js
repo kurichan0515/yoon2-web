@@ -35,3 +35,4 @@ if (process.env.NODE_ENV === 'development') {
   window.setupAdmin = setupInitialAdmin;
   console.log('管理者アカウント設定: window.setupAdmin() を実行してください');
 }
+

@@ -2,7 +2,7 @@
 const appConfig = {
   // Firebase設定（環境変数から取得、フォールバック値も設定）
   firebase: {
-    apiKey: process.env.REACT_APP_FIREBASE_API_KEY || "demo-api-key",
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY || "AIzaSyDemo1234567890abcdefghijklmnop",
     authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN || "demo-project.firebaseapp.com",
     projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID || "demo-project",
     storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET || "demo-project.appspot.com",

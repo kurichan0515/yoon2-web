@@ -9,6 +9,7 @@
 .course-header {
   text-align: center;
   margin-bottom: var(--spacing-xxl);
+  padding-top: var(--spacing-lg);
 }
 
 .back-button {
@@ -97,7 +98,7 @@
 
 .course-image {
   position: relative;
-  height: 200px;
+  height: 522px;
   overflow: hidden;
 }
 
@@ -121,6 +122,28 @@
   justify-content: center;
   color: var(--color-text-light);
   font-size: 0.9rem;
+}
+
+.course-image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+  padding: var(--spacing-md);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.course-card:hover .course-image-overlay {
+  transform: translateY(0);
+}
+
+.course-image-overlay h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 
 .course-content {
@@ -193,6 +216,17 @@
   font-weight: 500;
 }
 
+/* グループ化されたコースのスタイル */
+.grouped-course {
+  border: 2px solid var(--color-accent);
+  box-shadow: 0 4px 12px rgba(201, 169, 110, 0.2);
+}
+
+.grouped-course .course-header-info h3 {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
 /* ローディングとエラー状態 */
 .loading-container,
 .error-container {
@@ -228,8 +262,9 @@
 
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
-  .course-page {
-    padding: var(--spacing-lg) 0;
+  
+  .course-header {
+    padding-top: var(--spacing-md);
   }
   
   .course-header h1 {
@@ -256,7 +291,7 @@
   }
   
   .course-image {
-    height: 150px;
+    height: 522px;
   }
   
   .course-header-info {
@@ -282,6 +317,10 @@
 }
 
 @media (max-width: 480px) {
+  .course-header {
+    padding-top: var(--spacing-sm);
+  }
+  
   .course-header h1 {
     font-size: 1.8rem;
   }
@@ -294,3 +333,4 @@
     font-size: 1.1rem;
   }
 }
+

@@ -1,0 +1,32 @@
+.public-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+.public-main {
+  flex: 1;
+  padding-top: 0;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+  .public-layout {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  
+  .public-main {
+    padding-top: 0;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+}

@@ -392,6 +392,27 @@
   margin-top: var(--spacing-xs);
 }
 
+/* エラーメッセージ */
+.error-message {
+  background: rgba(231, 76, 60, 0.1);
+  border: 1px solid rgba(231, 76, 60, 0.3);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  text-align: center;
+}
+
+.error-message p {
+  margin: 0;
+  color: #e74c3c;
+  font-size: 0.9rem;
+}
+
+.error-message p:first-child {
+  font-weight: 500;
+  margin-bottom: var(--spacing-xs);
+}
+
 /* ローディング・エラー表示 */
 .loading-slots,
 .loading-stats {

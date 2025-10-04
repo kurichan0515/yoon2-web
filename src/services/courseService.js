@@ -167,3 +167,4 @@ class CourseService {
 const courseService = new CourseService();
 
 export default courseService;
+

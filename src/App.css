@@ -51,14 +51,20 @@
   display: flex;
   flex-direction: column;
   background-color: var(--color-background);
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 .main-content {
   flex: 1;
   display: flex;
   flex-direction: column;
-  /* ヘッダー分の上マージンを設定 */
-  margin-top: 100px; /* ヘッダーの高さ + 余白 */
+  /* 固定ヘッダー分の上マージンを設定 */
+  margin-top: 70px; /* ヘッダーの高さ */
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 /* グローバルスタイル */
@@ -68,8 +74,15 @@
   padding: 0;
 }
 
+html {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
+  padding: 0;
   font-family: var(--font-secondary), var(--font-japanese);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -77,6 +90,8 @@ body {
   color: var(--color-text-primary);
   background-color: var(--color-background);
   overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
 
 /* タイポグラフィ */
@@ -238,12 +253,32 @@ input:focus, select:focus, textarea:focus {
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
   .main-content {
-    margin-top: 80px; /* モバイルでのヘッダー高さに調整 */
+    margin-top: 70px; /* 固定ヘッダーの高さ */
     padding: 0;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
   }
   
   .container {
     padding: 0 var(--spacing-sm);
+    width: 100%;
+    max-width: 100vw;
+    margin: 0 auto;
+    overflow-x: hidden;
+  }
+  
+  /* 画面幅の制限を解除 */
+  body {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  
+  .App {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
   }
   
   h1 {

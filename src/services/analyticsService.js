@@ -29,6 +29,12 @@ class AnalyticsService {
     try {
       await this.initialize();
       
+      // Firebaseが利用可能かより厳密にチェック
+      if (!db || typeof db === 'undefined' || !db._delegate) {
+        console.log('Firebase not available, skipping page view tracking');
+        return;
+      }
+      
       const pageViewData = {
         pageName: pageName,
         timestamp: new Date(),
@@ -62,6 +68,12 @@ class AnalyticsService {
   async trackEvent(eventName, eventData = {}) {
     try {
       await this.initialize();
+      
+      // Firebaseが利用可能かより厳密にチェック
+      if (!db || typeof db === 'undefined' || !db._delegate) {
+        console.log('Firebase not available, skipping event tracking');
+        return;
+      }
       
       const event = {
         eventName: eventName,

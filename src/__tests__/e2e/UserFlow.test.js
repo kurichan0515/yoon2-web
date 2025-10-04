@@ -193,3 +193,4 @@ describe('User Flow E2E Tests', () => {
     expect(detailLinks).toHaveLength(3);
   });
 });
+

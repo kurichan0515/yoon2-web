@@ -65,3 +65,4 @@ export const COURSE_SERVICE_METHODS = {
   DELETE: 'delete',
   LIST: 'list'
 };
+

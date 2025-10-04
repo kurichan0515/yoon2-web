@@ -117,3 +117,4 @@ describe('CoursePage Component', () => {
     });
   });
 });
+

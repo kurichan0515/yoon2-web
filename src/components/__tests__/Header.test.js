@@ -147,3 +147,4 @@ describe('Header Mobile Menu - Course Creation Feature', () => {
     expect(nav).not.toHaveClass('header-nav-open');
   });
 });
+

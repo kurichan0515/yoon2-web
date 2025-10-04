@@ -1,4 +1,6 @@
 // Firebase Authentication サービス
+console.log('🔥 [Auth Debug] authService.js loaded');
+
 import { 
   getAuth, 
   signInWithEmailAndPassword, 
@@ -10,14 +12,43 @@ import {
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
 
+console.log('🔥 [Auth Debug] Firebase imports completed');
+
 class AuthService {
   constructor() {
-    this.auth = getAuth();
+    console.log('🔥 [Auth Debug] AuthService constructor called');
+    this.auth = null;
     this.isInitialized = false;
+    this.initializeAuth();
+  }
+
+  initializeAuth() {
+    console.log('🔥 [Auth Debug] initializeAuth called');
+    try {
+      // Firebase設定を先に読み込む
+      const { auth: firebaseAuth } = require('../firebase/config');
+      console.log('🔥 [Auth Debug] Firebase config loaded, auth available:', !!firebaseAuth);
+      
+      if (firebaseAuth) {
+        this.auth = firebaseAuth;
+        this.isInitialized = true;
+        console.log('🔥 [Auth Debug] Firebase Auth obtained successfully:', !!this.auth);
+      } else {
+        throw new Error('Firebase Auth not available from config');
+      }
+    } catch (error) {
+      console.error('🔥 [Auth Debug] Auth initialization error:', error);
+      console.error('🔥 [Auth Debug] Error stack:', error.stack);
+      this.auth = null;
+      this.isInitialized = false;
+    }
   }
 
   // 管理者ログイン
   async signInAdmin(email, password) {
+    if (!this.isInitialized || !this.auth) {
+      throw new Error('Firebase Auth is not initialized');
+    }
     try {
       const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
       const user = userCredential.user;
@@ -76,6 +107,10 @@ class AuthService {
 
   // ログアウト
   async signOut() {
+    if (!this.isInitialized || !this.auth) {
+      console.warn('Firebase Auth is not initialized, skipping signOut');
+      return;
+    }
     try {
       await signOut(this.auth);
     } catch (error) {
@@ -86,11 +121,20 @@ class AuthService {
 
   // 認証状態の監視
   onAuthStateChange(callback) {
+    if (!this.isInitialized || !this.auth) {
+      console.warn('Firebase Auth is not initialized, using mock callback');
+      // モックコールバックを即座に実行
+      callback(null);
+      return () => {}; // 空のunsubscribe関数
+    }
     return onAuthStateChanged(this.auth, callback);
   }
 
   // 現在のユーザーを取得
   getCurrentUser() {
+    if (!this.isInitialized || !this.auth) {
+      return null;
+    }
     return this.auth.currentUser;
   }
 
@@ -128,7 +172,9 @@ class AuthService {
 }
 
 // シングルトンインスタンス
+console.log('🔥 [Auth Debug] Creating AuthService singleton instance');
 const authService = new AuthService();
+console.log('🔥 [Auth Debug] AuthService singleton created');
 
 export default authService;
 
@@ -140,3 +186,4 @@ export const checkAdminRole = (uid) => authService.checkAdminRole(uid);
 export const getCurrentUser = () => authService.getCurrentUser();
 export const isAdmin = () => authService.isAdmin();
 export const createAdminAccount = (email, password, displayName) => authService.createAdminAccount(email, password, displayName);
+

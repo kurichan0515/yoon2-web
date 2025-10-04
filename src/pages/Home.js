@@ -1,14 +1,19 @@
 import React, { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import SocialFeed from '../components/SocialFeed';
 import { trackPageView } from '../services/analyticsService';
 import appConfig from '../config/appConfig';
 import './Home.css';
 
-const Home = ({ onNavigateToBooking }) => {
+const Home = () => {
+  const navigate = useNavigate();
+  console.log('🔥 [Home Debug] Home component rendered');
+  
   const heroRef = useRef(null);
   const sectionsRef = useRef([]);
 
   useEffect(() => {
+    console.log('🔥 [Home Debug] Home useEffect called');
     // ページの一番上にスクロール
     window.scrollTo(0, 0);
     
@@ -59,13 +64,13 @@ const Home = ({ onNavigateToBooking }) => {
             </p>
             <div className="hero-actions">
               <button 
-                onClick={() => onNavigateToBooking('booking')} 
+                onClick={() => navigate('/calendar')} 
                 className="btn-primary hero-cta"
               >
                 LINEで予約・お問い合わせ
               </button>
               <button 
-                onClick={() => onNavigateToBooking('shop')} 
+                onClick={() => navigate('/shop')} 
                 className="btn-secondary"
               >
                 店舗情報
@@ -110,7 +115,7 @@ const Home = ({ onNavigateToBooking }) => {
           </div>
           <div className="simplified-menu-grid">
             {/* おすすめメニュー画像 */}
-            <div className="menu-image-card" onClick={() => onNavigateToBooking('course')}>
+            <div className="menu-image-card" onClick={() => navigate('/courses')}>
               <img 
                 src="/images/menus/recommend-menu.jpg" 
                 alt="おすすめメニュー"
@@ -130,7 +135,7 @@ const Home = ({ onNavigateToBooking }) => {
             </div>
 
             {/* 耳つぼメニュー画像 */}
-            <div className="menu-image-card" onClick={() => onNavigateToBooking('course')}>
+            <div className="menu-image-card" onClick={() => navigate('/courses')}>
               <img 
                 src="/images/menus/mimitubo-menu.jpg" 
                 alt="耳つぼメニュー"
@@ -150,7 +155,7 @@ const Home = ({ onNavigateToBooking }) => {
             </div>
 
             {/* イヤーエステ・ドライヘッドスパメニュー画像 */}
-            <div className="menu-image-card" onClick={() => onNavigateToBooking('course')}>
+            <div className="menu-image-card" onClick={() => navigate('/courses')}>
               <img 
                 src="/images/menus/ear-este-menu.jpg" 
                 alt="イヤーエステ・ドライヘッドスパメニュー"
