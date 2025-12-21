@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Calendar from '../components/Calendar';
 import { getPublicAvailableTimeSlots, getMonthlyBookingStats } from '../services/calendarService';
+import ErrorMessage from '../components/common/ErrorMessage';
+import logger from '../utils/logger';
 import './CalendarPage.css';
 
 const CalendarPage = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [availableSlots, setAvailableSlots] = useState([]);
-  // const [monthlyStats, setMonthlyStats] = useState(null); // 未使用のためコメントアウト
   const [loadingSlots, setLoadingSlots] = useState(false);
-  // const [loadingStats, setLoadingStats] = useState(false); // 未使用のためコメントアウト
   const [error, setError] = useState(null);
 
   // 利用可能時間を取得（プライバシー保護版）
@@ -19,7 +19,7 @@ const CalendarPage = () => {
       const slots = await getPublicAvailableTimeSlots(date);
       setAvailableSlots(slots);
     } catch (error) {
-      console.error('利用可能時間取得エラー:', error);
+      logger.error('利用可能時間取得エラー:', error);
       setError('カレンダーデータの取得に失敗しました');
       
       // ローカル・検証環境のみモックデータを表示
@@ -30,7 +30,7 @@ const CalendarPage = () => {
                           window.location.hostname.includes('web.app') ||
                           window.location.hostname.includes('firebaseapp.com');
       
-      console.log('カレンダー環境チェック:', {
+      logger.debug('カレンダー環境チェック', {
         NODE_ENV: process.env.NODE_ENV,
         hostname: window.location.hostname,
         isLocalOrDev: isLocalOrDev
@@ -57,19 +57,15 @@ const CalendarPage = () => {
     }
   };
 
-  // 月間統計を取得
+  // 月間統計を取得（将来の機能拡張用に保持）
   const fetchMonthlyStats = async (date) => {
     try {
-      // setLoadingStats(true); // コメントアウト
       const year = date.getFullYear();
       const month = date.getMonth() + 1;
-      const stats = await getMonthlyBookingStats(year, month);
-      // setMonthlyStats(stats); // コメントアウト
+      await getMonthlyBookingStats(year, month);
+      // 将来的に統計情報を表示する際に使用予定
     } catch (error) {
-      console.error('月間統計取得エラー:', error);
-      // setMonthlyStats(null); // コメントアウト
-    } finally {
-      // setLoadingStats(false); // コメントアウト
+      logger.error('月間統計取得エラー:', error);
     }
   };
 
@@ -118,10 +114,13 @@ const CalendarPage = () => {
         {/* カレンダー表示 */}
         <div className="calendar-section">
           {error && (
-            <div className="error-message">
-              <p>⚠️ {error}</p>
-              <p>モックデータを表示しています</p>
-            </div>
+            <ErrorMessage
+              error={new Error(error)}
+              title="カレンダーデータの取得に失敗しました"
+              message="モックデータを表示しています。しばらく時間をおいて再度お試しください。"
+              onRetry={() => fetchAvailableSlots(selectedDate)}
+              showDetails={process.env.NODE_ENV === 'development'}
+            />
           )}
           <Calendar onDateSelect={handleDateSelect} />
         </div>

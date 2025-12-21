@@ -1,19 +1,20 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SocialFeed from '../components/SocialFeed';
 import { trackPageView } from '../services/analyticsService';
 import appConfig from '../config/appConfig';
+import logger from '../utils/logger';
 import './Home.css';
 
-const Home = () => {
+const Home = memo(() => {
   const navigate = useNavigate();
-  console.log('🔥 [Home Debug] Home component rendered');
+  logger.debug('Home component rendered');
   
   const heroRef = useRef(null);
   const sectionsRef = useRef([]);
 
   useEffect(() => {
-    console.log('🔥 [Home Debug] Home useEffect called');
+    logger.debug('Home useEffect called');
     // ページの一番上にスクロール
     window.scrollTo(0, 0);
     
@@ -115,17 +116,30 @@ const Home = () => {
           </div>
           <div className="simplified-menu-grid">
             {/* おすすめメニュー画像 */}
-            <div className="menu-image-card" onClick={() => navigate('/courses')}>
+            <div 
+              className="menu-image-card" 
+              onClick={() => navigate('/courses')}
+              role="button"
+              tabIndex={0}
+              aria-label="おすすめメニューの詳細を見る"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  navigate('/courses');
+                }
+              }}
+            >
               <img 
                 src="/images/menus/recommend-menu.jpg" 
-                alt="おすすめメニュー"
+                alt="おすすめメニューの画像"
                 className="menu-image"
+                loading="lazy"
                 onError={(e) => {
                   e.target.style.display = 'none';
                   e.target.nextElementSibling.style.display = 'flex';
                 }}
               />
-              <div className="image-placeholder menu-image-placeholder" style={{display: 'none'}}>
+              <div className="image-placeholder menu-image-placeholder" style={{display: 'none'}} aria-hidden="true">
                 <span>おすすめメニュー</span>
               </div>
               <div className="menu-image-overlay">
@@ -135,17 +149,30 @@ const Home = () => {
             </div>
 
             {/* 耳つぼメニュー画像 */}
-            <div className="menu-image-card" onClick={() => navigate('/courses')}>
+            <div 
+              className="menu-image-card" 
+              onClick={() => navigate('/courses')}
+              role="button"
+              tabIndex={0}
+              aria-label="耳つぼメニューの詳細を見る"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  navigate('/courses');
+                }
+              }}
+            >
               <img 
                 src="/images/menus/mimitubo-menu.jpg" 
-                alt="耳つぼメニュー"
+                alt="耳つぼメニューの画像"
                 className="menu-image"
+                loading="lazy"
                 onError={(e) => {
                   e.target.style.display = 'none';
                   e.target.nextElementSibling.style.display = 'flex';
                 }}
               />
-              <div className="image-placeholder menu-image-placeholder" style={{display: 'none'}}>
+              <div className="image-placeholder menu-image-placeholder" style={{display: 'none'}} aria-hidden="true">
                 <span>耳つぼメニュー</span>
               </div>
               <div className="menu-image-overlay">
@@ -155,17 +182,30 @@ const Home = () => {
             </div>
 
             {/* イヤーエステ・ドライヘッドスパメニュー画像 */}
-            <div className="menu-image-card" onClick={() => navigate('/courses')}>
+            <div 
+              className="menu-image-card" 
+              onClick={() => navigate('/courses')}
+              role="button"
+              tabIndex={0}
+              aria-label="イヤーエステ・ドライヘッドスパメニューの詳細を見る"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  navigate('/courses');
+                }
+              }}
+            >
               <img 
                 src="/images/menus/ear-este-menu.jpg" 
-                alt="イヤーエステ・ドライヘッドスパメニュー"
+                alt="イヤーエステ・ドライヘッドスパメニューの画像"
                 className="menu-image"
+                loading="lazy"
                 onError={(e) => {
                   e.target.style.display = 'none';
                   e.target.nextElementSibling.style.display = 'flex';
                 }}
               />
-              <div className="image-placeholder menu-image-placeholder" style={{display: 'none'}}>
+              <div className="image-placeholder menu-image-placeholder" style={{display: 'none'}} aria-hidden="true">
                 <span>イヤーエステ・ドライヘッドスパメニュー</span>
               </div>
               <div className="menu-image-overlay">
@@ -187,6 +227,8 @@ const Home = () => {
       </section>
     </div>
   );
-};
+});
+
+Home.displayName = 'Home';
 
 export default Home;

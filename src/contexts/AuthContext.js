@@ -1,8 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-console.log('🔥 [AuthContext Debug] AuthContext.js loaded');
+import logger from '../utils/logger';
 
 import { onAuthStateChange, checkAdminRole } from '../services/authService';
-console.log('🔥 [AuthContext Debug] authService imports completed');
 
 const AuthContext = createContext();
 
@@ -15,21 +14,21 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-  console.log('🔥 [AuthContext Debug] AuthProvider component created');
+  logger.debug('AuthProvider component created');
   const [user, setUser] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log('🔥 [AuthContext Debug] useEffect called, setting up auth state listener');
+    logger.debug('Setting up auth state listener');
     const unsubscribe = onAuthStateChange(async (user) => {
-      console.log('🔥 [AuthContext Debug] onAuthStateChange callback triggered with user:', !!user);
+      logger.debug('Auth state changed', { hasUser: !!user });
       if (user) {
         try {
           const adminStatus = await checkAdminRole(user.uid);
           setIsAdmin(adminStatus);
         } catch (error) {
-          console.error('管理者権限チェックエラー:', error);
+          logger.error('管理者権限チェックエラー:', error);
           setIsAdmin(false);
         }
       } else {

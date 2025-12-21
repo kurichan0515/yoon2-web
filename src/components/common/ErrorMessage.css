@@ -1,0 +1,115 @@
+.error-message-container {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  margin: var(--spacing-md) 0;
+}
+
+.error-message-content {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: flex-start;
+}
+
+.error-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: var(--spacing-xs);
+}
+
+.error-text {
+  flex: 1;
+}
+
+.error-title {
+  font-family: var(--font-primary);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 var(--spacing-xs);
+  color: var(--color-text-primary);
+}
+
+.error-description {
+  font-family: var(--font-secondary);
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.error-details {
+  margin-top: var(--spacing-md);
+  text-align: left;
+}
+
+.error-details summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-sm);
+  font-size: 0.9rem;
+}
+
+.error-stack {
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  color: var(--color-text-primary);
+  background: var(--color-white);
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-top: var(--spacing-sm);
+}
+
+.error-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.error-retry,
+.error-dismiss {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: 0.9rem;
+}
+
+/* エラータイプ別のスタイル */
+.error-message-container.error-critical {
+  background: #f8d7da;
+  border-color: #dc3545;
+}
+
+.error-message-container.error-warning {
+  background: #fff3cd;
+  border-color: #ffc107;
+}
+
+.error-message-container.error-info {
+  background: #d1ecf1;
+  border-color: #17a2b8;
+}
+
+@media (max-width: 768px) {
+  .error-message-container {
+    padding: var(--spacing-md);
+  }
+
+  .error-title {
+    font-size: 1rem;
+  }
+
+  .error-description {
+    font-size: 0.9rem;
+  }
+
+  .error-actions {
+    flex-direction: column;
+  }
+
+  .error-actions button {
+    width: 100%;
+  }
+}

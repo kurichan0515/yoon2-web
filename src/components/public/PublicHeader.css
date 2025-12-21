@@ -49,6 +49,9 @@
   font-weight: 500;
   transition: color 0.2s ease;
   padding: 8px 0;
+  min-height: 44px; /* タッチターゲット最小サイズ */
+  display: inline-flex;
+  align-items: center;
 }
 
 .nav-link:hover {
@@ -59,9 +62,13 @@
   background-color: #00c300;
   color: white !important;
   border-radius: 6px;
-  padding: 8px 16px;
+  padding: 12px 20px; /* タッチターゲットサイズを確保 */
   font-weight: 600;
   transition: background-color 0.2s ease;
+  min-height: 44px; /* タッチターゲット最小サイズ */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .line-link:hover {
@@ -96,6 +103,8 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  min-height: 44px; /* タッチターゲット最小サイズ */
+  min-width: 120px; /* 最小幅を確保 */
 }
 
 .line-button:hover {

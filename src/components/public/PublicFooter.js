@@ -9,7 +9,7 @@ const PublicFooter = () => {
         <div className="footer-content">
           <div className="footer-section">
             <h3>{appConfig.shop.name}</h3>
-            <p>{appConfig.shop.description}</p>
+            <p>{appConfig.shop.description || "イヤーエステと耳つぼで心身のバランスを整える専門サロンです。"}</p>
           </div>
           
           <div className="footer-section">
@@ -34,14 +34,14 @@ const PublicFooter = () => {
           <div className="footer-section">
             <h4>予約・お問い合わせ</h4>
             <a 
-              href={appConfig.shop.lineUrl} 
+              href={appConfig.shop.lineUrl || appConfig.social.line.url} 
               target="_blank" 
               rel="noopener noreferrer"
               className="footer-line-link"
             >
               💬 LINEで予約
             </a>
-            <p>📧 {appConfig.shop.email}</p>
+            {appConfig.shop.email && <p>📧 {appConfig.shop.email}</p>}
           </div>
         </div>
         

@@ -50,8 +50,9 @@ const BookingForm = () => {
             <button 
               onClick={handleLineBooking}
               className="booking-button line-booking"
+              aria-label="LINEで予約・お問い合わせ（新しいウィンドウで開きます）"
             >
-              <span className="button-icon">💬</span>
+              <span className="button-icon" aria-hidden="true">💬</span>
               LINEで予約・お問い合わせ
             </button>
             <p className="method-note">

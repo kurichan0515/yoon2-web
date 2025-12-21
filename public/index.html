@@ -9,9 +9,81 @@
       name="description"
       content="yoon²ゆんゆん - イヤーエステ・耳つぼ専門店。松山市清水町で心身のリラクゼーションを提供します。"
     />
+    
+    <!-- OGP (Open Graph Protocol) タグ -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="yoon²ゆんゆん - イヤーエステ・耳つぼ専門店" />
+    <meta property="og:description" content="イヤーエステと耳つぼで心身のバランスを整える専門サロン。松山市清水町で心身のリラクゼーションを提供します。" />
+    <meta property="og:url" content="https://yoon2-salon.web.app" />
+    <meta property="og:site_name" content="yoon²ゆんゆん" />
+    <meta property="og:locale" content="ja_JP" />
+    
+    <!-- Twitter Card タグ -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="yoon²ゆんゆん - イヤーエステ・耳つぼ専門店" />
+    <meta name="twitter:description" content="イヤーエステと耳つぼで心身のバランスを整える専門サロン。松山市清水町で心身のリラクゼーションを提供します。" />
+    
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>yoon²ゆんゆん - イヤーエステ・耳つぼ専門店</title>
+    
+    <!-- 構造化データ (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BeautySalon",
+      "name": "yoon²ゆんゆん",
+      "description": "イヤーエステと耳つぼで心身のバランスを整える専門サロンです。お客様一人ひとりに合わせたオーダーメイドの施術で、深いリラクゼーションを提供いたします。",
+      "url": "https://yoon2-salon.web.app",
+      "telephone": "080-8478-1163",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "松山市",
+        "addressRegion": "愛媛県",
+        "streetAddress": "清水町３丁目２０１－２ ８Ｄｒｏｐｓ １０２号室",
+        "postalCode": ""
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "33.1234567",
+        "longitude": "132.7654321"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "10:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "10:00",
+          "closes": "20:00"
+        }
+      ],
+      "priceRange": "¥2,500-¥12,500",
+      "paymentAccepted": "現金, クレジットカード, 電子マネー",
+      "currenciesAccepted": "JPY",
+      "areaServed": {
+        "@type": "City",
+        "name": "松山市"
+      },
+      "sameAs": [
+        "https://www.instagram.com/yoo.n.yoo.n/",
+        "https://lin.ee/lyyKSqu"
+      ]
+    }
+    </script>
   </head>
   <body>
     <noscript>このアプリケーションを実行するにはJavaScriptを有効にしてください。</noscript>

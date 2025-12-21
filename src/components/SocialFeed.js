@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import appConfig from '../config/appConfig';
 import './SocialFeed.css';
 
-const SocialFeed = () => {
+const SocialFeed = memo(() => {
   const [activeTab, setActiveTab] = useState('instagram');
   const { social } = appConfig;
 
@@ -90,13 +90,14 @@ const SocialFeed = () => {
                   <div className="post-image">
                     <img 
                       src={post.image} 
-                      alt="Instagram post"
+                      alt={`Instagram投稿: ${post.caption.substring(0, 50)}...`}
+                      loading="lazy"
                       onError={(e) => {
                         e.target.style.display = 'none';
                         e.target.nextElementSibling.style.display = 'flex';
                       }}
                     />
-                    <div className="image-placeholder" style={{display: 'none'}}>
+                    <div className="image-placeholder" style={{display: 'none'}} aria-hidden="true">
                       <span>画像を読み込み中...</span>
                     </div>
                   </div>
@@ -115,6 +116,8 @@ const SocialFeed = () => {
       </div>
     </div>
   );
-};
+});
+
+SocialFeed.displayName = 'SocialFeed';
 
 export default SocialFeed;

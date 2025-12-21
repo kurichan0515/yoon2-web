@@ -1,16 +1,14 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, memo } from 'react';
 import { trackPageView } from '../services/analyticsService';
 import appConfig from '../config/appConfig';
+import logger from '../utils/logger';
 import './ShopInfo.css';
 
-const ShopInfo = () => {
+const ShopInfo = memo(() => {
   const { shop, social } = appConfig;
   const sectionsRef = useRef([]);
 
-  // デバッグ用ログ
-  console.log('ShopInfo - appConfig:', appConfig);
-  console.log('ShopInfo - shop:', shop);
-  console.log('ShopInfo - shop.name:', shop?.name);
+  logger.debug('ShopInfo component rendered', { shopName: shop?.name });
 
 
   useEffect(() => {
@@ -130,7 +128,7 @@ const ShopInfo = () => {
             </div>
             <div className="map-container">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.1234567890123!2d132.7654321!3d33.1234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDA3JzI0LjQiTiAxMzLCsDQ1JzU1LjYiRQ!5e0!3m2!1sja!2sjp!4v1234567890123!5m2!1sja!2sjp"
+                src={shop?.googleMapsUrl || appConfig.shop.googleMapsUrl}
                 width="100%"
                 height="300"
                 style={{ border: 0, borderRadius: '8px' }}
@@ -198,6 +196,8 @@ const ShopInfo = () => {
       </section>
     </div>
   );
-};
+});
+
+ShopInfo.displayName = 'ShopInfo';
 
 export default ShopInfo;

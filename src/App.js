@@ -4,6 +4,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import PublicLayout from './layouts/PublicLayout';
 import AdminLayout from './layouts/AdminLayout';
 import PrivateRoute from './components/common/PrivateRoute';
+import ErrorBoundary from './components/common/ErrorBoundary';
 import Home from './pages/Home';
 import ShopInfo from './pages/ShopInfo';
 import CalendarPage from './pages/CalendarPage';
@@ -12,14 +13,16 @@ import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import AnalyticsDashboard from './components/AnalyticsDashboard';
 import AdminSettings from './pages/admin/AdminSettings';
+import logger from './utils/logger';
 import './App.css';
 
 function App() {
-  console.log('🔥 [App Debug] App component rendered');
+  logger.debug('App component rendered');
   
   return (
-    <AuthProvider>
-      <BrowserRouter>
+    <ErrorBoundary>
+      <AuthProvider>
+        <BrowserRouter>
         <Routes>
           {/* 一般ユーザー向けルート */}
           <Route path="/" element={<PublicLayout />}>
@@ -51,6 +54,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </AuthProvider>
+    </ErrorBoundary>
   );
 }
 

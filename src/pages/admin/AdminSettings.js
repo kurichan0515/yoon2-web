@@ -7,9 +7,9 @@ const AdminSettings = () => {
     shopName: appConfig.shop.name,
     phone: appConfig.shop.phone,
     address: appConfig.shop.address,
-    email: appConfig.shop.email,
-    lineUrl: appConfig.shop.lineUrl,
-    instagramUrl: appConfig.shop.instagramUrl
+    email: appConfig.shop.email || "",
+    lineUrl: appConfig.shop.lineUrl || appConfig.social.line.url,
+    instagramUrl: appConfig.shop.instagramUrl || appConfig.social.instagram.url
   });
 
   const [isLoading, setIsLoading] = useState(false);

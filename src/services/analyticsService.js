@@ -1,6 +1,7 @@
 // インプレッション追跡サービス
 import { collection, addDoc, getDocs, query, orderBy, where, limit } from 'firebase/firestore';
 import { db } from '../firebase/config';
+import logger from '../utils/logger';
 
 class AnalyticsService {
   constructor() {
@@ -18,9 +19,9 @@ class AnalyticsService {
       }
       
       this.isInitialized = true;
-      console.log('Analytics Service 初期化完了');
+      logger.info('Analytics Service 初期化完了');
     } catch (error) {
-      console.error('Analytics Service 初期化エラー:', error);
+      logger.error('Analytics Service 初期化エラー:', error);
     }
   }
 
@@ -31,7 +32,7 @@ class AnalyticsService {
       
       // Firebaseが利用可能かより厳密にチェック
       if (!db || typeof db === 'undefined' || !db._delegate) {
-        console.log('Firebase not available, skipping page view tracking');
+        logger.debug('Firebase not available, skipping page view tracking');
         return;
       }
       
@@ -58,9 +59,9 @@ class AnalyticsService {
         });
       }
 
-      console.log(`ページビュー記録: ${pageName}`);
+      logger.debug(`ページビュー記録: ${pageName}`);
     } catch (error) {
-      console.error('ページビュー記録エラー:', error);
+      logger.error('ページビュー記録エラー:', error);
     }
   }
 
@@ -71,7 +72,7 @@ class AnalyticsService {
       
       // Firebaseが利用可能かより厳密にチェック
       if (!db || typeof db === 'undefined' || !db._delegate) {
-        console.log('Firebase not available, skipping event tracking');
+        logger.debug('Firebase not available, skipping event tracking');
         return;
       }
       
@@ -90,9 +91,9 @@ class AnalyticsService {
         window.gtag('event', eventName, eventData);
       }
 
-      console.log(`イベント記録: ${eventName}`);
+      logger.debug(`イベント記録: ${eventName}`);
     } catch (error) {
-      console.error('イベント記録エラー:', error);
+      logger.error('イベント記録エラー:', error);
     }
   }
 
@@ -148,7 +149,7 @@ class AnalyticsService {
 
       return Object.values(stats);
     } catch (error) {
-      console.error('ページビュー統計取得エラー:', error);
+      logger.error('ページビュー統計取得エラー:', error);
       return [];
     }
   }
@@ -179,7 +180,7 @@ class AnalyticsService {
 
       return dailyStats;
     } catch (error) {
-      console.error('日別統計取得エラー:', error);
+      logger.error('日別統計取得エラー:', error);
       return {};
     }
   }
@@ -200,7 +201,7 @@ class AnalyticsService {
           .slice(0, 5)
       };
     } catch (error) {
-      console.error('リアルタイム統計取得エラー:', error);
+      logger.error('リアルタイム統計取得エラー:', error);
       return { totalViewsLastHour: 0, activePages: 0, topPages: [] };
     }
   }

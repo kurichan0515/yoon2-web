@@ -48,6 +48,15 @@ const appConfig = {
       note: process.env.REACT_APP_SHOP_HOURS_NOTE || "営業時間外でも対応できることがあります。お気軽にお問い合わせください。"
     },
     holidays: process.env.REACT_APP_SHOP_HOLIDAYS || "不定休",
+    // 店舗の説明文
+    description: process.env.REACT_APP_SHOP_DESCRIPTION || "イヤーエステと耳つぼで心身のバランスを整える専門サロンです。お客様一人ひとりに合わせたオーダーメイドの施術で、深いリラクゼーションを提供いたします。",
+    // 連絡先情報
+    email: process.env.REACT_APP_SHOP_EMAIL || "",
+    // SNS・連絡先URL（social設定から参照可能だが、shopオブジェクトから直接アクセスできるように設定）
+    lineUrl: process.env.REACT_APP_LINE_URL || "https://lin.ee/lyyKSqu",
+    instagramUrl: process.env.REACT_APP_INSTAGRAM_URL || "https://www.instagram.com/yoo.n.yoo.n/",
+    // Googleマップ埋め込みURL
+    googleMapsUrl: process.env.REACT_APP_GOOGLE_MAPS_URL || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.1234567890123!2d132.7654321!3d33.1234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDA3JzI0LjQiTiAxMzLCsDQ1JzU1LjYiRQ!5e0!3m2!1sja!2sjp!4v1234567890123!5m2!1sja!2sjp",
     payment: [
       "Visa", "Mastercard", "JCB", "American Express", 
       "現金", "PayPay", "スマート支払い", "ポイント利用"

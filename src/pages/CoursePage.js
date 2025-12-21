@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import courseService from '../services/courseService';
 import { COURSE_CATEGORIES, COURSE_CATEGORY_LABELS } from '../types/courseTypes';
+import ErrorMessage from '../components/common/ErrorMessage';
+import LoadingSpinner from '../components/common/LoadingSpinner';
 import './CoursePage.css';
 
 const CoursePage = ({ onNavigate }) => {
@@ -41,9 +43,7 @@ const CoursePage = ({ onNavigate }) => {
   if (loading) {
     return (
       <div className="course-page">
-        <div className="loading-container">
-          <h2>読み込み中...</h2>
-        </div>
+        <LoadingSpinner message="コース情報を読み込み中..." />
       </div>
     );
   }
@@ -51,9 +51,14 @@ const CoursePage = ({ onNavigate }) => {
   if (error) {
     return (
       <div className="course-page">
-        <div className="error-container">
-          <h2>エラーが発生しました</h2>
-          <p>{error}</p>
+        <div className="container">
+          <ErrorMessage
+            error={typeof error === 'string' ? new Error(error) : error}
+            title="コース情報の読み込みに失敗しました"
+            message="コース情報を取得できませんでした。しばらく時間をおいて再度お試しください。"
+            onRetry={loadCourses}
+            showDetails={process.env.NODE_ENV === 'development'}
+          />
         </div>
       </div>
     );
@@ -98,13 +103,14 @@ const CoursePage = ({ onNavigate }) => {
                 <div className="course-image">
                   <img 
                     src={course.image} 
-                    alt={course.name}
+                    alt={`${course.name}の画像`}
+                    loading="lazy"
                     onError={(e) => {
                       e.target.style.display = 'none';
                       e.target.nextElementSibling.style.display = 'flex';
                     }}
                   />
-                  <div className="image-placeholder" style={{display: 'none'}}>
+                  <div className="image-placeholder" style={{display: 'none'}} aria-hidden="true">
                     <span>{course.name}</span>
                   </div>
                 </div>
