@@ -6,7 +6,13 @@ const BookingForm = () => {
 
   // LINEで予約ボタンのクリックハンドラー
   const handleLineBooking = () => {
-    window.open(appConfig.social.line.url, '_blank');
+    const lineUrl = appConfig.social.line.url;
+    // セキュリティのため、新しいウィンドウで開く際はnoopenerを使用
+    const newWindow = window.open(lineUrl, '_blank', 'noopener,noreferrer');
+    if (!newWindow) {
+      // ポップアップブロッカーが有効な場合のフォールバック
+      window.location.href = lineUrl;
+    }
   };
 
 

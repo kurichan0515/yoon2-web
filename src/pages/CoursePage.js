@@ -13,7 +13,8 @@ const CoursePage = ({ onNavigate }) => {
 
   useEffect(() => {
     loadCourses();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // loadCoursesは安定した関数なので依存配列から除外
 
   const loadCourses = async () => {
     try {
@@ -66,12 +67,58 @@ const CoursePage = ({ onNavigate }) => {
 
   return (
     <div className="course-page">
-      <div className="container">
-        {/* ヘッダー */}
-        <div className="course-header">
-          <h1>コース一覧</h1>
-          <p>お客様のご要望に合わせたイヤーエステ・耳つぼ・ドライヘッドスパメニューをご用意しております</p>
+      {/* Hero Section */}
+      <section className="course-hero">
+        <div className="hero-background" style={{backgroundImage: "url('/images/hero/wait-room.png')"}}>
+          <div className="hero-overlay"></div>
         </div>
+        <div className="container">
+          <div className="hero-content fade-in">
+            <span className="section-label">Courses</span>
+            <h1>コース一覧</h1>
+            <p className="hero-description">
+              お客様のご要望に合わせたイヤーエステ・耳つぼ・ドライヘッドスパメニューをご用意しております
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ヘッドスパ専用画像セクション */}
+      <section className="head-spa-section">
+        <div className="container">
+          <div className="head-spa-content">
+            <div className="head-spa-image-wrapper">
+              <img 
+                src="/images/hero/head-spa.png" 
+                alt="ヘッドスパ施術の様子"
+                className="head-spa-image"
+                loading="lazy"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextElementSibling.style.display = 'flex';
+                }}
+              />
+              <div className="image-placeholder head-spa-placeholder" style={{display: 'none'}} aria-hidden="true">
+                <span>ヘッドスパ施術の様子</span>
+              </div>
+            </div>
+            <div className="head-spa-text">
+              <span className="section-label">Head Spa</span>
+              <h2>ヘッドスパで深いリラクゼーション</h2>
+              <p>
+                プロの技術によるヘッドマッサージで、頭部全体の疲れを解消し、
+                日常のストレスから解放される特別な時間をお過ごしいただけます。
+              </p>
+              <p>
+                頭皮から首筋、肩まで丁寧にケアし、心身ともにリフレッシュできる
+                至福のひとときをご提供いたします。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="container" style={{paddingTop: 'var(--spacing-xxl)'}}>
 
         {/* カテゴリフィルター */}
         <div className="category-filter">

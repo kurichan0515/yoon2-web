@@ -49,7 +49,7 @@ const ShopInfo = memo(() => {
     <div className="shop-info-page">
       {/* Hero Section */}
       <section className="shop-hero">
-        <div className="hero-background">
+        <div className="hero-background" style={{backgroundImage: "url('/images/hero/wait-room.png')"}}>
           <div className="hero-overlay"></div>
         </div>
         <div className="container">
@@ -82,7 +82,17 @@ const ShopInfo = memo(() => {
               </p>
             </div>
             <div className="overview-image">
-              <div className="image-placeholder">
+              <img 
+                src="/images/shop/play-room.png" 
+                alt="サロンの様子 - リラクゼーション空間"
+                className="overview-image-content"
+                loading="lazy"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextElementSibling.style.display = 'flex';
+                }}
+              />
+              <div className="image-placeholder" style={{display: 'none'}} aria-hidden="true">
                 <span>サロンの様子</span>
               </div>
             </div>
@@ -108,19 +118,10 @@ const ShopInfo = memo(() => {
                 </div>
               </div>
               <div className="info-card">
-                <div className="info-icon">📞</div>
-                <div className="info-content">
-                  <h4>電話番号</h4>
-                  <p><a href={`tel:${shop?.phone || ''}`}>{shop?.phone || '電話番号を取得中...'}</a></p>
-                  <p className="note">※お電話に出ることができません</p>
-                  <p className="note">ご予約は公式LINEにメッセージをお願いします</p>
-                </div>
-              </div>
-              <div className="info-card">
                 <div className="info-icon">🚃</div>
                 <div className="info-content">
                   <h4>最寄り駅</h4>
-                  {shop?.access?.stations?.map((station, index) => (
+                  {shop?.access?.stations?.filter(station => station).map((station, index) => (
                     <p key={index}>{station}</p>
                   ))}
                 </div>
@@ -188,8 +189,8 @@ const ShopInfo = memo(() => {
           
           <div className="contact-info">
             <div className="contact-note">
-              <h4>📞 お電話でのお問い合わせについて</h4>
-              <p>お電話に出ることができません。ご予約やお問い合わせは<strong>公式LINE</strong>にメッセージをお願いします。</p>
+              <h4>💬 ご予約・お問い合わせについて</h4>
+              <p>ご予約やお問い合わせは<strong>公式LINE</strong>にメッセージをお願いします。</p>
             </div>
           </div>
         </div>

@@ -26,37 +26,57 @@ const appConfig = {
     }
   },
 
-  // 店舗情報
+  // 店舗情報（設定ファイルで直接管理）
   shop: {
-    name: process.env.REACT_APP_SHOP_NAME || "yoon²ゆんゆん",
-    phone: process.env.REACT_APP_SHOP_PHONE || "080-8478-1163",
-    address: process.env.REACT_APP_SHOP_ADDRESS || "愛媛県松山市清水町３丁目２０１－２ ８Ｄｒｏｐｓ １０２号室",
+    name: "yoon²ゆんゆん",
+    phone: "080-8478-1163",
+    // 住所情報（設定ファイルで直接管理）
+    postalCode: "790-0923",
+    address: "愛媛県松山市北久米町438",
     access: {
+      // アクセス情報（設定ファイルで直接管理）
       stations: [
-        process.env.REACT_APP_SHOP_ACCESS_STATION1 || "高砂町駅から徒歩1分",
-        process.env.REACT_APP_SHOP_ACCESS_STATION2 || "清水町駅から徒歩6分",
-        process.env.REACT_APP_SHOP_ACCESS_STATION3 || "東西線清水町三バス停まで徒歩4分"
+        "北久米駅から徒歩5分/駐車場有り",
+        "",
+        ""
       ],
-      landmarks: process.env.REACT_APP_SHOP_ACCESS_LANDMARKS || "勝山中学校の隣",
-      parking: process.env.REACT_APP_SHOP_ACCESS_PARKING || "駐車場あり(兼久駐車場)"
+      landmarks: "",
+      parking: ""
     },
+    // 営業時間（設定ファイルで直接管理）
     hours: {
-      open: process.env.REACT_APP_SHOP_HOURS_OPEN || "10:00",
-      close: process.env.REACT_APP_SHOP_HOURS_CLOSE || "20:00",
-      weekday: process.env.REACT_APP_SHOP_HOURS_WEEKDAY || "10:00 - 20:00",
-      weekend: process.env.REACT_APP_SHOP_HOURS_WEEKEND || "10:00 - 20:00",
-      note: process.env.REACT_APP_SHOP_HOURS_NOTE || "営業時間外でも対応できることがあります。お気軽にお問い合わせください。"
+      open: "10:00",
+      close: "20:00",
+      weekday: "10:00 - 20:00",
+      weekend: "10:00 - 20:00",
+      note: "営業時間外でも対応できることがあります。お気軽にお問い合わせください。"
     },
-    holidays: process.env.REACT_APP_SHOP_HOLIDAYS || "不定休",
-    // 店舗の説明文
-    description: process.env.REACT_APP_SHOP_DESCRIPTION || "イヤーエステと耳つぼで心身のバランスを整える専門サロンです。お客様一人ひとりに合わせたオーダーメイドの施術で、深いリラクゼーションを提供いたします。",
-    // 連絡先情報
-    email: process.env.REACT_APP_SHOP_EMAIL || "",
-    // SNS・連絡先URL（social設定から参照可能だが、shopオブジェクトから直接アクセスできるように設定）
-    lineUrl: process.env.REACT_APP_LINE_URL || "https://lin.ee/lyyKSqu",
-    instagramUrl: process.env.REACT_APP_INSTAGRAM_URL || "https://www.instagram.com/yoo.n.yoo.n/",
-    // Googleマップ埋め込みURL
-    googleMapsUrl: process.env.REACT_APP_GOOGLE_MAPS_URL || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.1234567890123!2d132.7654321!3d33.1234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDA3JzI0LjQiTiAxMzLCsDQ1JzU1LjYiRQ!5e0!3m2!1sja!2sjp!4v1234567890123!5m2!1sja!2sjp",
+    holidays: "不定休",
+    // 店舗の説明文（設定ファイルで直接管理）
+    description: "イヤーエステと耳つぼで心身のバランスを整える専門サロンです。お客様一人ひとりに合わせたオーダーメイドの施術で、深いリラクゼーションを提供いたします。",
+    // 連絡先情報（設定ファイルで直接管理）
+    email: "",
+    // SNS・連絡先URL（設定ファイルで直接管理）
+    lineUrl: "https://lin.ee/lyyKSqu",
+    instagramUrl: "https://www.instagram.com/yoo.n.yoo.n/",
+    // Googleマップ埋め込みURL（設定ファイルで直接管理）
+    // 直接URLを設定するか、nullの場合は住所から動的に生成されます
+    // 注意: より正確な位置を表示するには、Googleマップで実際に検索して埋め込みURLを取得し、
+    // 以下の_googleMapsUrlに直接設定することを推奨します
+    // 例: _googleMapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!...",
+    // nullの場合は、住所から動的に生成されます
+    _googleMapsUrl: null, // Googleマップ埋め込みURLを直接設定する場合は、ここにURLを設定してください
+    get googleMapsUrl() {
+      // 直接URLが設定されている場合はそれを使用
+      if (this._googleMapsUrl) {
+        return this._googleMapsUrl;
+      }
+      // 住所をURLエンコードしてGoogleマップの検索URLを生成
+      const address = this.address || "愛媛県松山市北久米町438";
+      const encodedAddress = encodeURIComponent(address);
+      // Google Maps Embed APIを使用（APIキー不要の方法）
+      return `https://www.google.com/maps?q=${encodedAddress}&output=embed`;
+    },
     payment: [
       "Visa", "Mastercard", "JCB", "American Express", 
       "現金", "PayPay", "スマート支払い", "ポイント利用"
@@ -88,7 +108,6 @@ const appConfig = {
       ]
     },
     notes: [
-      "お電話に出ることができません",
       "ご予約やお問い合わせの際はお手数ですが公式LINEにメッセージをお願いします",
       "施術直前のキャンセルは施術料の50%",
       "無断キャンセルは施術料の100%",
@@ -113,12 +132,12 @@ const appConfig = {
         category: "recommend"
       },
       
-      // 耳つぼメニュー
+      // 耳つぼメニュー（基本料金は設定ファイルで直接管理）
       {
         id: "mimitubo-new",
         name: "ご新規様",
         duration: "60分",
-        price: parseInt(process.env.REACT_APP_PRICE_MIMITUBO_NEW) || 4000,
+        price: 4000,
         description: "初回限定特別価格",
         category: "mimitubo"
       },
@@ -126,7 +145,7 @@ const appConfig = {
         id: "mimitubo-pair",
         name: "ペア割新規",
         duration: "60分",
-        price: parseInt(process.env.REACT_APP_PRICE_MIMITUBO_PAIR) || 3800,
+        price: 3800,
         description: "お友達と一緒でお得",
         category: "mimitubo"
       },
@@ -134,7 +153,7 @@ const appConfig = {
         id: "mimitubo-repeat",
         name: "リピーター様",
         duration: "60分",
-        price: parseInt(process.env.REACT_APP_PRICE_MIMITUBO_REPEAT) || 3500,
+        price: 3500,
         description: "いつもありがとうございます",
         category: "mimitubo"
       },
@@ -147,12 +166,12 @@ const appConfig = {
         category: "mimitubo"
       },
       
-      // イヤーエステメニュー
+      // イヤーエステメニュー（基本料金は設定ファイルで直接管理）
       {
         id: "ear-este-trial-male",
         name: "【新規/男性】お試し価格",
         duration: "40分",
-        price: parseInt(process.env.REACT_APP_PRICE_EAR_ESTE_TRIAL_MALE) || 4500,
+        price: 4500,
         description: "男性初回限定価格",
         category: "ear-este"
       },
@@ -160,7 +179,7 @@ const appConfig = {
         id: "ear-este-trial-female",
         name: "【新規/女性】お試し価格",
         duration: "40分",
-        price: parseInt(process.env.REACT_APP_PRICE_EAR_ESTE_TRIAL_FEMALE) || 4000,
+        price: 4000,
         description: "女性初回限定価格",
         category: "ear-este"
       },
@@ -168,7 +187,7 @@ const appConfig = {
         id: "ear-este-40",
         name: "イヤーエステ 40分コース",
         duration: "40分",
-        price: parseInt(process.env.REACT_APP_PRICE_EAR_ESTE_40) || 5000,
+        price: 5000,
         description: "基本的なイヤーエステ",
         category: "ear-este"
       },
@@ -176,7 +195,7 @@ const appConfig = {
         id: "ear-este-60",
         name: "イヤーエステ 60分コース",
         duration: "60分",
-        price: parseInt(process.env.REACT_APP_PRICE_EAR_ESTE_60) || 7000,
+        price: 7000,
         description: "じっくりケアコース",
         category: "ear-este"
       },

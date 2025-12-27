@@ -173,6 +173,52 @@ npm run build
 firebase deploy
 ```
 
+### 4. メモリ不足エラー（終了コード137）
+
+**症状**: ビルドやDockerコンテナが終了コード137で終了する
+
+**原因**: メモリ不足（OOM - Out of Memory）でプロセスが強制終了された
+
+**解決方法**:
+
+#### WSL2環境の場合
+
+1. **WSL2のメモリ設定を調整**（Windows側で実行）:
+   - `C:\Users\<ユーザー名>\.wslconfig` ファイルを作成または編集
+   ```ini
+   [wsl2]
+   memory=8GB
+   processors=4
+   swap=4GB
+   ```
+   - WSL2を再起動: PowerShellで `wsl --shutdown` を実行
+
+2. **Node.jsのメモリ制限を設定**:
+   ```bash
+   # ビルド時にメモリ制限を設定
+   NODE_OPTIONS=--max-old-space-size=4096 npm run build
+   
+   # または低メモリ環境用のビルドコマンドを使用
+   npm run build:low-memory
+   ```
+
+3. **Dockerコンテナのメモリ制限を確認**:
+   ```bash
+   # docker-compose.dev.ymlにメモリ制限が設定されているか確認
+   # 設定済みの場合は、必要に応じて調整
+   ```
+
+#### 一般的な対処法
+
+1. **他のプロセスを終了**: メモリを消費している他のアプリケーションを終了
+2. **ビルドキャッシュをクリア**:
+   ```bash
+   npm cache clean --force
+   rm -rf node_modules build
+   npm install
+   ```
+3. **段階的なビルド**: 大きなプロジェクトの場合は、コード分割を検討
+
 ## パフォーマンスの問題
 
 ### 1. ページの読み込みが遅い

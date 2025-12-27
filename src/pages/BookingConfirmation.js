@@ -36,7 +36,11 @@ const BookingConfirmation = () => {
 
   // LINE予約誘導ハンドラー
   const handleLineBooking = () => {
-    window.open(appConfig.social.line.url, '_blank');
+    const lineUrl = appConfig.social.line.url;
+    const newWindow = window.open(lineUrl, '_blank', 'noopener,noreferrer');
+    if (!newWindow) {
+      window.location.href = lineUrl;
+    }
   };
 
   // ホームページに戻る

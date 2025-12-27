@@ -1,0 +1,27 @@
+# WSL2設定ファイルの例
+# Windows側の C:\Users\<ユーザー名>\.wslconfig にコピーして使用してください
+# 
+# 使用方法:
+# 1. このファイルを C:\Users\<ユーザー名>\.wslconfig にコピー
+# 2. メモリサイズを自分の環境に合わせて調整
+# 3. PowerShellで wsl --shutdown を実行してWSL2を再起動
+
+[wsl2]
+# メモリサイズ（例: 8GB = 8192MB）
+# システムのメモリに応じて調整してください
+memory=8GB
+
+# CPUコア数（例: 4コア）
+# システムのCPUコア数に応じて調整してください
+processors=4
+
+# スワップファイルサイズ（例: 4GB）
+# メモリ不足時の補助メモリとして使用されます
+swap=4GB
+
+# スワップファイルの場所（オプション）
+# swapfile=C:\\Users\\<ユーザー名>\\AppData\\Local\\Temp\\swap.vhdx
+
+# ローカルホスト転送（オプション）
+# localhostForwarding=true
+

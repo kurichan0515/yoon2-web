@@ -52,7 +52,7 @@ const Home = memo(() => {
     <div className="home">
       {/* Hero Section */}
       <section className="hero" ref={heroRef}>
-        <div className="hero-background">
+        <div className="hero-background" style={{backgroundImage: "url('/images/hero/wait-room.png')"}}>
           <div className="hero-overlay"></div>
         </div>
         <div className="container">
@@ -64,12 +64,15 @@ const Home = memo(() => {
               プロの技術で心身ともにリラックスできる特別な時間をお届けします
             </p>
             <div className="hero-actions">
-              <button 
-                onClick={() => navigate('/calendar')} 
+              <a
+                href={appConfig.shop.lineUrl || appConfig.social.line.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-primary hero-cta"
+                aria-label="LINEで予約・お問い合わせ（新しいウィンドウで開きます）"
               >
                 LINEで予約・お問い合わせ
-              </button>
+              </a>
               <button 
                 onClick={() => navigate('/shop')} 
                 className="btn-secondary"
@@ -98,7 +101,17 @@ const Home = memo(() => {
               </p>
             </div>
             <div className="about-image">
-              <div className="image-placeholder">
+              <img 
+                src="/images/shop/play-room.png" 
+                alt="店内の様子 - リラクゼーション空間"
+                className="about-image-content"
+                loading="lazy"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextElementSibling.style.display = 'flex';
+                }}
+              />
+              <div className="image-placeholder" style={{display: 'none'}} aria-hidden="true">
                 <span>イヤーエステ・耳つぼの様子</span>
               </div>
             </div>

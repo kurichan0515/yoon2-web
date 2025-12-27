@@ -93,16 +93,24 @@ export const getConfigSummary = (config) => {
 /**
  * 環境変数の使用状況をカウント
  * @returns {number} 使用されている環境変数の数
+ * 注意: 店舗情報、営業時間、基本料金は設定ファイルで直接管理するため、環境変数から削除されました
  */
 const countEnvironmentVariables = () => {
   const envVars = [
-    'REACT_APP_SHOP_NAME',
-    'REACT_APP_SHOP_PHONE', 
-    'REACT_APP_SHOP_ADDRESS',
-    'REACT_APP_SHOP_HOURS_OPEN',
-    'REACT_APP_SHOP_HOURS_CLOSE',
+    // Firebase設定
+    'REACT_APP_FIREBASE_API_KEY',
+    'REACT_APP_FIREBASE_AUTH_DOMAIN',
+    'REACT_APP_FIREBASE_PROJECT_ID',
+    'REACT_APP_FIREBASE_STORAGE_BUCKET',
+    'REACT_APP_FIREBASE_MESSAGING_SENDER_ID',
+    'REACT_APP_FIREBASE_APP_ID',
+    // SNS設定
+    'REACT_APP_TWITTER_URL',
     'REACT_APP_INSTAGRAM_URL',
-    'REACT_APP_LINE_URL'
+    'REACT_APP_LINE_URL',
+    // Google Calendar API設定
+    'REACT_APP_GOOGLE_API_KEY',
+    'REACT_APP_GOOGLE_CALENDAR_ID'
   ];
   
   return envVars.filter(envVar => process.env[envVar]).length;

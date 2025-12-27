@@ -22,7 +22,6 @@ const PublicHeader = () => {
         <nav className={`public-navigation ${isMobileMenuOpen ? 'mobile-menu-open' : ''}`} aria-label="メインナビゲーション">
           <Link to="/" className="nav-link" aria-label="ホームページへ移動">ホーム</Link>
           <Link to="/shop" className="nav-link" aria-label="店舗情報ページへ移動">店舗情報</Link>
-          <Link to="/calendar" className="nav-link" aria-label="予約カレンダーページへ移動">予約カレンダー</Link>
           <Link to="/courses" className="nav-link" aria-label="コース情報ページへ移動">コース情報</Link>
           <a 
             href={appConfig.shop.lineUrl || appConfig.social.line.url} 

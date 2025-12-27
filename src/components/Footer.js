@@ -39,8 +39,6 @@ const Footer = () => {
             <div className="footer-section">
               <h4>お問い合わせ</h4>
               <p>📍 {shop.address}</p>
-              <p>📞 {shop.phone}</p>
-              <p className="note">※お電話に出ることができません</p>
               <p>ご予約は公式LINEにメッセージをお願いします</p>
               <div className="social-links">
                 {social.instagram.url && (

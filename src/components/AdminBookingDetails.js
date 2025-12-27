@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getEventsByDate, getMonthlyBookingStats } from '../services/calendarService';
+import logger from '../utils/logger';
 import './AdminBookingDetails.css';
 
 const AdminBookingDetails = () => {
@@ -16,7 +17,7 @@ const AdminBookingDetails = () => {
       const events = await getEventsByDate(date);
       setBookings(events);
     } catch (error) {
-      console.error('予約取得エラー:', error);
+      logger.error('予約取得エラー:', error);
       setBookings([]);
     } finally {
       setIsLoading(false);

@@ -2,8 +2,137 @@
 
 .course-page {
   min-height: 100vh;
-  padding: var(--spacing-xxl) 0;
   background-color: var(--color-background);
+  overflow-x: hidden;
+}
+
+/* Hero Section */
+.course-hero {
+  position: relative;
+  min-height: calc(100vh - 100px);
+  margin-top: 0;
+  padding-top: 120px;
+  display: flex;
+  align-items: center;
+  background: var(--color-primary);
+  color: var(--color-text-primary);
+}
+
+.course-hero .hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: var(--color-primary); /* フォールバック */
+}
+
+.course-hero .hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(244, 241, 235, 0.1);
+}
+
+.course-hero .hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--spacing-xxl) 0;
+}
+
+.course-hero .hero-content h1 {
+  font-family: var(--font-primary);
+  font-size: 3.5rem;
+  font-weight: 300;
+  margin: var(--spacing-sm) 0 var(--spacing-md);
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+}
+
+.course-hero .hero-description {
+  font-family: var(--font-secondary);
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin: 0;
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-label {
+  font-family: var(--font-secondary);
+  font-size: 0.8rem;
+  color: var(--color-accent);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 500;
+  display: block;
+  margin-bottom: var(--spacing-sm);
+}
+
+/* ヘッドスパ専用画像セクション */
+.head-spa-section {
+  background-color: var(--color-white);
+  padding: var(--spacing-xxl) 0;
+  margin-top: var(--spacing-xxl);
+}
+
+.head-spa-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xxl);
+  align-items: center;
+}
+
+.head-spa-image-wrapper {
+  position: relative;
+}
+
+.head-spa-image {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-medium);
+}
+
+.head-spa-placeholder {
+  width: 100%;
+  height: 500px;
+  background: var(--color-primary);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  font-family: var(--font-secondary);
+  font-style: italic;
+}
+
+.head-spa-text h2 {
+  font-family: var(--font-primary);
+  font-size: 2.5rem;
+  font-weight: 400;
+  margin: var(--spacing-sm) 0 var(--spacing-md);
+  color: var(--color-text-primary);
+}
+
+.head-spa-text p {
+  font-family: var(--font-secondary);
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  margin-bottom: var(--spacing-lg);
+  font-size: 1rem;
 }
 
 .course-header {
@@ -262,6 +391,18 @@
 
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
+  .course-hero {
+    margin-top: 0;
+    padding-top: 100px;
+  }
+  
+  .course-hero .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .course-hero .hero-description {
+    font-size: 1rem;
+  }
   
   .course-header {
     padding-top: var(--spacing-md);
@@ -331,6 +472,27 @@
   
   .course-header-info h3 {
     font-size: 1.1rem;
+  }
+  
+  .course-hero {
+    margin-top: 0;
+    padding-top: 90px;
+  }
+  
+  .course-hero .hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .head-spa-image {
+    height: 300px;
+  }
+  
+  .head-spa-placeholder {
+    height: 300px;
+  }
+  
+  .head-spa-text h2 {
+    font-size: 1.8rem;
   }
 }
 

@@ -63,7 +63,12 @@ const AdminDashboard = () => {
               <p>公式LINE設定</p>
               <button 
                 className="menu-button"
-                onClick={() => window.open('https://lin.ee/lyyKSqu', '_blank')}
+                onClick={() => {
+                  const newWindow = window.open('https://lin.ee/lyyKSqu', '_blank', 'noopener,noreferrer');
+                  if (!newWindow) {
+                    window.location.href = 'https://lin.ee/lyyKSqu';
+                  }
+                }}
               >
                 LINE設定を確認
               </button>

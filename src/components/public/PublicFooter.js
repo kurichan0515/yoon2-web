@@ -14,7 +14,6 @@ const PublicFooter = () => {
           
           <div className="footer-section">
             <h4>店舗情報</h4>
-            <p>📞 {appConfig.shop.phone}</p>
             <p>📍 {appConfig.shop.address}</p>
             <p>🕒 {appConfig.shop.hours.weekday}</p>
             <p>📅 定休日: {appConfig.shop.holidays}</p>
@@ -23,11 +22,11 @@ const PublicFooter = () => {
           <div className="footer-section">
             <h4>アクセス</h4>
             <div>
-              {appConfig.shop.access.stations.map((station, index) => (
+              {appConfig.shop.access.stations.filter(station => station).map((station, index) => (
                 <p key={index}>{station}</p>
               ))}
-              <p>{appConfig.shop.access.landmarks}</p>
-              <p>{appConfig.shop.access.parking}</p>
+              {appConfig.shop.access.landmarks && <p>{appConfig.shop.access.landmarks}</p>}
+              {appConfig.shop.access.parking && <p>{appConfig.shop.access.parking}</p>}
             </div>
           </div>
           

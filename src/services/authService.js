@@ -1,6 +1,4 @@
 // Firebase Authentication サービス
-console.log('🔥 [Auth Debug] authService.js loaded');
-
 import { 
   getAuth, 
   signInWithEmailAndPassword, 
@@ -11,34 +9,32 @@ import {
 } from 'firebase/auth';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
-
-console.log('🔥 [Auth Debug] Firebase imports completed');
+import logger from '../utils/logger';
 
 class AuthService {
   constructor() {
-    console.log('🔥 [Auth Debug] AuthService constructor called');
+    logger.debug('AuthService constructor called');
     this.auth = null;
     this.isInitialized = false;
     this.initializeAuth();
   }
 
   initializeAuth() {
-    console.log('🔥 [Auth Debug] initializeAuth called');
+    logger.debug('initializeAuth called');
     try {
       // Firebase設定を先に読み込む
       const { auth: firebaseAuth } = require('../firebase/config');
-      console.log('🔥 [Auth Debug] Firebase config loaded, auth available:', !!firebaseAuth);
+      logger.debug('Firebase config loaded', { authAvailable: !!firebaseAuth });
       
       if (firebaseAuth) {
         this.auth = firebaseAuth;
         this.isInitialized = true;
-        console.log('🔥 [Auth Debug] Firebase Auth obtained successfully:', !!this.auth);
+        logger.debug('Firebase Auth obtained successfully');
       } else {
         throw new Error('Firebase Auth not available from config');
       }
     } catch (error) {
-      console.error('🔥 [Auth Debug] Auth initialization error:', error);
-      console.error('🔥 [Auth Debug] Error stack:', error.stack);
+      logger.error('Auth initialization error:', error);
       this.auth = null;
       this.isInitialized = false;
     }
@@ -62,7 +58,7 @@ class AuthService {
       
       return user;
     } catch (error) {
-      console.error('管理者ログインエラー:', error);
+      logger.error('管理者ログインエラー:', error);
       throw error;
     }
   }
@@ -73,7 +69,7 @@ class AuthService {
       const adminDoc = await getDoc(doc(db, 'admins', uid));
       return adminDoc.exists() && adminDoc.data().isAdmin === true;
     } catch (error) {
-      console.error('管理者権限チェックエラー:', error);
+      logger.error('管理者権限チェックエラー:', error);
       return false;
     }
   }
@@ -100,7 +96,7 @@ class AuthService {
       
       return user;
     } catch (error) {
-      console.error('管理者アカウント作成エラー:', error);
+      logger.error('管理者アカウント作成エラー:', error);
       throw error;
     }
   }
@@ -108,13 +104,13 @@ class AuthService {
   // ログアウト
   async signOut() {
     if (!this.isInitialized || !this.auth) {
-      console.warn('Firebase Auth is not initialized, skipping signOut');
+      logger.warn('Firebase Auth is not initialized, skipping signOut');
       return;
     }
     try {
       await signOut(this.auth);
     } catch (error) {
-      console.error('ログアウトエラー:', error);
+      logger.error('ログアウトエラー:', error);
       throw error;
     }
   }
@@ -122,7 +118,7 @@ class AuthService {
   // 認証状態の監視
   onAuthStateChange(callback) {
     if (!this.isInitialized || !this.auth) {
-      console.warn('Firebase Auth is not initialized, using mock callback');
+      logger.warn('Firebase Auth is not initialized, using mock callback');
       // モックコールバックを即座に実行
       callback(null);
       return () => {}; // 空のunsubscribe関数
@@ -154,7 +150,7 @@ class AuthService {
         updatedAt: new Date()
       }, { merge: true });
     } catch (error) {
-      console.error('管理者情報更新エラー:', error);
+      logger.error('管理者情報更新エラー:', error);
       throw error;
     }
   }
@@ -166,15 +162,14 @@ class AuthService {
         lastLogin: new Date()
       });
     } catch (error) {
-      console.error('ログイン履歴記録エラー:', error);
+      logger.error('ログイン履歴記録エラー:', error);
     }
   }
 }
 
 // シングルトンインスタンス
-console.log('🔥 [Auth Debug] Creating AuthService singleton instance');
 const authService = new AuthService();
-console.log('🔥 [Auth Debug] AuthService singleton created');
+logger.debug('AuthService singleton created');
 
 export default authService;
 

@@ -20,8 +20,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "ESLINT_NO_DEV_ERRORS=true DISABLE_ESLINT_PLUGIN=true react-scripts start",
-    "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
+    "start": "ESLINT_NO_DEV_ERRORS=true DISABLE_ESLINT_PLUGIN=true NODE_OPTIONS=--max-old-space-size=4096 react-scripts start",
+    "build": "DISABLE_ESLINT_PLUGIN=true NODE_OPTIONS=--max-old-space-size=4096 react-scripts build",
+    "build:low-memory": "DISABLE_ESLINT_PLUGIN=true NODE_OPTIONS=--max-old-space-size=2048 react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "docker:dev": "docker compose -f docker-compose.dev.yml up",

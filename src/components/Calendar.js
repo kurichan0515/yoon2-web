@@ -3,6 +3,7 @@ import { Calendar as BigCalendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import calendarService from '../services/calendarService';
+import logger from '../utils/logger';
 import './Calendar.css';
 
 // 日本語ロケール設定
@@ -47,7 +48,7 @@ const Calendar = () => {
       
       setEvents(calendarEvents);
     } catch (err) {
-      console.error('イベント取得エラー:', err);
+      logger.error('イベント取得エラー:', err);
       setError('予約情報の取得に失敗しました。しばらく後でもう一度お試しください。');
     } finally {
       setLoading(false);
