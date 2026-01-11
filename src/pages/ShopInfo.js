@@ -143,6 +143,68 @@ const ShopInfo = memo(() => {
         </div>
       </section>
 
+      {/* 駐車場写真セクション */}
+      {shop?.access?.parkingPhotos?.parkingLot && (
+        <section className="section parking-section" ref={addToRefs}>
+          <div className="container">
+            <div className="section-header">
+              <span className="section-label">Parking</span>
+              <h2>駐車場</h2>
+              <p>お車でお越しの際はこちらをご利用ください</p>
+            </div>
+            <div className="parking-photo-container">
+              <div className="parking-image-wrapper">
+                <img 
+                  src={shop?.access?.parkingPhotos?.parkingLot || appConfig.shop.access.parkingPhotos.parkingLot}
+                  alt="駐車場の様子"
+                  className="parking-image"
+                  loading="lazy"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    const placeholder = e.target.nextElementSibling;
+                    if (placeholder) placeholder.style.display = 'flex';
+                  }}
+                />
+                <div className="image-placeholder" style={{display: 'none'}} aria-hidden="true">
+                  <span>駐車場の写真</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 駐車場から店舗までの写真セクション */}
+      {shop?.access?.parkingPhotos?.routeToShop && (
+        <section className="section route-section" ref={addToRefs}>
+          <div className="container">
+            <div className="section-header">
+              <span className="section-label">Route</span>
+              <h2>駐車場から店舗までの道順</h2>
+              <p>駐車場から店舗までの道のりをご案内します</p>
+            </div>
+            <div className="route-photo-container">
+              <div className="route-image-wrapper">
+                <img 
+                  src={shop?.access?.parkingPhotos?.routeToShop || appConfig.shop.access.parkingPhotos.routeToShop}
+                  alt="駐車場から店舗までの道順"
+                  className="route-image"
+                  loading="lazy"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    const placeholder = e.target.nextElementSibling;
+                    if (placeholder) placeholder.style.display = 'flex';
+                  }}
+                />
+                <div className="image-placeholder" style={{display: 'none'}} aria-hidden="true">
+                  <span>駐車場から店舗までの写真</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* 営業時間セクション */}
       <section className="section hours-section" ref={addToRefs}>
         <div className="container">

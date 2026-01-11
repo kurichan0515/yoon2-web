@@ -84,6 +84,27 @@ const Home = memo(() => {
         </div>
       </section>
 
+      {/* Announcement Section */}
+      <section className="announcement-section section" ref={addToRefs}>
+        <div className="container">
+          <div className="announcement-card">
+            <img 
+              src="/images/announcements/notification01.jpg" 
+              alt="店舗移転のお知らせ"
+              className="announcement-image"
+              loading="lazy"
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.nextElementSibling.style.display = 'flex';
+              }}
+            />
+            <div className="image-placeholder announcement-placeholder" style={{display: 'none'}} aria-hidden="true">
+              <span>お知らせ画像</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* About Section */}
       <section className="about-section section" ref={addToRefs}>
         <div className="container">

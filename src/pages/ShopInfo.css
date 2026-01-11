@@ -240,6 +240,56 @@
   background: var(--color-background);
 }
 
+/* 駐車場写真セクション */
+.parking-section {
+  background: var(--color-white);
+}
+
+.parking-photo-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.parking-image-wrapper {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-medium);
+}
+
+.parking-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+/* 駐車場から店舗までの写真セクション */
+.route-section {
+  background: var(--color-background);
+}
+
+.route-photo-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.route-image-wrapper {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-medium);
+}
+
+.route-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
 .access-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -613,6 +663,11 @@
   
   .services-grid {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+  
+  .parking-photo-container,
+  .route-photo-container {
+    padding: 0 var(--spacing-md);
   }
 }
 
