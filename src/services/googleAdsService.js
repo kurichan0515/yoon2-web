@@ -235,6 +235,12 @@ class GoogleAdsService {
         return;
       }
 
+      // 初期化されていない場合はスキップ
+      if (!this.isInitialized) {
+        logger.debug('Google Ads: サービスが初期化されていません');
+        return;
+      }
+
       // 開発環境では記録しない（オプション）
       const isDevelopment = 
         process.env.NODE_ENV === 'development' || 
@@ -255,14 +261,20 @@ class GoogleAdsService {
       };
 
       // コンバージョンラベルが設定されている場合はsend_toを追加
-      if (this.conversionLabel) {
+      // index.htmlで読み込まれている場合でも、ラベルがあれば使用
+      if (this.conversionLabel && this.conversionId) {
         eventData.send_to = `${this.conversionId}/${this.conversionLabel}`;
+      } else if (this.conversionId) {
+        // ラベルがない場合はIDのみ（index.htmlで読み込まれている場合）
+        eventData.send_to = this.conversionId;
       }
 
       window.gtag('event', 'ads_conversion_add_line', eventData);
 
       logger.info('Google Ads: LINE追加コンバージョンを記録しました', {
-        eventData
+        eventData,
+        conversionId: this.conversionId || 'index.htmlから読み込み済み',
+        conversionLabel: this.conversionLabel || '未設定'
       });
     } catch (error) {
       logger.error('Google Ads: LINE追加コンバージョン記録エラー', error);
