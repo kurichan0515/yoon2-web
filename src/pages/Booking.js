@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import BookingForm from '../components/BookingForm';
+import { trackPageView as trackGoogleAdsPageView } from '../services/googleAdsService';
 import './Booking.css';
 
 const Booking = () => {
@@ -8,6 +9,9 @@ const Booking = () => {
   useEffect(() => {
     // ページの一番上にスクロール
     window.scrollTo(0, 0);
+    
+    // Google Adsページビューを記録
+    trackGoogleAdsPageView('/booking', 'Booking - ご予約・お問い合わせ');
     
     // Intersection Observer for animations
     const observer = new IntersectionObserver(

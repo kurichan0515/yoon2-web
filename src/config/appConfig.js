@@ -245,6 +245,17 @@ const appConfig = {
     enabled: process.env.REACT_APP_ADSENSE_ENABLED === 'true' || true,
     // 開発モード（ローカル環境でプレースホルダーを表示）
     devMode: process.env.REACT_APP_ADSENSE_DEV_MODE === 'true' || false
+  },
+
+  // Google Ads設定
+  googleAds: {
+    // コンバージョンID（環境変数から取得、または直接設定）
+    // 形式: AW-1234567890
+    conversionId: process.env.REACT_APP_GOOGLE_ADS_CONVERSION_ID || "",
+    // コンバージョンラベル（環境変数から取得、または直接設定）
+    conversionLabel: process.env.REACT_APP_GOOGLE_ADS_CONVERSION_LABEL || "",
+    // Google Adsを有効にするかどうか
+    enabled: process.env.REACT_APP_GOOGLE_ADS_ENABLED === 'true' || false
   }
 };
 

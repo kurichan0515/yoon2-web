@@ -1,0 +1,2 @@
+# git-cryptで暗号化するファイル
+.env filter=git-crypt diff=git-crypt

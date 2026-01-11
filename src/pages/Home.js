@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import SocialFeed from '../components/SocialFeed';
 import AdSense from '../components/common/AdSense';
 import { trackPageView } from '../services/analyticsService';
+import { trackPageView as trackGoogleAdsPageView } from '../services/googleAdsService';
 import appConfig from '../config/appConfig';
 import logger from '../utils/logger';
 import './Home.css';
@@ -23,6 +24,9 @@ const Home = memo(() => {
     trackPageView('Home', {
       section: 'main'
     });
+    
+    // Google Adsページビューを記録
+    trackGoogleAdsPageView('/', 'Home - yoon²ゆんゆん');
     
     // Intersection Observer for animations
     const observer = new IntersectionObserver(

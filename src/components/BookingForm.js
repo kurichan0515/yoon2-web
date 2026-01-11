@@ -1,5 +1,6 @@
 import React from 'react';
 import appConfig from '../config/appConfig';
+import { trackConversion } from '../services/googleAdsService';
 import './BookingForm.css';
 
 const BookingForm = () => {
@@ -7,6 +8,15 @@ const BookingForm = () => {
   // LINEで予約ボタンのクリックハンドラー
   const handleLineBooking = () => {
     const lineUrl = appConfig.social.line.url;
+    
+    // Google Adsコンバージョンを記録（LINE予約ボタンクリック）
+    trackConversion('line_booking_click', {
+      value: 1.0,
+      currency: 'JPY',
+      eventCategory: 'engagement',
+      eventLabel: 'LINE予約ボタン'
+    });
+    
     // セキュリティのため、新しいウィンドウで開く際はnoopenerを使用
     const newWindow = window.open(lineUrl, '_blank', 'noopener,noreferrer');
     if (!newWindow) {
