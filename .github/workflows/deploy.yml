@@ -1,0 +1,43 @@
+name: Deploy to Firebase Hosting
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch: # 手動実行も可能にする
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+        env:
+          NODE_OPTIONS: '--max-old-space-size=4096'
+          DISABLE_ESLINT_PLUGIN: 'true'
+
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          # 方法1: Firebase Tokenを使用する場合（推奨・簡単）
+          firebaseToken: '${{ secrets.FIREBASE_TOKEN }}'
+          # 方法2: Service Account JSONを使用する場合（コメントアウトを解除して使用）
+          # firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+          projectId: react-firebase-app-2025
+          channelId: live
+          target: hosting
