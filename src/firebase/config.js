@@ -1,5 +1,9 @@
 // Firebase設定ファイル
-import { createMockFirebase, isFirebaseAvailable } from './fallback.js';
+import { createMockFirebase } from './fallback.js';
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
+import { getStorage } from 'firebase/storage';
 
 // Firebase SDKの安全な読み込み
 let app = null;
@@ -8,14 +12,14 @@ let auth = null;
 let storage = null;
 let isInitialized = false;
 
-// Firebase設定（開発用の安全な設定）
+// Firebase設定（環境変数から取得、フォールバック値も設定）
 const firebaseConfig = {
-  apiKey: "AIzaSyDemo1234567890abcdefghijklmnop",
-  authDomain: "demo-project.firebaseapp.com",
-  projectId: "demo-project",
-  storageBucket: "demo-project.appspot.com",
-  messagingSenderId: "123456789012",
-  appId: "1:123456789012:web:abcdef123456"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY || "AIzaSyDemo1234567890abcdefghijklmnop",
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN || "demo-project.firebaseapp.com",
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID || "demo-project",
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET || "demo-project.appspot.com",
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID || "123456789012",
+  appId: process.env.REACT_APP_FIREBASE_APP_ID || "1:123456789012:web:abcdef123456"
 };
 
 // Firebase初期化（安全な読み込み）
@@ -26,30 +30,10 @@ const initializeFirebase = () => {
 
   try {
     console.log('🔥 [Config Debug] Starting Firebase initialization');
+    console.log('🔥 [Config Debug] Using modular Firebase SDK (v9+)');
     
-    // Firebase SDKが利用可能かチェック
-    if (!isFirebaseAvailable()) {
-      console.warn('🔥 [Config Debug] Firebase SDK not available, using mock services');
-      const mockFirebase = createMockFirebase();
-      auth = mockFirebase.auth;
-      db = mockFirebase.firestore;
-      storage = mockFirebase.storage;
-      isInitialized = true;
-      return { app, db, auth, storage };
-    }
-
-    // Firebase互換性ファイルの問題を回避するため、モジュラーSDKのみを使用
-    console.log('🔥 [Config Debug] Using modular Firebase SDK only');
-
-    console.log('🔥 [Config Debug] Firebase SDK available, initializing...');
-    
-    // 直接インポートでFirebase SDKを読み込み
-    const { initializeApp } = require('firebase/app');
-    const { getFirestore } = require('firebase/firestore');
-    const { getAuth } = require('firebase/auth');
-    const { getStorage } = require('firebase/storage');
-
-    console.log('🔥 [Config Debug] Firebase modules loaded, initializing app...');
+    // モジュラーSDKを直接使用
+    console.log('🔥 [Config Debug] Initializing Firebase app...');
     app = initializeApp(firebaseConfig);
     console.log('🔥 [Config Debug] Firebase app initialized');
     

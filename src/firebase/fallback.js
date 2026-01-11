@@ -39,11 +39,18 @@ export const createMockFirebase = () => {
   };
 };
 
-// Firebase SDKの可用性をチェック
+// Firebase SDKの可用性をチェック（モジュラーSDK v9+対応）
 export const isFirebaseAvailable = () => {
   try {
-    return typeof window !== 'undefined' && 
-           window.firebase !== undefined;
+    // モジュラーSDKが利用可能かチェック
+    // 動的インポートで確認（ESモジュール環境）
+    if (typeof window !== 'undefined') {
+      // モジュラーSDKは直接インポートできるかで判断
+      // 実際のインポートはconfig.jsで行うため、ここでは常にtrueを返す
+      // エラーハンドリングはconfig.jsのtry-catchで行う
+      return true;
+    }
+    return false;
   } catch (error) {
     return false;
   }

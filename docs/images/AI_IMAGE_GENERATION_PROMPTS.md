@@ -19,13 +19,13 @@
 - **アクセント**: ゴールド/ブロンズ色（`#C9A96E`）
 - **背景**: 非常に薄いベージュ/白（`#FAF9F7`）
 
-### 必須キーワード
-- **色相**: 暖色系（warm tones, beige, cream, gold, amber）
-- **彩度**: 低彩度（muted colors, desaturated, soft colors）
-- **明度**: 明るめ（bright, light, airy）
-- **コントラスト**: 低コントラスト（low contrast, soft contrast）
-- **トーン**: ソフト・マット（soft, matte, elegant）
-- **照明**: 柔らかい光（soft lighting, indirect lighting, warm lighting）
+### 必須キーワード（日本語プロンプト用）
+- **色相**: 暖色系、ベージュ、クリーム、ゴールド、アンバー
+- **彩度**: 低彩度、くすんだ色、柔らかい色
+- **明度**: 明るめ、明るい、軽やかな
+- **コントラスト**: 低コントラスト、柔らかいコントラスト
+- **トーン**: ソフト、マット、エレガント
+- **照明**: 柔らかい光、間接照明、温かみのある光
 
 ---
 
@@ -50,13 +50,13 @@
 ### 基本テンプレート
 
 ```
-[お知らせの内容を簡潔に] in an elegant, minimalist design, 
-warm beige (#F4F1EB) and soft gold (#C9A96E) color palette, 
-muted tones, low saturation, soft matte finish, 
-gentle indirect lighting, natural elegant style, 
-clean composition with plenty of white space, 
-Japanese aesthetic, sophisticated and calming atmosphere, 
-soft shadows, warm color temperature, 
+[お知らせの内容を簡潔に]、エレガントでミニマルなデザイン、
+温かみのあるベージュ（#F4F1EB）とソフトゴールド（#C9A96E）のカラーパレット、
+くすんだトーン、低彩度、ソフトマット仕上げ、
+優しい間接照明、ナチュラルでエレガントなスタイル、
+余白をたっぷり使ったクリーンな構図、
+日本の美意識、洗練された落ち着いた雰囲気、
+柔らかい影、温かみのある色温度、
 --ar 16:9 --style raw --v 6
 ```
 
@@ -65,41 +65,41 @@ soft shadows, warm color temperature,
 #### 例1: 店舗移転のお知らせ
 
 ```
-Announcement card design for salon relocation notice, 
-elegant minimalist typography on warm beige (#F4F1EB) background, 
-soft gold (#C9A96E) accent details, muted tones, low saturation, 
-soft matte finish, gentle indirect lighting, 
-natural elegant style, clean composition with plenty of white space, 
-Japanese aesthetic, sophisticated and calming atmosphere, 
-soft shadows, warm color temperature, 
-text area in center, decorative elements in corners, 
+サロン移転のお知らせカードデザイン、
+温かみのあるベージュ（#F4F1EB）の背景にエレガントなミニマルなタイポグラフィ、
+ソフトゴールド（#C9A96E）のアクセントディテール、くすんだトーン、低彩度、
+ソフトマット仕上げ、優しい間接照明、
+ナチュラルでエレガントなスタイル、余白をたっぷり使ったクリーンな構図、
+日本の美意識、洗練された落ち着いた雰囲気、
+柔らかい影、温かみのある色温度、
+中央にテキストエリア、角に装飾的な要素、
 --ar 16:9 --style raw --v 6
 ```
 
 #### 例2: 営業時間変更のお知らせ
 
 ```
-Elegant announcement card for business hours change, 
-warm beige (#F4F1EB) and cream tones, soft gold (#C9A96E) highlights, 
-muted colors, desaturated palette, soft matte texture, 
-gentle warm lighting, minimalist design, 
-clean layout with elegant typography, 
-Japanese minimalist aesthetic, sophisticated and calming, 
-soft shadows, low contrast, warm color temperature, 
+営業時間変更のエレガントなお知らせカード、
+温かみのあるベージュ（#F4F1EB）とクリームのトーン、ソフトゴールド（#C9A96E）のハイライト、
+くすんだ色、彩度を下げたパレット、ソフトマットな質感、
+優しい温かみのある照明、ミニマルデザイン、
+エレガントなタイポグラフィを使ったクリーンなレイアウト、
+日本のミニマルな美意識、洗練された落ち着いた雰囲気、
+柔らかい影、低コントラスト、温かみのある色温度、
 --ar 16:9 --style raw --v 6
 ```
 
 #### 例3: 臨時休業のお知らせ
 
 ```
-Polite announcement card for temporary closure notice, 
-elegant design with warm beige (#F4F1EB) background, 
-soft gold (#C9A96E) decorative elements, muted tones, 
-low saturation, soft matte finish, 
-gentle indirect lighting, natural elegant style, 
-clean composition, Japanese aesthetic, 
-sophisticated and respectful atmosphere, 
-soft shadows, warm color temperature, 
+臨時休業のお知らせカード、丁寧で上品なデザイン、
+温かみのあるベージュ（#F4F1EB）の背景、エレガントなデザイン、
+ソフトゴールド（#C9A96E）の装飾的な要素、くすんだトーン、
+低彩度、ソフトマット仕上げ、
+優しい間接照明、ナチュラルでエレガントなスタイル、
+クリーンな構図、日本の美意識、
+洗練された敬意のある雰囲気、
+柔らかい影、温かみのある色温度、
 --ar 16:9 --style raw --v 6
 ```
 
@@ -121,13 +121,13 @@ soft shadows, warm color temperature,
 ### 基本テンプレート
 
 ```
-[メニュー/サービスの内容] in elegant spa salon setting, 
-warm beige (#F4F1EB) and soft gold (#C9A96E) color palette, 
-muted tones, low saturation, soft matte finish, 
-gentle indirect lighting, natural elegant style, 
-relaxing atmosphere, Japanese minimalist aesthetic, 
-sophisticated and calming, soft shadows, 
-warm color temperature, clean composition, 
+[メニュー/サービスの内容]、エレガントなスパサロンの設定、
+温かみのあるベージュ（#F4F1EB）とソフトゴールド（#C9A96E）のカラーパレット、
+くすんだトーン、低彩度、ソフトマット仕上げ、
+優しい間接照明、ナチュラルでエレガントなスタイル、
+リラックスできる雰囲気、日本のミニマルな美意識、
+洗練された落ち着いた雰囲気、柔らかい影、
+温かみのある色温度、クリーンな構図、
 --ar 4:5 --style raw --v 6
 ```
 
@@ -136,57 +136,57 @@ warm color temperature, clean composition,
 #### 例1: イヤーエステメニュー
 
 ```
-Elegant ear esthetic treatment scene in spa salon, 
-warm beige (#F4F1EB) and cream tones, soft gold (#C9A96E) accents, 
-muted colors, desaturated palette, soft matte texture, 
-gentle warm indirect lighting, natural elegant style, 
-relaxing atmosphere, Japanese minimalist aesthetic, 
-sophisticated spa setting, soft shadows, 
-low contrast, warm color temperature, 
-treatment tools arranged beautifully, calm and peaceful, 
+エレガントなイヤーエステ施術シーン、スパサロン内、
+温かみのあるベージュ（#F4F1EB）とクリームのトーン、ソフトゴールド（#C9A96E）のアクセント、
+くすんだ色、彩度を下げたパレット、ソフトマットな質感、
+優しい温かみのある間接照明、ナチュラルでエレガントなスタイル、
+リラックスできる雰囲気、日本のミニマルな美意識、
+洗練されたスパの設定、柔らかい影、
+低コントラスト、温かみのある色温度、
+美しく配置された施術道具、穏やかで平和な雰囲気、
 --ar 4:5 --style raw --v 6
 ```
 
 #### 例2: 耳つぼメニュー
 
 ```
-Elegant acupressure ear treatment scene, 
-warm beige (#F4F1EB) background, soft gold (#C9A96E) decorative elements, 
-muted tones, low saturation, soft matte finish, 
-gentle indirect lighting, natural elegant style, 
-relaxing spa atmosphere, Japanese minimalist aesthetic, 
-sophisticated and calming, soft shadows, 
-warm color temperature, clean composition, 
-acupressure tools and ear jewelry arranged artistically, 
-peaceful and serene, --ar 4:5 --style raw --v 6
+エレガントな耳つぼ施術シーン、
+温かみのあるベージュ（#F4F1EB）の背景、ソフトゴールド（#C9A96E）の装飾的な要素、
+くすんだトーン、低彩度、ソフトマット仕上げ、
+優しい間接照明、ナチュラルでエレガントなスタイル、
+リラックスできるスパの雰囲気、日本のミニマルな美意識、
+洗練された落ち着いた雰囲気、柔らかい影、
+温かみのある色温度、クリーンな構図、
+芸術的に配置された耳つぼ道具と耳つぼジュエリー、
+平和で静かな雰囲気、--ar 4:5 --style raw --v 6
 ```
 
 #### 例3: ドライヘッドスパメニュー
 
 ```
-Elegant dry head spa treatment scene in salon, 
-warm beige (#F4F1EB) and cream tones, soft gold (#C9A96E) highlights, 
-muted colors, desaturated palette, soft matte texture, 
-gentle warm lighting, natural elegant style, 
-relaxing atmosphere, Japanese minimalist aesthetic, 
-sophisticated spa setting, soft shadows, 
-low contrast, warm color temperature, 
-treatment area with soft towels and elegant decor, 
-calm and peaceful, --ar 4:5 --style raw --v 6
+エレガントなドライヘッドスパ施術シーン、サロン内、
+温かみのあるベージュ（#F4F1EB）とクリームのトーン、ソフトゴールド（#C9A96E）のハイライト、
+くすんだ色、彩度を下げたパレット、ソフトマットな質感、
+優しい温かみのある照明、ナチュラルでエレガントなスタイル、
+リラックスできる雰囲気、日本のミニマルな美意識、
+洗練されたスパの設定、柔らかい影、
+低コントラスト、温かみのある色温度、
+柔らかいタオルとエレガントな装飾のある施術エリア、
+穏やかで平和な雰囲気、--ar 4:5 --style raw --v 6
 ```
 
 #### 例4: おすすめメニュー（総合）
 
 ```
-Elegant spa salon treatment scene showcasing premium services, 
-warm beige (#F4F1EB) and cream tones, soft gold (#C9A96E) accents, 
-muted colors, desaturated palette, soft matte texture, 
-gentle warm indirect lighting, natural elegant style, 
-luxurious relaxing atmosphere, Japanese minimalist aesthetic, 
-sophisticated spa setting, soft shadows, 
-low contrast, warm color temperature, 
-beautiful arrangement of treatment tools and elegant decor, 
-calm, peaceful, and premium feeling, 
+エレガントなスパサロンの施術シーン、プレミアムサービスを紹介、
+温かみのあるベージュ（#F4F1EB）とクリームのトーン、ソフトゴールド（#C9A96E）のアクセント、
+くすんだ色、彩度を下げたパレット、ソフトマットな質感、
+優しい温かみのある間接照明、ナチュラルでエレガントなスタイル、
+贅沢でリラックスできる雰囲気、日本のミニマルな美意識、
+洗練されたスパの設定、柔らかい影、
+低コントラスト、温かみのある色温度、
+美しく配置された施術道具とエレガントな装飾、
+穏やかで平和、プレミアムな雰囲気、
 --ar 4:5 --style raw --v 6
 ```
 
@@ -210,14 +210,14 @@ calm, peaceful, and premium feeling,
 ### 基本テンプレート
 
 ```
-[キャンペーンの内容] campaign design, elegant and inviting, 
-warm beige (#F4F1EB) and soft gold (#C9A96E) color palette, 
-muted tones, low saturation, soft matte finish, 
-gentle indirect lighting, natural elegant style, 
-sophisticated and appealing, Japanese minimalist aesthetic, 
-soft shadows, warm color temperature, 
-clean composition with elegant typography, 
-celebratory but refined atmosphere, 
+[キャンペーンの内容]キャンペーンデザイン、エレガントで魅力的、
+温かみのあるベージュ（#F4F1EB）とソフトゴールド（#C9A96E）のカラーパレット、
+くすんだトーン、低彩度、ソフトマット仕上げ、
+優しい間接照明、ナチュラルでエレガントなスタイル、
+洗練された魅力的な雰囲気、日本のミニマルな美意識、
+柔らかい影、温かみのある色温度、
+エレガントなタイポグラフィを使ったクリーンな構図、
+お祝いの雰囲気だが上品な雰囲気、
 --ar 16:9 --style raw --v 6
 ```
 
@@ -226,43 +226,43 @@ celebratory but refined atmosphere,
 #### 例1: 新規オープンキャンペーン
 
 ```
-Grand opening campaign design for elegant spa salon, 
-warm beige (#F4F1EB) and cream tones, soft gold (#C9A96E) celebratory accents, 
-muted colors, desaturated palette, soft matte texture, 
-gentle warm lighting, natural elegant style, 
-sophisticated and inviting, Japanese minimalist aesthetic, 
-elegant typography, soft shadows, 
-low contrast, warm color temperature, 
-clean composition with decorative elements, 
-celebratory but refined atmosphere, 
+エレガントなスパサロンのグランドオープンキャンペーンデザイン、
+温かみのあるベージュ（#F4F1EB）とクリームのトーン、ソフトゴールド（#C9A96E）のお祝いのアクセント、
+くすんだ色、彩度を下げたパレット、ソフトマットな質感、
+優しい温かみのある照明、ナチュラルでエレガントなスタイル、
+洗練された魅力的な雰囲気、日本のミニマルな美意識、
+エレガントなタイポグラフィ、柔らかい影、
+低コントラスト、温かみのある色温度、
+装飾的な要素を使ったクリーンな構図、
+お祝いの雰囲気だが上品な雰囲気、
 --ar 16:9 --style raw --v 6
 ```
 
 #### 例2: 季節限定キャンペーン（春）
 
 ```
-Spring season limited campaign design for spa salon, 
-warm beige (#F4F1EB) and soft gold (#C9A96E) color palette, 
-muted spring tones, low saturation, soft matte finish, 
-gentle indirect lighting, natural elegant style, 
-sophisticated and fresh, Japanese minimalist aesthetic, 
-soft shadows, warm color temperature, 
-clean composition with subtle spring elements, 
-refined and inviting atmosphere, 
+スパサロンの春の季節限定キャンペーンデザイン、
+温かみのあるベージュ（#F4F1EB）とソフトゴールド（#C9A96E）のカラーパレット、
+くすんだ春のトーン、低彩度、ソフトマット仕上げ、
+優しい間接照明、ナチュラルでエレガントなスタイル、
+洗練された新鮮な雰囲気、日本のミニマルな美意識、
+柔らかい影、温かみのある色温度、
+控えめな春の要素を使ったクリーンな構図、
+上品で魅力的な雰囲気、
 --ar 16:9 --style raw --v 6
 ```
 
 #### 例3: 割引キャンペーン
 
 ```
-Elegant discount campaign design for spa salon services, 
-warm beige (#F4F1EB) background, soft gold (#C9A96E) highlight details, 
-muted tones, low saturation, soft matte finish, 
-gentle indirect lighting, natural elegant style, 
-sophisticated and appealing, Japanese minimalist aesthetic, 
-elegant typography showing special offer, 
-soft shadows, warm color temperature, 
-clean composition, refined and inviting, 
+スパサロンサービスのエレガントな割引キャンペーンデザイン、
+温かみのあるベージュ（#F4F1EB）の背景、ソフトゴールド（#C9A96E）のハイライトディテール、
+くすんだトーン、低彩度、ソフトマット仕上げ、
+優しい間接照明、ナチュラルでエレガントなスタイル、
+洗練された魅力的な雰囲気、日本のミニマルな美意識、
+特別オファーを示すエレガントなタイポグラフィ、
+柔らかい影、温かみのある色温度、
+クリーンな構図、上品で魅力的な雰囲気、
 --ar 16:9 --style raw --v 6
 ```
 
@@ -297,19 +297,19 @@ refined and inviting atmosphere,
 #### より暖色系にしたい場合
 プロンプトに以下を追加：
 ```
-, warm color temperature, amber tones, golden hour lighting
+、温かみのある色温度、アンバーのトーン、ゴールデンアワーの照明
 ```
 
 #### より柔らかくしたい場合
 プロンプトに以下を追加：
 ```
-, extra soft, very low contrast, dreamy atmosphere
+、より柔らかく、非常に低コントラスト、夢のような雰囲気
 ```
 
 #### より明るくしたい場合
 プロンプトに以下を追加：
 ```
-, bright and airy, high key lighting, light and fresh
+、明るく軽やか、ハイキー照明、明るく新鮮な雰囲気
 ```
 
 ### スタイルの調整
@@ -317,13 +317,13 @@ refined and inviting atmosphere,
 #### よりミニマルにしたい場合
 プロンプトに以下を追加：
 ```
-, ultra minimalist, clean lines, simple composition
+、超ミニマル、クリーンなライン、シンプルな構図
 ```
 
 #### より装飾的にしたい場合
 プロンプトに以下を追加：
 ```
-, elegant decorative elements, subtle patterns, refined details
+、エレガントな装飾的な要素、控えめなパターン、洗練されたディテール
 ```
 
 ### アスペクト比の変更
@@ -371,9 +371,9 @@ refined and inviting atmosphere,
 - 品質: Standard
 - サイズ: 1024x1024（または希望のサイズ）
 
-#### プロンプトの先頭に追加
+#### プロンプトの先頭に追加（日本語版）
 ```
-Create an image with warm beige (#F4F1EB) and soft gold (#C9A96E) color palette, muted tones, low saturation, soft matte finish, gentle indirect lighting, natural elegant style, sophisticated and calming atmosphere.
+温かみのあるベージュ（#F4F1EB）とソフトゴールド（#C9A96E）のカラーパレット、くすんだトーン、低彩度、ソフトマット仕上げ、優しい間接照明、ナチュラルでエレガントなスタイル、洗練された落ち着いた雰囲気の画像を作成
 ```
 
 ### Stable Diffusion
@@ -388,11 +388,11 @@ Steps: 30, Sampler: DPM++ 2M Karras, CFG Scale: 7
 - DreamShaper
 - Deliberate
 
-#### ネガティブプロンプト（避けるべき要素）
+#### ネガティブプロンプト（避けるべき要素・日本語版）
 ```
-cold colors, high saturation, high contrast, harsh lighting, 
-vivid colors, bright blue, bright green, sharp shadows, 
-hard lighting, neon colors, fluorescent colors
+冷たい色、高彩度、高コントラスト、厳しい照明、
+鮮やかな色、明るい青、明るい緑、シャープな影、
+硬い照明、ネオンカラー、蛍光色
 ```
 
 ### Adobe Firefly
@@ -401,9 +401,9 @@ hard lighting, neon colors, fluorescent colors
 - スタイル: Natural
 - アスペクト比: 16:9（または希望の比率）
 
-#### プロンプトの先頭に追加
+#### プロンプトの先頭に追加（日本語版）
 ```
-Elegant design with warm beige and soft gold color palette, muted tones, soft lighting, natural elegant style.
+温かみのあるベージュとソフトゴールドのカラーパレット、くすんだトーン、柔らかい照明、ナチュラルでエレガントなスタイルのエレガントなデザイン
 ```
 
 ---
@@ -440,9 +440,9 @@ Elegant design with warm beige and soft gold color palette, muted tones, soft li
 ### Q1: 生成された画像の色感が合わない場合はどうすればいいですか？
 
 **A**: プロンプトに色感のキーワードを追加してください。例：
-- `, more warm tones`
-- `, lower saturation`
-- `, softer lighting`
+- `、より暖色系`
+- `、彩度を下げる`
+- `、より柔らかい照明`
 
 または、画像編集ソフトで後から調整することも可能です（[色感統一ガイド](./COLOR_HARMONY_GUIDE.md)の5.2を参照）。
 
@@ -452,7 +452,7 @@ Elegant design with warm beige and soft gold color palette, muted tones, soft li
 
 **A**: プロンプトに以下を追加してください：
 ```
-, elegant typography, clean text area, readable text
+、エレガントなタイポグラフィ、クリーンなテキストエリア、読みやすいテキスト
 ```
 
 ただし、AI生成のテキストは正確性に欠ける場合があるため、テキストは後から追加することを推奨します。
@@ -463,7 +463,7 @@ Elegant design with warm beige and soft gold color palette, muted tones, soft li
 
 **A**: プライバシーに配慮し、以下のキーワードを追加してください：
 ```
-, silhouette, back view, privacy-conscious, elegant pose
+、シルエット、後ろ姿、プライバシーに配慮、エレガントなポーズ
 ```
 
 ---
@@ -471,10 +471,10 @@ Elegant design with warm beige and soft gold color palette, muted tones, soft li
 ### Q4: 季節感を出したい場合はどうすればいいですか？
 
 **A**: 暖色系の季節要素を追加してください。例：
-- **春**: `, soft pink cherry blossoms, gentle spring atmosphere`
-- **夏**: `, warm summer light, soft green leaves`
-- **秋**: `, amber autumn tones, warm autumn atmosphere`
-- **冬**: `, warm winter light, cozy winter atmosphere`
+- **春**: `、柔らかいピンクの桜、優しい春の雰囲気`
+- **夏**: `、温かみのある夏の光、柔らかい緑の葉`
+- **秋**: `、アンバーの秋のトーン、温かみのある秋の雰囲気`
+- **冬**: `、温かみのある冬の光、居心地の良い冬の雰囲気`
 
 ただし、冷色系の要素（青空、雪など）は避け、暖色系で表現してください。
 
@@ -484,9 +484,9 @@ Elegant design with warm beige and soft gold color palette, muted tones, soft li
 
 **A**: すべてのプロンプトに同じ色感のキーワードを含めてください：
 ```
-warm beige (#F4F1EB) and soft gold (#C9A96E) color palette, 
-muted tones, low saturation, soft matte finish, 
-gentle indirect lighting, natural elegant style
+温かみのあるベージュ（#F4F1EB）とソフトゴールド（#C9A96E）のカラーパレット、
+くすんだトーン、低彩度、ソフトマット仕上げ、
+優しい間接照明、ナチュラルでエレガントなスタイル
 ```
 
 これにより、統一感のある画像セットを生成できます。

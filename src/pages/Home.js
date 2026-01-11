@@ -89,7 +89,7 @@ const Home = memo(() => {
         <div className="container">
           <div className="announcement-card">
             <img 
-              src="/images/announcements/notification01.jpg" 
+              src="/images/announcements/notification01.png" 
               alt="店舗移転のお知らせ"
               className="announcement-image"
               loading="lazy"

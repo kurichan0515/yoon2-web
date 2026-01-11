@@ -44,8 +44,8 @@ const appConfig = {
       parking: "",
       // 駐車場写真（設定ファイルで直接管理）
       parkingPhotos: {
-        parkingLot: "/images/parking/parking.jpg", // 駐車場の写真
-        routeToShop: "/images/parking/parking-to-shop.jpg" // 駐車場から店舗までの写真
+        parkingLot: "/images/parking/parking.png", // 駐車場の写真
+        routeToShop: "/images/parking/parking-to-shop.png" // 駐車場から店舗までの写真
       }
     },
     // 営業時間（設定ファイルで直接管理）
