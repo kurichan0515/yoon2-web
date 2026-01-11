@@ -100,7 +100,11 @@ if git-crypt status &> /dev/null; then
         echo "✅ 既存の設定をクリアしました"
     else
         # 既存のキーを使用する場合、新しいキーをエクスポートして終了
-        KEY_FILE=".git-crypt-key-$(date +%Y%m%d-%H%M%S).key"
+        KEY_DIR=".git-crypt-keys"
+        mkdir -p "$KEY_DIR"
+        chmod 700 "$KEY_DIR"
+        
+        KEY_FILE="$KEY_DIR/.git-crypt-key-$(date +%Y%m%d-%H%M%S).key"
         git-crypt export-key "$KEY_FILE"
         chmod 600 "$KEY_FILE"
         echo ""
@@ -114,8 +118,13 @@ fi
 echo "🔑 git-crypt を初期化しています..."
 git-crypt init
 
+# キーディレクトリの作成
+KEY_DIR=".git-crypt-keys"
+mkdir -p "$KEY_DIR"
+chmod 700 "$KEY_DIR"
+
 # キーをエクスポート（安全な場所に保存）
-KEY_FILE=".git-crypt-key-$(date +%Y%m%d-%H%M%S).key"
+KEY_FILE="$KEY_DIR/.git-crypt-key-$(date +%Y%m%d-%H%M%S).key"
 git-crypt export-key "$KEY_FILE"
 chmod 600 "$KEY_FILE"
 

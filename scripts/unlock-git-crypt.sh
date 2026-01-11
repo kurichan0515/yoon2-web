@@ -18,8 +18,11 @@ if ! command -v git-crypt &> /dev/null; then
     exit 1
 fi
 
-# キーファイルを探す
-KEY_FILE=$(find . -maxdepth 1 -name ".git-crypt-key-*.key" -type f | head -n 1)
+# キーファイルを探す（専用ディレクトリを優先）
+KEY_FILE=$(find .git-crypt-keys -name "*.key" -type f 2>/dev/null | head -n 1)
+if [ -z "$KEY_FILE" ]; then
+    KEY_FILE=$(find . -maxdepth 1 -name ".git-crypt-key-*.key" -type f 2>/dev/null | head -n 1)
+fi
 
 if [ -z "$KEY_FILE" ]; then
     echo "⚠️  キーファイルが見つかりません"

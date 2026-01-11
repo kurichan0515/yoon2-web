@@ -27,8 +27,11 @@ if git-crypt status 2>&1 | grep -q "not unlocked"; then
     echo "既存のキーファイルで復号化してからキーをエクスポートします。"
     echo ""
     
-    # 既存のキーファイルを探す
-    KEY_FILE=$(find . -maxdepth 1 -name ".git-crypt-key-*.key" -type f | head -n 1)
+    # 既存のキーファイルを探す（専用ディレクトリを優先）
+    KEY_FILE=$(find .git-crypt-keys -name "*.key" -type f 2>/dev/null | head -n 1)
+    if [ -z "$KEY_FILE" ]; then
+        KEY_FILE=$(find . -maxdepth 1 -name ".git-crypt-key-*.key" -type f 2>/dev/null | head -n 1)
+    fi
     
     if [ -z "$KEY_FILE" ]; then
         echo "既存のキーファイルが見つかりません。"
@@ -51,8 +54,13 @@ if git-crypt status 2>&1 | grep -q "not unlocked"; then
     echo "✅ 復号化が完了しました"
 fi
 
+# キーディレクトリの作成
+KEY_DIR=".git-crypt-keys"
+mkdir -p "$KEY_DIR"
+chmod 700 "$KEY_DIR"
+
 # キーをエクスポート
-KEY_FILE=".git-crypt-key-$(date +%Y%m%d-%H%M%S).key"
+KEY_FILE="$KEY_DIR/.git-crypt-key-$(date +%Y%m%d-%H%M%S).key"
 echo ""
 echo "📤 キーをエクスポートしています..."
 git-crypt export-key "$KEY_FILE"

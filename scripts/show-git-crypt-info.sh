@@ -22,7 +22,10 @@ if git-crypt status 2>&1 | grep -q "not unlocked"; then
     echo "現在のキーをエクスポートするには、まずunlockする必要があります。"
     echo ""
     echo "既存のキーファイルを探しています..."
-    KEY_FILE=$(find . -maxdepth 1 -name ".git-crypt-key-*.key" -type f 2>/dev/null | head -n 1)
+    KEY_FILE=$(find .git-crypt-keys -name "*.key" -type f 2>/dev/null | head -n 1)
+    if [ -z "$KEY_FILE" ]; then
+        KEY_FILE=$(find . -maxdepth 1 -name ".git-crypt-key-*.key" -type f 2>/dev/null | head -n 1)
+    fi
     
     if [ -n "$KEY_FILE" ]; then
         echo "✅ キーファイルが見つかりました: $KEY_FILE"
@@ -45,10 +48,22 @@ else
     read -p "> " -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-        KEY_FILE=".git-crypt-key-$(date +%Y%m%d-%H%M%S).key"
-        git-crypt export-key "$KEY_FILE"
-        chmod 600 "$KEY_FILE"
-        echo ""
-        echo "✅ キーをエクスポートしました: $KEY_FILE"
+        # キーディレクトリの作成
+        KEY_DIR=".git-crypt-keys"
+        mkdir -p "$KEY_DIR"
+        chmod 700 "$KEY_DIR"
+        
+        KEY_FILE="$KEY_DIR/.git-crypt-key-$(date +%Y%m%d-%H%M%S).key"
+        if git-crypt export-key "$KEY_FILE" 2>&1; then
+            chmod 600 "$KEY_FILE"
+            echo ""
+            echo "✅ キーをエクスポートしました: $KEY_FILE"
+        else
+            echo ""
+            echo "❌ キーのエクスポートに失敗しました"
+            echo ""
+            echo "git-cryptが正しく初期化されていない可能性があります。"
+            echo "再初期化するには: git-crypt init"
+        fi
     fi
 fi
