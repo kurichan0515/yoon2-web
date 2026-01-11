@@ -62,6 +62,20 @@ class GoogleAdsService {
   initialize() {
     if (this.isInitialized) return;
     
+    // index.htmlで既にgtagが読み込まれている場合は、それを利用
+    if (typeof window !== 'undefined' && window.gtag && window.dataLayer) {
+      this.isInitialized = true;
+      // 環境変数からコンバージョンIDを取得（設定されていない場合はindex.htmlのIDを使用）
+      if (!this.conversionId && window.gtag) {
+        // index.htmlで設定されたIDを推測（直接取得は困難なため、環境変数の設定を推奨）
+        logger.debug('Google Ads: index.htmlで既に読み込まれています。環境変数の設定を推奨します。');
+      }
+      logger.info('Google Ads Service 初期化完了（既存のgtagを利用）', { 
+        conversionId: this.conversionId || 'index.htmlから読み込み済み'
+      });
+      return;
+    }
+    
     if (!this.enabled) {
       logger.debug('Google Ads: 無効化されています');
       return;
@@ -209,6 +223,51 @@ class GoogleAdsService {
       logger.error('Google Ads: イベント記録エラー', error);
     }
   }
+
+  // LINE追加用のコンバージョンイベントを記録
+  trackLineAddConversion(eventParams = {}) {
+    try {
+      this.initialize();
+
+      // gtagが利用可能でない場合はスキップ
+      if (typeof window === 'undefined' || !window.gtag) {
+        logger.debug('Google Ads: gtagが利用できません');
+        return;
+      }
+
+      // 開発環境では記録しない（オプション）
+      const isDevelopment = 
+        process.env.NODE_ENV === 'development' || 
+        window.location.hostname === 'localhost' || 
+        window.location.hostname === '127.0.0.1';
+
+      if (isDevelopment) {
+        logger.debug('Google Ads: 開発環境ではLINE追加コンバージョンを記録しません', {
+          eventParams
+        });
+        return;
+      }
+
+      // LINE追加用のコンバージョンイベントを送信
+      // コンバージョンラベルが設定されている場合はそれを使用
+      const eventData = {
+        ...eventParams
+      };
+
+      // コンバージョンラベルが設定されている場合はsend_toを追加
+      if (this.conversionLabel) {
+        eventData.send_to = `${this.conversionId}/${this.conversionLabel}`;
+      }
+
+      window.gtag('event', 'ads_conversion_add_line', eventData);
+
+      logger.info('Google Ads: LINE追加コンバージョンを記録しました', {
+        eventData
+      });
+    } catch (error) {
+      logger.error('Google Ads: LINE追加コンバージョン記録エラー', error);
+    }
+  }
 }
 
 // シングルトンインスタンス
@@ -220,3 +279,4 @@ export default googleAdsService;
 export const trackConversion = (action, options) => googleAdsService.trackConversion(action, options);
 export const trackPageView = (pagePath, pageTitle) => googleAdsService.trackPageView(pagePath, pageTitle);
 export const trackEvent = (eventName, eventParams) => googleAdsService.trackEvent(eventName, eventParams);
+export const trackLineAddConversion = (eventParams) => googleAdsService.trackLineAddConversion(eventParams);

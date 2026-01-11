@@ -1,6 +1,6 @@
 import React from 'react';
 import appConfig from '../config/appConfig';
-import { trackConversion } from '../services/googleAdsService';
+import { trackLineAddConversion } from '../services/googleAdsService';
 import './BookingForm.css';
 
 const BookingForm = () => {
@@ -9,12 +9,11 @@ const BookingForm = () => {
   const handleLineBooking = () => {
     const lineUrl = appConfig.social.line.url;
     
-    // Google Adsコンバージョンを記録（LINE予約ボタンクリック）
-    trackConversion('line_booking_click', {
-      value: 1.0,
-      currency: 'JPY',
-      eventCategory: 'engagement',
-      eventLabel: 'LINE予約ボタン'
+    // Google Adsコンバージョンを記録（LINE追加用）
+    trackLineAddConversion({
+      // 必要に応じて追加のパラメータを設定可能
+      // value: 1.0,
+      // currency: 'JPY',
     });
     
     // セキュリティのため、新しいウィンドウで開く際はnoopenerを使用
