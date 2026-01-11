@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, memo } from 'react';
+import AdSense from '../components/common/AdSense';
 import { trackPageView } from '../services/analyticsService';
 import appConfig from '../config/appConfig';
 import logger from '../utils/logger';
@@ -255,6 +256,17 @@ const ShopInfo = memo(() => {
               <p>ご予約やお問い合わせは<strong>公式LINE</strong>にメッセージをお願いします。</p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* AdSense広告 - お問い合わせセクション後 */}
+      <section className="adsense-section section" ref={addToRefs}>
+        <div className="container">
+          <AdSense 
+            adSlot="2647640133" 
+            adFormat="auto"
+            className="adsense-shop-info"
+          />
         </div>
       </section>
     </div>

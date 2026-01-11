@@ -1,0 +1,304 @@
+/* AdSense広告コンポーネントのスタイル */
+.adsense-wrapper {
+  margin: var(--spacing-md) 0;
+  text-align: center;
+  min-height: 100px; /* 広告読み込み中の高さ確保 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.adsense-wrapper .adsbygoogle {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* テスト広告（ローカル環境用） */
+.adsense-test-ad {
+  width: 100%;
+  max-width: 100%;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+}
+
+.adsense-test-ad:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* フォーマット別のスタイル */
+.adsense-test-ad--auto {
+  /* 自動サイズ - デフォルトスタイル */
+}
+
+.adsense-test-ad--rectangle {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.adsense-test-ad--horizontal {
+  max-width: 728px;
+  margin: 0 auto;
+}
+
+.adsense-test-ad--horizontal .adsense-test-ad-content {
+  flex-direction: row;
+}
+
+.adsense-test-ad--vertical {
+  max-width: 160px;
+  margin: 0 auto;
+}
+
+.adsense-test-ad--vertical .adsense-test-ad-content {
+  flex-direction: column;
+}
+
+.adsense-test-ad--vertical .adsense-test-ad-image {
+  width: 100%;
+  height: 200px;
+}
+
+.adsense-test-ad-label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 4px 8px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 11px;
+  color: #70757a;
+  gap: 6px;
+}
+
+.adsense-test-ad-badge {
+  color: #70757a;
+  font-weight: 500;
+}
+
+.adsense-test-ad-google {
+  color: #4285f4;
+  font-weight: 500;
+}
+
+.adsense-test-ad-content {
+  display: flex;
+  padding: 12px;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.adsense-test-ad-image {
+  flex-shrink: 0;
+  width: 120px;
+  height: 90px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.adsense-test-ad-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+}
+
+.adsense-test-ad-image-placeholder svg {
+  opacity: 0.5;
+}
+
+.adsense-test-ad-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.adsense-test-ad-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1a73e8;
+  margin-bottom: 6px;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.adsense-test-ad-description {
+  font-size: 14px;
+  color: #3c4043;
+  line-height: 1.5;
+  margin-bottom: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.adsense-test-ad-url {
+  font-size: 14px;
+  color: #5f6368;
+  line-height: 1.4;
+}
+
+.adsense-test-ad-footer {
+  padding: 6px 12px;
+  background: #f8f9fa;
+  border-top: 1px solid #e0e0e0;
+  font-size: 10px;
+  color: #70757a;
+}
+
+.adsense-test-ad-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.adsense-test-ad-info-text {
+  color: #70757a;
+}
+
+.adsense-test-ad-info-separator {
+  color: #dadce0;
+}
+
+/* 開発用プレースホルダー（本番環境フォールバック用） */
+.adsense-placeholder {
+  width: 100%;
+  min-height: 100px;
+  border: 2px dashed var(--color-accent);
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, rgba(201, 169, 110, 0.05) 0%, rgba(201, 169, 110, 0.1) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md);
+  box-sizing: border-box;
+}
+
+.adsense-placeholder-content {
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+.adsense-placeholder-icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.adsense-placeholder-text {
+  font-family: var(--font-secondary);
+}
+
+.adsense-placeholder-text strong {
+  display: block;
+  font-size: 1.1rem;
+  color: var(--color-accent);
+  margin-bottom: var(--spacing-sm);
+  font-weight: 600;
+}
+
+.adsense-placeholder-info {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.adsense-placeholder-info > div {
+  margin: 0.25rem 0;
+  word-break: break-all;
+}
+
+.adsense-placeholder-note {
+  margin-top: var(--spacing-sm);
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid var(--color-border);
+  font-size: 0.75rem;
+  color: var(--color-text-light);
+  font-style: italic;
+}
+
+/* プレースホルダーモード時のスタイル調整 */
+.adsense-wrapper.adsense-placeholder-mode {
+  min-height: 150px;
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+  .adsense-wrapper {
+    margin: var(--spacing-sm) 0;
+    min-height: 80px;
+  }
+
+  .adsense-test-ad-content {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .adsense-test-ad-image {
+    width: 100%;
+    height: 150px;
+  }
+
+  .adsense-test-ad-title {
+    font-size: 15px;
+  }
+
+  .adsense-test-ad-description {
+    font-size: 13px;
+  }
+
+  .adsense-test-ad-url {
+    font-size: 13px;
+  }
+
+  .adsense-placeholder {
+    min-height: 120px;
+    padding: var(--spacing-sm);
+  }
+
+  .adsense-placeholder-icon {
+    font-size: 2rem;
+  }
+
+  .adsense-placeholder-text strong {
+    font-size: 1rem;
+  }
+
+  .adsense-placeholder-info {
+    font-size: 0.75rem;
+  }
+
+  .adsense-placeholder-note {
+    font-size: 0.7rem;
+  }
+
+  .adsense-wrapper.adsense-placeholder-mode {
+    min-height: 120px;
+  }
+}
+
+/* 広告コンテナの余白調整 */
+.adsense-wrapper + .adsense-wrapper {
+  margin-top: var(--spacing-lg);
+}
+
+/* セクション間の広告 */
+.section + .adsense-wrapper,
+.adsense-wrapper + .section {
+  margin-top: var(--spacing-xl);
+}

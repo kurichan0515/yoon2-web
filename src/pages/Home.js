@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SocialFeed from '../components/SocialFeed';
+import AdSense from '../components/common/AdSense';
 import { trackPageView } from '../services/analyticsService';
 import appConfig from '../config/appConfig';
 import logger from '../utils/logger';
@@ -251,12 +252,21 @@ const Home = memo(() => {
         </div>
       </section>
 
-
-
       {/* Social Section */}
       <section className="social-section section" ref={addToRefs}>
         <div className="container">
           <SocialFeed />
+        </div>
+      </section>
+
+      {/* AdSense広告 - SNSセクション後 */}
+      <section className="adsense-section section" ref={addToRefs}>
+        <div className="container">
+          <AdSense 
+            adSlot="2647640133" 
+            adFormat="auto"
+            className="adsense-social"
+          />
         </div>
       </section>
     </div>

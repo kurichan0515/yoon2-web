@@ -233,6 +233,18 @@ const appConfig = {
     ],
     advanceBookingDays: 30, // 30日前まで予約可能
     minAdvanceHours: 2 // 2時間前まで予約可能
+  },
+
+  // Google AdSense設定
+  adsense: {
+    // パブリッシャーID（環境変数から取得、または直接設定）
+    publisherId: process.env.REACT_APP_ADSENSE_PUBLISHER_ID || "ca-pub-6862900859746528",
+    // デフォルトの広告ユニットID（環境変数から取得、または直接設定）
+    defaultAdSlot: process.env.REACT_APP_ADSENSE_DEFAULT_SLOT || "2647640133",
+    // AdSenseを有効にするかどうか
+    enabled: process.env.REACT_APP_ADSENSE_ENABLED === 'true' || true,
+    // 開発モード（ローカル環境でプレースホルダーを表示）
+    devMode: process.env.REACT_APP_ADSENSE_DEV_MODE === 'true' || false
   }
 };
 

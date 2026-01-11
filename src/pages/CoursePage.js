@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import courseService from '../services/courseService';
 import { COURSE_CATEGORIES, COURSE_CATEGORY_LABELS } from '../types/courseTypes';
+import AdSense from '../components/common/AdSense';
 import ErrorMessage from '../components/common/ErrorMessage';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import './CoursePage.css';
@@ -192,6 +193,17 @@ const CoursePage = ({ onNavigate }) => {
           </div>
         )}
       </div>
+
+      {/* AdSense広告 - コース一覧後 */}
+      <section className="adsense-section section">
+        <div className="container">
+          <AdSense 
+            adSlot="2647640133" 
+            adFormat="auto"
+            className="adsense-course"
+          />
+        </div>
+      </section>
     </div>
   );
 };
