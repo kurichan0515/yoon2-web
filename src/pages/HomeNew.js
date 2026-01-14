@@ -431,7 +431,7 @@ const HomeNew = () => {
 
       {/* Footer */}
       <footer className="py-12 border-t border-white/5 text-center">
-        <div className="text-xl font-bold tracking-[-0.6em] text-white mb-6" style={{ fontFamily: "'League Spartan', sans-serif" }}>
+        <div className="text-xl font-bold text-white mb-6" style={{ fontFamily: "'League Spartan', sans-serif", letterSpacing: '-0.05em' }}>
           yoon²
         </div>
         <p className="text-white/30 text-xs tracking-widest">
