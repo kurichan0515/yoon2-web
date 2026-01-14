@@ -28,8 +28,8 @@ const Navbar = ({ isScrolled, isMobileMenuOpen, setIsMobileMenuOpen }) => {
     <nav className={`fixed w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-[#0A0A0A]/90 backdrop-blur-md py-4' : 'bg-transparent py-6'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         <div 
-          className="text-2xl font-bold tracking-[0.2em] text-white cursor-pointer" 
-          style={{ fontFamily: 'Cinzel, serif' }}
+          className="text-2xl font-bold text-white cursor-pointer" 
+          style={{ fontFamily: "'League Spartan', sans-serif", letterSpacing: '-0.05em' }}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           yoon²
@@ -100,7 +100,7 @@ const Hero = () => {
         <h2 className="text-white/60 text-sm tracking-[0.5em] mb-4 animate-fade-in-up" style={{ fontFamily: 'Cinzel, serif' }}>
           EAR ESTHETIC & ACUPRESSURE
         </h2>
-        <h1 className="text-5xl md:text-8xl text-white font-bold mb-8 tracking-[0.1em]" style={{ fontFamily: 'Cinzel, serif' }}>
+        <h1 className="text-5xl md:text-8xl text-white font-bold mb-8" style={{ fontFamily: "'League Spartan', sans-serif", letterSpacing: '-0.1em' }}>
           yoon²
         </h1>
         <p className="text-white/80 max-w-lg mx-auto mb-12 text-sm md:text-base leading-relaxed tracking-wider">
@@ -431,7 +431,7 @@ const HomeNew = () => {
 
       {/* Footer */}
       <footer className="py-12 border-t border-white/5 text-center">
-        <div className="text-xl font-bold tracking-[0.2em] text-white mb-6" style={{ fontFamily: 'Cinzel, serif' }}>
+        <div className="text-xl font-bold tracking-[-0.6em] text-white mb-6" style={{ fontFamily: "'League Spartan', sans-serif" }}>
           yoon²
         </div>
         <p className="text-white/30 text-xs tracking-widest">
