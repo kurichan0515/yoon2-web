@@ -6,6 +6,7 @@ import AdminLayout from './layouts/AdminLayout';
 import PrivateRoute from './components/common/PrivateRoute';
 import ErrorBoundary from './components/common/ErrorBoundary';
 import Home from './pages/Home';
+import HomeNew from './pages/HomeNew';
 import ShopInfo from './pages/ShopInfo';
 import CalendarPage from './pages/CalendarPage';
 import CoursePage from './pages/CoursePage';
@@ -37,6 +38,9 @@ function App() {
             <Route path="calendar" element={<CalendarPage />} />
             <Route path="courses" element={<CoursePage />} />
           </Route>
+
+          {/* 新しいデザインのホームページ（独立したレイアウトなし） */}
+          <Route path="/new" element={<HomeNew />} />
 
           {/* 管理者向けルート */}
           <Route path="/system/login" element={<AdminLogin />} />
