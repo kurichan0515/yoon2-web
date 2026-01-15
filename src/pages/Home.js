@@ -4,6 +4,7 @@ import SocialFeed from '../components/SocialFeed';
 import AdSense from '../components/common/AdSense';
 import { trackPageView } from '../services/analyticsService';
 import { trackPageView as trackGoogleAdsPageView } from '../services/googleAdsService';
+import { setPageMeta } from '../utils/seoHelper';
 import appConfig from '../config/appConfig';
 import logger from '../utils/logger';
 import './Home.css';
@@ -19,6 +20,13 @@ const Home = memo(() => {
     logger.debug('Home useEffect called');
     // ページの一番上にスクロール
     window.scrollTo(0, 0);
+    
+    // SEOメタタグを設定
+    setPageMeta({
+      title: 'yoon²ゆんゆん - イヤーエステ・耳つぼ専門店',
+      description: 'yoon²ゆんゆん - イヤーエステ・耳つぼ専門店。松山市清水町で心身のリラクゼーションを提供します。イヤーエステと耳つぼで心身のバランスを整える専門サロンです。',
+      path: '/'
+    });
     
     // インプレッションを記録
     trackPageView('Home', {

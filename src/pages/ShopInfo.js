@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, memo } from 'react';
 import AdSense from '../components/common/AdSense';
 import { trackPageView } from '../services/analyticsService';
+import { setPageMeta } from '../utils/seoHelper';
 import appConfig from '../config/appConfig';
 import logger from '../utils/logger';
 import './ShopInfo.css';
@@ -15,6 +16,13 @@ const ShopInfo = memo(() => {
   useEffect(() => {
     // ページの一番上にスクロール
     window.scrollTo(0, 0);
+    
+    // SEOメタタグを設定
+    setPageMeta({
+      title: '店舗情報',
+      description: 'yoon²ゆんゆんの店舗情報。愛媛県松山市北久米町438にあるイヤーエステ・耳つぼ専門サロンです。アクセス情報、営業時間、駐車場情報をご案内します。',
+      path: '/shop'
+    });
     
     // インプレッションを記録
     trackPageView('ShopInfo', {

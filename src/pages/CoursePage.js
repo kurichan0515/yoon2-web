@@ -4,6 +4,7 @@ import { COURSE_CATEGORIES, COURSE_CATEGORY_LABELS } from '../types/courseTypes'
 import AdSense from '../components/common/AdSense';
 import ErrorMessage from '../components/common/ErrorMessage';
 import LoadingSpinner from '../components/common/LoadingSpinner';
+import { setPageMeta } from '../utils/seoHelper';
 import './CoursePage.css';
 
 const CoursePage = ({ onNavigate }) => {
@@ -13,6 +14,16 @@ const CoursePage = ({ onNavigate }) => {
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   useEffect(() => {
+    // ページの一番上にスクロール
+    window.scrollTo(0, 0);
+    
+    // SEOメタタグを設定
+    setPageMeta({
+      title: 'コース・メニュー',
+      description: 'yoon²ゆんゆんのコース・メニュー一覧。イヤーエステ、耳つぼ、ドライヘッドスパなど、お客様のご要望に合わせたオーダーメイドの施術メニューをご用意しております。',
+      path: '/courses'
+    });
+    
     loadCourses();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // loadCoursesは安定した関数なので依存配列から除外

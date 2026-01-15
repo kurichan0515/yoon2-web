@@ -35,3 +35,10 @@ jobs:
 
       - name: Deploy to Firebase Hosting
         run: firebase deploy --only hosting --token "${{ secrets.FIREBASE_TOKEN }}"
+
+      - name: Submit sitemap to Google Search Console
+        run: node scripts/submit-sitemap.js
+        env:
+          GOOGLE_SEARCH_CONSOLE_SERVICE_ACCOUNT: ${{ secrets.GOOGLE_SEARCH_CONSOLE_SERVICE_ACCOUNT }}
+          SEARCH_CONSOLE_SITE_URL: ${{ secrets.SEARCH_CONSOLE_SITE_URL }}
+        continue-on-error: true  # エラーが発生してもデプロイは成功として扱う

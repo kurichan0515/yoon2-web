@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Calendar from '../components/Calendar';
 import { getPublicAvailableTimeSlots, getMonthlyBookingStats } from '../services/calendarService';
 import ErrorMessage from '../components/common/ErrorMessage';
+import { setPageMeta } from '../utils/seoHelper';
 import logger from '../utils/logger';
 import './CalendarPage.css';
 
@@ -73,6 +74,13 @@ const CalendarPage = () => {
   useEffect(() => {
     // ページの一番上にスクロール
     window.scrollTo(0, 0);
+    
+    // SEOメタタグを設定
+    setPageMeta({
+      title: '予約カレンダー',
+      description: 'yoon²ゆんゆんの予約カレンダー。イヤーエステ・耳つぼ専門サロンの空き状況を確認して、ご希望の日時でご予約いただけます。',
+      path: '/calendar'
+    });
     
     fetchAvailableSlots(selectedDate);
     fetchMonthlyStats(selectedDate);
