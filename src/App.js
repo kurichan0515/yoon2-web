@@ -10,6 +10,7 @@ import HomeNew from './pages/HomeNew';
 import ShopInfo from './pages/ShopInfo';
 import CalendarPage from './pages/CalendarPage';
 import CoursePage from './pages/CoursePage';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import AnalyticsDashboard from './components/AnalyticsDashboard';
@@ -37,6 +38,7 @@ function App() {
             <Route path="shop" element={<ShopInfo />} />
             <Route path="calendar" element={<CalendarPage />} />
             <Route path="courses" element={<CoursePage />} />
+            <Route path="privacy" element={<PrivacyPolicy />} />
           </Route>
 
           {/* 新しいデザインのホームページ（独立したレイアウトなし） */}

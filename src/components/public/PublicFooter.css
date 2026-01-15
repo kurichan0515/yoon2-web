@@ -68,6 +68,26 @@
   font-size: 14px;
 }
 
+.footer-links-bottom {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footer-link {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
   .footer-content {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import appConfig from '../../config/appConfig';
 import './PublicFooter.css';
 
@@ -46,6 +47,9 @@ const PublicFooter = () => {
         
         <div className="footer-bottom">
           <p>&copy; 2024 {appConfig.shop.name}. All rights reserved.</p>
+          <div className="footer-links-bottom">
+            <Link to="/privacy" className="footer-link">プライバシーポリシー</Link>
+          </div>
         </div>
       </div>
     </footer>
