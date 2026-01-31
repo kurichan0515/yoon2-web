@@ -30,10 +30,36 @@ if (!serviceAccountJson) {
 // サービスアカウントのJSONをパース
 let serviceAccount;
 try {
-  serviceAccount = JSON.parse(serviceAccountJson);
+  // base64エンコードされている場合はデコード
+  let jsonString = serviceAccountJson;
+  if (!jsonString.startsWith('{')) {
+    try {
+      jsonString = Buffer.from(jsonString, 'base64').toString('utf-8');
+      console.log('📝 Base64デコードを実行しました');
+    } catch (e) {
+      // base64でない場合はそのまま使用
+    }
+  }
+  
+  // JSONをパース
+  serviceAccount = JSON.parse(jsonString);
 } catch (error) {
   console.error('❌ エラー: サービスアカウントのJSONが無効です');
-  console.error(error.message);
+  console.error('エラー詳細:', error.message);
+  console.error('\n💡 解決方法:');
+  console.error('1. GitHub Secretsの設定を確認してください');
+  console.error('   - Settings → Secrets and variables → Actions');
+  console.error('   - GOOGLE_SEARCH_CONSOLE_SERVICE_ACCOUNT を確認');
+  console.error('\n2. JSONの設定方法:');
+  console.error('   - JSONファイルの内容全体をコピー');
+  console.error('   - 改行も含めて完全にコピー');
+  console.error('   - または、base64エンコードして設定');
+  console.error('\n3. JSONの形式確認:');
+  console.error('   - 最初が { で始まっているか');
+  console.error('   - 最後が } で終わっているか');
+  console.error('   - 特殊文字が正しくエスケープされているか');
+  console.error('\n4. 設定値の最初の50文字（デバッグ用）:');
+  console.error(`   ${serviceAccountJson.substring(0, 50)}...`);
   process.exit(1);
 }
 
