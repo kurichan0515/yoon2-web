@@ -109,7 +109,7 @@ const Hero = () => {
         <h2 className="text-white/60 text-xs sm:text-sm tracking-[0.3em] sm:tracking-[0.5em] mb-3 sm:mb-4 animate-fade-in-up" style={{ fontFamily: 'Cinzel, serif' }}>
           EAR ESTHETIC & ACUPRESSURE
         </h2>
-        <h1 className="text-3xl sm:text-5xl md:text-8xl text-white font-bold mb-6 sm:mb-8" style={{ fontFamily: "'League Spartan', sans-serif", letterSpacing: '-0.1em' }}>
+        <h1 className="text-3xl sm:text-5xl md:text-8xl text-white font-bold mb-6 sm:mb-8" style={{ fontFamily: "'League Spartan', sans-serif", letterSpacing: '-0.05em' }}>
           yoon²
         </h1>
         <p className="text-white/80 max-w-lg mx-auto mb-6 sm:mb-8 text-xs sm:text-sm md:text-base leading-relaxed tracking-wide sm:tracking-wider px-2">
