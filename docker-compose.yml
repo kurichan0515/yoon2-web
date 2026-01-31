@@ -19,6 +19,7 @@ services:
       - REACT_APP_FIREBASE_APP_ID=${REACT_APP_FIREBASE_APP_ID}
       - REACT_APP_TWITTER_URL=${REACT_APP_TWITTER_URL}
       - REACT_APP_INSTAGRAM_URL=${REACT_APP_INSTAGRAM_URL}
+    command: npm run dev
     depends_on:
       - firebase-emulator
     networks:

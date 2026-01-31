@@ -173,8 +173,6 @@ const AnalyticsDashboard = () => {
           <div className="table-header">
             <div className="header-cell">日付</div>
             <div className="header-cell">ホーム</div>
-            <div className="header-cell">店舗情報</div>
-            <div className="header-cell">予約状況</div>
             <div className="header-cell">予約・お問い合わせ</div>
             <div className="header-cell">合計</div>
           </div>
@@ -182,13 +180,11 @@ const AnalyticsDashboard = () => {
             .sort(([a], [b]) => new Date(b) - new Date(a))
             .slice(0, 14) // 直近14日間のみ表示
             .map(([date, stats]) => {
-              const total = Object.values(stats).reduce((sum, count) => sum + count, 0);
+              const total = (stats.Home || 0) + (stats.Booking || 0);
               return (
                 <div key={date} className="table-row">
                   <div className="cell date">{formatDate(date)}</div>
                   <div className="cell">{stats.Home || 0}</div>
-                  <div className="cell">{stats.ShopInfo || 0}</div>
-                  <div className="cell">{stats.Calendar || 0}</div>
                   <div className="cell">{stats.Booking || 0}</div>
                   <div className="cell total">{total}</div>
                 </div>

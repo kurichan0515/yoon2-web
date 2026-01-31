@@ -151,13 +151,9 @@ import AdSense from '../components/common/AdSense';
 
 ### 現在の実装
 
-- ✅ Homeページ: メニューセクション後
+- ✅ Homeページ: メニューセクション後、SNSセクション後
 
-### 追加検討場所
-
-- ShopInfoページ
-- CoursePageページ
-- CalendarPageページ
+**注意**: 店舗情報、コース情報、予約状況はホームページ内のセクションとして統合されました。
 
 ### 配置のベストプラクティス
 

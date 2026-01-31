@@ -51,9 +51,11 @@ const AdminDashboard = () => {
               <p>基本情報の管理</p>
               <button 
                 className="menu-button"
-                onClick={() => window.location.href = '/shop'}
+                onClick={() => {
+                  window.open('/', '_blank');
+                }}
               >
-                店舗情報を確認
+                ホームページで店舗情報を確認
               </button>
             </div>
 

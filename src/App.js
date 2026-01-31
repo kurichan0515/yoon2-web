@@ -6,10 +6,7 @@ import AdminLayout from './layouts/AdminLayout';
 import PrivateRoute from './components/common/PrivateRoute';
 import ErrorBoundary from './components/common/ErrorBoundary';
 import Home from './pages/Home';
-import HomeNew from './pages/HomeNew';
-import ShopInfo from './pages/ShopInfo';
-import CalendarPage from './pages/CalendarPage';
-import CoursePage from './pages/CoursePage';
+import HomeSns from './pages/HomeSns';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
@@ -32,17 +29,14 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
         <Routes>
+          {/* SNSからの導線向けページ（独立したレイアウトなし） */}
+          <Route path="/sns" element={<HomeSns />} />
+
           {/* 一般ユーザー向けルート */}
-          <Route path="/" element={<PublicLayout />}>
-            <Route index element={<Home />} />
-            <Route path="shop" element={<ShopInfo />} />
-            <Route path="calendar" element={<CalendarPage />} />
-            <Route path="courses" element={<CoursePage />} />
+          <Route element={<PublicLayout />}>
+            <Route path="/" element={<Home />} />
             <Route path="privacy" element={<PrivacyPolicy />} />
           </Route>
-
-          {/* 新しいデザインのホームページ（独立したレイアウトなし） */}
-          <Route path="/new" element={<HomeNew />} />
 
           {/* 管理者向けルート */}
           <Route path="/system/login" element={<AdminLogin />} />

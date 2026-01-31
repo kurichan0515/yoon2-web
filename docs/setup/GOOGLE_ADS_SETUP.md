@@ -400,7 +400,7 @@ trackConversion('booking_submit', {
 import { trackPageView } from '../services/googleAdsService';
 
 // ページ遷移時
-trackPageView('/shop', 'Shop Info - 店舗情報');
+trackPageView('/', 'Home - yoon²ゆんゆん');
 ```
 
 ### カスタムイベントを記録する

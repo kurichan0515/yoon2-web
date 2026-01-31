@@ -205,11 +205,18 @@ const BookingConfirmation = () => {
               <button onClick={handleGoHome} className="action-button primary">
                 ホームページに戻る
               </button>
-              <button onClick={() => window.location.href = '/shop'} className="action-button secondary">
+              <button 
+                onClick={() => {
+                  const shopSection = document.getElementById('shop');
+                  if (shopSection) {
+                    shopSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  } else {
+                    window.location.href = '/#shop';
+                  }
+                }} 
+                className="action-button secondary"
+              >
                 店舗情報を見る
-              </button>
-              <button onClick={() => window.location.href = '/calendar'} className="action-button secondary">
-                予約状況を確認
               </button>
             </div>
           </div>

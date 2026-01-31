@@ -101,12 +101,12 @@ public/sitemap.xml
 ### 例2: 既存ページの更新
 
 ```xml
-<!-- カレンダーページの更新 -->
+<!-- ホームページの更新 -->
 <url>
-  <loc>https://yoon2.com/calendar</loc>
-  <lastmod>2025-01-28</lastmod>  <!-- 日付を更新 -->
-  <changefreq>daily</changefreq>
-  <priority>0.9</priority>
+  <loc>https://yoon2.com/</loc>
+  <lastmod>2026-01-31</lastmod>  <!-- 日付を更新 -->
+  <changefreq>weekly</changefreq>
+  <priority>1.0</priority>
 </url>
 ```
 
@@ -117,20 +117,15 @@ public/sitemap.xml
 1. **ホームページ** (`/`)
    - Priority: 1.0（最重要）
    - Changefreq: weekly
+   - 店舗情報、コース情報、予約状況などのセクションを含む統合ページ
 
-2. **店舗情報ページ** (`/shop`)
-   - Priority: 0.8
-   - Changefreq: monthly
+2. **プライバシーポリシーページ** (`/privacy`)
+   - Priority: 0.3
+   - Changefreq: yearly
 
-3. **カレンダーページ** (`/calendar`)
-   - Priority: 0.9（予約に直結）
-   - Changefreq: daily
-
-4. **コースページ** (`/courses`)
-   - Priority: 0.8
-   - Changefreq: monthly
-
-**注意**: 管理者ページ（`/system/*`）は含まれていません。これは正しい設定です（robots.txtでも除外されています）。
+**注意**: 
+- 管理者ページ（`/system/*`）は含まれていません。これは正しい設定です（robots.txtでも除外されています）。
+- 店舗情報、コース情報、予約状況はホームページ内のセクションとして統合されました。
 
 ## 修正手順
 

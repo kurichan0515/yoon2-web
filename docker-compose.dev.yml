@@ -28,7 +28,7 @@ services:
           memory: 4G
         reservations:
           memory: 2G
-    command: npm start
+    command: npm run dev
     networks:
       - dev-network
 

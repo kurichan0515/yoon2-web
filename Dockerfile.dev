@@ -19,4 +19,4 @@ COPY . .
 EXPOSE 3000
 
 # 開発サーバーを起動（ホットリロード対応）
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
