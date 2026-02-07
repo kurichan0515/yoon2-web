@@ -63,9 +63,10 @@ Managed by `/kiro/steering` command. Updates here reflect command changes.
 <!-- Added by /kiro/steering-custom command -->
 <!-- Format:
 - `filename.md`: Mode - Pattern(s) - Description
-  Mode: Always|Conditional|Manual
-  Pattern: File patterns for Conditional mode
+ Mode: Always|Conditional|Manual
+ Pattern: File patterns for Conditional mode
 -->
+- `marketing.md`: Manual - マーケティング調査を行う際に参照するプロンプトとガイドライン
 
 ### Inclusion Modes
 - **Always**: Loaded in every interaction (default)

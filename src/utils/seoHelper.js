@@ -83,8 +83,8 @@ export const setPageMeta = ({
  */
 export const resetPageMeta = () => {
   setPageMeta({
-    title: 'yoon²ゆんゆん - イヤーエステ・耳つぼ専門店',
-    description: 'yoon²ゆんゆん - イヤーエステ・耳つぼ専門店。松山市清水町で心身のリラクゼーションを提供します。',
+    title: '松山 エステ | yoon²ゆんゆん 耳つぼ・イヤーエステ専門サロン',
+    description: '愛媛県松山市の耳つぼ・イヤーエステ専門サロン。初回3,500円～、オンライン予約OK。北久米駅徒歩5分、駐車場完備。',
     path: '/'
   });
 };

@@ -7,15 +7,23 @@
   <!-- ホームページ -->
   <url>
     <loc>https://yoon2.com/</loc>
-    <lastmod>2026-01-31</lastmod>
+    <lastmod>2026-02-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+  
+  <!-- SNS導線向けページ -->
+  <url>
+    <loc>https://yoon2.com/sns</loc>
+    <lastmod>2026-02-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   
   <!-- プライバシーポリシーページ -->
   <url>
     <loc>https://yoon2.com/privacy</loc>
-    <lastmod>2026-01-31</lastmod>
+    <lastmod>2026-02-07</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
