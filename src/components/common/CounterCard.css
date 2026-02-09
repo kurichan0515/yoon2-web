@@ -1,0 +1,133 @@
+/* CounterCard Component Styles */
+/* デザインシステムに基づいた統一されたカードスタイル */
+
+.counter-card {
+  /* 基本スタイル */
+  background-color: var(--color-background-card);
+  border-radius: var(--border-radius-lg-new);
+  padding: var(--spacing-lg-px);
+  margin-bottom: var(--spacing-lg-px);
+  
+  /* シャドウ */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  /* トランジション */
+  transition: all 0.3s ease;
+  
+  /* レイアウト */
+  display: flex;
+  flex-direction: column;
+  
+  /* クリック可能な場合のスタイル */
+  cursor: default;
+}
+
+/* クリック可能な場合 */
+.counter-card[role="button"] {
+  cursor: pointer;
+}
+
+.counter-card[role="button"]:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.counter-card[role="button"]:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.counter-card[role="button"]:focus-visible {
+  outline: 3px solid var(--color-primary-main);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(33, 150, 243, 0.2);
+}
+
+/* ヘッダー */
+.counter-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-sm-px);
+  gap: var(--spacing-sm-px);
+}
+
+/* 名前/タイトル */
+.counter-card-name {
+  font-size: var(--font-size-h3);
+  font-weight: 600;
+  line-height: var(--line-height-h3);
+  color: var(--color-text-primary-new);
+  margin: 0;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 今日のバッジ */
+.counter-card-today-badge {
+  font-size: var(--font-size-caption);
+  font-weight: bold;
+  line-height: var(--line-height-caption);
+  color: var(--color-secondary-main);
+  background-color: var(--color-secondary-background);
+  padding: 2px var(--spacing-sm-px);
+  border-radius: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* カウント値 */
+.counter-card-value {
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 1.2;
+  color: var(--color-primary-main);
+  margin: var(--spacing-sm-px) 0;
+  font-variant-numeric: tabular-nums; /* 数値の幅を統一 */
+}
+
+/* 説明文 */
+.counter-card-description {
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+  color: var(--color-text-secondary-new);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+  .counter-card {
+    padding: var(--spacing-md-px);
+  }
+  
+  .counter-card-value {
+    font-size: 28px;
+  }
+  
+  .counter-card-name {
+    font-size: var(--font-size-body);
+  }
+}
+
+@media (max-width: 480px) {
+  .counter-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs-px);
+  }
+  
+  .counter-card-today-badge {
+    align-self: flex-start;
+  }
+  
+  .counter-card-value {
+    font-size: 24px;
+  }
+}
