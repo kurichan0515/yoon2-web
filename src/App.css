@@ -3,7 +3,7 @@
 
 /* CSS変数 - デザインシステム */
 :root {
-  /* カラーパレット - ナチュラル・エレガント */
+  /* カラーパレット - ナチュラル・エレガント（既存デザイン） */
   --color-primary: #f4f1eb;
   --color-secondary: #e8e1d8;
   --color-accent: #c9a96e;
@@ -14,18 +14,64 @@
   --color-background: #faf9f7;
   --color-border: #e5e0d7;
   
+  /* 新しいデザインシステム - モダン・クール */
+  /* プライマリカラー */
+  --color-primary-main: #2196F3;
+  --color-primary-light: #64B5F6;
+  --color-primary-dark: #1976D2;
+  --color-primary-background: #E3F2FD;
+  
+  /* セカンダリカラー */
+  --color-secondary-main: #4CAF50;
+  --color-secondary-light: #81C784;
+  --color-secondary-dark: #388E3C;
+  --color-secondary-background: #E8F5E9;
+  
+  /* アクセントカラー */
+  --color-accent-main: #FF9800;
+  --color-accent-light: #FFB74D;
+  --color-accent-dark: #F57C00;
+  --color-accent-background: #FFF3E0;
+  
+  /* ステータスカラー */
+  --color-status-error: #F44336;
+  --color-status-success: #4CAF50;
+  --color-status-warning: #FF9800;
+  --color-status-info: #2196F3;
+  
+  /* テキストカラー */
+  --color-text-primary-new: #333333;
+  --color-text-secondary-new: #666666;
+  --color-text-placeholder: #999999;
+  --color-text-disabled: #CCCCCC;
+  
+  /* 背景カラー */
+  --color-background-main: #F5F5F5;
+  --color-background-card: #FFFFFF;
+  
+  /* ボーダーカラー */
+  --color-border-new: #E0E0E0;
+  
   /* フォント */
   --font-primary: 'Playfair Display', serif;
   --font-secondary: 'Montserrat', sans-serif;
   --font-japanese: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'メイリオ', sans-serif;
   
-  /* スペーシング */
+  /* スペーシング - 既存（rem単位） */
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
   --spacing-md: 1.5rem;
   --spacing-lg: 2rem;
   --spacing-xl: 3rem;
   --spacing-xxl: 4rem;
+  
+  /* スペーシング - 新しいデザインシステム（px単位） */
+  --spacing-xs-px: 4px;
+  --spacing-sm-px: 8px;
+  --spacing-md-px: 12px;
+  --spacing-lg-px: 16px;
+  --spacing-xl-px: 24px;
+  --spacing-xxl-px: 32px;
   
   /* ブレークポイント */
   --breakpoint-sm: 576px;
@@ -43,6 +89,28 @@
   --radius-md: 8px;
   --radius-lg: 16px;
   --radius-xl: 24px;
+  
+  /* タイポグラフィ - 新しいデザインシステム */
+  --font-size-h1: 28px;
+  --font-size-h2: 24px;
+  --font-size-h3: 18px;
+  --font-size-body: 16px;
+  --font-size-caption: 12px;
+  --font-size-count-large: 72px;
+  --font-size-count-medium: 24px;
+  
+  --line-height-h1: 34px;
+  --line-height-h2: 29px;
+  --line-height-h3: 22px;
+  --line-height-body: 24px;
+  --line-height-caption: 18px;
+  --line-height-count-large: 86px;
+  --line-height-count-medium: 29px;
+  
+  /* レイアウト - 新しいデザインシステム */
+  --border-radius-md-new: 8px;
+  --border-radius-lg-new: 12px;
+  --border-radius-pill: 9999px;
 }
 
 /* メインアプリケーションのスタイル */
