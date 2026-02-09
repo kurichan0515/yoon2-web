@@ -1,0 +1,157 @@
+/* MainScreen Component Styles */
+/* デザインシステムに基づいた統一されたレイアウト */
+
+.main-screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-background-main);
+}
+
+/* ヘッダー */
+.main-screen-header {
+  padding: var(--spacing-lg-px);
+  background-color: var(--color-background-card);
+  border-bottom: 1px solid var(--color-border-new);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.main-screen-title {
+  font-size: var(--font-size-h1);
+  font-weight: bold;
+  line-height: var(--line-height-h1);
+  color: var(--color-primary-main);
+  margin: 0 0 var(--spacing-xs-px) 0;
+}
+
+.main-screen-date {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  color: var(--color-text-secondary-new);
+  margin: 0;
+}
+
+/* コンテンツエリア */
+.main-screen-content {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 100px; /* フッター分の余白 */
+}
+
+.main-screen-scroll {
+  padding: var(--spacing-lg-px);
+}
+
+/* カウンターカードコンテナ */
+.counter-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg-px);
+}
+
+/* 空の状態 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px var(--spacing-lg-px);
+  text-align: center;
+}
+
+.empty-text {
+  font-size: var(--font-size-h3);
+  font-weight: 600;
+  line-height: var(--line-height-h3);
+  color: var(--color-text-secondary-new);
+  margin: 0 0 var(--spacing-sm-px) 0;
+}
+
+.empty-sub-text {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  color: var(--color-text-placeholder);
+  margin: 0;
+}
+
+/* 広告バナー */
+.ad-banner {
+  min-height: 60px;
+  background-color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: var(--spacing-lg-px) 0;
+  border-radius: var(--border-radius-md-new);
+  padding: var(--spacing-md-px);
+}
+
+/* フッター */
+.main-screen-footer {
+  padding: var(--spacing-lg-px);
+  background-color: var(--color-background-card);
+  border-top: 1px solid var(--color-border-new);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ボタン行 */
+.button-row {
+  display: flex;
+  gap: var(--spacing-sm-px);
+  width: 100%;
+}
+
+.button-col {
+  flex: 1;
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+  .main-screen-header {
+    padding: var(--spacing-md-px);
+  }
+  
+  .main-screen-title {
+    font-size: var(--font-size-h2);
+    line-height: var(--line-height-h2);
+  }
+  
+  .main-screen-scroll {
+    padding: var(--spacing-md-px);
+  }
+  
+  .main-screen-footer {
+    padding: var(--spacing-md-px);
+  }
+  
+  .button-row {
+    flex-direction: column;
+    gap: var(--spacing-sm-px);
+  }
+  
+  .button-col {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-screen-header {
+    padding: var(--spacing-sm-px) var(--spacing-md-px);
+  }
+  
+  .main-screen-title {
+    font-size: var(--font-size-h3);
+    line-height: var(--line-height-h3);
+  }
+  
+  .empty-state {
+    padding: 40px var(--spacing-md-px);
+  }
+}
