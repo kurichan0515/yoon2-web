@@ -1,0 +1,205 @@
+/* Button Component Styles */
+/* デザインシステムに基づいた統一されたボタンスタイル */
+
+.btn {
+  /* 基本スタイル */
+  font-family: var(--font-secondary), var(--font-japanese);
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  line-height: var(--line-height-body);
+  
+  /* レイアウト */
+  padding: var(--spacing-lg-px) var(--spacing-xl-px);
+  border-radius: var(--border-radius-md-new);
+  border: none;
+  cursor: pointer;
+  
+  /* 最小サイズ（アクセシビリティ） */
+  min-height: 48px;
+  min-width: 120px;
+  
+  /* フレックスボックス */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm-px);
+  
+  /* トランジション */
+  transition: all 0.3s ease;
+  
+  /* フォーカス表示 */
+  outline: none;
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--color-primary-main);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(33, 150, 243, 0.2);
+}
+
+/* プライマリボタン */
+.btn-primary {
+  background-color: var(--color-primary-main);
+  color: #FFFFFF;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--color-primary-dark);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active:not(:disabled) {
+  background-color: var(--color-primary-dark);
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* セカンダリボタン */
+.btn-secondary {
+  background-color: #FFFFFF;
+  color: var(--color-primary-main);
+  border: 1px solid var(--color-primary-main);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--color-primary-background);
+  border-color: var(--color-primary-dark);
+}
+
+.btn-secondary:active:not(:disabled) {
+  background-color: var(--color-primary-background);
+}
+
+/* 危険ボタン（削除など） */
+.btn-danger {
+  background-color: #FFFFFF;
+  color: var(--color-status-error);
+  border: 1px solid var(--color-status-error);
+}
+
+.btn-danger:hover:not(:disabled) {
+  background-color: #FFEBEE;
+  border-color: var(--color-status-error);
+}
+
+.btn-danger:active:not(:disabled) {
+  background-color: #FFEBEE;
+}
+
+/* 成功ボタン */
+.btn-success {
+  background-color: var(--color-status-success);
+  color: #FFFFFF;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-success:hover:not(:disabled) {
+  background-color: var(--color-secondary-dark);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.btn-success:active:not(:disabled) {
+  background-color: var(--color-secondary-dark);
+  transform: translateY(0);
+}
+
+/* 警告ボタン */
+.btn-warning {
+  background-color: var(--color-status-warning);
+  color: #FFFFFF;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-warning:hover:not(:disabled) {
+  background-color: var(--color-accent-dark);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.btn-warning:active:not(:disabled) {
+  background-color: var(--color-accent-dark);
+  transform: translateY(0);
+}
+
+/* 無効状態 */
+.btn-disabled,
+.btn:disabled {
+  background-color: var(--color-background-main);
+  color: var(--color-text-disabled);
+  border-color: var(--color-border-new);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-disabled:hover,
+.btn:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* ローディング状態 */
+.btn-loading {
+  cursor: wait;
+  pointer-events: none;
+}
+
+.btn-loading-spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btn-text {
+  display: inline-block;
+}
+
+/* サイズバリエーション */
+.btn-small {
+  padding: var(--spacing-sm-px) var(--spacing-md-px);
+  font-size: var(--font-size-caption);
+  min-height: 36px;
+  min-width: 80px;
+}
+
+.btn-large {
+  padding: var(--spacing-xl-px) var(--spacing-xxl-px);
+  font-size: var(--font-size-h3);
+  min-height: 56px;
+  min-width: 160px;
+}
+
+/* フル幅 */
+.btn-full {
+  width: 100%;
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+  .btn {
+    min-width: 100px;
+    padding: var(--spacing-md-px) var(--spacing-lg-px);
+  }
+  
+  .btn-large {
+    padding: var(--spacing-lg-px) var(--spacing-xl-px);
+    font-size: var(--font-size-body);
+  }
+}
