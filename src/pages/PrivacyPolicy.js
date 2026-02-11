@@ -12,8 +12,8 @@ const PrivacyPolicy = memo(() => {
     
     // SEOメタタグを設定
     setPageMeta({
-      title: 'プライバシーポリシー | yoon²ゆんゆん 松山 エステ',
-      description: 'yoon²ゆんゆん（松山の耳つぼ・イヤーエステ専門サロン）のプライバシーポリシー。個人情報の取り扱い、クッキーの使用、Google AdSenseについて説明しています。',
+      title: 'プライバシーポリシー | yoon² 松山の耳つぼ・イヤーエステ',
+      description: 'yoon²（ゆんゆん、松山の耳つぼ・イヤーエステ専門サロン）のプライバシーポリシー。個人情報の取り扱い、クッキーの使用、Google AdSenseについて説明しています。',
       path: '/privacy'
     });
     

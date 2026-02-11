@@ -34,15 +34,17 @@ const Navbar = ({ isScrolled, isMobileMenuOpen, setIsMobileMenuOpen }) => {
   };
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-[#0A0A0A]/90 backdrop-blur-md py-2 sm:py-4' : 'bg-transparent py-3 sm:py-6'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-[#0A0A0A]/90 backdrop-blur-md py-2 sm:py-4' : 'bg-transparent py-3 sm:py-6'}`} aria-label="メインナビゲーション">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 flex justify-between items-center">
-        <div 
-          className="text-xl sm:text-2xl font-bold text-white cursor-pointer whitespace-nowrap" 
+        <button
+          type="button"
+          className="text-xl sm:text-2xl font-bold text-white cursor-pointer whitespace-nowrap bg-transparent border-0"
           style={{ fontFamily: "'League Spartan', sans-serif", letterSpacing: '-0.05em' }}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          aria-label="トップへ"
         >
           yoon²
-        </div>
+        </button>
         
         {/* Desktop Nav */}
         <div className="hidden md:flex space-x-4 lg:space-x-8">
@@ -59,8 +61,14 @@ const Navbar = ({ isScrolled, isMobileMenuOpen, setIsMobileMenuOpen }) => {
         </div>
 
         {/* Mobile Toggle */}
-        <button className="md:hidden text-white" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-          {isMobileMenuOpen ? <X /> : <Menu />}
+        <button
+          type="button"
+          className="md:hidden text-white p-2"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label={isMobileMenuOpen ? 'メニューを閉じる' : 'メニューを開く'}
+          aria-expanded={isMobileMenuOpen}
+        >
+          {isMobileMenuOpen ? <X aria-hidden /> : <Menu aria-hidden />}
         </button>
       </div>
 
@@ -97,7 +105,9 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A0A0A]/60 to-[#0A0A0A] z-10" />
         <img 
           src="/images/hero/wait-room.png" 
-          alt="Relaxation Background" 
+          alt="店内のリラックス空間"
+          width={1920}
+          height={1080}
           className="w-full h-full object-cover opacity-40"
           onError={(e) => {
             e.target.src = 'https://images.unsplash.com/photo-1519750157634-b6d493a0f77c?auto=format&fit=crop&q=80&w=2000';
@@ -106,13 +116,14 @@ const Hero = () => {
       </div>
 
       <div className="relative z-20 text-center px-4 sm:px-6">
-        <h2 className="text-white/60 text-xs sm:text-sm tracking-[0.3em] sm:tracking-[0.5em] mb-3 sm:mb-4 animate-fade-in-up" style={{ fontFamily: 'Cinzel, serif' }}>
-          EAR ESTHETIC & ACUPRESSURE
-        </h2>
-        <h1 className="text-3xl sm:text-5xl md:text-8xl text-white font-bold mb-6 sm:mb-8" style={{ fontFamily: "'League Spartan', sans-serif", letterSpacing: '-0.05em' }}>
+        <h1 className="text-3xl sm:text-5xl md:text-8xl text-white font-bold mb-1 sm:mb-2" style={{ fontFamily: "'League Spartan', sans-serif", letterSpacing: '-0.05em' }}>
           yoon²
         </h1>
-        <p className="text-white/80 max-w-lg mx-auto mb-6 sm:mb-8 text-xs sm:text-sm md:text-base leading-relaxed tracking-wide sm:tracking-wider px-2">
+        <p className="text-white/80 text-sm sm:text-base mb-4 sm:mb-6" style={{ fontFamily: 'Cinzel, serif' }} aria-label="読み方">ゆんゆん</p>
+        <p className="text-white/80 text-xs sm:text-sm tracking-[0.3em] sm:tracking-[0.5em] mb-6 sm:mb-8 animate-fade-in-up" style={{ fontFamily: 'Cinzel, serif' }} aria-hidden="true">
+          EAR ESTHETIC & ACUPRESSURE
+        </p>
+        <p className="text-white/90 max-w-lg mx-auto mb-6 sm:mb-8 text-xs sm:text-sm md:text-base leading-relaxed tracking-wide sm:tracking-wider px-2">
           深い夜の静寂に包まれるような、究極の癒やし体験。<br className="sm:hidden" />
           耳から整う、心と身体の休息。
         </p>
@@ -129,13 +140,15 @@ const Hero = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="px-6 sm:px-10 py-3 sm:py-4 bg-white text-black font-semibold text-xs sm:text-sm tracking-wide sm:tracking-widest hover:bg-[#3B82F6] hover:text-white transition-all duration-300 transform hover:-translate-y-1 inline-block text-center shadow-lg shadow-white/20"
+            aria-label="LINEで予約・お問い合わせ（新しいウィンドウで開きます）"
           >
             <span className="line-booking-text">
               <span className="line-booking-line1">📱 LINEで予約</span>
               <span className="line-booking-line2">お問い合わせ</span>
             </span>
           </a>
-          <button 
+          <button
+            type="button"
             onClick={() => {
               const coursesSection = document.getElementById('courses');
               if (coursesSection) {
@@ -143,6 +156,7 @@ const Hero = () => {
               }
             }}
             className="px-6 sm:px-10 py-3 sm:py-4 border border-white text-white font-semibold text-xs sm:text-sm tracking-wide sm:tracking-widest hover:bg-white/10 transition-all duration-300 whitespace-nowrap"
+            aria-label="サービスメニューへスクロール"
           >
             VIEW SERVICES
           </button>
@@ -193,7 +207,7 @@ const HomeSns = () => {
     
     // SEOメタタグを設定（SNS導線向け）
     setPageMeta({
-      title: '松山 エステ | yoon²ゆんゆん SNSからのご予約',
+      title: 'yoon² | 松山の耳つぼ・イヤーエステ SNSからのご予約',
       description: '愛媛県松山市の耳つぼ・イヤーエステ専門サロン。初回3,500円～、オンライン予約OK。公式LINEから簡単予約。北久米駅徒歩5分、駐車場完備。',
       path: '/sns'
     });
@@ -285,6 +299,8 @@ const HomeSns = () => {
             <img 
               src="/images/announcements/notification01.png" 
               alt="お知らせ"
+              width={800}
+              height={450}
               className="w-full h-auto"
               loading="lazy"
               onError={(e) => {
@@ -302,8 +318,11 @@ const HomeSns = () => {
             <div className="absolute -inset-4 border border-[#3B82F6]/20 group-hover:border-[#3B82F6]/40 transition-all duration-700" />
             <img 
               src="/images/hero/wait-room.png" 
-              alt="Salon Interior" 
+              alt="店内の様子"
+              width={600}
+              height={400}
               className="relative z-10 w-full grayscale hover:grayscale-0 transition-all duration-1000"
+              loading="lazy"
               onError={(e) => {
                 e.target.src = 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=800';
               }}
@@ -311,10 +330,11 @@ const HomeSns = () => {
           </div>
           <div>
             <SectionHeading title="Concept" subtitle="ABOUT US" />
-            <p className="text-white/70 leading-relaxed sm:leading-loose mb-6 sm:mb-8 tracking-wide text-sm sm:text-base">
+            <p className="text-white/85 leading-relaxed sm:leading-loose mb-6 sm:mb-8 tracking-wide text-sm sm:text-base">
               {appConfig.shop.description || 'yoon²（ユンユン）は、プロフェッショナルな技術で日常の喧騒をリセットするイヤーエステサロンです。専門のスコープを用いた精密な施術と、深いリラクゼーションをもたらすドライヘッドスパを組み合わせ、お客様お一人おひとりの「休息の時間」を大切にしています。この洗練されたWebサイトのデザインは、当店のこだわり抜いた施術クオリティと、研ぎ澄まされた癒やしの世界観を表現しています。'}
             </p>
-            <button 
+            <button
+              type="button"
               onClick={() => {
                 const coursesSection = document.getElementById('courses');
                 if (coursesSection) {
@@ -322,8 +342,9 @@ const HomeSns = () => {
                 }
               }}
               className="flex items-center gap-2 text-white hover:text-[#3B82F6] transition-colors group text-sm sm:text-base whitespace-nowrap"
+              aria-label="サービスメニューへスクロール"
             >
-              VIEW SERVICES <ArrowRight size={14} className="sm:w-4 sm:h-4 group-hover:translate-x-2 transition-transform" />
+              VIEW SERVICES <ArrowRight size={14} className="sm:w-4 sm:h-4 group-hover:translate-x-2 transition-transform" aria-hidden />
             </button>
           </div>
         </div>
@@ -333,7 +354,7 @@ const HomeSns = () => {
       <section id="courses" className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">
         <div className="max-w-7xl mx-auto px-3 sm:px-6">
           <SectionHeading title="Service Menu" subtitle="SERVICES" />
-          <p className="text-white/60 text-center mb-8 sm:mb-12 tracking-wide max-w-2xl mx-auto text-xs sm:text-sm px-2">
+          <p className="text-white/80 text-center mb-8 sm:mb-12 tracking-wide max-w-2xl mx-auto text-xs sm:text-sm px-2">
             お客様のご要望に合わせたイヤーエステ・耳つぼ・ドライヘッドスパメニューをご用意しております
           </p>
 
@@ -354,25 +375,31 @@ const HomeSns = () => {
             <>
               {/* カテゴリフィルター */}
               <div className="flex justify-center gap-1.5 sm:gap-2 mb-8 sm:mb-12 flex-wrap px-2">
-                <button 
+                <button
+                  type="button"
                   className={`px-3 sm:px-6 py-1.5 sm:py-2 text-xs sm:text-sm tracking-wide sm:tracking-wider transition-all whitespace-nowrap ${
                     selectedCategory === 'all' 
                       ? 'bg-[#3B82F6] text-white border border-[#3B82F6]' 
-                      : 'bg-[#161B22] text-white/70 border border-white/5 hover:border-[#3B82F6]/50'
+                      : 'bg-[#161B22] text-white/80 border border-white/5 hover:border-[#3B82F6]/50'
                   }`}
                   onClick={() => setSelectedCategory('all')}
+                  aria-label="すべてのコースを表示"
+                  aria-pressed={selectedCategory === 'all'}
                 >
                   すべて
                 </button>
                 {Object.values(COURSE_CATEGORIES).map(category => (
                   <button
                     key={category}
+                    type="button"
                     className={`px-3 sm:px-6 py-1.5 sm:py-2 text-xs sm:text-sm tracking-wide sm:tracking-wider transition-all whitespace-nowrap ${
                       selectedCategory === category
                         ? 'bg-[#3B82F6] text-white border border-[#3B82F6]' 
-                        : 'bg-[#161B22] text-white/70 border border-white/5 hover:border-[#3B82F6]/50'
+                        : 'bg-[#161B22] text-white/80 border border-white/5 hover:border-[#3B82F6]/50'
                     }`}
                     onClick={() => setSelectedCategory(category)}
+                    aria-label={`${COURSE_CATEGORY_LABELS[category]}でフィルター`}
+                    aria-pressed={selectedCategory === category}
                   >
                     {COURSE_CATEGORY_LABELS[category]}
                   </button>
@@ -391,6 +418,8 @@ const HomeSns = () => {
                       <img 
                         src={course.image} 
                         alt={`${course.name}の画像`}
+                        width={400}
+                        height={300}
                         className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
                         loading="lazy"
                         onError={(e) => {
@@ -445,7 +474,7 @@ const HomeSns = () => {
             <h2 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-wide sm:tracking-widest font-light mb-3 sm:mb-4" style={{ fontFamily: 'Cinzel, serif' }}>
               ご予約・お問い合わせ
             </h2>
-            <p className="text-white/60 text-sm sm:text-base md:text-lg tracking-wide max-w-2xl mx-auto px-2">
+            <p className="text-white/80 text-sm sm:text-base md:text-lg tracking-wide max-w-2xl mx-auto px-2">
               SNSからご来店の方も大歓迎！公式LINEから簡単にご予約いただけます
             </p>
           </div>
@@ -456,6 +485,7 @@ const HomeSns = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="group bg-gradient-to-br from-[#161B22] to-[#0A0A0A] p-4 sm:p-6 md:p-8 lg:p-12 border-2 border-[#3B82F6]/30 hover:border-[#3B82F6] transition-all duration-500 relative overflow-hidden shadow-lg shadow-[#3B82F6]/20 hover:shadow-[#3B82F6]/40"
+              aria-label="LINEで予約・お問い合わせ（新しいウィンドウで開きます）"
             >
               <div className="absolute top-0 right-0 p-2 sm:p-4 opacity-10 group-hover:opacity-100 transition-opacity">
                 <MessageCircle className="text-[#3B82F6] w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" />
@@ -494,6 +524,7 @@ const HomeSns = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="group bg-[#161B22] p-4 sm:p-6 md:p-8 lg:p-12 border border-white/5 hover:border-[#3B82F6]/50 transition-all duration-500 relative overflow-hidden"
+              aria-label="Instagramで最新情報を見る（新しいウィンドウで開きます）"
             >
               <div className="absolute top-0 right-0 p-2 sm:p-4 opacity-10 group-hover:opacity-100 transition-opacity">
                 <Instagram className="text-[#3B82F6] w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" />
@@ -533,6 +564,7 @@ const HomeSns = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block px-6 sm:px-8 py-2.5 sm:py-3 bg-[#3B82F6] text-white font-semibold text-xs sm:text-sm tracking-wide sm:tracking-widest hover:bg-[#2563EB] transition-all duration-300 transform hover:-translate-y-1 whitespace-nowrap"
+                aria-label="LINEを開く（新しいウィンドウで開きます）"
               >
                 LINEを開く →
               </a>
@@ -596,16 +628,18 @@ const HomeSns = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 sm:p-3 bg-white/5 hover:bg-[#3B82F6] transition-colors rounded-full flex-shrink-0"
+                aria-label="Instagram"
               >
-                <Instagram className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Instagram className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden />
               </a>
               <a 
                 href={lineUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 sm:p-3 bg-white/5 hover:bg-[#3B82F6] transition-colors rounded-full flex-shrink-0"
+                aria-label="LINEで予約"
               >
-                <Calendar className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Calendar className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden />
               </a>
             </div>
           </div>
@@ -637,6 +671,8 @@ const HomeSns = () => {
               <img 
                 src={shop?.access?.parkingPhotos?.parkingLot || appConfig.shop.access.parkingPhotos.parkingLot}
                 alt="駐車場の様子"
+                width={800}
+                height={450}
                 className="w-full h-auto"
                 loading="lazy"
                 onError={(e) => {
@@ -661,6 +697,8 @@ const HomeSns = () => {
               <img 
                 src={shop?.access?.parkingPhotos?.routeToShop || appConfig.shop.access.parkingPhotos.routeToShop}
                 alt="駐車場から店舗までの道順"
+                width={800}
+                height={450}
                 className="w-full h-auto"
                 loading="lazy"
                 onError={(e) => {
@@ -720,10 +758,11 @@ const HomeSns = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#FCAF45] text-white font-semibold text-xs sm:text-sm tracking-wide sm:tracking-widest hover:opacity-90 transition-all duration-300 transform hover:-translate-y-1 shadow-lg shadow-purple-500/20 whitespace-nowrap"
+                aria-label="Instagramを見る（新しいウィンドウで開きます）"
               >
-                <Instagram className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Instagram className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden />
                 Instagramを見る
-                <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
+                <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" aria-hidden />
               </a>
             </div>
           </div>
@@ -747,8 +786,9 @@ const HomeSns = () => {
           target="_blank"
           rel="noopener noreferrer"
           className="w-12 h-12 sm:w-14 sm:h-14 bg-[#3B82F6] text-white rounded-full flex items-center justify-center shadow-lg shadow-blue-500/20"
+          aria-label="LINEで予約（新しいウィンドウで開きます）"
         >
-          <Calendar className="w-5 h-5 sm:w-6 sm:h-6" />
+          <Calendar className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden />
         </a>
       </div>
     </div>

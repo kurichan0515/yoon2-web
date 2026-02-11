@@ -103,8 +103,9 @@ const PublicHeader = () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }
             }}
+            aria-label="トップページへ"
           >
-            <h1>{appConfig.shop.name}</h1>
+            <span className="public-logo-text">yoon<sup>2</sup></span>
           </Link>
         </div>
         

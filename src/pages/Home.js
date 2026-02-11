@@ -32,7 +32,7 @@ const Home = memo(() => {
     
     // SEOメタタグを設定
     setPageMeta({
-      title: '松山 エステ | yoon²ゆんゆん 耳つぼ・イヤーエステ専門サロン',
+      title: 'yoon² | 松山の耳つぼ・イヤーエステ専門サロン',
       description: '愛媛県松山市の耳つぼ・イヤーエステ専門サロン。初回3,500円～、オンライン予約OK。北久米駅徒歩5分、駐車場完備。',
       path: '/'
     });
@@ -135,7 +135,9 @@ const Home = memo(() => {
         </div>
         <div className="container">
           <div className="hero-content fade-in">
-            <h1>yoon²</h1>
+            <h1 className="hero-title-main">yoon²</h1>
+            <p className="hero-title-reading" aria-label="読み方">ゆんゆん</p>
+            <p className="hero-title-sub">松山の耳つぼ・イヤーエステ専門サロン</p>
             <p className="hero-subtitle">ear esthetic & acupressure salon</p>
             <p className="hero-description">
               イヤーエステと耳つぼで至福のひととき<br />
@@ -179,6 +181,8 @@ const Home = memo(() => {
               src="/images/announcements/notification01.png" 
               alt="店舗移転のお知らせ"
               className="announcement-image"
+              width={800}
+              height={450}
               loading="lazy"
               onError={(e) => {
                 e.target.style.display = 'none';
@@ -213,6 +217,8 @@ const Home = memo(() => {
                 src="/images/shop/play-room.png" 
                 alt="店内の様子 - リラクゼーション空間"
                 className="about-image-content"
+                width={600}
+                height={400}
                 loading="lazy"
                 onError={(e) => {
                   e.target.style.display = 'none';
@@ -278,6 +284,8 @@ const Home = memo(() => {
                       <img 
                         src={course.image} 
                         alt={`${course.name}の画像`}
+                        width={400}
+                        height={300}
                         loading="lazy"
                         onError={(e) => {
                           e.target.style.display = 'none';
@@ -396,6 +404,8 @@ const Home = memo(() => {
                   src={shop?.access?.parkingPhotos?.parkingLot || appConfig.shop.access.parkingPhotos.parkingLot}
                   alt="駐車場の様子"
                   className="parking-image"
+                  width={800}
+                  height={450}
                   loading="lazy"
                   onError={(e) => {
                     e.target.style.display = 'none';
@@ -427,6 +437,8 @@ const Home = memo(() => {
                   src={shop?.access?.parkingPhotos?.routeToShop || appConfig.shop.access.parkingPhotos.routeToShop}
                   alt="駐車場から店舗までの道順"
                   className="route-image"
+                  width={800}
+                  height={450}
                   loading="lazy"
                   onError={(e) => {
                     e.target.style.display = 'none';

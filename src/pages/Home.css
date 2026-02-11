@@ -58,10 +58,40 @@
   font-family: 'League Spartan', sans-serif;
 }
 
+/* ヒーロー・メインタイトル（店の雰囲気に合わせた表記） */
+.hero-title-main {
+  font-size: 4.5rem;
+  font-weight: 300;
+  margin-bottom: 0.25em;
+  letter-spacing: 0.02em;
+  color: var(--color-text-primary);
+  font-family: 'League Spartan', sans-serif;
+  line-height: 1.2;
+}
+
+/* 店名の読み方（ゆんゆん）を控えめに表示 */
+.hero-title-reading {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.2em;
+  color: var(--color-text-secondary);
+  font-family: var(--font-secondary), var(--font-japanese);
+}
+
+.hero-title-sub {
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin-bottom: var(--spacing-xl);
+  letter-spacing: 0.15em;
+  color: var(--color-text-secondary);
+  font-family: var(--font-secondary), var(--font-japanese);
+}
+
 .hero-subtitle {
   font-family: var(--font-secondary);
   font-size: 1rem;
-  color: var(--color-text-light);
+  color: #5a5a5a; /* コントラスト改善: 元は --color-text-light (#8e8e8e) */
   letter-spacing: 3px;
   text-transform: uppercase;
   margin-bottom: var(--spacing-xl);
@@ -72,7 +102,7 @@
   font-size: 1.2rem;
   line-height: 1.8;
   margin-bottom: var(--spacing-xxl);
-  color: var(--color-text-secondary);
+  color: #4a4a4a; /* コントラスト改善: 本文をやや濃く */
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
@@ -583,8 +613,19 @@
     min-height: calc(100vh - 70px);
   }
   
-  .hero-content h1 {
+  .hero-content h1,
+  .hero-title-main {
     font-size: 3rem;
+  }
+  
+  .hero-title-reading {
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+  }
+  
+  .hero-title-sub {
+    font-size: 1rem;
+    letter-spacing: 0.1em;
   }
   
   .hero-description {
@@ -655,8 +696,19 @@
     padding: var(--spacing-xl) 0;
   }
   
-  .hero-content h1 {
+  .hero-content h1,
+  .hero-title-main {
     font-size: 2.5rem;
+  }
+  
+  .hero-title-reading {
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+  }
+  
+  .hero-title-sub {
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
   }
   
   .about-text h2,
@@ -1406,9 +1458,18 @@
 /* 320px対応のレスポンシブデザイン */
 @media (max-width: 320px) {
   /* ヒーローセクション */
-  .hero-content h1 {
+  .hero-content h1,
+  .hero-title-main {
     font-size: 2rem !important;
     line-height: 1.1 !important;
+  }
+  
+  .hero-title-reading {
+    font-size: 0.75rem !important;
+  }
+  
+  .hero-title-sub {
+    font-size: 0.8rem !important;
   }
   
   .hero-subtitle {

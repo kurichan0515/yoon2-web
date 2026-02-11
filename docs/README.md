@@ -1,184 +1,164 @@
-# yoon² イヤーエステサロン ホームページ - ドキュメント
+# ドキュメント
 
-このディレクトリには、yoon² イヤーエステサロン ホームページプロジェクトの全ドキュメントが整理されています。
+yoon² イヤーエステサロン ホームページ／カウンターアプリのドキュメント一覧です。
 
-## 📁 ディレクトリ構成
+## ディレクトリ構成
 
 ```
 docs/
-├── README.md                    # このファイル
-├── setup/                       # セットアップ関連
-│   ├── QUICK_START.md          # クイックスタートガイド
-│   ├── DETAILED_SETUP.md       # 詳細セットアップガイド
-│   ├── ENVIRONMENT_SETUP.md    # 環境セットアップガイド
-│   ├── DOCKER_GUIDE.md         # Docker環境での開発
-│   ├── CONFIGURATION_GUIDE.md  # 設定ガイド
-│   ├── GOOGLE_CALENDAR_SETUP.md # Google Calendar連携
-│   └── CALENDAR_SETUP_GUIDE.md # カレンダー設定
-├── guides/                      # 解説・ガイド
-│   ├── DEVELOPMENT_GUIDE.md    # 開発ガイド
-│   ├── USER_GUIDE.md           # ユーザーガイド
-│   ├── TROUBLESHOOTING.md      # トラブルシューティングガイド
-│   ├── MENU_IMAGES_GUIDE.md    # メニュー画像ガイド
-│   └── QR_CODES_README.md      # QRコード設定
-├── architecture/               # アーキテクチャ
-│   ├── ARCHITECTURE.md         # アーキテクチャドキュメント
-│   └── SCREEN_FLOW.md          # 画面フロー設計書
-├── development/                # 開発関連
-│   ├── IMPLEMENTATION_ROADMAP.md # 実装ロードマップ
-│   └── PROJECT_STATUS.md       # プロジェクト状況
-└── deployment/                 # デプロイメント
-    └── DEPLOYMENT.md           # デプロイメントガイド
+├── README.md                 # このファイル
+├── archive/                  # 過去の改善メモ・レポート
+├── architecture/             # アーキテクチャ・画面設計
+├── deployment/               # デプロイ・CI/CD・ドメイン
+├── design/                   # デザインシステム・UIコンポーネント
+├── development/              # 開発ガイド・ロードマップ・コスト
+├── guides/                   # 開発・運用・トラブルシューティング
+├── images/                   # 画像・ロゴ・デザイン仕様
+├── marketing/                # マーケティング戦略・実装
+└── setup/                    # 環境構築・設定・認証
 ```
-
-## 🚀 クイックスタート
-
-### 新規開発者の方
-
-1. **[クイックスタートガイド](setup/QUICK_START.md)** - 5分で開発環境を構築
-2. **[詳細セットアップガイド](setup/DETAILED_SETUP.md)** - 完全なセットアップ手順
-3. **[開発ガイド](guides/DEVELOPMENT_GUIDE.md)** - コーディング規約と開発手法
-
-### 管理者・運営者の方
-
-1. **[ユーザーガイド](guides/USER_GUIDE.md)** - サイトの使用方法
-2. **[設定ガイド](setup/CONFIGURATION_GUIDE.md)** - 店舗情報の設定
-3. **[デプロイメントガイド](deployment/DEPLOYMENT.md)** - 本番環境への公開
-
-## 📋 ドキュメント一覧
-
-### セットアップ関連
-
-| ドキュメント | 説明 | 対象者 |
-|------------|------|--------|
-| [QUICK_START.md](setup/QUICK_START.md) | 5分で開発環境を構築 | 新規開発者 |
-| [DETAILED_SETUP.md](setup/DETAILED_SETUP.md) | 完全なセットアップ手順 | 開発者 |
-| [ENVIRONMENT_SETUP.md](setup/ENVIRONMENT_SETUP.md) | 環境別セットアップ | 開発者・運営者 |
-| [DOCKER_GUIDE.md](setup/DOCKER_GUIDE.md) | Docker環境での開発 | 開発者 |
-| [CONFIGURATION_GUIDE.md](setup/CONFIGURATION_GUIDE.md) | 設定の詳細説明 | 運営者 |
-
-### 解説・ガイド
-
-| ドキュメント | 説明 | 対象者 |
-|------------|------|--------|
-| [DEVELOPMENT_GUIDE.md](guides/DEVELOPMENT_GUIDE.md) | 開発手法とコーディング規約 | 開発者 |
-| [USER_GUIDE.md](guides/USER_GUIDE.md) | サイトの使用方法 | 運営者・ユーザー |
-| [TROUBLESHOOTING.md](guides/TROUBLESHOOTING.md) | トラブルシューティング | 開発者・運営者 |
-| [MENU_IMAGES_GUIDE.md](guides/MENU_IMAGES_GUIDE.md) | メニュー画像の設定 | 運営者 |
-| [QR_CODES_README.md](guides/QR_CODES_README.md) | QRコードの設定 | 運営者 |
-
-### アーキテクチャ
-
-| ドキュメント | 説明 | 対象者 |
-|------------|------|--------|
-| [ARCHITECTURE.md](architecture/ARCHITECTURE.md) | システムアーキテクチャ | 開発者・設計者 |
-| [SCREEN_FLOW.md](architecture/SCREEN_FLOW.md) | 画面フロー設計 | 開発者・デザイナー |
-
-### 開発・運用
-
-| ドキュメント | 説明 | 対象者 |
-|------------|------|--------|
-| [IMPLEMENTATION_ROADMAP.md](development/IMPLEMENTATION_ROADMAP.md) | 実装計画 | 開発者・プロジェクトマネージャー |
-| [PROJECT_STATUS.md](development/PROJECT_STATUS.md) | プロジェクト状況 | ステークホルダー |
-| [DEPLOYMENT.md](deployment/DEPLOYMENT.md) | デプロイメント手順 | 開発者・運営者 |
-
-## 🎯 用途別ガイド
-
-### 開発者向け
-
-**初回セットアップ**
-1. [QUICK_START.md](setup/QUICK_START.md) - 基本的な環境構築
-2. [DETAILED_SETUP.md](setup/DETAILED_SETUP.md) - 詳細な設定
-3. [DEVELOPMENT_GUIDE.md](guides/DEVELOPMENT_GUIDE.md) - 開発手法の習得
-
-**日常の開発**
-1. [DEVELOPMENT_GUIDE.md](guides/DEVELOPMENT_GUIDE.md) - コーディング規約
-2. [ARCHITECTURE.md](architecture/ARCHITECTURE.md) - システム理解
-3. [DEPLOYMENT.md](deployment/DEPLOYMENT.md) - デプロイ手順
-
-### 運営者向け
-
-**サイト管理**
-1. [USER_GUIDE.md](guides/USER_GUIDE.md) - サイトの使用方法
-2. [CONFIGURATION_GUIDE.md](setup/CONFIGURATION_GUIDE.md) - 設定変更
-3. [MENU_IMAGES_GUIDE.md](guides/MENU_IMAGES_GUIDE.md) - 画像管理
-
-**本番運用**
-1. [DEPLOYMENT.md](deployment/DEPLOYMENT.md) - デプロイ手順
-2. [USER_GUIDE.md](guides/USER_GUIDE.md) - 管理者機能
-3. [ENVIRONMENT_SETUP.md](setup/ENVIRONMENT_SETUP.md) - 環境管理
-
-### ステークホルダー向け
-
-**プロジェクト理解**
-1. [ARCHITECTURE.md](architecture/ARCHITECTURE.md) - システム概要
-2. [SCREEN_FLOW.md](architecture/SCREEN_FLOW.md) - 画面構成
-3. [PROJECT_STATUS.md](development/PROJECT_STATUS.md) - 現在の状況
-
-**今後の計画**
-1. [IMPLEMENTATION_ROADMAP.md](development/IMPLEMENTATION_ROADMAP.md) - 実装計画
-2. [USER_GUIDE.md](guides/USER_GUIDE.md) - 機能説明
-
-## 🔧 技術スタック
-
-### フロントエンド
-- **React** (v19.1.1) - UIライブラリ
-- **Firebase** (v12.3.0) - バックエンドサービス
-- **Docker** - 開発環境
-
-### 主要機能
-- **予約システム** - LINE連携による予約受付
-- **管理者機能** - 予約管理・顧客対応
-- **レスポンシブデザイン** - モバイル・タブレット・デスクトップ対応
-
-## 📞 サポート
-
-### 技術的な問題
-- **開発者**: プロジェクトの開発者にお問い合わせ
-- **GitHub Issues**: バグ報告・機能要望
-
-### 運営に関する問題
-- **公式LINE**: https://lin.ee/lyyKSqu
-- **電話**: 080-8478-1163（お電話に出ることができません）
-
-## 🔄 ドキュメントの更新
-
-### 更新方針
-- **継続的更新**: プロジェクトの進行に合わせて更新
-- **バージョン管理**: Gitでドキュメントの変更履歴を管理
-- **レビュー**: 重要な変更は関係者でレビュー
-
-### 更新手順
-1. 該当ドキュメントを編集
-2. 変更内容を確認
-3. プルリクエストを作成
-4. レビュー・承認
-5. マージ・公開
-
-## 📝 ドキュメント作成ガイド
-
-### 新規ドキュメント作成時
-1. 適切なディレクトリに配置
-2. 目次を必ず作成
-3. 対象者を明確にする
-4. 実例・コード例を含める
-
-### 既存ドキュメント更新時
-1. 変更理由を明記
-2. 影響範囲を確認
-3. 関連ドキュメントも更新
-4. バージョン情報を更新
-
-## 🎉 貢献
-
-このドキュメントは、プロジェクトの成長と共に改善され続けます。
-
-- **改善提案**: GitHub Issuesでお気軽に
-- **内容の追加**: プルリクエストで貢献
-- **誤字・脱字**: 直接修正してプルリクエスト
 
 ---
 
-**最終更新**: 2024年1月
-**バージョン**: 1.0.0
-**メンテナー**: プロジェクト開発チーム
+## クイックリンク
+
+| 目的 | ドキュメント |
+|------|--------------|
+| 開発を始める | [setup/QUICK_START.md](setup/QUICK_START.md) |
+| 管理者ログイン（簡易） | [setup/ADMIN_QUICK_REF.md](setup/ADMIN_QUICK_REF.md) |
+| デプロイする | [deployment/DEPLOYMENT.md](deployment/DEPLOYMENT.md) |
+| デザイン仕様を見る | [design/README.md](design/README.md) |
+| マーケティング計画 | [marketing/README.md](marketing/README.md) |
+
+---
+
+## セットアップ (setup/)
+
+| ファイル | 説明 |
+|----------|------|
+| [QUICK_START.md](setup/QUICK_START.md) | 開発環境のクイックスタート |
+| [ADMIN_QUICK_REF.md](setup/ADMIN_QUICK_REF.md) | 管理者ログイン情報（簡易） |
+| [ADMIN_ACCESS.md](setup/ADMIN_ACCESS.md) | 管理者アクセス・権限 |
+| [DETAILED_SETUP.md](setup/DETAILED_SETUP.md) | 詳細セットアップ手順 |
+| [ENVIRONMENT_SETUP.md](setup/ENVIRONMENT_SETUP.md) | 環境別セットアップ |
+| [CONFIGURATION_GUIDE.md](setup/CONFIGURATION_GUIDE.md) | 設定ガイド |
+| [DOCKER_GUIDE.md](setup/DOCKER_GUIDE.md) | Docker 開発環境 |
+| [SECURITY.md](setup/SECURITY.md) | セキュリティ |
+| [ADSENSE_SETUP.md](setup/ADSENSE_SETUP.md) | AdSense 設定 |
+| [ADSENSE_POLICY_CHECK.md](setup/ADSENSE_POLICY_CHECK.md) | AdSense ポリシー確認 |
+| [GOOGLE_ADS_SETUP.md](setup/GOOGLE_ADS_SETUP.md) | Google Ads 設定 |
+| [GOOGLE_CALENDAR_SETUP.md](setup/GOOGLE_CALENDAR_SETUP.md) | Google カレンダー連携 |
+| [CALENDAR_SETUP_GUIDE.md](setup/CALENDAR_SETUP_GUIDE.md) | カレンダー設定 |
+| [GITHUB_AUTH_SETUP.md](setup/GITHUB_AUTH_SETUP.md) | GitHub 認証 |
+| [GIT_CRYPT_SETUP.md](setup/GIT_CRYPT_SETUP.md) | git-crypt 設定 |
+
+---
+
+## デプロイ (deployment/)
+
+| ファイル | 説明 |
+|----------|------|
+| [DEPLOYMENT.md](deployment/DEPLOYMENT.md) | デプロイ手順・環境概要 |
+| [DEPLOY_INSTRUCTIONS.md](deployment/DEPLOY_INSTRUCTIONS.md) | デプロイ手順（簡易） |
+| [GITHUB_ACTIONS_SETUP.md](deployment/GITHUB_ACTIONS_SETUP.md) | GitHub Actions |
+| [CUSTOM_DOMAIN_SETUP.md](deployment/CUSTOM_DOMAIN_SETUP.md) | カスタムドメイン |
+| [SSL_VERIFICATION.md](deployment/SSL_VERIFICATION.md) | SSL 検証 |
+| [GOOGLE_SEARCH_CONSOLE_SETUP.md](deployment/GOOGLE_SEARCH_CONSOLE_SETUP.md) | Search Console 設定 |
+| [GOOGLE_SEARCH_CONSOLE_AUTO_SUBMIT.md](deployment/GOOGLE_SEARCH_CONSOLE_AUTO_SUBMIT.md) | サイトマップ自動送信 |
+| [SITEMAP_GUIDE.md](deployment/SITEMAP_GUIDE.md) | サイトマップガイド |
+| [SITEMAP_DEPLOYMENT.md](deployment/SITEMAP_DEPLOYMENT.md) | サイトマップデプロイ |
+| [SITEMAP_AUTO_SUBMIT_IMPLEMENTATION.md](deployment/SITEMAP_AUTO_SUBMIT_IMPLEMENTATION.md) | 自動送信の実装 |
+
+---
+
+## 開発 (development/)
+
+| ファイル | 説明 |
+|----------|------|
+| [PROJECT_STATUS.md](development/PROJECT_STATUS.md) | プロジェクト状況 |
+| [IMPLEMENTATION_ROADMAP.md](development/IMPLEMENTATION_ROADMAP.md) | 実装ロードマップ |
+| [COST_OPTIMIZATION.md](development/COST_OPTIMIZATION.md) | コスト最適化 |
+| [COST_OPTIMIZATION_IMPLEMENTATION.md](development/COST_OPTIMIZATION_IMPLEMENTATION.md) | コスト最適化の実装 |
+| [USAGE_ESTIMATE.md](development/USAGE_ESTIMATE.md) | 利用量見積もり |
+
+---
+
+## ガイド (guides/)
+
+| ファイル | 説明 |
+|----------|------|
+| [DEVELOPMENT_GUIDE.md](guides/DEVELOPMENT_GUIDE.md) | 開発ガイド・コーディング規約 |
+| [USER_GUIDE.md](guides/USER_GUIDE.md) | サイト・管理画面の使い方 |
+| [TROUBLESHOOTING.md](guides/TROUBLESHOOTING.md) | トラブルシューティング |
+| [MENU_IMAGES_GUIDE.md](guides/MENU_IMAGES_GUIDE.md) | メニュー画像 |
+| [QR_CODES_README.md](guides/QR_CODES_README.md) | QRコード設定 |
+
+---
+
+## アーキテクチャ (architecture/)
+
+| ファイル | 説明 |
+|----------|------|
+| [ARCHITECTURE.md](architecture/ARCHITECTURE.md) | システムアーキテクチャ |
+| [SCREEN_FLOW.md](architecture/SCREEN_FLOW.md) | 画面フロー設計 |
+
+---
+
+## デザイン (design/)
+
+| ファイル | 説明 |
+|----------|------|
+| [README.md](design/README.md) | デザインドキュメント索引 |
+| [design-system.md](design/design-system.md) | デザインシステム仕様 |
+| [button-component-guide.md](design/button-component-guide.md) | Button コンポーネント |
+| [counter-card-component-guide.md](design/counter-card-component-guide.md) | CounterCard コンポーネント |
+
+---
+
+## マーケティング (marketing/)
+
+| ファイル | 説明 |
+|----------|------|
+| [README.md](marketing/README.md) | マーケティングドキュメント索引 |
+| [marketing-strategy.md](marketing/marketing-strategy.md) | マーケティング戦略 |
+| [marketing-implementation-checklist.md](marketing/marketing-implementation-checklist.md) | 実装チェックリスト |
+| [google-business-profile-guide.md](marketing/google-business-profile-guide.md) | Google ビジネスプロフィール |
+| [google-business-profile-implementation-guide.md](marketing/google-business-profile-implementation-guide.md) | 同上・実装手順 |
+| [seo-implementation-checklist.md](marketing/seo-implementation-checklist.md) | SEO チェックリスト |
+| [instagram-content-plan.md](marketing/instagram-content-plan.md) | Instagram コンテンツ計画 |
+| [instagram-instructions.md](marketing/instagram-instructions.md) | Instagram 担当者向け指示 |
+| [line-improvement-plan.md](marketing/line-improvement-plan.md) | LINE 改善計画 |
+| [review-campaign-plan.md](marketing/review-campaign-plan.md) | 口コミキャンペーン |
+| [content-creation-templates.md](marketing/content-creation-templates.md) | コンテンツ作成テンプレート |
+
+---
+
+## 画像・デザイン素材 (images/)
+
+| ファイル | 説明 |
+|----------|------|
+| [IMAGE_SETUP.md](images/IMAGE_SETUP.md) | 画像セットアップ |
+| [IMAGE_SPECIFICATIONS.md](images/IMAGE_SPECIFICATIONS.md) | 画像仕様 |
+| [COLOR_HARMONY_GUIDE.md](images/COLOR_HARMONY_GUIDE.md) | 色調統一ガイド |
+| [DESIGN_CONCEPT_PROMPT.md](images/DESIGN_CONCEPT_PROMPT.md) | デザインコンセプト |
+| [DESIGN_CONCEPT_PROMPT_SHORT.md](images/DESIGN_CONCEPT_PROMPT_SHORT.md) | 同上・短縮版 |
+| [LOGO_DESIGN_PROMPTS.md](images/LOGO_DESIGN_PROMPTS.md) | ロゴデザイン用プロンプト |
+| [AI_IMAGE_GENERATION_PROMPTS.md](images/AI_IMAGE_GENERATION_PROMPTS.md) | AI 画像生成プロンプト |
+
+---
+
+## アーカイブ (archive/)
+
+過去の改善メモ・レポートを格納しています。
+
+| ファイル | 説明 |
+|----------|------|
+| [ADDITIONAL_IMPROVEMENTS.md](archive/ADDITIONAL_IMPROVEMENTS.md) | 追加改善項目 |
+| [IMPROVEMENT_SUMMARY.md](archive/IMPROVEMENT_SUMMARY.md) | 改善実施サマリー |
+| [IMPROVEMENT_REPORT.md](archive/IMPROVEMENT_REPORT.md) | 改善レポート |
+
+---
+
+## ルート直下のドキュメント
+
+- **AGENTS.md** … AI／Cursor 向けの開発ルール・ワークフロー（リポジトリルート）

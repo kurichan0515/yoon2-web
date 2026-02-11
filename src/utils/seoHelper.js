@@ -22,7 +22,7 @@ export const setPageMeta = ({
   type = 'website'
 }) => {
   const fullUrl = `${BASE_URL}${path === '/' ? '' : path}`;
-  const fullTitle = title.includes('yoon²') ? title : `${title} | yoon²ゆんゆん`;
+  const fullTitle = title.includes('yoon²') ? title : `${title} | yoon²`;
 
   // タイトルを設定
   document.title = fullTitle;
@@ -65,7 +65,7 @@ export const setPageMeta = ({
   updateOrCreateMeta('og:type', type, true);
   updateOrCreateMeta('og:image', image, true);
   updateOrCreateMeta('og:image:alt', fullTitle, true);
-  updateOrCreateMeta('og:site_name', 'yoon²ゆんゆん', true);
+  updateOrCreateMeta('og:site_name', 'yoon²', true);
   updateOrCreateMeta('og:locale', 'ja_JP', true);
 
   // Twitter Cardタグ
@@ -83,7 +83,7 @@ export const setPageMeta = ({
  */
 export const resetPageMeta = () => {
   setPageMeta({
-    title: '松山 エステ | yoon²ゆんゆん 耳つぼ・イヤーエステ専門サロン',
+    title: 'yoon² | 松山の耳つぼ・イヤーエステ専門サロン',
     description: '愛媛県松山市の耳つぼ・イヤーエステ専門サロン。初回3,500円～、オンライン予約OK。北久米駅徒歩5分、駐車場完備。',
     path: '/'
   });

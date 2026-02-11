@@ -128,8 +128,8 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  /* 固定ヘッダー分の上マージンを設定 */
-  margin-top: 70px; /* ヘッダーの高さ */
+  /* 固定ヘッダー分の上マージン（ノッチ時は Safe Area を加算） */
+  margin-top: calc(70px + env(safe-area-inset-top, 0px));
   width: 100%;
   max-width: 100vw;
   overflow-x: hidden;
@@ -160,6 +160,10 @@ body {
   overflow-x: hidden;
   width: 100%;
   max-width: 100vw;
+  /* ノッチ・ホームインジケータ対応（iPhone X 以降など） */
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* タイポグラフィ */
@@ -205,6 +209,8 @@ a {
   color: var(--color-accent);
   text-decoration: none;
   transition: all 0.3s ease;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.08);
+  touch-action: manipulation; /* ダブルタップ遅延の軽減・意図しないズーム防止 */
 }
 
 a:hover {
@@ -220,6 +226,8 @@ button {
   outline: none;
   transition: all 0.3s ease;
   font-weight: 500;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.08);
+  touch-action: manipulation;
 }
 
 /* フォーカス表示の強化（アクセシビリティ） */
@@ -293,6 +301,13 @@ input:focus, select:focus, textarea:focus {
   box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.1);
 }
 
+/* 画像: width/height 指定で CLS 防止しつつレスポンシブに */
+img[width][height] {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
 /* コンテナ */
 .container {
   max-width: 1200px;
@@ -347,7 +362,7 @@ input:focus, select:focus, textarea:focus {
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
   .main-content {
-    margin-top: 70px; /* 固定ヘッダーの高さ */
+    margin-top: calc(70px + env(safe-area-inset-top, 0px));
     padding: 0;
     width: 100%;
     max-width: 100vw;
@@ -394,7 +409,7 @@ input:focus, select:focus, textarea:focus {
 
 @media (max-width: 480px) {
   .main-content {
-    margin-top: 70px; /* 小さい画面でのヘッダー高さに調整 */
+    margin-top: calc(70px + env(safe-area-inset-top, 0px));
   }
   
   h1 {
@@ -408,5 +423,14 @@ input:focus, select:focus, textarea:focus {
   .btn-primary, .btn-secondary {
     padding: var(--spacing-sm) var(--spacing-lg);
     font-size: 0.9rem;
+  }
+}
+
+/* モバイル: 入力フォームで iOS が自動ズームしないよう 16px 以上に */
+@media (max-width: 768px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
   }
 }
