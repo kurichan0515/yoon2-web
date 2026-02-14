@@ -93,21 +93,29 @@ const Hero = () => {
   const lineUrl = appConfig.shop.lineUrl || appConfig.social.line.url;
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-[#0A0A0A]">
+    <section 
+      className="relative w-full min-h-screen h-screen flex items-center justify-center overflow-hidden bg-[#0A0A0A]"
+      style={{
+        minHeight: '100dvh',
+        height: '100dvh',
+        paddingTop: 'max(80px, env(safe-area-inset-top, 0px))',
+        boxSizing: 'border-box',
+      }}
+    >
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A0A0A]/60 to-[#0A0A0A] z-10" />
         <img 
           src="/images/hero/wait-room.png" 
           alt="Relaxation Background" 
-          className="w-full h-full object-cover opacity-40"
+          className="w-full h-full object-cover object-center opacity-40"
           onError={(e) => {
             e.target.src = 'https://images.unsplash.com/photo-1519750157634-b6d493a0f77c?auto=format&fit=crop&q=80&w=2000';
           }}
         />
       </div>
 
-      <div className="relative z-20 text-center px-6">
+      <div className="relative z-20 text-center w-full max-w-4xl mx-auto px-4 sm:px-6 box-border">
         <h2 className="text-white/60 text-sm tracking-[0.5em] mb-4 animate-fade-in-up" style={{ fontFamily: 'Cinzel, serif' }}>
           EAR ESTHETIC & ACUPRESSURE
         </h2>
