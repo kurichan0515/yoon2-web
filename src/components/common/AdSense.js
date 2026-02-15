@@ -29,7 +29,8 @@ const AdSense = ({
   fullWidthResponsive = true 
 }) => {
   const adRef = useRef(null);
-  const [showPlaceholder, setShowPlaceholder] = useState(false);
+  const [showPlaceholder, setShowPlaceholder] = useState(true);
+  const [scriptReady, setScriptReady] = useState(typeof window !== 'undefined' && !!window.adsbygoogle);
   
   // AdSenseが有効でない場合は何も表示しない
   if (!appConfig.adsense.enabled) {
@@ -46,6 +47,15 @@ const AdSense = ({
     window.location.hostname === 'localhost' || 
     window.location.hostname === '127.0.0.1' ||
     process.env.REACT_APP_ADSENSE_DEV_MODE === 'true';
+
+  // 遅延読み込みされた adsbygoogle.js の準備完了を待つ（本番で load 後にスクリプトを読むため）
+  useEffect(() => {
+    if (isDevelopment || scriptReady) return;
+    const onReady = () => setScriptReady(true);
+    window.addEventListener('adsbygoogle-ready', onReady);
+    if (typeof window !== 'undefined' && window.adsbygoogle) setScriptReady(true);
+    return () => window.removeEventListener('adsbygoogle-ready', onReady);
+  }, [isDevelopment, scriptReady]);
 
   useEffect(() => {
     if (!finalAdSlot) {
@@ -64,30 +74,25 @@ const AdSense = ({
       return;
     }
 
-    // 本番環境ではAdSense広告を初期化
-    if (window.adsbygoogle) {
-      try {
-        // 広告を初期化
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
-        logger.debug('AdSense: Ad unit initialized', { adSlot: finalAdSlot, adFormat });
-        
-        // 広告が読み込まれるまで少し待ってからプレースホルダーを非表示
-        setTimeout(() => {
-          const adElement = adRef.current;
-          if (adElement && adElement.offsetHeight === 0) {
-            // 広告が表示されていない場合はプレースホルダーを表示
-            setShowPlaceholder(true);
-          }
-        }, 2000);
-      } catch (error) {
-        logger.error('AdSense: Error initializing ad unit', error);
-        setShowPlaceholder(true);
-      }
-    } else {
-      // AdSenseスクリプトが読み込まれていない場合
+    // 本番: スクリプトがまだならプレースホルダーのまま（scriptReady で再実行される）
+    if (!scriptReady || !window.adsbygoogle) {
+      setShowPlaceholder(true);
+      return;
+    }
+
+    try {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+      logger.debug('AdSense: Ad unit initialized', { adSlot: finalAdSlot, adFormat });
+      setShowPlaceholder(false);
+      setTimeout(() => {
+        const adElement = adRef.current;
+        if (adElement && adElement.offsetHeight === 0) setShowPlaceholder(true);
+      }, 2000);
+    } catch (error) {
+      logger.error('AdSense: Error initializing ad unit', error);
       setShowPlaceholder(true);
     }
-  }, [finalAdSlot, adFormat, publisherId, isDevelopment]);
+  }, [finalAdSlot, adFormat, publisherId, isDevelopment, scriptReady]);
 
   if (!finalAdSlot || !publisherId) {
     return null;

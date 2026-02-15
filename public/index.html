@@ -55,7 +55,9 @@
         var g = document.createElement('script'); g.async = true; g.src = 'https://www.googletagmanager.com/gtag/js?id=AW-621590738'; document.head.appendChild(g);
         gtag('js', new Date());
         gtag('config', 'AW-621590738');
-        var a = document.createElement('script'); a.async = true; a.crossOrigin = 'anonymous'; a.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6862900859746528'; document.head.appendChild(a);
+        var a = document.createElement('script'); a.async = true; a.crossOrigin = 'anonymous'; a.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6862900859746528';
+        a.onload = function() { window.dispatchEvent(new Event('adsbygoogle-ready')); };
+        document.head.appendChild(a);
       }
       if (document.readyState === 'complete') setTimeout(loadDeferredScripts, 0);
       else window.addEventListener('load', loadDeferredScripts);
