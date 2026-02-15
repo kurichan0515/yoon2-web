@@ -48,13 +48,27 @@ const AdSense = ({
     window.location.hostname === '127.0.0.1' ||
     process.env.REACT_APP_ADSENSE_DEV_MODE === 'true';
 
-  // 遅延読み込みされた adsbygoogle.js の準備完了を待つ（本番で load 後にスクリプトを読むため）
+  // 遅延読み込みされた adsbygoogle.js の準備完了を待つ（イベント発火がマウントより先の場合はポーリングで検知）
   useEffect(() => {
     if (isDevelopment || scriptReady) return;
     const onReady = () => setScriptReady(true);
     window.addEventListener('adsbygoogle-ready', onReady);
-    if (typeof window !== 'undefined' && window.adsbygoogle) setScriptReady(true);
-    return () => window.removeEventListener('adsbygoogle-ready', onReady);
+    if (typeof window !== 'undefined' && window.adsbygoogle) {
+      setScriptReady(true);
+      return () => window.removeEventListener('adsbygoogle-ready', onReady);
+    }
+    let elapsed = 0;
+    const poll = setInterval(() => {
+      elapsed += 300;
+      if (window.adsbygoogle) {
+        setScriptReady(true);
+        clearInterval(poll);
+      } else if (elapsed >= 10000) clearInterval(poll);
+    }, 300);
+    return () => {
+      window.removeEventListener('adsbygoogle-ready', onReady);
+      clearInterval(poll);
+    };
   }, [isDevelopment, scriptReady]);
 
   useEffect(() => {
@@ -81,13 +95,21 @@ const AdSense = ({
     }
 
     try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-      logger.debug('AdSense: Ad unit initialized', { adSlot: finalAdSlot, adFormat });
       setShowPlaceholder(false);
-      setTimeout(() => {
-        const adElement = adRef.current;
-        if (adElement && adElement.offsetHeight === 0) setShowPlaceholder(true);
-      }, 2000);
+      requestAnimationFrame(() => {
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+          logger.debug('AdSense: Ad unit initialized', { adSlot: finalAdSlot, adFormat });
+        } catch (e) {
+          logger.error('AdSense: Error initializing ad unit', e);
+          setShowPlaceholder(true);
+          return;
+        }
+        setTimeout(() => {
+          const adElement = adRef.current;
+          if (adElement && adElement.offsetHeight === 0) setShowPlaceholder(true);
+        }, 2000);
+      });
     } catch (error) {
       logger.error('AdSense: Error initializing ad unit', error);
       setShowPlaceholder(true);
