@@ -7,7 +7,6 @@ import PrivateRoute from './components/common/PrivateRoute';
 import ErrorBoundary from './components/common/ErrorBoundary';
 import LoadingSpinner from './components/common/LoadingSpinner';
 import Home from './pages/Home';
-import googleAdsService from './services/googleAdsService';
 import logger from './utils/logger';
 import './App.css';
 
@@ -22,9 +21,9 @@ const AdminSettings = lazy(() => import('./pages/admin/AdminSettings'));
 function App() {
   logger.debug('App component rendered');
   
-  // Google Adsサービスを初期化
+  // 分析・広告は load 後に index.html で読み込むため、ここでは初期化のみ遅延実行
   useEffect(() => {
-    googleAdsService.initialize();
+    import('./services/googleAdsService').then((m) => m.default.initialize()).catch(() => {});
   }, []);
   
   return (

@@ -1,8 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import logger from '../utils/logger';
 
-import { onAuthStateChange, checkAdminRole } from '../services/authService';
-
 const AuthContext = createContext();
 
 export const useAuth = () => {
@@ -20,24 +18,30 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    logger.debug('Setting up auth state listener');
-    const unsubscribe = onAuthStateChange(async (user) => {
-      logger.debug('Auth state changed', { hasUser: !!user });
-      if (user) {
-        try {
-          const adminStatus = await checkAdminRole(user.uid);
-          setIsAdmin(adminStatus);
-        } catch (error) {
-          logger.error('管理者権限チェックエラー:', error);
+    let unsubscribe = () => {};
+    import('../services/authService').then((authModule) => {
+      const { onAuthStateChange, checkAdminRole } = authModule;
+      logger.debug('Setting up auth state listener');
+      unsubscribe = onAuthStateChange(async (authUser) => {
+        logger.debug('Auth state changed', { hasUser: !!authUser });
+        if (authUser) {
+          try {
+            const adminStatus = await checkAdminRole(authUser.uid);
+            setIsAdmin(adminStatus);
+          } catch (error) {
+            logger.error('管理者権限チェックエラー:', error);
+            setIsAdmin(false);
+          }
+        } else {
           setIsAdmin(false);
         }
-      } else {
-        setIsAdmin(false);
-      }
-      setUser(user);
+        setUser(authUser);
+        setLoading(false);
+      });
+    }).catch((err) => {
+      logger.error('Auth service load error:', err);
       setLoading(false);
     });
-
     return () => unsubscribe();
   }, []);
 

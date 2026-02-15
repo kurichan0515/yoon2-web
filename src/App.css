@@ -1,5 +1,4 @@
-/* カスタムフォントの読み込み */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600;700&display=swap');
+/* フォントは index.html で非同期読み込み（レンダーブロック軽減） */
 
 /* CSS変数 - デザインシステム */
 :root {

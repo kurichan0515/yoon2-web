@@ -109,6 +109,8 @@ const Hero = () => {
           src="/images/hero/wait-room.png" 
           alt="Relaxation Background" 
           className="w-full h-full object-cover object-center opacity-40"
+          fetchPriority="high"
+          decoding="async"
           onError={(e) => {
             e.target.src = 'https://images.unsplash.com/photo-1519750157634-b6d493a0f77c?auto=format&fit=crop&q=80&w=2000';
           }}
@@ -292,7 +294,10 @@ const HomeNew = () => {
               src="/images/announcements/notification01.png" 
               alt="お知らせ"
               className="w-full h-auto"
+              width={800}
+              height={450}
               loading="lazy"
+              decoding="async"
               onError={(e) => {
                 e.target.style.display = 'none';
               }}
@@ -310,6 +315,10 @@ const HomeNew = () => {
               src="/images/hero/wait-room.png" 
               alt="Salon Interior" 
               className="relative z-10 w-full grayscale hover:grayscale-0 transition-all duration-1000"
+              width={600}
+              height={400}
+              loading="lazy"
+              decoding="async"
               onError={(e) => {
                 e.target.src = 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=800';
               }}
@@ -347,7 +356,10 @@ const HomeNew = () => {
                   src="/images/menus/recommend-menu.jpg" 
                   alt="おすすめメニューの画像"
                   className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-1000"
+                  width={400}
+                  height={300}
                   loading="lazy"
+                  decoding="async"
                   onError={(e) => {
                     e.target.style.display = 'none';
                   }}

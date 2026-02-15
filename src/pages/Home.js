@@ -5,8 +5,6 @@ import courseService from '../services/courseService';
 import { COURSE_CATEGORIES, COURSE_CATEGORY_LABELS } from '../types/courseTypes';
 import ErrorMessage from '../components/common/ErrorMessage';
 import LoadingSpinner from '../components/common/LoadingSpinner';
-import { trackPageView } from '../services/analyticsService';
-import { trackPageView as trackGoogleAdsPageView } from '../services/googleAdsService';
 import { setPageMeta } from '../utils/seoHelper';
 import appConfig from '../config/appConfig';
 import logger from '../utils/logger';
@@ -37,13 +35,13 @@ const Home = memo(() => {
       path: '/'
     });
     
-    // インプレッションを記録
-    trackPageView('Home', {
-      section: 'main'
-    });
-    
-    // Google Adsページビューを記録
-    trackGoogleAdsPageView('/', 'Home - yoon²ゆんゆん');
+    // 分析・広告は遅延読み込みでメインスレッドを軽くする
+    import('../services/analyticsService').then(({ trackPageView }) => {
+      trackPageView('Home', { section: 'main' });
+    }).catch(() => {});
+    import('../services/googleAdsService').then(({ trackPageView: trackGoogleAdsPageView }) => {
+      trackGoogleAdsPageView('/', 'Home - yoon²ゆんゆん');
+    }).catch(() => {});
     
     // Intersection Observer for animations
     const observer = new IntersectionObserver(
@@ -184,6 +182,7 @@ const Home = memo(() => {
               width={800}
               height={450}
               loading="lazy"
+              decoding="async"
               onError={(e) => {
                 e.target.style.display = 'none';
                 e.target.nextElementSibling.style.display = 'flex';
@@ -220,6 +219,7 @@ const Home = memo(() => {
                 width={600}
                 height={400}
                 loading="lazy"
+                decoding="async"
                 onError={(e) => {
                   e.target.style.display = 'none';
                   e.target.nextElementSibling.style.display = 'flex';
@@ -287,6 +287,7 @@ const Home = memo(() => {
                         width={400}
                         height={300}
                         loading="lazy"
+                        decoding="async"
                         onError={(e) => {
                           e.target.style.display = 'none';
                           e.target.nextElementSibling.style.display = 'flex';

@@ -30,6 +30,12 @@
     <!-- フォントの事前接続でレンダーブロックを軽減 -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- 分析・広告用オリジンの事前接続（クリティカルパス短縮） -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://www.google.com" />
+    <!-- フォント非同期読み込み（使用ウェイト 300/400/600/700 のみで未使用CSS削減・display=swap） -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;600;700&family=Montserrat:wght@300;400;600;700&family=League+Spartan:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;600;700&family=Montserrat:wght@300;400;600;700&family=League+Spartan:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" /></noscript>
     
     <!-- Twitter Card タグ -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -41,17 +47,18 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>yoon² | 松山の耳つぼ・イヤーエステ専門サロン</title>
     
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6862900859746528"
-     crossorigin="anonymous"></script>
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-621590738"></script>
+    <!-- 分析・広告は load 後に読み込み（メインスレッドの実行時間短縮のため） -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'AW-621590738');
+      function loadDeferredScripts() {
+        var g = document.createElement('script'); g.async = true; g.src = 'https://www.googletagmanager.com/gtag/js?id=AW-621590738'; document.head.appendChild(g);
+        gtag('js', new Date());
+        gtag('config', 'AW-621590738');
+        var a = document.createElement('script'); a.async = true; a.crossOrigin = 'anonymous'; a.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6862900859746528'; document.head.appendChild(a);
+      }
+      if (document.readyState === 'complete') setTimeout(loadDeferredScripts, 0);
+      else window.addEventListener('load', loadDeferredScripts);
     </script>
     
     <!-- 構造化データ (JSON-LD) -->

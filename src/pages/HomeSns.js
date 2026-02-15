@@ -109,6 +109,8 @@ const Hero = () => {
           width={1920}
           height={1080}
           className="w-full h-full object-cover opacity-40"
+          fetchPriority="high"
+          decoding="async"
           onError={(e) => {
             e.target.src = 'https://images.unsplash.com/photo-1519750157634-b6d493a0f77c?auto=format&fit=crop&q=80&w=2000';
           }}
@@ -303,6 +305,7 @@ const HomeSns = () => {
               height={450}
               className="w-full h-auto"
               loading="lazy"
+              decoding="async"
               onError={(e) => {
                 e.target.style.display = 'none';
               }}
@@ -323,6 +326,7 @@ const HomeSns = () => {
               height={400}
               className="relative z-10 w-full grayscale hover:grayscale-0 transition-all duration-1000"
               loading="lazy"
+              decoding="async"
               onError={(e) => {
                 e.target.src = 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=800';
               }}
