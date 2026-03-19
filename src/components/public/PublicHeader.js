@@ -1,14 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import appConfig from '../../config/appConfig';
 import './PublicHeader.css';
 
 const PublicHeader = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
   const lastScrollY = useRef(0);
   const scrollTimeout = useRef(null);
 
@@ -68,34 +66,12 @@ const PublicHeader = () => {
     };
   }, []);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
-  const handleScrollToSection = (sectionId) => {
-    if (location.pathname !== '/') {
-      navigate('/');
-      setTimeout(() => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, 100);
-    } else {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
-    setIsMobileMenuOpen(false);
-  };
-
   return (
     <header className={`public-header ${isVisible ? 'header-visible' : 'header-hidden'} ${isScrolled ? 'header-scrolled' : ''}`}>
       <div className="public-header-container">
         <div className="public-header-left">
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="public-logo"
             onClick={(e) => {
               if (location.pathname === '/') {
@@ -105,81 +81,14 @@ const PublicHeader = () => {
             }}
             aria-label="トップページへ"
           >
-            <span className="public-logo-text">yoon<sup>2</sup></span>
+            <p className="public-logo-text">yoon<sup>2</sup></p>
           </Link>
         </div>
-        
-        <nav className={`public-navigation ${isMobileMenuOpen ? 'mobile-menu-open' : ''}`} aria-label="メインナビゲーション">
-          <a 
-            href="#about" 
-            className="nav-link" 
-            aria-label="サービスについてへ移動"
-            onClick={(e) => {
-              e.preventDefault();
-              handleScrollToSection('about');
-            }}
-          >
-            サービスについて
-          </a>
-          <a 
-            href="#menu" 
-            className="nav-link" 
-            aria-label="メニューへ移動"
-            onClick={(e) => {
-              e.preventDefault();
-              handleScrollToSection('menu');
-            }}
-          >
-            メニュー
-          </a>
-          <a 
-            href="#courses" 
-            className="nav-link" 
-            aria-label="コース情報へ移動"
-            onClick={(e) => {
-              e.preventDefault();
-              handleScrollToSection('courses');
-            }}
-          >
-            コース情報
-          </a>
-          <a 
-            href="#shop" 
-            className="nav-link" 
-            aria-label="店舗情報へ移動"
-            onClick={(e) => {
-              e.preventDefault();
-              handleScrollToSection('shop');
-            }}
-          >
-            店舗情報
-          </a>
-          <a 
-            href="#reserve" 
-            className="nav-link" 
-            aria-label="ご予約へ移動"
-            onClick={(e) => {
-              e.preventDefault();
-              handleScrollToSection('reserve');
-            }}
-          >
-            ご予約
-          </a>
-          <a 
-            href={appConfig.shop.lineUrl || appConfig.social.line.url} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="nav-link line-link mobile-only"
-            aria-label="LINEで予約（新しいウィンドウで開きます）"
-          >
-            LINEから予約
-          </a>
-        </nav>
-        
+
         <div className="public-header-right">
-          <a 
-            href={appConfig.shop.lineUrl || appConfig.social.line.url} 
-            target="_blank" 
+          <a
+            href={appConfig.shop.lineUrl || appConfig.social.line.url}
+            target="_blank"
             rel="noopener noreferrer"
             className="line-button"
             aria-label="LINEで予約・お問い合わせ（新しいウィンドウで開きます）"
@@ -187,17 +96,6 @@ const PublicHeader = () => {
             LINEで予約
           </a>
         </div>
-
-        <button 
-          className={`mobile-menu-toggle ${isMobileMenuOpen ? 'mobile-menu-toggle-open' : ''}`}
-          onClick={toggleMobileMenu}
-          aria-label={isMobileMenuOpen ? 'メニューを閉じる' : 'メニューを開く'}
-          aria-expanded={isMobileMenuOpen}
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
       </div>
     </header>
   );

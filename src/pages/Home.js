@@ -128,7 +128,7 @@ const Home = memo(() => {
     <div className="home">
       {/* Hero Section */}
       <section className="hero" ref={heroRef}>
-        <div className="hero-background" style={{backgroundImage: "url('/images/hero/wait-room.png')"}}>
+        <div className="hero-background" style={{backgroundImage: "url('/images/hero/wait-room.jpg')"}}>
           <div className="hero-overlay"></div>
         </div>
         <div className="container">
@@ -172,11 +172,13 @@ const Home = memo(() => {
       </section>
 
       {/* Announcement Section */}
+      {/* 移転から3ヶ月以上経過したため非表示（2025年3月）。再表示する場合はコメントを外す。 */}
+      {/*
       <section className="announcement-section section" ref={addToRefs}>
         <div className="container">
           <div className="announcement-card">
-            <img 
-              src="/images/announcements/notification01.png" 
+            <img
+              src="/images/announcements/notification01.png"
               alt="店舗移転のお知らせ"
               className="announcement-image"
               width={800}
@@ -194,6 +196,7 @@ const Home = memo(() => {
           </div>
         </div>
       </section>
+      */}
 
       {/* About Section */}
       <section id="about" className="about-section section" ref={addToRefs}>
@@ -213,7 +216,7 @@ const Home = memo(() => {
             </div>
             <div className="about-image">
               <img 
-                src="/images/shop/play-room.png" 
+                src="/images/shop/play-room.jpg" 
                 alt="店内の様子 - リラクゼーション空間"
                 className="about-image-content"
                 width={600}
@@ -362,8 +365,7 @@ const Home = memo(() => {
                 <div className="info-icon">🕐</div>
                 <div className="info-content">
                   <h4>営業時間</h4>
-                  <p>{shop?.hours?.weekday || '10:00 - 20:00'}</p>
-                  <p>{shop?.hours?.weekend || '10:00 - 20:00'}</p>
+                  <p>月〜日 {shop?.hours?.weekday || '10:00 - 20:00'}</p>
                 </div>
               </div>
               <div className="info-card">
@@ -465,16 +467,11 @@ const Home = memo(() => {
             <p>ご来店をお待ちしております</p>
           </div>
           <div className="hours-content">
-            <div className="hours-grid">
+            <div className="hours-grid" style={{gridTemplateColumns: '1fr'}}>
               <div className="hours-card">
-                <h4>平日</h4>
-                <p className="hours-time">{shop?.hours?.weekday || '10:00 - 20:00'}</p>
-                <p className="hours-note">月曜日〜金曜日</p>
-              </div>
-              <div className="hours-card">
-                <h4>土日祝</h4>
-                <p className="hours-time">{shop?.hours?.weekend || '10:00 - 20:00'}</p>
-                <p className="hours-note">土曜日・日曜日・祝日</p>
+                <h4>月〜日・祝</h4>
+                <p className="hours-time">月〜日 {shop?.hours?.weekday || '10:00 - 20:00'}</p>
+                <p className="hours-note">毎日営業</p>
               </div>
             </div>
             {shop?.notes && shop.notes.length > 0 && (

@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//home/kurichan0515/.claude/**)",
+      "Bash(git *)",
+      "Bash(npm run *)",
+      "Bash(npm install *)",
+      "Bash(firebase *)"
+    ],
+    "additionalDirectories": [
+      "/home/kurichan0515/.claude"
+    ]
+  }
+}

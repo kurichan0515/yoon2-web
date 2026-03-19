@@ -46,7 +46,7 @@ const PublicFooter = () => {
         </div>
         
         <div className="footer-bottom">
-          <p>&copy; 2024 {appConfig.shop.name}. All rights reserved.</p>
+          <p>&copy; 2025 {appConfig.shop.name}. All rights reserved.</p>
           <div className="footer-links-bottom">
             <Link to="/privacy" className="footer-link">プライバシーポリシー</Link>
           </div>

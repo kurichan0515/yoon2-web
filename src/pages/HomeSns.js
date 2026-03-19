@@ -12,6 +12,7 @@ import { trackPageView } from '../services/analyticsService';
 import { trackPageView as trackGoogleAdsPageView } from '../services/googleAdsService';
 import logger from '../utils/logger';
 import './HomeSns.css';
+import './Home.css';
 
 // --- Components ---
 
@@ -99,22 +100,14 @@ const Hero = () => {
   const lineUrl = appConfig.shop.lineUrl || appConfig.social.line.url;
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-[#0A0A0A]">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A0A0A]/60 to-[#0A0A0A] z-10" />
-        <img 
-          src="/images/hero/wait-room.png" 
-          alt="店内のリラックス空間"
-          width={1920}
-          height={1080}
-          className="w-full h-full object-cover opacity-40"
-          fetchPriority="high"
-          decoding="async"
-          onError={(e) => {
-            e.target.src = 'https://images.unsplash.com/photo-1519750157634-b6d493a0f77c?auto=format&fit=crop&q=80&w=2000';
-          }}
-        />
+    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Image with Overlay — Home.js と同じ処理 */}
+      <div
+        className="absolute inset-0 z-0 hero-background"
+        style={{ backgroundImage: "url('/images/hero/wait-room.jpg')" }}
+      >
+        <div className="hero-overlay" />
+        <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.35)' }} />
       </div>
 
       <div className="relative z-20 text-center px-4 sm:px-6">
@@ -294,33 +287,13 @@ const HomeSns = () => {
       />
       <Hero />
 
-      {/* Announcement Section */}
-      <section className="py-12 bg-[#0A0A0A]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="bg-[#161B22] border border-white/5 overflow-hidden rounded-lg">
-            <img 
-              src="/images/announcements/notification01.png" 
-              alt="お知らせ"
-              width={800}
-              height={450}
-              className="w-full h-auto"
-              loading="lazy"
-              decoding="async"
-              onError={(e) => {
-                e.target.style.display = 'none';
-              }}
-            />
-          </div>
-        </div>
-      </section>
-
       {/* About Section */}
       <section id="about" className="py-12 sm:py-16 md:py-24 px-3 sm:px-6 max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
           <div className="relative group">
             <div className="absolute -inset-4 border border-[#3B82F6]/20 group-hover:border-[#3B82F6]/40 transition-all duration-700" />
             <img 
-              src="/images/hero/wait-room.png" 
+              src="/images/about/concept-interior.jpg"
               alt="店内の様子"
               width={600}
               height={400}
@@ -615,7 +588,6 @@ const HomeSns = () => {
                 <div className="min-w-0 flex-1">
                   <h4 className="text-white mb-1 text-sm sm:text-base">営業時間</h4>
                   <p className="text-xs sm:text-sm">{shop?.hours?.weekday || appConfig.shop.hours.weekday}</p>
-                  <p className="text-xs sm:text-sm">{shop?.hours?.weekend || appConfig.shop.hours.weekend}</p>
                 </div>
               </div>
               <div className="flex items-start gap-2 sm:gap-3 md:gap-4 text-white/70">
@@ -713,20 +685,7 @@ const HomeSns = () => {
           </div>
         )}
 
-        {/* 営業時間セクション */}
-        <div className="grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-12">
-          <div className="bg-[#161B22] p-4 sm:p-6 md:p-8 border border-white/5 text-center">
-            <h4 className="text-white text-base sm:text-lg md:text-xl mb-3 sm:mb-4 tracking-wide sm:tracking-wider">平日</h4>
-            <p className="text-[#3B82F6] text-lg sm:text-xl md:text-2xl font-bold mb-2 whitespace-nowrap">{shop?.hours?.weekday || appConfig.shop.hours.weekday}</p>
-            <p className="text-white/50 text-xs sm:text-sm">月曜日〜金曜日</p>
-          </div>
-          <div className="bg-[#161B22] p-4 sm:p-6 md:p-8 border border-white/5 text-center">
-            <h4 className="text-white text-base sm:text-lg md:text-xl mb-3 sm:mb-4 tracking-wide sm:tracking-wider">土日祝</h4>
-            <p className="text-[#3B82F6] text-lg sm:text-xl md:text-2xl font-bold mb-2 whitespace-nowrap">{shop?.hours?.weekend || appConfig.shop.hours.weekend}</p>
-            <p className="text-white/50 text-xs sm:text-sm">土曜日・日曜日・祝日</p>
-          </div>
-        </div>
-        {shop?.notes && shop.notes.length > 0 && (
+{shop?.notes && shop.notes.length > 0 && (
           <div className="bg-[#161B22] p-4 sm:p-6 md:p-8 border border-white/5">
             <h4 className="text-white text-sm sm:text-base md:text-lg mb-3 sm:mb-4">📋 ご確認事項</h4>
             <ul className="space-y-1.5 sm:space-y-2">
@@ -779,7 +738,7 @@ const HomeSns = () => {
           yoon²
         </div>
         <p className="text-white/30 text-[0.65rem] sm:text-xs tracking-wide sm:tracking-widest break-words">
-          &copy; 2024 yoon² EAR ESTHETIC SALON. ALL RIGHTS RESERVED.
+          &copy; 2025 yoon² EAR ESTHETIC SALON. ALL RIGHTS RESERVED.
         </p>
       </footer>
 

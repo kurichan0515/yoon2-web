@@ -106,7 +106,7 @@ const Hero = () => {
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A0A0A]/60 to-[#0A0A0A] z-10" />
         <img 
-          src="/images/hero/wait-room.png" 
+          src="/images/hero/wait-room.jpg" 
           alt="Relaxation Background" 
           className="w-full h-full object-cover object-center opacity-40"
           fetchPriority="high"
@@ -312,7 +312,7 @@ const HomeNew = () => {
           <div className="relative group">
             <div className="absolute -inset-4 border border-[#3B82F6]/20 group-hover:border-[#3B82F6]/40 transition-all duration-700" />
             <img 
-              src="/images/hero/wait-room.png" 
+              src="/images/hero/wait-room.jpg" 
               alt="Salon Interior" 
               className="relative z-10 w-full grayscale hover:grayscale-0 transition-all duration-1000"
               width={600}
@@ -795,7 +795,7 @@ const HomeNew = () => {
           yoon²
         </div>
         <p className="text-white/30 text-xs tracking-widest">
-          &copy; 2024 yoon² EAR ESTHETIC SALON. ALL RIGHTS RESERVED.
+          &copy; 2025 yoon² EAR ESTHETIC SALON. ALL RIGHTS RESERVED.
         </p>
       </footer>
 

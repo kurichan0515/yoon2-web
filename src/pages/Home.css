@@ -44,13 +44,23 @@
   background-color: var(--color-primary);
 }
 
+.hero-background::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.25) 100%);
+}
+
 .hero-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(244, 241, 235, 0.1);
+  background: rgba(244, 241, 235, 0.04);
 }
 
 .hero-content {
@@ -62,6 +72,10 @@
   padding: var(--spacing-xxl) var(--spacing-md);
   width: 100%;
   box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  border-radius: 8px;
 }
 
 .hero-content h1 {
@@ -79,7 +93,7 @@
   font-weight: 300;
   margin-bottom: 0.25em;
   letter-spacing: 0.02em;
-  color: var(--color-text-primary);
+  color: #ffffff;
   font-family: 'League Spartan', sans-serif;
   line-height: 1.2;
 }
@@ -90,7 +104,7 @@
   font-weight: 400;
   margin-bottom: 0.5rem;
   letter-spacing: 0.2em;
-  color: var(--color-text-secondary);
+  color: rgba(255,255,255,0.9);
   font-family: var(--font-secondary), var(--font-japanese);
 }
 
@@ -99,14 +113,14 @@
   font-weight: 400;
   margin-bottom: var(--spacing-xl);
   letter-spacing: 0.15em;
-  color: var(--color-text-secondary);
+  color: #ffffff;
   font-family: var(--font-secondary), var(--font-japanese);
 }
 
 .hero-subtitle {
   font-family: var(--font-secondary);
   font-size: 1rem;
-  color: #5a5a5a; /* コントラスト改善: 元は --color-text-light (#8e8e8e) */
+  color: rgba(255,255,255,0.8);
   letter-spacing: 3px;
   text-transform: uppercase;
   margin-bottom: var(--spacing-xl);
@@ -117,7 +131,7 @@
   font-size: 1.2rem;
   line-height: 1.8;
   margin-bottom: var(--spacing-xxl);
-  color: #4a4a4a; /* コントラスト改善: 本文をやや濃く */
+  color: rgba(255,255,255,0.9);
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
