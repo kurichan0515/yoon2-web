@@ -17,6 +17,16 @@ const Home = memo(() => {
   const sectionsRef = useRef([]);
   const courseCardsRef = useRef([]);
   
+  // Hero background: SPのみ別画像
+  const [heroBg, setHeroBg] = useState('/images/shop/play-room.jpg');
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)');
+    const update = (e) => setHeroBg(e.matches ? '/images/hero/hero-sp.jpg' : '/images/shop/play-room.jpg');
+    update(mq);
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+
   // Courses state
   const [courses, setCourses] = useState([]);
   const [coursesLoading, setCoursesLoading] = useState(true);
@@ -128,7 +138,7 @@ const Home = memo(() => {
     <div className="home">
       {/* Hero Section */}
       <section className="hero" ref={heroRef}>
-        <div className="hero-background" style={{backgroundImage: "url('/images/hero/wait-room.jpg')"}}>
+        <div className="hero-background" style={{backgroundImage: `url('${heroBg}')`}}>
           <div className="hero-overlay"></div>
         </div>
         <div className="container">
@@ -216,7 +226,7 @@ const Home = memo(() => {
             </div>
             <div className="about-image">
               <img 
-                src="/images/shop/play-room.jpg" 
+                src="/images/about/concept-interior.jpg"
                 alt="店内の様子 - リラクゼーション空間"
                 className="about-image-content"
                 width={600}

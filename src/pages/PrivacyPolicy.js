@@ -46,7 +46,7 @@ const PrivacyPolicy = memo(() => {
     <div className="privacy-policy-page">
       {/* Hero Section */}
       <section className="privacy-hero">
-        <div className="hero-background" style={{backgroundImage: "url('/images/hero/wait-room.jpg')"}}>
+        <div className="hero-background" style={{backgroundImage: "url('/images/shop/play-room.jpg')"}}>
           <div className="hero-overlay"></div>
         </div>
         <div className="container">

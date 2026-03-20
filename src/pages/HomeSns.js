@@ -104,7 +104,7 @@ const Hero = () => {
       {/* Background Image with Overlay — Home.js と同じ処理 */}
       <div
         className="absolute inset-0 z-0 hero-background"
-        style={{ backgroundImage: "url('/images/hero/wait-room.jpg')" }}
+        style={{ backgroundImage: "url('/images/shop/play-room.jpg')" }}
       >
         <div className="hero-overlay" />
         <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.35)' }} />
