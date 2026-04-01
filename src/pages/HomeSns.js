@@ -331,15 +331,15 @@ const HomeSns = () => {
       <section id="courses" className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">
         <div className="max-w-7xl mx-auto px-3 sm:px-6">
           <SectionHeading title="Service Menu" subtitle="SERVICES" />
-          <div className="text-center py-12 sm:py-16">
-            <p className="text-4xl mb-6">🔄</p>
-            <p className="text-white text-lg sm:text-xl mb-3 tracking-wide">現在メニューを更新中です</p>
-            <p className="text-white/60 text-sm sm:text-base mb-8 tracking-wide">最新のメニュー・料金は公式LINEよりお問い合わせください</p>
+          <div className="text-center py-10 sm:py-14 px-6 sm:px-10 bg-white/5 border border-white/10 rounded-lg max-w-lg mx-auto">
+            <p className="text-2xl mb-5 opacity-60">🔄</p>
+            <p className="text-white text-base sm:text-lg mb-2 tracking-widest font-light">現在メニューを更新中です</p>
+            <p className="text-white/50 text-xs sm:text-sm mb-8 tracking-wide leading-relaxed">最新のメニュー・料金は公式LINEよりお問い合わせください</p>
             <a
               href={lineUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block px-8 sm:px-10 py-3 sm:py-4 bg-white text-black font-semibold text-xs sm:text-sm tracking-widest hover:bg-[#3B82F6] hover:text-white transition-all duration-300 transform hover:-translate-y-1"
+              className="inline-block px-8 sm:px-10 py-3 bg-white/10 border border-white/30 text-white text-xs sm:text-sm tracking-widest hover:bg-white hover:text-black transition-all duration-300"
               aria-label="LINEでお問い合わせ（新しいウィンドウで開きます）"
             >
               LINEでお問い合わせ
