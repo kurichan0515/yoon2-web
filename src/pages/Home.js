@@ -255,92 +255,20 @@ const Home = memo(() => {
             <p>お客様のご要望に合わせたイヤーエステ・耳つぼ・ドライヘッドスパメニューをご用意しております</p>
           </div>
 
-          {coursesLoading ? (
-            <LoadingSpinner message="コース情報を読み込み中..." />
-          ) : coursesError ? (
-            <ErrorMessage
-              error={typeof coursesError === 'string' ? new Error(coursesError) : coursesError}
-              title="コース情報の読み込みに失敗しました"
-              message="コース情報を取得できませんでした。しばらく時間をおいて再度お試しください。"
-              showDetails={process.env.NODE_ENV === 'development'}
-            />
-          ) : (
-            <>
-              {/* カテゴリフィルター */}
-              <div className="category-filter">
-                <button 
-                  className={`filter-button ${selectedCategory === 'all' ? 'active' : ''}`}
-                  onClick={() => setSelectedCategory('all')}
-                >
-                  すべて
-                </button>
-                {Object.values(COURSE_CATEGORIES).map(category => (
-                  <button
-                    key={category}
-                    className={`filter-button ${selectedCategory === category ? 'active' : ''}`}
-                    onClick={() => setSelectedCategory(category)}
-                  >
-                    {COURSE_CATEGORY_LABELS[category]}
-                  </button>
-                ))}
-              </div>
-
-              {/* コース一覧 */}
-              <div className="courses-grid">
-                {filteredCourses.map((course, index) => (
-                  <div 
-                    key={course.id} 
-                    ref={(el) => (courseCardsRef.current[index] = el)}
-                    className="course-card scroll-animate"
-                  >
-                    <div className="course-image">
-                      <img 
-                        src={course.image} 
-                        alt={`${course.name}の画像`}
-                        width={400}
-                        height={300}
-                        loading="lazy"
-                        decoding="async"
-                        onError={(e) => {
-                          e.target.style.display = 'none';
-                          e.target.nextElementSibling.style.display = 'flex';
-                        }}
-                      />
-                      <div className="image-placeholder" style={{display: 'none'}} aria-hidden="true">
-                        <span>{course.name}</span>
-                      </div>
-                    </div>
-                    <div className="course-content">
-                      <div className="course-header-info">
-                        <h3 className="course-title">{course.name}</h3>
-                        <span className="course-category">
-                          {COURSE_CATEGORY_LABELS[course.category]}
-                        </span>
-                      </div>
-                      <p className="course-description">{course.description}</p>
-                      <div className="course-details">
-                        <div className="course-duration">
-                          <span className="detail-label">時間:</span>
-                          <span className="detail-value">{course.duration}</span>
-                        </div>
-                        <div className="course-price">
-                          <span className="detail-label">価格:</span>
-                          <span className="detail-value">¥{course.price.toLocaleString()}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {filteredCourses.length === 0 && (
-                <div className="no-courses">
-                  <h3>該当するコースが見つかりませんでした</h3>
-                  <p>他のカテゴリを選択してください</p>
-                </div>
-              )}
-            </>
-          )}
+          <div className="courses-updating-notice">
+            <p className="courses-updating-icon">🔄</p>
+            <p className="courses-updating-text">現在メニューを更新中です</p>
+            <p className="courses-updating-sub">最新のメニュー・料金は公式LINEよりお問い合わせください</p>
+            <a
+              href={appConfig.shop.lineUrl || appConfig.social.line.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary"
+              aria-label="LINEでお問い合わせ（新しいウィンドウで開きます）"
+            >
+              LINEでお問い合わせ
+            </a>
+          </div>
         </div>
       </section>
 

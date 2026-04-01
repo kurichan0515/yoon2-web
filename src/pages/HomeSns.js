@@ -331,110 +331,20 @@ const HomeSns = () => {
       <section id="courses" className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">
         <div className="max-w-7xl mx-auto px-3 sm:px-6">
           <SectionHeading title="Service Menu" subtitle="SERVICES" />
-          <p className="text-white/80 text-center mb-8 sm:mb-12 tracking-wide max-w-2xl mx-auto text-xs sm:text-sm px-2">
-            お客様のご要望に合わせたイヤーエステ・耳つぼ・ドライヘッドスパメニューをご用意しております
-          </p>
-
-          {coursesLoading ? (
-            <div className="text-center py-12">
-              <LoadingSpinner message="コース情報を読み込み中..." />
-            </div>
-          ) : coursesError ? (
-            <div className="text-center py-12">
-              <ErrorMessage
-                error={typeof coursesError === 'string' ? new Error(coursesError) : coursesError}
-                title="コース情報の読み込みに失敗しました"
-                message="コース情報を取得できませんでした。しばらく時間をおいて再度お試しください。"
-                showDetails={process.env.NODE_ENV === 'development'}
-              />
-            </div>
-          ) : (
-            <>
-              {/* カテゴリフィルター */}
-              <div className="flex justify-center gap-1.5 sm:gap-2 mb-8 sm:mb-12 flex-wrap px-2">
-                <button
-                  type="button"
-                  className={`px-3 sm:px-6 py-1.5 sm:py-2 text-xs sm:text-sm tracking-wide sm:tracking-wider transition-all whitespace-nowrap ${
-                    selectedCategory === 'all' 
-                      ? 'bg-[#3B82F6] text-white border border-[#3B82F6]' 
-                      : 'bg-[#161B22] text-white/80 border border-white/5 hover:border-[#3B82F6]/50'
-                  }`}
-                  onClick={() => setSelectedCategory('all')}
-                  aria-label="すべてのコースを表示"
-                  aria-pressed={selectedCategory === 'all'}
-                >
-                  すべて
-                </button>
-                {Object.values(COURSE_CATEGORIES).map(category => (
-                  <button
-                    key={category}
-                    type="button"
-                    className={`px-3 sm:px-6 py-1.5 sm:py-2 text-xs sm:text-sm tracking-wide sm:tracking-wider transition-all whitespace-nowrap ${
-                      selectedCategory === category
-                        ? 'bg-[#3B82F6] text-white border border-[#3B82F6]' 
-                        : 'bg-[#161B22] text-white/80 border border-white/5 hover:border-[#3B82F6]/50'
-                    }`}
-                    onClick={() => setSelectedCategory(category)}
-                    aria-label={`${COURSE_CATEGORY_LABELS[category]}でフィルター`}
-                    aria-pressed={selectedCategory === category}
-                  >
-                    {COURSE_CATEGORY_LABELS[category]}
-                  </button>
-                ))}
-              </div>
-
-              {/* コース一覧 */}
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-                {filteredCourses.map((course, index) => (
-                  <div 
-                    key={course.id} 
-                    ref={(el) => (courseCardsRef.current[index] = el)}
-                    className="group bg-[#161B22] border border-white/5 hover:border-[#3B82F6]/50 transition-all duration-500 overflow-hidden scroll-animate"
-                  >
-                    <div className="relative w-full aspect-[4/3] overflow-hidden bg-[#0A0A0A]">
-                      <img 
-                        src={course.image} 
-                        alt={`${course.name}の画像`}
-                        width={400}
-                        height={300}
-                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
-                        loading="lazy"
-                        onError={(e) => {
-                          e.target.style.display = 'none';
-                        }}
-                      />
-                    </div>
-                    <div className="p-3 sm:p-4 md:p-6">
-                      <div className="flex justify-between items-start mb-2 sm:mb-3 gap-2">
-                        <h3 className="text-white text-sm sm:text-base md:text-lg tracking-wide sm:tracking-wider flex-1 leading-tight">{course.name}</h3>
-                        <span className="bg-[#3B82F6]/20 text-[#3B82F6] px-1.5 sm:px-2 py-0.5 sm:py-1 text-[0.65rem] sm:text-xs tracking-wide sm:tracking-wider ml-1 sm:ml-2 whitespace-nowrap flex-shrink-0">
-                          {COURSE_CATEGORY_LABELS[course.category]}
-                        </span>
-                      </div>
-                      <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4 line-clamp-2">{course.description}</p>
-                      <div className="flex justify-between items-center pt-3 sm:pt-4 border-t border-white/5 gap-2">
-                        <div className="text-white/70 text-[0.65rem] sm:text-xs">
-                          <span className="block">時間</span>
-                          <span className="text-white font-semibold text-xs sm:text-sm">{course.duration}</span>
-                        </div>
-                        <div className="text-right">
-                          <span className="text-white/70 text-[0.65rem] sm:text-xs block">価格</span>
-                          <span className="text-[#3B82F6] font-bold text-sm sm:text-base">¥{course.price.toLocaleString()}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {filteredCourses.length === 0 && (
-                <div className="text-center py-12 text-white/50">
-                  <h3 className="text-xl mb-2">該当するコースが見つかりませんでした</h3>
-                  <p>他のカテゴリを選択してください</p>
-                </div>
-              )}
-            </>
-          )}
+          <div className="text-center py-12 sm:py-16">
+            <p className="text-4xl mb-6">🔄</p>
+            <p className="text-white text-lg sm:text-xl mb-3 tracking-wide">現在メニューを更新中です</p>
+            <p className="text-white/60 text-sm sm:text-base mb-8 tracking-wide">最新のメニュー・料金は公式LINEよりお問い合わせください</p>
+            <a
+              href={lineUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-8 sm:px-10 py-3 sm:py-4 bg-white text-black font-semibold text-xs sm:text-sm tracking-widest hover:bg-[#3B82F6] hover:text-white transition-all duration-300 transform hover:-translate-y-1"
+              aria-label="LINEでお問い合わせ（新しいウィンドウで開きます）"
+            >
+              LINEでお問い合わせ
+            </a>
+          </div>
         </div>
       </section>
 

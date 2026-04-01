@@ -1095,6 +1095,30 @@
   color: var(--color-text-primary);
 }
 
+.courses-updating-notice {
+  text-align: center;
+  padding: var(--spacing-xxl) var(--spacing-lg);
+}
+
+.courses-updating-icon {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-lg);
+}
+
+.courses-updating-text {
+  font-size: 1.25rem;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-sm);
+  letter-spacing: 0.05em;
+}
+
+.courses-updating-sub {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-xl);
+  letter-spacing: 0.03em;
+}
+
 /* Shop Section */
 .shop-section {
   background-color: var(--color-white);
