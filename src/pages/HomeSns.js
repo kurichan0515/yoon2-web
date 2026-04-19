@@ -11,6 +11,7 @@ import { setPageMeta } from '../utils/seoHelper';
 import { trackPageView } from '../services/analyticsService';
 import { trackPageView as trackGoogleAdsPageView } from '../services/googleAdsService';
 import logger from '../utils/logger';
+import { FAQ_DATA, getFaqStructuredData } from '../data/faqData';
 import './HomeSns.css';
 import './Home.css';
 
@@ -183,6 +184,181 @@ const SectionHeading = ({ title, subtitle }) => (
     <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light" style={{ fontFamily: 'Cinzel, serif' }}>{title}</h2>
   </div>
 );
+
+// ダークテーマ用FAQアイテム
+function FaqSnsItem({ item, isOpen, onToggle, lineUrl }) {
+  const { content } = item;
+
+  const renderAnswer = () => {
+    if (!content) return null;
+    const { paragraphs, label, listItems, note, afterParagraphs, priceItems } = content;
+    return (
+      <div className="space-y-2 text-white/70 text-xs sm:text-sm leading-relaxed">
+        {paragraphs?.map((p, i) => <p key={i}>{p}</p>)}
+        {label && <p className="text-white/90 font-semibold text-xs tracking-wide mt-2">{label}</p>}
+        {listItems && (
+          <ul className="space-y-1 mt-1">
+            {listItems.map((li, i) => (
+              <li key={i} className="flex items-start gap-2">
+                <span className="text-[#3B82F6] flex-shrink-0 mt-0.5">›</span>
+                {li.href ? (
+                  <a href={li.href} target="_blank" rel="noopener noreferrer" className="text-[#3B82F6] underline underline-offset-2 hover:text-[#60A5FA] transition-colors">{li.text}</a>
+                ) : li.hrefKey === 'line' ? (
+                  <a href={lineUrl} target="_blank" rel="noopener noreferrer" className="text-[#3B82F6] underline underline-offset-2 hover:text-[#60A5FA] transition-colors">{li.text}</a>
+                ) : (
+                  <span>{li.text}</span>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
+        {priceItems && (
+          <ul className="space-y-1 mt-1">
+            {priceItems.map((pi, i) => (
+              <li key={i} className="flex items-start gap-2">
+                <span className="text-[#3B82F6] flex-shrink-0 mt-0.5">›</span>
+                <span>{pi.label}: 通常{pi.from} → <span className="text-[#3B82F6] font-semibold">{pi.to}</span></span>
+              </li>
+            ))}
+          </ul>
+        )}
+        {afterParagraphs?.map((p, i) => <p key={`after-${i}`} className="mt-1">{p}</p>)}
+        {note && (
+          <p className="mt-2 pl-3 border-l-2 border-[#3B82F6]/50 text-white/60 italic text-xs">{note}</p>
+        )}
+      </div>
+    );
+  };
+
+  return (
+    <div className={`border-b border-white/5 last:border-b-0 transition-colors ${isOpen ? 'bg-white/5' : ''}`}>
+      <button
+        className="w-full flex justify-between items-center gap-3 sm:gap-4 px-4 sm:px-6 py-4 sm:py-5 text-left min-h-[52px] hover:bg-white/5 transition-colors"
+        onClick={onToggle}
+        aria-expanded={isOpen}
+        aria-controls={`faq-sns-answer-${item.id}`}
+      >
+        <span className="text-white/90 text-xs sm:text-sm font-medium tracking-wide flex-1 leading-relaxed">{item.question}</span>
+        <span
+          className={`flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 rounded-full border flex items-center justify-center text-base transition-all duration-300 ${
+            isOpen
+              ? 'bg-[#3B82F6] border-[#3B82F6] text-white'
+              : 'border-white/30 text-white/50'
+          }`}
+          aria-hidden="true"
+        >
+          {isOpen ? '−' : '+'}
+        </span>
+      </button>
+      <div
+        id={`faq-sns-answer-${item.id}`}
+        className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-[500px]' : 'max-h-0'}`}
+      >
+        <div className="px-4 sm:px-6 pb-4 sm:pb-5 border-t border-white/5 pt-3 sm:pt-4">
+          {renderAnswer()}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// カテゴリ別アクセントカラー（ダークテーマ）
+const CATEGORY_COLORS = {
+  reservation: { dot: 'bg-blue-400',   label: 'text-blue-400'   },
+  'first-visit': { dot: 'bg-green-400', label: 'text-green-400' },
+  mens:          { dot: 'bg-amber-500', label: 'text-amber-500' },
+  access:        { dot: 'bg-orange-400',label: 'text-orange-400'},
+  payment:       { dot: 'bg-yellow-400',label: 'text-yellow-400'},
+};
+
+function FaqSnsSection({ lineUrl }) {
+  const [openItems, setOpenItems] = useState({});
+
+  const toggleItem = (id) => setOpenItems(prev => ({ ...prev, [id]: !prev[id] }));
+
+  // SEO構造化データ（HomeSns専用 — ページ遷移時にHome側と衝突しないようIDを分ける）
+  useEffect(() => {
+    const id = 'faq-structured-data-sns';
+    const existing = document.getElementById(id);
+    if (existing) return;
+    const script = document.createElement('script');
+    script.id = id;
+    script.type = 'application/ld+json';
+    script.textContent = getFaqStructuredData();
+    document.head.appendChild(script);
+    return () => { const el = document.getElementById(id); if (el) el.remove(); };
+  }, []);
+
+  return (
+    <section id="faq" className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6">
+        {/* セクションヘッダー */}
+        <SectionHeading title="よくある質問" subtitle="FAQ" />
+
+        {/* FAQカテゴリ一覧 */}
+        <div className="flex flex-col gap-4 sm:gap-6 max-w-3xl mx-auto">
+          {FAQ_DATA.map(category => {
+            const color = CATEGORY_COLORS[category.categoryKey] || { dot: 'bg-[#3B82F6]', label: 'text-[#3B82F6]' };
+            return (
+              <div
+                key={category.categoryKey}
+                className="bg-[#161B22] border border-white/5 overflow-hidden"
+              >
+                {/* カテゴリタイトル */}
+                <div className="flex items-center gap-2 px-4 sm:px-6 py-3 border-b border-white/5">
+                  <span className={`w-2 h-2 rounded-full flex-shrink-0 ${color.dot}`} aria-hidden="true" />
+                  <h3 className={`text-xs sm:text-sm font-semibold tracking-[0.15em] uppercase ${color.label}`}>
+                    {category.category}
+                  </h3>
+                </div>
+                {/* FAQアイテム */}
+                <div>
+                  {category.items.map(item => (
+                    <FaqSnsItem
+                      key={item.id}
+                      item={item}
+                      isOpen={!!openItems[item.id]}
+                      onToggle={() => toggleItem(item.id)}
+                      lineUrl={lineUrl}
+                    />
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* お問い合わせCTA */}
+        <div className="mt-8 sm:mt-12 max-w-3xl mx-auto">
+          <div className="bg-[#161B22] border border-white/5 p-4 sm:p-6 text-center">
+            <p className="text-white/60 text-xs sm:text-sm tracking-wide mb-4">
+              その他のご質問はお気軽にお問い合わせください
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <a
+                href={lineUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-6 sm:px-8 py-2.5 sm:py-3 bg-[#3B82F6] text-white font-semibold text-xs sm:text-sm tracking-widest hover:bg-[#2563EB] transition-all duration-300 transform hover:-translate-y-1 whitespace-nowrap text-center"
+                aria-label="LINEでお問い合わせ（新しいウィンドウで開きます）"
+              >
+                LINEでお問い合わせ →
+              </a>
+              <a
+                href={`tel:${appConfig.shop.phone.replace(/-/g, '')}`}
+                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 border border-white/20 text-white/70 text-xs sm:text-sm tracking-widest hover:border-[#3B82F6] hover:text-white transition-all duration-300 whitespace-nowrap"
+                aria-label={`電話で問い合わせ: ${appConfig.shop.phone}`}
+              >
+                <Phone size={14} aria-hidden />
+                {appConfig.shop.phone}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 const HomeSns = () => {
   const navigate = useNavigate();
@@ -606,6 +782,9 @@ const HomeSns = () => {
           </div>
         )}
       </section>
+
+      {/* FAQ Section */}
+      <FaqSnsSection lineUrl={lineUrl} />
 
       {/* Social Section - HomeSnsデザインに合わせてカスタマイズ */}
       <section className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">

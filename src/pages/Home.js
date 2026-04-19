@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, memo, useState } from 'react';
 import SocialFeed from '../components/SocialFeed';
+import FAQ from '../components/FAQ';
 import AdSense from '../components/common/AdSense';
 import courseService from '../services/courseService';
 import { COURSE_CATEGORIES, COURSE_CATEGORY_LABELS } from '../types/courseTypes';
@@ -425,6 +426,9 @@ const Home = memo(() => {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQ />
 
       {/* Social Section */}
       <section className="social-section section" ref={addToRefs}>
