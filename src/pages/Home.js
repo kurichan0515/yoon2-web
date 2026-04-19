@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, memo, useState } from 'react';
 import SocialFeed from '../components/SocialFeed';
 import FAQ from '../components/FAQ';
+import MenuSection from '../components/MenuSection';
 import AdSense from '../components/common/AdSense';
 import courseService from '../services/courseService';
 import { COURSE_CATEGORIES, COURSE_CATEGORY_LABELS } from '../types/courseTypes';
@@ -247,31 +248,8 @@ const Home = memo(() => {
         </div>
       </section>
 
-      {/* Courses Section */}
-      <section id="courses" className="courses-section section" ref={addToRefs}>
-        <div className="container">
-          <div className="section-header">
-            <span className="section-label">Services</span>
-            <h2>サービス・コース一覧</h2>
-            <p>お客様のご要望に合わせたイヤーエステ・耳つぼ・ドライヘッドスパメニューをご用意しております</p>
-          </div>
-
-          <div className="courses-updating-notice">
-            <p className="courses-updating-icon">🔄</p>
-            <p className="courses-updating-text">現在メニューを更新中です</p>
-            <p className="courses-updating-sub">最新のメニュー・料金は公式LINEよりお問い合わせください</p>
-            <a
-              href={appConfig.shop.lineUrl || appConfig.social.line.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary"
-              aria-label="LINEでお問い合わせ（新しいウィンドウで開きます）"
-            >
-              LINEでお問い合わせ
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* Menu Section */}
+      <MenuSection />
 
       {/* Shop Info Section */}
       <section id="shop" className="shop-section section" ref={addToRefs}>

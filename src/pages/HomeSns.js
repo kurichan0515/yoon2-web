@@ -12,6 +12,7 @@ import { trackPageView } from '../services/analyticsService';
 import { trackPageView as trackGoogleAdsPageView } from '../services/googleAdsService';
 import logger from '../utils/logger';
 import { FAQ_DATA, getFaqStructuredData } from '../data/faqData';
+import { MENU_DATA, HOTPEPPER_URL, getMenuStructuredData } from '../data/menuData';
 import './HomeSns.css';
 import './Home.css';
 
@@ -184,6 +185,137 @@ const SectionHeading = ({ title, subtitle }) => (
     <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light" style={{ fontFamily: 'Cinzel, serif' }}>{title}</h2>
   </div>
 );
+
+// ダークテーマ用バッジスタイル
+const SNS_BADGE = {
+  '初回限定': 'bg-red-600 text-white',
+  '人気':     'bg-yellow-500 text-black',
+  'プレミアム':'bg-amber-800 text-white',
+  'オプション':'bg-gray-600 text-white',
+};
+
+// ダークテーマ用メニューカード
+function MenuSnsCard({ menu, lineUrl }) {
+  return (
+    <article className={`group bg-[#161B22] border ${menu.recommended ? 'border-[#3B82F6]/40' : 'border-white/5'} hover:border-[#3B82F6]/50 transition-all duration-300 p-5 sm:p-6 flex flex-col gap-3`}>
+      {menu.badge && (
+        <span className={`inline-block self-start px-2 py-0.5 rounded text-xs font-semibold tracking-wide ${SNS_BADGE[menu.badge] || 'bg-gray-600 text-white'}`}>
+          {menu.badge}
+        </span>
+      )}
+      <h3 className="text-white text-base sm:text-lg font-medium tracking-wide leading-snug">{menu.name}</h3>
+      <div className="flex items-baseline gap-3 flex-wrap">
+        <span className="text-[#3B82F6] text-2xl sm:text-3xl font-bold tracking-tight">¥{menu.price.toLocaleString()}</span>
+        {menu.originalPrice && (
+          <span className="text-white/30 text-sm line-through">¥{menu.originalPrice.toLocaleString()}</span>
+        )}
+      </div>
+      <div className="flex items-center gap-1.5 text-white/40 text-xs">
+        <Clock size={12} aria-hidden />
+        <span>約{menu.time}分</span>
+      </div>
+      <p className="text-white/60 text-xs sm:text-sm leading-relaxed flex-1">{menu.description}</p>
+      <div className="flex flex-col gap-2 mt-auto pt-2">
+        <a
+          href={HOTPEPPER_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block text-center px-4 py-2.5 bg-[#3B82F6] text-white text-xs font-semibold tracking-widest hover:bg-[#2563EB] transition-colors duration-200"
+          aria-label={`${menu.name}をホットペッパーで予約`}
+        >
+          ホットペッパーで予約
+        </a>
+        <a
+          href={lineUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block text-center px-4 py-2.5 border border-[#3B82F6]/50 text-[#3B82F6] text-xs font-semibold tracking-widest hover:bg-[#3B82F6]/10 transition-colors duration-200"
+          aria-label={`${menu.name}についてLINEで相談`}
+        >
+          LINEで相談
+        </a>
+      </div>
+      <div className="w-8 h-px bg-white/10 group-hover:w-full group-hover:bg-[#3B82F6] transition-all duration-500 mt-1" />
+    </article>
+  );
+}
+
+function MenuSnsSection({ lineUrl }) {
+  const [activeTab, setActiveTab] = useState(0);
+  const [fading, setFading] = useState(false);
+
+  // SEO構造化データ
+  useEffect(() => {
+    const id = 'menu-structured-data-sns';
+    if (document.getElementById(id)) return;
+    const script = document.createElement('script');
+    script.id = id;
+    script.type = 'application/ld+json';
+    script.textContent = getMenuStructuredData();
+    document.head.appendChild(script);
+    return () => { document.getElementById(id)?.remove(); };
+  }, []);
+
+  const handleTabChange = (i) => {
+    if (i === activeTab) return;
+    setFading(true);
+    setTimeout(() => { setActiveTab(i); setFading(false); }, 180);
+  };
+
+  const current = MENU_DATA[activeTab];
+
+  return (
+    <section id="courses" className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6">
+        <SectionHeading title="メニュー・料金" subtitle="MENU & PRICE" />
+
+        {/* タブ */}
+        <div
+          className="flex flex-wrap gap-2 mb-4 sm:mb-6"
+          role="tablist"
+          aria-label="メニューカテゴリ"
+        >
+          {MENU_DATA.map((cat, i) => (
+            <button
+              key={cat.categoryKey}
+              role="tab"
+              aria-selected={i === activeTab}
+              aria-controls={`menu-sns-panel-${cat.categoryKey}`}
+              id={`menu-sns-tab-${cat.categoryKey}`}
+              className={`px-3 sm:px-4 py-2 text-xs font-semibold tracking-widest uppercase transition-all duration-200 whitespace-nowrap min-h-[40px] ${
+                i === activeTab
+                  ? 'bg-[#3B82F6] text-white'
+                  : 'bg-white/5 text-white/50 border border-white/10 hover:border-[#3B82F6]/50 hover:text-white/80'
+              }`}
+              onClick={() => handleTabChange(i)}
+              onKeyDown={(e) => {
+                if (e.key === 'ArrowRight') handleTabChange((i + 1) % MENU_DATA.length);
+                if (e.key === 'ArrowLeft') handleTabChange((i - 1 + MENU_DATA.length) % MENU_DATA.length);
+              }}
+            >
+              {cat.category}
+            </button>
+          ))}
+        </div>
+
+        {/* カテゴリ説明 */}
+        <p className="text-white/40 text-xs tracking-widest mb-6 sm:mb-8">{current.description}</p>
+
+        {/* メニューグリッド */}
+        <div
+          id={`menu-sns-panel-${current.categoryKey}`}
+          role="tabpanel"
+          aria-labelledby={`menu-sns-tab-${current.categoryKey}`}
+          className={`grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 transition-opacity duration-200 ${fading ? 'opacity-0' : 'opacity-100'}`}
+        >
+          {current.menus.map(menu => (
+            <MenuSnsCard key={menu.id} menu={menu} lineUrl={lineUrl} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 // ダークテーマ用FAQアイテム
 function FaqSnsItem({ item, isOpen, onToggle, lineUrl }) {
@@ -503,26 +635,8 @@ const HomeSns = () => {
         </div>
       </section>
 
-      {/* Courses Section */}
-      <section id="courses" className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6">
-          <SectionHeading title="Service Menu" subtitle="SERVICES" />
-          <div className="text-center py-10 sm:py-14 px-6 sm:px-10 bg-white/5 border border-white/10 rounded-lg max-w-lg mx-auto">
-            <p className="text-2xl mb-5 opacity-60">🔄</p>
-            <p className="text-white text-base sm:text-lg mb-2 tracking-widest font-light">現在メニューを更新中です</p>
-            <p className="text-white/50 text-xs sm:text-sm mb-8 tracking-wide leading-relaxed">最新のメニュー・料金は公式LINEよりお問い合わせください</p>
-            <a
-              href={lineUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block px-8 sm:px-10 py-3 bg-white/10 border border-white/30 text-white text-xs sm:text-sm tracking-widest hover:bg-white hover:text-black transition-all duration-300"
-              aria-label="LINEでお問い合わせ（新しいウィンドウで開きます）"
-            >
-              LINEでお問い合わせ
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* Menu Section */}
+      <MenuSnsSection lineUrl={lineUrl} />
 
       {/* Reserve Section - SNS導線向けに強調 */}
       <section id="reserve" className="py-12 sm:py-16 md:py-24 bg-gradient-to-b from-[#101827] to-[#0A0A0A] relative overflow-hidden">
