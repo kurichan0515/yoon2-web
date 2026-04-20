@@ -52,9 +52,20 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       function loadDeferredScripts() {
-        var g = document.createElement('script'); g.async = true; g.src = 'https://www.googletagmanager.com/gtag/js?id=AW-621590738'; document.head.appendChild(g);
+        var AW_ID  = 'AW-621590738';
+        var GA4_ID = '%REACT_APP_GA4_MEASUREMENT_ID%'; /* CRAビルド時に置換 */
+
+        /* gtag.js を GA4 優先、未設定なら Google Ads ID で読み込み */
+        var primaryId = GA4_ID || AW_ID;
+        var g = document.createElement('script');
+        g.async = true;
+        g.src = 'https://www.googletagmanager.com/gtag/js?id=' + primaryId;
+        document.head.appendChild(g);
+
         gtag('js', new Date());
-        gtag('config', 'AW-621590738');
+        gtag('config', AW_ID);              /* Google Ads（常に有効） */
+        if (GA4_ID) gtag('config', GA4_ID); /* GA4（ID設定時のみ有効） */
+
         var a = document.createElement('script'); a.async = true; a.crossOrigin = 'anonymous'; a.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6862900859746528';
         a.onload = function() { window.dispatchEvent(new Event('adsbygoogle-ready')); };
         document.head.appendChild(a);

@@ -137,6 +137,93 @@
   margin-right: auto;
 }
 
+/* ===== Hero 初回価格バナー ===== */
+.hero-price-banner {
+  margin: 1.25rem auto 0.75rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 1.1rem 1.5rem 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+  border: 2px solid #D4AF37;
+  max-width: 340px;
+}
+
+.hero-price-label {
+  font-size: 0.8rem;
+  color: #8B7355;
+  font-weight: 600;
+  margin: 0 0 0.4rem;
+  letter-spacing: 0.08em;
+  font-family: var(--font-secondary), var(--font-japanese);
+}
+
+.hero-price-wrapper {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+  line-height: 1;
+}
+
+.hero-price-amount {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #E63946;
+  line-height: 1;
+  font-family: var(--font-primary);
+}
+
+.hero-price-unit {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #E63946;
+  font-family: var(--font-primary);
+}
+
+.hero-price-note {
+  font-size: 0.78rem;
+  color: #888;
+  margin: 0.3rem 0 0;
+  text-decoration: line-through;
+  font-family: var(--font-secondary), var(--font-japanese);
+}
+
+/* ===== Hero 口コミバッジ ===== */
+.hero-review-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 0.55rem 1.1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  margin: 0 auto 1.25rem;
+}
+
+.hero-review-stars-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+
+.hero-review-rating {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #D4AF37;
+  font-family: var(--font-primary);
+}
+
+.hero-review-source {
+  font-size: 0.72rem;
+  color: #666;
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-secondary), var(--font-japanese);
+  letter-spacing: 0.03em;
+}
+
 .hero-actions {
   display: flex;
   gap: var(--spacing-md);
@@ -668,6 +755,19 @@
     font-size: 1rem;
   }
   
+  .hero-price-amount {
+    font-size: 2.4rem;
+  }
+
+  .hero-price-unit {
+    font-size: 1.1rem;
+  }
+
+  .hero-price-banner {
+    padding: 0.9rem 1rem 0.8rem;
+    max-width: 280px;
+  }
+
   .hero-actions {
     flex-direction: column;
     align-items: stretch;

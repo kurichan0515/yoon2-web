@@ -2,6 +2,7 @@ import React, { useEffect, useRef, memo, useState } from 'react';
 import SocialFeed from '../components/SocialFeed';
 import FAQ from '../components/FAQ';
 import MenuSection from '../components/MenuSection';
+import ReviewsSection from '../components/ReviewsSection';
 import AdSense from '../components/common/AdSense';
 import courseService from '../services/courseService';
 import { COURSE_CATEGORIES, COURSE_CATEGORY_LABELS } from '../types/courseTypes';
@@ -153,6 +154,21 @@ const Home = memo(() => {
               イヤーエステと耳つぼで至福のひととき<br />
               プロの技術で心身ともにリラックスできる特別な時間をお届けします
             </p>
+            {/* 初回価格バナー */}
+            <div className="hero-price-banner">
+              <p className="hero-price-label">初回限定特別価格</p>
+              <div className="hero-price-wrapper">
+                <span className="hero-price-amount">4,000</span>
+                <span className="hero-price-unit">円〜</span>
+              </div>
+              <p className="hero-price-note">通常5,000円</p>
+            </div>
+
+            {/* 口コミバッジ */}
+            <div className="hero-review-badge" aria-label="ホットペッパービューティー 高評価獲得">
+              <p className="hero-review-source">ホットペッパービューティーにて<br />多数の高評価をいただいています</p>
+            </div>
+
             <div className="hero-actions">
               <a
                 href={appConfig.shop.lineUrl || appConfig.social.line.url}
@@ -404,6 +420,9 @@ const Home = memo(() => {
           </div>
         </div>
       </section>
+
+      {/* Reviews Section */}
+      <ReviewsSection />
 
       {/* FAQ Section */}
       <FAQ />

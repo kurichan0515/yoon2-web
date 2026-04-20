@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import appConfig from '../config/appConfig';
 import { MENU_DATA, HOTPEPPER_URL, getMenuStructuredData } from '../data/menuData';
+import { trackHotpepperClick, trackLineClick, trackMenuView } from '../services/analyticsService';
 import './MenuSection.css';
 
 const BADGE_CLASS = {
@@ -39,8 +40,9 @@ function MenuCard({ menu, lineUrl }) {
           rel="noopener noreferrer"
           className="menu-item-btn menu-item-btn--primary"
           aria-label={`${menu.name}をホットペッパーで予約（新しいウィンドウで開きます）`}
+          onClick={() => trackHotpepperClick(menu.name)}
         >
-          ホットペッパーで予約
+          今すぐ予約する
         </a>
         <a
           href={lineUrl}
@@ -48,8 +50,9 @@ function MenuCard({ menu, lineUrl }) {
           rel="noopener noreferrer"
           className="menu-item-btn menu-item-btn--secondary"
           aria-label={`${menu.name}についてLINEで相談（新しいウィンドウで開きます）`}
+          onClick={() => trackLineClick(menu.name)}
         >
-          LINEで相談
+          LINEで予約・相談
         </a>
       </div>
     </article>
@@ -61,6 +64,18 @@ function MenuSection() {
   const [fading, setFading] = useState(false);
   const sectionRef = useRef(null);
   const lineUrl = appConfig.shop.lineUrl;
+
+  // メニューセクション到達イベント（1回のみ）
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const once = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { trackMenuView(); once.disconnect(); } },
+      { threshold: 0.3 }
+    );
+    once.observe(el);
+    return () => once.disconnect();
+  }, []);
 
   // セクション表示アニメーション
   useEffect(() => {

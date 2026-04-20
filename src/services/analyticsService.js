@@ -218,3 +218,65 @@ export const trackEvent = (eventName, eventData) => analyticsService.trackEvent(
 export const getPageViewStats = (startDate, endDate) => analyticsService.getPageViewStats(startDate, endDate);
 export const getDailyPageViewStats = (days) => analyticsService.getDailyPageViewStats(days);
 export const getRealTimeStats = () => analyticsService.getRealTimeStats();
+
+// ==============================
+// コンバージョンイベント追跡ヘルパー
+// Google Ads (AW-621590738) + GA4 共通
+// ==============================
+
+function gtag(...args) {
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+    window.gtag(...args);
+  }
+}
+
+/** ホットペッパー予約ボタンクリック */
+export function trackHotpepperClick(menuName = '') {
+  gtag('event', 'click_hotpepper', {
+    event_category: 'conversion',
+    event_label: menuName || 'Hotpepper Reservation Button',
+    value: 5000,
+  });
+}
+
+/** LINE予約ボタンクリック */
+export function trackLineClick(menuName = '') {
+  gtag('event', 'click_line', {
+    event_category: 'conversion',
+    event_label: menuName || 'LINE Reservation Button',
+    value: 5000,
+  });
+}
+
+/** 電話タップ */
+export function trackPhoneClick() {
+  gtag('event', 'click_phone', {
+    event_category: 'conversion',
+    event_label: 'Phone Call',
+    value: 5000,
+  });
+}
+
+/** メニューセクション到達 */
+export function trackMenuView() {
+  gtag('event', 'view_menu', {
+    event_category: 'engagement',
+    event_label: 'Menu Section Viewed',
+  });
+}
+
+/** FAQセクション到達 */
+export function trackFaqView() {
+  gtag('event', 'view_faq', {
+    event_category: 'engagement',
+    event_label: 'FAQ Section Viewed',
+  });
+}
+
+/** 口コミセクション到達 */
+export function trackReviewsView() {
+  gtag('event', 'view_reviews', {
+    event_category: 'engagement',
+    event_label: 'Reviews Section Viewed',
+  });
+}

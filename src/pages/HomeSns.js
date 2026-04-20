@@ -13,6 +13,7 @@ import { trackPageView as trackGoogleAdsPageView } from '../services/googleAdsSe
 import logger from '../utils/logger';
 import { FAQ_DATA, getFaqStructuredData } from '../data/faqData';
 import { MENU_DATA, HOTPEPPER_URL, getMenuStructuredData } from '../data/menuData';
+import { trackHotpepperClick, trackLineClick } from '../services/analyticsService';
 import './HomeSns.css';
 import './Home.css';
 
@@ -124,6 +125,21 @@ const Hero = () => {
           深い夜の静寂に包まれるような、究極の癒やし体験。<br className="sm:hidden" />
           耳から整う、心と身体の休息。
         </p>
+        {/* 初回価格バナー */}
+        <div className="mx-auto mb-3 sm:mb-4 max-w-xs bg-white/95 rounded-xl border-2 border-yellow-400 px-4 sm:px-5 py-3 shadow-lg shadow-black/30">
+          <p className="text-[#8B7355] text-[0.7rem] sm:text-xs font-semibold tracking-widest mb-1 text-center">初回限定特別価格</p>
+          <div className="flex items-baseline justify-center gap-1 leading-none">
+            <span className="text-[#E63946] text-4xl sm:text-5xl font-bold" style={{ fontFamily: "'Playfair Display', serif" }}>4,000</span>
+            <span className="text-[#E63946] text-xl sm:text-2xl font-semibold">円〜</span>
+          </div>
+          <p className="text-gray-400 text-[0.65rem] sm:text-xs text-center mt-1 line-through">通常5,000円</p>
+        </div>
+
+        {/* 口コミバッジ */}
+        <div className="inline-flex items-center bg-white/90 rounded-lg px-3 sm:px-4 py-2 shadow-md shadow-black/20 mb-5 sm:mb-6" aria-label="ホットペッパービューティー 高評価獲得">
+          <span className="text-gray-600 text-[0.65rem] sm:text-xs">ホットペッパービューティーにて多数の高評価をいただいています</span>
+        </div>
+
         {/* SNS導線向け：予約CTAを強調 */}
         <div className="mb-6 sm:mb-8 p-3 sm:p-4 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 max-w-md mx-auto">
           <p className="text-white text-xs sm:text-sm mb-2 sm:mb-3 tracking-wide">✨ SNSからご来店の方へ</p>
@@ -186,6 +202,68 @@ const SectionHeading = ({ title, subtitle }) => (
   </div>
 );
 
+// ダークテーマ用レビューセクション
+const SNS_REVIEWS = [
+  {
+    id: 'r1',
+    text: '耳の中をイヤースコープで見ながら施術してもらえるので安心！不眠が改善されて本当に良かったです。',
+    age: '30代女性',
+  },
+  {
+    id: 'r2',
+    text: '男性でも気軽に通えます。完全個室なので安心してリラックスできました。仕事のストレスが解消されました。',
+    age: '40代男性',
+  },
+  {
+    id: 'r3',
+    text: '初回4,000円でこのクオリティ！愛媛県でここだけのイヤーエステ。リピート確定です。',
+    age: '20代女性',
+  },
+];
+
+function ReviewsSnsSection() {
+  return (
+    <section id="reviews" className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6">
+        <div className="mb-8 sm:mb-12 md:mb-16">
+          <span className="text-[#3B82F6] text-[0.65rem] sm:text-xs tracking-[0.2em] sm:tracking-[0.4em] block mb-2 font-bold uppercase">REVIEWS</span>
+          <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light mb-3" style={{ fontFamily: 'Cinzel, serif' }}>
+            お客様の声
+          </h2>
+          <p className="text-white/40 text-xs tracking-wide">ホットペッパービューティーにて多数の高評価をいただいています</p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-10">
+          {SNS_REVIEWS.map(review => (
+            <div key={review.id} className="group bg-[#161B22] border border-white/5 hover:border-[#3B82F6]/30 transition-all duration-300 p-5 sm:p-6 flex flex-col gap-3">
+              <div className="text-[#3B82F6] text-xs font-semibold tracking-wide" aria-label="高評価">★ 高評価</div>
+              <p className="text-white/75 text-xs sm:text-sm leading-relaxed flex-1">「{review.text}」</p>
+              <div className="flex justify-between items-center border-t border-white/5 pt-3 mt-1">
+                <span className="text-white/50 text-xs font-semibold">{review.age}</span>
+                <span className="text-white/30 text-[0.65rem]">ホットペッパー</span>
+              </div>
+              <div className="w-8 h-px bg-white/10 group-hover:w-full group-hover:bg-[#3B82F6] transition-all duration-500" />
+            </div>
+          ))}
+        </div>
+
+        <div className="text-center">
+          <a
+            href={HOTPEPPER_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-white/50 text-xs sm:text-sm hover:text-[#3B82F6] transition-colors duration-200 border-b border-white/20 hover:border-[#3B82F6] pb-1"
+            aria-label="ホットペッパービューティーですべての口コミを見る（新しいウィンドウで開きます）"
+          >
+            すべての口コミを見る
+            <ArrowRight size={14} aria-hidden />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ダークテーマ用バッジスタイル
 const SNS_BADGE = {
   '初回限定': 'bg-red-600 text-white',
@@ -222,8 +300,9 @@ function MenuSnsCard({ menu, lineUrl }) {
           rel="noopener noreferrer"
           className="block text-center px-4 py-2.5 bg-[#3B82F6] text-white text-xs font-semibold tracking-widest hover:bg-[#2563EB] transition-colors duration-200"
           aria-label={`${menu.name}をホットペッパーで予約`}
+          onClick={() => trackHotpepperClick(menu.name)}
         >
-          ホットペッパーで予約
+          今すぐ予約する
         </a>
         <a
           href={lineUrl}
@@ -231,8 +310,9 @@ function MenuSnsCard({ menu, lineUrl }) {
           rel="noopener noreferrer"
           className="block text-center px-4 py-2.5 border border-[#3B82F6]/50 text-[#3B82F6] text-xs font-semibold tracking-widest hover:bg-[#3B82F6]/10 transition-colors duration-200"
           aria-label={`${menu.name}についてLINEで相談`}
+          onClick={() => trackLineClick(menu.name)}
         >
-          LINEで相談
+          LINEで予約・相談
         </a>
       </div>
       <div className="w-8 h-px bg-white/10 group-hover:w-full group-hover:bg-[#3B82F6] transition-all duration-500 mt-1" />
@@ -896,6 +976,9 @@ const HomeSns = () => {
           </div>
         )}
       </section>
+
+      {/* Reviews Section */}
+      <ReviewsSnsSection />
 
       {/* FAQ Section */}
       <FaqSnsSection lineUrl={lineUrl} />

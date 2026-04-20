@@ -1,0 +1,154 @@
+/* お客様の声セクション */
+.reviews-section {
+  background-color: var(--color-primary);
+}
+
+/* 総合評価 */
+.reviews-overall-stars {
+  font-size: 1.1rem;
+  vertical-align: middle;
+  margin-right: 0.3rem;
+}
+
+.reviews-overall-rating {
+  font-family: var(--font-primary);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  vertical-align: middle;
+  margin-right: 0.4rem;
+}
+
+.reviews-overall-count {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  vertical-align: middle;
+}
+
+.reviews-overall-note {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* グリッド */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+/* カード */
+.review-card {
+  background: var(--color-white);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-light);
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.review-stars {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+.review-text {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--color-text-primary);
+  flex: 1;
+  margin: 0;
+}
+
+.reviewer-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--spacing-sm);
+  margin-top: var(--spacing-xs);
+}
+
+.reviewer-age {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  font-family: var(--font-secondary);
+}
+
+.reviewer-source {
+  font-size: 0.75rem;
+  color: var(--color-text-light);
+  font-family: var(--font-secondary);
+}
+
+/* CTA */
+.reviews-cta {
+  text-align: center;
+}
+
+.reviews-link {
+  display: inline-block;
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  font-family: var(--font-secondary);
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 4px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.reviews-link:hover {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+/* レスポンシブ */
+@media (max-width: 992px) {
+  .reviews-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .review-card {
+    padding: var(--spacing-md);
+  }
+
+  .review-text {
+    font-size: 0.88rem;
+  }
+
+  .reviews-overall-rating {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .review-card {
+    padding: 1rem;
+  }
+
+  .review-text {
+    font-size: 0.82rem;
+    line-height: 1.6;
+  }
+}

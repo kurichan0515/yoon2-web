@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import appConfig from '../config/appConfig';
 import { FAQ_DATA, getFaqStructuredData } from '../data/faqData';
+import { trackFaqView } from '../services/analyticsService';
 import './FAQ.css';
 
 // structuredContentをJSXにレンダリング（ライトテーマ用）
@@ -72,6 +73,18 @@ function FAQ() {
   const toggleItem = (id) => {
     setOpenItems(prev => ({ ...prev, [id]: !prev[id] }));
   };
+
+  // FAQセクション到達イベント（1回のみ）
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const once = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { trackFaqView(); once.disconnect(); } },
+      { threshold: 0.3 }
+    );
+    once.observe(el);
+    return () => once.disconnect();
+  }, []);
 
   // セクション表示アニメーション（Home.jsのIntersectionObserverに登録されないため自前で処理）
   useEffect(() => {
