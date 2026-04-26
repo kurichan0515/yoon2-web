@@ -47,41 +47,14 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>yoon² | 松山の耳つぼ・イヤーエステ専門サロン</title>
     
-    <!-- 分析・広告は load 後に読み込み（メインスレッドの実行時間短縮のため） -->
+    <!-- Google tag (gtag.js) - Google Ads + GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-621590738"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      function loadDeferredScripts() {
-        var AW_ID  = 'AW-621590738';
-        var GA4_ID = '%REACT_APP_GA4_MEASUREMENT_ID%'; /* CRAビルド時に置換 */
-        var ADSENSE_ENABLED = '%REACT_APP_ADSENSE_ENABLED%';
-
-        /* gtag.js を GA4 優先、未設定なら Google Ads ID で読み込み */
-        var primaryId = GA4_ID || AW_ID;
-        var g = document.createElement('script');
-        g.async = true;
-        g.src = 'https://www.googletagmanager.com/gtag/js?id=' + primaryId;
-        document.head.appendChild(g);
-
-        gtag('js', new Date());
-        gtag('config', AW_ID);              /* Google Ads（常に有効） */
-        if (GA4_ID) gtag('config', GA4_ID); /* GA4（ID設定時のみ有効） */
-
-        /* AdSenseは本番HTTPS + 明示有効時のみ読み込む */
-        var isLocalHost = /^(localhost|127\.0\.0\.1)$/.test(window.location.hostname);
-        var shouldLoadAdSense = ADSENSE_ENABLED === 'true' && window.location.protocol === 'https:' && !isLocalHost;
-        if (shouldLoadAdSense) {
-          var a = document.createElement('script');
-          a.async = true;
-          a.crossOrigin = 'anonymous';
-          a.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6862900859746528';
-          a.onload = function() { window.dispatchEvent(new Event('adsbygoogle-ready')); };
-          a.onerror = function() { console.info('AdSense script load skipped or blocked.'); };
-          document.head.appendChild(a);
-        }
-      }
-      if (document.readyState === 'complete') setTimeout(loadDeferredScripts, 0);
-      else window.addEventListener('load', loadDeferredScripts);
+      gtag('js', new Date());
+      gtag('config', 'AW-621590738');
+      gtag('config', '%REACT_APP_GA4_MEASUREMENT_ID%');
     </script>
     
     <!-- 構造化データ (JSON-LD) -->
