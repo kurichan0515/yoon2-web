@@ -8,6 +8,20 @@ class AnalyticsService {
     this.isInitialized = false;
   }
 
+  sendGoogleAdsPageViewConversion() {
+    const adsEnabled = process.env.REACT_APP_GOOGLE_ADS_ENABLED === 'true';
+    const adsId = process.env.REACT_APP_GOOGLE_ADS_CONVERSION_ID;
+    const pageViewLabel = process.env.REACT_APP_GOOGLE_ADS_PAGEVIEW_CONVERSION_LABEL
+      || process.env.REACT_APP_GOOGLE_ADS_CONVERSION_LABEL;
+
+    if (!adsEnabled || !adsId || !pageViewLabel) return;
+    if (typeof window === 'undefined' || typeof window.gtag !== 'function') return;
+
+    window.gtag('event', 'conversion', {
+      send_to: `${adsId}/${pageViewLabel}`,
+    });
+  }
+
   // 初期化
   async initialize() {
     if (this.isInitialized) return;
@@ -59,6 +73,9 @@ class AnalyticsService {
           page_location: window.location.href
         });
       }
+
+      // Google Adsの「ページビュー」コンバージョンを送信（ラベル設定時のみ）
+      this.sendGoogleAdsPageViewConversion();
 
       logger.debug(`ページビュー記録: ${pageName}`);
     } catch (error) {
@@ -231,6 +248,22 @@ function gtag(...args) {
   }
 }
 
+function sendGoogleAdsConversion(labelEnvKey, value = null) {
+  const adsEnabled = process.env.REACT_APP_GOOGLE_ADS_ENABLED === 'true';
+  const adsId = process.env.REACT_APP_GOOGLE_ADS_CONVERSION_ID;
+  const label = process.env[labelEnvKey];
+
+  if (!adsEnabled || !adsId || !label) return;
+
+  const payload = { send_to: `${adsId}/${label}` };
+  if (value !== null) {
+    payload.value = value;
+    payload.currency = 'JPY';
+  }
+
+  gtag('event', 'conversion', payload);
+}
+
 /** ホットペッパー予約ボタンクリック */
 export function trackHotpepperClick(menuName = '') {
   gtag('event', 'click_hotpepper', {
@@ -238,6 +271,7 @@ export function trackHotpepperClick(menuName = '') {
     event_label: menuName || 'Hotpepper Reservation Button',
     value: 5000,
   });
+  sendGoogleAdsConversion('REACT_APP_GOOGLE_ADS_HOTPEPPER_CONVERSION_LABEL', 5000);
 }
 
 /** LINE予約ボタンクリック */
@@ -247,6 +281,7 @@ export function trackLineClick(menuName = '') {
     event_label: menuName || 'LINE Reservation Button',
     value: 5000,
   });
+  sendGoogleAdsConversion('REACT_APP_GOOGLE_ADS_LINE_CONVERSION_LABEL', 5000);
 }
 
 /** 電話タップ */
