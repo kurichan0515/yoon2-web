@@ -28,6 +28,24 @@ const BookingConfirmation = () => {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'conversion', {
+        send_to: 'AW-621590738/PT4wCL6F8J8cENLxsqgC',
+      });
+      return;
+    }
+
+    if (Array.isArray(window.dataLayer)) {
+      window.dataLayer.push({
+        event: 'conversion',
+        send_to: 'AW-621590738/PT4wCL6F8J8cENLxsqgC',
+      });
+    }
+  }, []);
+
   const addToRefs = (el) => {
     if (el && !sectionsRef.current.includes(el)) {
       sectionsRef.current.push(el);
