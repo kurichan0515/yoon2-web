@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import appConfig from '../../config/appConfig';
+import { trackLineAddConversion } from '../../services/googleAdsService';
 import './PublicFooter.css';
 
 const PublicFooter = () => {
@@ -33,11 +34,12 @@ const PublicFooter = () => {
           
           <div className="footer-section">
             <h4>予約・お問い合わせ</h4>
-            <a 
-              href={appConfig.shop.lineUrl || appConfig.social.line.url} 
-              target="_blank" 
+            <a
+              href={appConfig.shop.lineUrl || appConfig.social.line.url}
+              target="_blank"
               rel="noopener noreferrer"
               className="footer-line-link"
+              onClick={() => trackLineAddConversion()}
             >
               💬 LINEで予約
             </a>

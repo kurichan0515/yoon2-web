@@ -9,7 +9,7 @@ import ErrorMessage from '../components/common/ErrorMessage';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import { setPageMeta } from '../utils/seoHelper';
 import { trackPageView } from '../services/analyticsService';
-import { trackPageView as trackGoogleAdsPageView } from '../services/googleAdsService';
+import { trackPageView as trackGoogleAdsPageView, trackLineAddConversion } from '../services/googleAdsService';
 import logger from '../utils/logger';
 import { FAQ_DATA, getFaqStructuredData } from '../data/faqData';
 import { MENU_DATA, HOTPEPPER_URL, getMenuStructuredData } from '../data/menuData';
@@ -154,6 +154,7 @@ const Hero = () => {
             rel="noopener noreferrer"
             className="px-6 sm:px-10 py-3 sm:py-4 bg-white text-black font-semibold text-xs sm:text-sm tracking-wide sm:tracking-widest hover:bg-[#3B82F6] hover:text-white transition-all duration-300 transform hover:-translate-y-1 inline-block text-center shadow-lg shadow-white/20"
             aria-label="LINEで予約・お問い合わせ（新しいウィンドウで開きます）"
+            onClick={() => trackLineAddConversion()}
           >
             <span className="line-booking-text">
               <span className="line-booking-line1">📱 LINEで予約</span>
@@ -310,7 +311,7 @@ function MenuSnsCard({ menu, lineUrl }) {
           rel="noopener noreferrer"
           className="block text-center px-4 py-2.5 border border-[#3B82F6]/50 text-[#3B82F6] text-xs font-semibold tracking-widest hover:bg-[#3B82F6]/10 transition-colors duration-200"
           aria-label={`${menu.name}についてLINEで相談`}
-          onClick={() => trackLineClick(menu.name)}
+          onClick={() => { trackLineClick(menu.name); trackLineAddConversion(); }}
         >
           LINEで予約・相談
         </a>
@@ -553,6 +554,7 @@ function FaqSnsSection({ lineUrl }) {
                 rel="noopener noreferrer"
                 className="inline-block px-6 sm:px-8 py-2.5 sm:py-3 bg-[#3B82F6] text-white font-semibold text-xs sm:text-sm tracking-widest hover:bg-[#2563EB] transition-all duration-300 transform hover:-translate-y-1 whitespace-nowrap text-center"
                 aria-label="LINEでお問い合わせ（新しいウィンドウで開きます）"
+                onClick={() => trackLineAddConversion()}
               >
                 LINEでお問い合わせ →
               </a>
@@ -743,6 +745,7 @@ const HomeSns = () => {
               rel="noopener noreferrer"
               className="group bg-gradient-to-br from-[#161B22] to-[#0A0A0A] p-4 sm:p-6 md:p-8 lg:p-12 border-2 border-[#3B82F6]/30 hover:border-[#3B82F6] transition-all duration-500 relative overflow-hidden shadow-lg shadow-[#3B82F6]/20 hover:shadow-[#3B82F6]/40"
               aria-label="LINEで予約・お問い合わせ（新しいウィンドウで開きます）"
+              onClick={() => trackLineAddConversion()}
             >
               <div className="absolute top-0 right-0 p-2 sm:p-4 opacity-10 group-hover:opacity-100 transition-opacity">
                 <MessageCircle className="text-[#3B82F6] w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" />
@@ -822,6 +825,7 @@ const HomeSns = () => {
                 rel="noopener noreferrer"
                 className="inline-block px-6 sm:px-8 py-2.5 sm:py-3 bg-[#3B82F6] text-white font-semibold text-xs sm:text-sm tracking-wide sm:tracking-widest hover:bg-[#2563EB] transition-all duration-300 transform hover:-translate-y-1 whitespace-nowrap"
                 aria-label="LINEを開く（新しいウィンドウで開きます）"
+                onClick={() => trackLineAddConversion()}
               >
                 LINEを開く →
               </a>
@@ -888,12 +892,13 @@ const HomeSns = () => {
               >
                 <Instagram className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden />
               </a>
-              <a 
+              <a
                 href={lineUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 sm:p-3 bg-white/5 hover:bg-[#3B82F6] transition-colors rounded-full flex-shrink-0"
                 aria-label="LINEで予約"
+                onClick={() => trackLineAddConversion()}
               >
                 <Calendar className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden />
               </a>
@@ -1036,6 +1041,7 @@ const HomeSns = () => {
           rel="noopener noreferrer"
           className="w-12 h-12 sm:w-14 sm:h-14 bg-[#3B82F6] text-white rounded-full flex items-center justify-center shadow-lg shadow-blue-500/20"
           aria-label="LINEで予約（新しいウィンドウで開きます）"
+          onClick={() => trackLineAddConversion()}
         >
           <Calendar className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden />
         </a>

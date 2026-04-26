@@ -11,6 +11,7 @@ import LoadingSpinner from '../components/common/LoadingSpinner';
 import { setPageMeta } from '../utils/seoHelper';
 import appConfig from '../config/appConfig';
 import logger from '../utils/logger';
+import { trackLineAddConversion } from '../services/googleAdsService';
 import './Home.css';
 
 const Home = memo(() => {
@@ -176,6 +177,7 @@ const Home = memo(() => {
                 rel="noopener noreferrer"
                 className="btn-primary hero-cta line-booking-btn"
                 aria-label="LINEで予約・お問い合わせ（新しいウィンドウで開きます）"
+                onClick={() => trackLineAddConversion()}
               >
                 <span className="line-booking-text">
                   <span className="line-booking-line1">LINEで予約</span>
@@ -455,6 +457,7 @@ const Home = memo(() => {
               rel="noopener noreferrer"
               className="btn-primary line-booking-btn"
               style={{ marginTop: '1rem', display: 'inline-block' }}
+              onClick={() => trackLineAddConversion()}
             >
               <span className="line-booking-text">
                 <span className="line-booking-line1">LINEで予約</span>

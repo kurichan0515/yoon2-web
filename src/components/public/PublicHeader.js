@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import appConfig from '../../config/appConfig';
+import { trackLineAddConversion } from '../../services/googleAdsService';
 import './PublicHeader.css';
 
 const PublicHeader = () => {
@@ -92,6 +93,7 @@ const PublicHeader = () => {
             rel="noopener noreferrer"
             className="line-button"
             aria-label="LINEで予約・お問い合わせ（新しいウィンドウで開きます）"
+            onClick={() => trackLineAddConversion()}
           >
             LINEで予約
           </a>
