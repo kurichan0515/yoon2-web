@@ -25,8 +25,8 @@
     
     <!-- Canonical URL - 重複コンテンツ対策 -->
     <link rel="canonical" href="https://yoon2.com/" />
-    <!-- LCP 改善: ヒーロー背景画像の先行読み込み -->
-    <link rel="preload" as="image" href="/images/hero/wait-room.png" />
+    <!-- LCP 改善: ヒーロー背景画像の先行読み込み（PCのみ有効・SPはhero-sp.jpgを使用） -->
+    <link rel="preload" as="image" href="/images/shop/play-room.jpg" media="(min-width: 769px)" />
     <!-- フォントの事前接続でレンダーブロックを軽減 -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
