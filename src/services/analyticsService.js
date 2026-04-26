@@ -295,11 +295,13 @@ export function trackLineClick(menuName = '') {
 
 /** 電話タップ */
 export function trackPhoneClick() {
+  console.info('[Click] phone', { eventLabel: 'Phone Call' });
   gtag('event', 'click_phone', {
     event_category: 'conversion',
     event_label: 'Phone Call',
     value: 5000,
   });
+  sendGoogleAdsConversion(process.env.REACT_APP_GOOGLE_ADS_PHONE_CONVERSION_LABEL, 5000);
 }
 
 /** メニューセクション到達 */
