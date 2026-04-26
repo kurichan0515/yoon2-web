@@ -14,8 +14,9 @@ class AnalyticsService {
     
     try {
       // Firebase Analytics の設定（オプション）
-      if (typeof window !== 'undefined' && window.gtag) {
-        window.gtag('config', process.env.REACT_APP_GA_MEASUREMENT_ID || 'GA_MEASUREMENT_ID');
+      const ga4Id = process.env.REACT_APP_GA4_MEASUREMENT_ID;
+      if (typeof window !== 'undefined' && window.gtag && ga4Id) {
+        window.gtag('config', ga4Id);
       }
       
       this.isInitialized = true;
