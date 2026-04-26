@@ -242,7 +242,7 @@ const appConfig = {
     // デフォルトの広告ユニットID（環境変数から取得、または直接設定）
     defaultAdSlot: process.env.REACT_APP_ADSENSE_DEFAULT_SLOT || "2647640133",
     // AdSenseを有効にするかどうか
-    enabled: process.env.REACT_APP_ADSENSE_ENABLED === 'true' || true,
+    enabled: process.env.REACT_APP_ADSENSE_ENABLED === 'true',
     // 開発モード（ローカル環境でプレースホルダーを表示）
     devMode: process.env.REACT_APP_ADSENSE_DEV_MODE === 'true' || false
   },
