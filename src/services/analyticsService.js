@@ -44,6 +44,16 @@ class AnalyticsService {
   async trackPageView(pageName, additionalData = {}) {
     try {
       await this.initialize();
+
+      // Googleタグ送信はFirestore可用性に依存させない
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'page_view', {
+          page_title: pageName,
+          page_location: window.location.href
+        });
+      }
+      // Google Adsの「ページビュー」コンバージョンを送信（ラベル設定時のみ）
+      this.sendGoogleAdsPageViewConversion();
       
       // Firebaseが利用可能かより厳密にチェック
       if (!db || typeof db === 'undefined' || !db._delegate) {
@@ -66,17 +76,6 @@ class AnalyticsService {
       // Firestore に記録
       await addDoc(collection(db, 'pageViews'), pageViewData);
 
-      // Google Analytics にも送信（オプション）
-      if (typeof window !== 'undefined' && window.gtag) {
-        window.gtag('event', 'page_view', {
-          page_title: pageName,
-          page_location: window.location.href
-        });
-      }
-
-      // Google Adsの「ページビュー」コンバージョンを送信（ラベル設定時のみ）
-      this.sendGoogleAdsPageViewConversion();
-
       logger.debug(`ページビュー記録: ${pageName}`);
     } catch (error) {
       logger.error('ページビュー記録エラー:', error);
@@ -87,6 +86,11 @@ class AnalyticsService {
   async trackEvent(eventName, eventData = {}) {
     try {
       await this.initialize();
+
+      // Googleタグ送信はFirestore可用性に依存させない
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', eventName, eventData);
+      }
       
       // Firebaseが利用可能かより厳密にチェック
       if (!db || typeof db === 'undefined' || !db._delegate) {
@@ -103,11 +107,6 @@ class AnalyticsService {
       };
 
       await addDoc(collection(db, 'events'), event);
-
-      // Google Analytics にも送信（オプション）
-      if (typeof window !== 'undefined' && window.gtag) {
-        window.gtag('event', eventName, eventData);
-      }
 
       logger.debug(`イベント記録: ${eventName}`);
     } catch (error) {
@@ -248,10 +247,9 @@ function gtag(...args) {
   }
 }
 
-function sendGoogleAdsConversion(labelEnvKey, value = null) {
+function sendGoogleAdsConversion(label, value = null) {
   const adsEnabled = process.env.REACT_APP_GOOGLE_ADS_ENABLED === 'true';
   const adsId = process.env.REACT_APP_GOOGLE_ADS_CONVERSION_ID;
-  const label = process.env[labelEnvKey];
 
   if (!adsEnabled || !adsId || !label) return;
 
@@ -271,7 +269,7 @@ export function trackHotpepperClick(menuName = '') {
     event_label: menuName || 'Hotpepper Reservation Button',
     value: 5000,
   });
-  sendGoogleAdsConversion('REACT_APP_GOOGLE_ADS_HOTPEPPER_CONVERSION_LABEL', 5000);
+  sendGoogleAdsConversion(process.env.REACT_APP_GOOGLE_ADS_HOTPEPPER_CONVERSION_LABEL, 5000);
 }
 
 /** LINE予約ボタンクリック */
@@ -281,7 +279,7 @@ export function trackLineClick(menuName = '') {
     event_label: menuName || 'LINE Reservation Button',
     value: 5000,
   });
-  sendGoogleAdsConversion('REACT_APP_GOOGLE_ADS_LINE_CONVERSION_LABEL', 5000);
+  sendGoogleAdsConversion(process.env.REACT_APP_GOOGLE_ADS_LINE_CONVERSION_LABEL, 5000);
 }
 
 /** 電話タップ */

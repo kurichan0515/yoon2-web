@@ -53,10 +53,6 @@ const Home = memo(() => {
     import('../services/analyticsService').then(({ trackPageView }) => {
       trackPageView('Home', { section: 'main' });
     }).catch(() => {});
-    import('../services/googleAdsService').then(({ trackPageView: trackGoogleAdsPageView }) => {
-      trackGoogleAdsPageView('/', 'Home - yoon²ゆんゆん');
-    }).catch(() => {});
-    
     // Intersection Observer for animations
     const observer = new IntersectionObserver(
       (entries) => {
