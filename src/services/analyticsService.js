@@ -247,7 +247,7 @@ function gtag(...args) {
   }
 }
 
-function sendGoogleAdsConversion(label, value = null) {
+function sendGoogleAdsConversion(label, value = null, extraPayload = null) {
   const adsEnabled = process.env.REACT_APP_GOOGLE_ADS_ENABLED === 'true';
   const adsId = process.env.REACT_APP_GOOGLE_ADS_CONVERSION_ID;
 
@@ -265,6 +265,9 @@ function sendGoogleAdsConversion(label, value = null) {
   if (value !== null) {
     payload.value = value;
     payload.currency = 'JPY';
+  }
+  if (extraPayload && typeof extraPayload === 'object') {
+    Object.assign(payload, extraPayload);
   }
 
   console.info('[AdsConversion:SEND]', payload);
@@ -294,13 +297,37 @@ export function trackLineClick(menuName = '') {
 }
 
 /** 電話タップ */
-export function trackPhoneClick() {
+export function trackPhoneClick(phoneHref = '') {
   console.info('[Click] phone', { eventLabel: 'Phone Call' });
   gtag('event', 'click_phone', {
     event_category: 'conversion',
     event_label: 'Phone Call',
     value: 5000,
   });
+
+  // 電話リンクは遷移が早く、送信前に離脱しやすいため callback で遷移する
+  if (phoneHref) {
+    const safeNavigate = () => { window.location.href = phoneHref; };
+    let navigated = false;
+    const navigateOnce = () => {
+      if (navigated) return;
+      navigated = true;
+      safeNavigate();
+    };
+
+    sendGoogleAdsConversion(
+      process.env.REACT_APP_GOOGLE_ADS_PHONE_CONVERSION_LABEL,
+      5000,
+      {
+        event_callback: navigateOnce,
+        event_timeout: 1200,
+      }
+    );
+
+    setTimeout(navigateOnce, 1300);
+    return;
+  }
+
   sendGoogleAdsConversion(process.env.REACT_APP_GOOGLE_ADS_PHONE_CONVERSION_LABEL, 5000);
 }
 

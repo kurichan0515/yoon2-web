@@ -185,7 +185,10 @@ function FAQ() {
               href={`tel:${appConfig.shop.phone.replace(/-/g, '')}`}
               className="btn-secondary faq-tel-btn"
               aria-label={`電話で問い合わせ: ${appConfig.shop.phone}`}
-              onClick={() => trackPhoneClick()}
+              onClick={(e) => {
+                e.preventDefault();
+                trackPhoneClick(`tel:${appConfig.shop.phone.replace(/-/g, '')}`);
+              }}
             >
               {appConfig.shop.phone}
             </a>
