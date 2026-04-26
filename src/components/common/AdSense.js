@@ -21,14 +21,15 @@ import './AdSense.css';
  * - クリック誘導は禁止されています
  * - ローカル環境では開発用プレースホルダーが表示されます
  */
-const AdSense = ({ 
-  adSlot, 
+const AdSense = ({
+  adSlot,
   adFormat = 'auto',
   style = {},
   className = '',
-  fullWidthResponsive = true 
+  fullWidthResponsive = true
 }) => {
   const adRef = useRef(null);
+  const pushCalledRef = useRef(false);
   const [showPlaceholder, setShowPlaceholder] = useState(true);
   const [scriptReady, setScriptReady] = useState(typeof window !== 'undefined' && !!window.adsbygoogle);
   
@@ -94,27 +95,29 @@ const AdSense = ({
       return;
     }
 
-    try {
-      setShowPlaceholder(false);
-      requestAnimationFrame(() => {
-        try {
-          (window.adsbygoogle = window.adsbygoogle || []).push({});
-          logger.debug('AdSense: Ad unit initialized', { adSlot: finalAdSlot, adFormat });
-        } catch (e) {
-          logger.error('AdSense: Error initializing ad unit', e);
-          setShowPlaceholder(true);
-          return;
-        }
-        setTimeout(() => {
-          const adElement = adRef.current;
-          if (adElement && adElement.offsetHeight === 0) setShowPlaceholder(true);
-        }, 2000);
-      });
-    } catch (error) {
-      logger.error('AdSense: Error initializing ad unit', error);
-      setShowPlaceholder(true);
-    }
+    // showPlaceholder=false にしてから別の effect で push を呼ぶ（競合防止）
+    setShowPlaceholder(false);
   }, [finalAdSlot, adFormat, publisherId, isDevelopment, scriptReady]);
+
+  // showPlaceholder が false になり <ins> が display:block になった後に push
+  useEffect(() => {
+    if (showPlaceholder || isDevelopment || pushCalledRef.current) return;
+    if (!scriptReady || !window.adsbygoogle) return;
+    pushCalledRef.current = true;
+    requestAnimationFrame(() => {
+      try {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        logger.debug('AdSense: Ad unit initialized', { adSlot: finalAdSlot, adFormat });
+      } catch (e) {
+        logger.error('AdSense: Error initializing ad unit', e);
+        setShowPlaceholder(true);
+      }
+      setTimeout(() => {
+        const adElement = adRef.current;
+        if (adElement && adElement.offsetHeight === 0) setShowPlaceholder(true);
+      }, 2000);
+    });
+  }, [showPlaceholder, isDevelopment, scriptReady, finalAdSlot, adFormat]);
 
   if (!finalAdSlot || !publisherId) {
     return null;
