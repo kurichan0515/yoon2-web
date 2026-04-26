@@ -47,7 +47,7 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>yoon² | 松山の耳つぼ・イヤーエステ専門サロン</title>
     
-    <!-- Google tag (gtag.js) - Google Ads + GA4 -->
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-621590738"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -55,6 +55,10 @@
       gtag('js', new Date());
       gtag('config', 'AW-621590738');
       gtag('config', '%REACT_APP_GA4_MEASUREMENT_ID%');
+    </script>
+    <!-- Event snippet for ページビュー コンバージョン -->
+    <script>
+      gtag('event', 'conversion', {'send_to': 'AW-621590738/AWEUCNuM5KIcENLxsqgC'});
     </script>
     
     <!-- 構造化データ (JSON-LD) -->
