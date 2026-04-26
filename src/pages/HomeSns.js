@@ -401,6 +401,7 @@ function MenuSnsSection({ lineUrl }) {
 // ダークテーマ用FAQアイテム
 function FaqSnsItem({ item, isOpen, onToggle, lineUrl }) {
   const { content } = item;
+  const isHotpepperUrl = (url = '') => /beauty\.hotpepper\.jp/.test(url);
 
   const renderAnswer = () => {
     if (!content) return null;
@@ -415,9 +416,27 @@ function FaqSnsItem({ item, isOpen, onToggle, lineUrl }) {
               <li key={i} className="flex items-start gap-2">
                 <span className="text-[#3B82F6] flex-shrink-0 mt-0.5">›</span>
                 {li.href ? (
-                  <a href={li.href} target="_blank" rel="noopener noreferrer" className="text-[#3B82F6] underline underline-offset-2 hover:text-[#60A5FA] transition-colors">{li.text}</a>
+                  <a
+                    href={li.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#3B82F6] underline underline-offset-2 hover:text-[#60A5FA] transition-colors"
+                    onClick={() => {
+                      if (isHotpepperUrl(li.href)) trackHotpepperClick('SNS FAQ Link');
+                    }}
+                  >
+                    {li.text}
+                  </a>
                 ) : li.hrefKey === 'line' ? (
-                  <a href={lineUrl} target="_blank" rel="noopener noreferrer" className="text-[#3B82F6] underline underline-offset-2 hover:text-[#60A5FA] transition-colors">{li.text}</a>
+                  <a
+                    href={lineUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#3B82F6] underline underline-offset-2 hover:text-[#60A5FA] transition-colors"
+                    onClick={() => trackLineClick('SNS FAQ Link')}
+                  >
+                    {li.text}
+                  </a>
                 ) : (
                   <span>{li.text}</span>
                 )}

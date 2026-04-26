@@ -251,7 +251,15 @@ function sendGoogleAdsConversion(label, value = null) {
   const adsEnabled = process.env.REACT_APP_GOOGLE_ADS_ENABLED === 'true';
   const adsId = process.env.REACT_APP_GOOGLE_ADS_CONVERSION_ID;
 
-  if (!adsEnabled || !adsId || !label) return;
+  if (!adsEnabled || !adsId || !label) {
+    console.info('[AdsConversion:SKIP]', {
+      reason: !adsEnabled ? 'ads_disabled' : !adsId ? 'missing_ads_id' : 'missing_label',
+      adsEnabled,
+      hasAdsId: Boolean(adsId),
+      hasLabel: Boolean(label),
+    });
+    return;
+  }
 
   const payload = { send_to: `${adsId}/${label}` };
   if (value !== null) {
@@ -259,11 +267,13 @@ function sendGoogleAdsConversion(label, value = null) {
     payload.currency = 'JPY';
   }
 
+  console.info('[AdsConversion:SEND]', payload);
   gtag('event', 'conversion', payload);
 }
 
 /** ホットペッパー予約ボタンクリック */
 export function trackHotpepperClick(menuName = '') {
+  console.info('[Click] hotpepper', { menuName: menuName || 'Hotpepper Reservation Button' });
   gtag('event', 'click_hotpepper', {
     event_category: 'conversion',
     event_label: menuName || 'Hotpepper Reservation Button',
@@ -274,6 +284,7 @@ export function trackHotpepperClick(menuName = '') {
 
 /** LINE予約ボタンクリック */
 export function trackLineClick(menuName = '') {
+  console.info('[Click] line', { menuName: menuName || 'LINE Reservation Button' });
   gtag('event', 'click_line', {
     event_category: 'conversion',
     event_label: menuName || 'LINE Reservation Button',

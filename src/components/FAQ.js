@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import appConfig from '../config/appConfig';
 import { FAQ_DATA, getFaqStructuredData } from '../data/faqData';
-import { trackFaqView } from '../services/analyticsService';
+import { trackFaqView, trackHotpepperClick, trackLineClick } from '../services/analyticsService';
 import './FAQ.css';
 
 // structuredContentをJSXにレンダリング（ライトテーマ用）
 function renderContent(content, lineUrl) {
   if (!content) return null;
   const { paragraphs, label, listItems, note, afterParagraphs, priceItems } = content;
+  const isHotpepperUrl = (url = '') => /beauty\.hotpepper\.jp/.test(url);
   return (
     <>
       {paragraphs?.map((p, i) => <p key={i}>{p}</p>)}
@@ -17,9 +18,25 @@ function renderContent(content, lineUrl) {
           {listItems.map((item, i) => (
             <li key={i}>
               {item.href ? (
-                <a href={item.href} target="_blank" rel="noopener noreferrer">{item.text}</a>
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => {
+                    if (isHotpepperUrl(item.href)) trackHotpepperClick('FAQ Link');
+                  }}
+                >
+                  {item.text}
+                </a>
               ) : item.hrefKey === 'line' ? (
-                <a href={lineUrl} target="_blank" rel="noopener noreferrer">{item.text}</a>
+                <a
+                  href={lineUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackLineClick('FAQ Link')}
+                >
+                  {item.text}
+                </a>
               ) : (
                 item.text
               )}
@@ -157,6 +174,7 @@ function FAQ() {
               rel="noopener noreferrer"
               className="btn-primary line-booking-btn"
               aria-label="LINEでお問い合わせ（新しいウィンドウで開きます）"
+              onClick={() => trackLineClick('FAQ Contact CTA')}
             >
               <span className="line-booking-text">
                 <span className="line-booking-line1">LINEで予約</span>

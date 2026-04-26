@@ -14,6 +14,7 @@ export const trackLineAddConversion = () => {
   }
 
   const conversionId = process.env.REACT_APP_GOOGLE_ADS_CONVERSION_ID;
+  const lineLabel = process.env.REACT_APP_GOOGLE_ADS_LINE_CONVERSION_LABEL;
 
   if (!conversionId) {
     console.error('Google広告コンバージョンIDが設定されていません（REACT_APP_GOOGLE_ADS_CONVERSION_ID）');
@@ -21,13 +22,25 @@ export const trackLineAddConversion = () => {
   }
 
   if (typeof window.gtag === 'function') {
+    if (lineLabel) {
+      console.info('[Click] line(additional)', { send_to: `${conversionId}/${lineLabel}` });
+      window.gtag('event', 'conversion', {
+        send_to: `${conversionId}/${lineLabel}`,
+        value: 5000,
+        currency: 'JPY'
+      });
+      console.log('✅ LINE予約コンバージョン送信完了:', `${conversionId}/${lineLabel}`);
+      return;
+    }
+
+    // 後方互換（ラベル未設定時のみ）
     window.gtag('event', 'ads_conversion_add_line', {
-      'send_to': conversionId,
-      'value': 1,
-      'currency': 'JPY'
+      send_to: conversionId,
+      value: 1,
+      currency: 'JPY'
     });
 
-    console.log('✅ LINE追加コンバージョン送信完了:', conversionId);
+    console.log('⚠️ LINEラベル未設定のため後方互換イベントで送信:', conversionId);
   } else {
     console.error('❌ gtag関数が見つかりません。Googleタグが正しく読み込まれているか確認してください。');
   }
