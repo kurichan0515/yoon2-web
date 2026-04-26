@@ -13,7 +13,7 @@ import { trackPageView as trackGoogleAdsPageView, trackLineAddConversion } from 
 import logger from '../utils/logger';
 import { FAQ_DATA, getFaqStructuredData } from '../data/faqData';
 import { MENU_DATA, HOTPEPPER_URL, getMenuStructuredData } from '../data/menuData';
-import { trackHotpepperClick, trackLineClick, trackPhoneClick } from '../services/analyticsService';
+import { trackHotpepperClick, trackLineClick } from '../services/analyticsService';
 import './HomeSns.css';
 import './Home.css';
 
@@ -581,10 +581,6 @@ function FaqSnsSection({ lineUrl }) {
                 href={`tel:${appConfig.shop.phone.replace(/-/g, '')}`}
                 className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 border border-white/20 text-white/70 text-xs sm:text-sm tracking-widest hover:border-[#3B82F6] hover:text-white transition-all duration-300 whitespace-nowrap"
                 aria-label={`電話で問い合わせ: ${appConfig.shop.phone}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  trackPhoneClick(`tel:${appConfig.shop.phone.replace(/-/g, '')}`);
-                }}
               >
                 <Phone size={14} aria-hidden />
                 {appConfig.shop.phone}

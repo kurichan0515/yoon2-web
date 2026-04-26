@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import appConfig from '../config/appConfig';
 import { FAQ_DATA, getFaqStructuredData } from '../data/faqData';
-import { trackFaqView, trackHotpepperClick, trackLineClick, trackPhoneClick } from '../services/analyticsService';
+import { trackFaqView, trackHotpepperClick, trackLineClick } from '../services/analyticsService';
 import './FAQ.css';
 
 // structuredContentをJSXにレンダリング（ライトテーマ用）
@@ -185,10 +185,6 @@ function FAQ() {
               href={`tel:${appConfig.shop.phone.replace(/-/g, '')}`}
               className="btn-secondary faq-tel-btn"
               aria-label={`電話で問い合わせ: ${appConfig.shop.phone}`}
-              onClick={(e) => {
-                e.preventDefault();
-                trackPhoneClick(`tel:${appConfig.shop.phone.replace(/-/g, '')}`);
-              }}
             >
               {appConfig.shop.phone}
             </a>
