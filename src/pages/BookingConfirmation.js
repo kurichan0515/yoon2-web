@@ -31,17 +31,14 @@ const BookingConfirmation = () => {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
+    const adsId = process.env.REACT_APP_GOOGLE_ADS_CONVERSION_ID;
+    const pageViewLabel = process.env.REACT_APP_GOOGLE_ADS_PAGEVIEW_CONVERSION_LABEL;
+
+    if (!adsId || !pageViewLabel) return;
+
     if (typeof window.gtag === 'function') {
       window.gtag('event', 'conversion', {
-        send_to: 'AW-621590738/PT4wCL6F8J8cENLxsqgC',
-      });
-      return;
-    }
-
-    if (Array.isArray(window.dataLayer)) {
-      window.dataLayer.push({
-        event: 'conversion',
-        send_to: 'AW-621590738/PT4wCL6F8J8cENLxsqgC',
+        send_to: `${adsId}/${pageViewLabel}`,
       });
     }
   }, []);
