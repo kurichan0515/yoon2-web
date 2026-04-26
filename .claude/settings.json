@@ -5,7 +5,9 @@
       "Bash(git *)",
       "Bash(npm run *)",
       "Bash(npm install *)",
-      "Bash(firebase *)"
+      "Bash(firebase *)",
+      "Bash(bash -i -c \"nvm list\")",
+      "Bash(bash -i -c \"nvm use 22 && node --version && firebase deploy --only hosting\")"
     ],
     "additionalDirectories": [
       "/home/kurichan0515/.claude",
