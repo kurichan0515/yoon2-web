@@ -11,23 +11,29 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
-  height: 100vh;
+  height: auto;
   margin: 0;
   padding-top: max(100px, env(safe-area-inset-top, 0px)); /* ヘッダー＋セーフエリア */
+  padding-bottom: var(--spacing-xxl);
   box-sizing: border-box;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   background: var(--color-primary);
   color: var(--color-text-primary);
-  overflow: hidden;
+  overflow-x: clip;
 }
 
 @supports (min-height: 100dvh) {
   .hero {
     min-height: 100dvh;
-    height: 100dvh;
   }
+}
+
+.hero > .container {
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 100%;
 }
 
 .hero-background {
@@ -680,6 +686,65 @@
 }
 
 /* Responsive Design */
+/* PC: ヒーローコンテンツを1画面に収める */
+@media (min-width: 769px) {
+  .hero {
+    padding-bottom: var(--spacing-sm);
+  }
+
+  .hero-content {
+    padding: 0.8rem var(--spacing-md);
+  }
+
+  .hero-title-main {
+    font-size: 2.8rem;
+    margin-bottom: 0.08em;
+  }
+
+  .hero-title-reading {
+    margin-bottom: 0.2rem;
+  }
+
+  .hero-title-sub {
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-subtitle {
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-description {
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-price-banner {
+    margin: 0.4rem auto 0.3rem;
+    padding: 0.6rem 1.5rem 0.5rem;
+  }
+
+  .hero-price-amount {
+    font-size: 2.2rem;
+  }
+
+  .hero-price-unit {
+    font-size: 1.1rem;
+  }
+
+  .hero-price-note {
+    margin-top: 0.15rem;
+  }
+
+  .hero-review-badge {
+    margin: 0 auto 0.4rem;
+    padding: 0.3rem 0.9rem;
+  }
+
+  .hero-actions {
+    gap: var(--spacing-sm);
+  }
+}
+
 @media (max-width: 992px) {
   .about-content,
   .vision-content {
@@ -726,16 +791,16 @@
   .hero {
     padding-top: max(70px, env(safe-area-inset-top, 0px));
     min-height: 100vh;
-    height: 100vh;
+    height: auto;
   }
-  
+
   @supports (min-height: 100dvh) {
     .hero {
       min-height: 100dvh;
-      height: 100dvh;
+      height: auto;
     }
   }
-  
+
   .hero-content h1,
   .hero-title-main {
     font-size: 3rem;

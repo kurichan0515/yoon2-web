@@ -151,15 +151,17 @@ const Home = memo(() => {
               イヤーエステと耳つぼで至福のひととき<br />
               プロの技術で心身ともにリラックスできる特別な時間をお届けします
             </p>
-            {/* 初回価格バナー */}
-            <div className="hero-price-banner">
-              <p className="hero-price-label">初回限定特別価格</p>
-              <div className="hero-price-wrapper">
-                <span className="hero-price-amount">4,000</span>
-                <span className="hero-price-unit">円〜</span>
+            {/* 初回価格バナー（appConfig.features.firstVisitDiscount で表示/非表示を切り替え） */}
+            {appConfig.features.firstVisitDiscount && (
+              <div className="hero-price-banner">
+                <p className="hero-price-label">初回限定特別価格</p>
+                <div className="hero-price-wrapper">
+                  <span className="hero-price-amount">4,500</span>
+                  <span className="hero-price-unit">円〜</span>
+                </div>
+                <p className="hero-price-note">通常5,000円</p>
               </div>
-              <p className="hero-price-note">通常5,000円</p>
-            </div>
+            )}
 
             {/* 口コミバッジ */}
             <div className="hero-review-badge" aria-label="ホットペッパービューティー 高評価獲得">

@@ -1,5 +1,11 @@
 // アプリケーション設定ファイル
 const appConfig = {
+  // ===== 機能フラグ =====
+  // ここを変更するだけで各機能のON/OFFができます
+  features: {
+    firstVisitDiscount: true, // 初回割引表示 ON/OFF（trueで表示、falseで非表示）
+  },
+
   // Firebase設定（環境変数から取得、フォールバック値も設定）
   firebase: {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY || "AIzaSyDemo1234567890abcdefghijklmnop",
@@ -119,78 +125,10 @@ const appConfig = {
       "ご理解の上ご予約ください"
     ],
     services: [
-      // おすすめメニュー
-      {
-        id: "yoon2-extreme",
-        name: "【yoon²極メニュー】イヤーエステ×ドライヘッドスパ",
-        duration: "100分",
-        price: 11000,
-        description: "極上のリラクゼーション体験",
-        category: "recommend"
-      },
-      {
-        id: "yoon2-premium",
-        name: "【yoon²最上級メニュー】耳つぼジュエリー付き💎イヤーエステ×ドライヘッドスパ",
-        duration: "100分",
-        price: 12500,
-        description: "最高級のトータルケア",
-        category: "recommend"
-      },
-      
-      // 耳つぼメニュー（基本料金は設定ファイルで直接管理）
-      {
-        id: "mimitubo-new",
-        name: "ご新規様",
-        duration: "60分",
-        price: 4000,
-        description: "初回限定特別価格",
-        category: "mimitubo"
-      },
-      {
-        id: "mimitubo-pair",
-        name: "ペア割新規",
-        duration: "60分",
-        price: 3800,
-        description: "お友達と一緒でお得",
-        category: "mimitubo"
-      },
-      {
-        id: "mimitubo-repeat",
-        name: "リピーター様",
-        duration: "60分",
-        price: 3500,
-        description: "いつもありがとうございます",
-        category: "mimitubo"
-      },
-      {
-        id: "mimitubo-both",
-        name: "両耳10個",
-        duration: "30分",
-        price: 2500,
-        description: "付け放題メニューのみ",
-        category: "mimitubo"
-      },
-      
-      // イヤーエステメニュー（基本料金は設定ファイルで直接管理）
-      {
-        id: "ear-este-trial-male",
-        name: "【新規/男性】お試し価格",
-        duration: "40分",
-        price: 4500,
-        description: "男性初回限定価格",
-        category: "ear-este"
-      },
-      {
-        id: "ear-este-trial-female",
-        name: "【新規/女性】お試し価格",
-        duration: "40分",
-        price: 4000,
-        description: "女性初回限定価格",
-        category: "ear-este"
-      },
+      // イヤーエステ
       {
         id: "ear-este-40",
-        name: "イヤーエステ 40分コース",
+        name: "イヤーエステ40分",
         duration: "40分",
         price: 5000,
         description: "基本的なイヤーエステ",
@@ -198,29 +136,125 @@ const appConfig = {
       },
       {
         id: "ear-este-60",
-        name: "イヤーエステ 60分コース",
+        name: "イヤーエステ60分",
         duration: "60分",
         price: 7000,
         description: "じっくりケアコース",
         category: "ear-este"
       },
-      
-      // ドライヘッドスパメニュー
+      {
+        id: "ear-este-80",
+        name: "耳集中80分コース",
+        duration: "80分",
+        price: 10500,
+        description: "耳掃除からヘッド・耳つぼまで全方位ケア",
+        category: "ear-este"
+      },
+      {
+        id: "ear-este-trial-new",
+        name: "イヤーエステ40分（新規）",
+        duration: "40分",
+        price: 4500,
+        description: "初回限定特別価格",
+        category: "ear-este"
+      },
+
+      // おすすめコース
+      {
+        id: "full-120",
+        name: "全身疲労回復120分コース",
+        duration: "120分",
+        price: 13000,
+        description: "オイルリンパ×耳×ヘッドの至福コース",
+        category: "recommend"
+      },
+
+      // ヘッドスパ
       {
         id: "dry-head-40",
-        name: "ドライヘッドスパ 40分コース",
+        name: "ドライヘッドスパ40分",
         duration: "40分",
-        price: 4800,
+        price: 4500,
         description: "頭皮からリフレッシュ",
         category: "dry-head"
       },
       {
-        id: "dry-head-60",
-        name: "ドライヘッドスパ 60分コース",
+        id: "head-opt-15",
+        name: "【追加】ヘッドスパ15分",
+        duration: "15分",
+        price: 1500,
+        description: "他メニューとの組み合わせオプション",
+        category: "dry-head"
+      },
+
+      // 耳つぼ
+      {
+        id: "mimitubo-regular",
+        name: "耳つぼ（ジュエリー込み）30-40分",
+        duration: "30-40分",
+        price: 3500,
+        description: "個数制限なし",
+        category: "mimitubo"
+      },
+      {
+        id: "mimitubo-new",
+        name: "耳つぼ（新規）",
+        duration: "40分",
+        price: 4000,
+        description: "初回限定特別価格",
+        category: "mimitubo"
+      },
+
+      // 足つぼ
+      {
+        id: "foot-45",
+        name: "足つぼ45分",
+        duration: "45分",
+        price: 5500,
+        description: "全身バランス調整",
+        category: "foot"
+      },
+      {
+        id: "foot-opt-30",
+        name: "【追加】足つぼ30分",
+        duration: "30分",
+        price: 3500,
+        description: "他メニューとの組み合わせオプション",
+        category: "foot"
+      },
+
+      // オイルリンパ
+      {
+        id: "oil-60",
+        name: "オイルリンパ60分",
         duration: "60分",
         price: 6800,
-        description: "深いリラクゼーション",
-        category: "dry-head"
+        description: "リンパドレナージュ",
+        category: "oil"
+      },
+      {
+        id: "oil-90",
+        name: "オイルリンパ90分",
+        duration: "90分",
+        price: 11000,
+        description: "ゆったりリンパ流し",
+        category: "oil"
+      },
+      {
+        id: "oil-opt-60",
+        name: "【追加】オイル60分",
+        duration: "60分",
+        price: 6000,
+        description: "他メニューとの組み合わせオプション",
+        category: "oil"
+      },
+      {
+        id: "oil-opt-30",
+        name: "【追加】オイル30分",
+        duration: "30分",
+        price: 4000,
+        description: "他メニューとの組み合わせオプション",
+        category: "oil"
       }
     ]
   },

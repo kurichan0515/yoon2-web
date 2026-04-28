@@ -125,15 +125,17 @@ const Hero = () => {
           深い夜の静寂に包まれるような、究極の癒やし体験。<br className="sm:hidden" />
           耳から整う、心と身体の休息。
         </p>
-        {/* 初回価格バナー */}
-        <div className="mx-auto mb-3 sm:mb-4 max-w-xs bg-white/95 rounded-xl border-2 border-yellow-400 px-4 sm:px-5 py-3 shadow-lg shadow-black/30">
-          <p className="text-[#8B7355] text-[0.7rem] sm:text-xs font-semibold tracking-widest mb-1 text-center">初回限定特別価格</p>
-          <div className="flex items-baseline justify-center gap-1 leading-none">
-            <span className="text-[#E63946] text-4xl sm:text-5xl font-bold" style={{ fontFamily: "'Playfair Display', serif" }}>4,000</span>
-            <span className="text-[#E63946] text-xl sm:text-2xl font-semibold">円〜</span>
+        {/* 初回価格バナー（appConfig.features.firstVisitDiscount で表示/非表示を切り替え） */}
+        {appConfig.features.firstVisitDiscount && (
+          <div className="mx-auto mb-3 sm:mb-4 max-w-xs bg-white/95 rounded-xl border-2 border-yellow-400 px-4 sm:px-5 py-3 shadow-lg shadow-black/30">
+            <p className="text-[#8B7355] text-[0.7rem] sm:text-xs font-semibold tracking-widest mb-1 text-center">初回限定特別価格</p>
+            <div className="flex items-baseline justify-center gap-1 leading-none">
+              <span className="text-[#E63946] text-4xl sm:text-5xl font-bold" style={{ fontFamily: "'Playfair Display', serif" }}>4,500</span>
+              <span className="text-[#E63946] text-xl sm:text-2xl font-semibold">円〜</span>
+            </div>
+            <p className="text-gray-400 text-[0.65rem] sm:text-xs text-center mt-1 line-through">通常5,000円</p>
           </div>
-          <p className="text-gray-400 text-[0.65rem] sm:text-xs text-center mt-1 line-through">通常5,000円</p>
-        </div>
+        )}
 
         {/* 口コミバッジ */}
         <div className="inline-flex items-center bg-white/90 rounded-lg px-3 sm:px-4 py-2 shadow-md shadow-black/20 mb-5 sm:mb-6" aria-label="ホットペッパービューティー 高評価獲得">
@@ -217,7 +219,7 @@ const SNS_REVIEWS = [
   },
   {
     id: 'r3',
-    text: '初回4,000円でこのクオリティ！愛媛県でここだけのイヤーエステ。リピート確定です。',
+    text: '初回4,500円でこのクオリティ！愛媛県でここだけのイヤーエステ。リピート確定です。',
     age: '20代女性',
   },
 ];
@@ -344,6 +346,9 @@ function MenuSnsSection({ lineUrl }) {
   };
 
   const current = MENU_DATA[activeTab];
+  const visibleMenus = appConfig.features.firstVisitDiscount
+    ? current.menus
+    : current.menus.filter(m => !m.newCustomer);
 
   return (
     <section id="courses" className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">
@@ -389,7 +394,7 @@ function MenuSnsSection({ lineUrl }) {
           aria-labelledby={`menu-sns-tab-${current.categoryKey}`}
           className={`grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 transition-opacity duration-200 ${fading ? 'opacity-0' : 'opacity-100'}`}
         >
-          {current.menus.map(menu => (
+          {visibleMenus.map(menu => (
             <MenuSnsCard key={menu.id} menu={menu} lineUrl={lineUrl} />
           ))}
         </div>

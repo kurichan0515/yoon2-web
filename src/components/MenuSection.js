@@ -127,6 +127,10 @@ function MenuSection() {
   };
 
   const current = MENU_DATA[activeTab];
+  // 初回割引OFFの場合は newCustomer メニューを非表示にする
+  const visibleMenus = appConfig.features.firstVisitDiscount
+    ? current.menus
+    : current.menus.filter(m => !m.newCustomer);
 
   return (
     <section id="menu" className="menu-section section" ref={sectionRef}>
@@ -169,7 +173,7 @@ function MenuSection() {
           aria-labelledby={`menu-tab-${current.categoryKey}`}
           className={`menu-item-grid${fading ? ' menu-item-grid--fading' : ''}`}
         >
-          {current.menus.map(menu => (
+          {visibleMenus.map(menu => (
             <MenuCard key={menu.id} menu={menu} lineUrl={lineUrl} />
           ))}
         </div>
