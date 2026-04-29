@@ -184,7 +184,7 @@ const Home = memo(() => {
               </a>
               <button 
                 onClick={() => {
-                  const coursesSection = document.getElementById('courses');
+                  const coursesSection = document.getElementById('menu');
                   if (coursesSection) {
                     coursesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                   }

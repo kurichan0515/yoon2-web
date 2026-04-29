@@ -829,18 +829,44 @@
   }
 
   .hero-price-banner {
-    padding: 0.9rem 1rem 0.8rem;
+    padding: 0.6rem 1rem 0.5rem;
     max-width: 280px;
+    margin: 0.4rem auto 0.3rem;
+  }
+
+  .hero-price-amount {
+    font-size: 2rem;
+  }
+
+  .hero-title-reading {
+    margin-bottom: 0.2rem;
+  }
+
+  .hero-title-sub {
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-subtitle {
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-description {
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-review-badge {
+    margin: 0 auto 0.4rem;
+    padding: 0.3rem 0.9rem;
   }
 
   .hero-actions {
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .hero-cta {
     font-size: 1rem;
-    padding: var(--spacing-md) var(--spacing-lg);
+    padding: var(--spacing-sm) var(--spacing-lg);
   }
   
   .about-text h2,
