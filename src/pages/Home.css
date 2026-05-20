@@ -95,7 +95,7 @@
 
 /* ヒーロー・メインタイトル（店の雰囲気に合わせた表記） */
 .hero-title-main {
-  font-size: 4.5rem;
+  font-size: 3.5rem;
   font-weight: 300;
   margin-bottom: 0.25em;
   letter-spacing: 0.02em;
@@ -115,9 +115,9 @@
 }
 
 .hero-title-sub {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 400;
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
   letter-spacing: 0.15em;
   color: #ffffff;
   font-family: var(--font-secondary), var(--font-japanese);
@@ -125,18 +125,18 @@
 
 .hero-subtitle {
   font-family: var(--font-secondary);
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: rgba(255,255,255,0.8);
   letter-spacing: 3px;
   text-transform: uppercase;
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
   font-weight: 300;
 }
 
 .hero-description {
-  font-size: 1.2rem;
+  font-size: 1rem;
   line-height: 1.8;
-  margin-bottom: var(--spacing-xxl);
+  margin-bottom: var(--spacing-lg);
   color: rgba(255,255,255,0.9);
   max-width: 600px;
   margin-left: auto;
@@ -338,14 +338,16 @@
 .section-header {
   text-align: center;
   margin-bottom: var(--spacing-xxl);
-  max-width: 600px;
+  max-width: 720px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .section-header h2 {
   margin-bottom: var(--spacing-md);
-  font-size: 2.8rem;
+  font-size: 2.2rem;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .section-header p {
@@ -632,6 +634,66 @@
   text-transform: uppercase;
 }
 
+/* Empathy Section */
+.empathy-section {
+  background-color: var(--color-background);
+}
+
+.empathy-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.empathy-content h2 {
+  font-size: 1.8rem;
+  line-height: 1.5;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text-primary);
+}
+
+.empathy-content p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+}
+
+/* Reasons Section */
+.reasons-section {
+  background-color: var(--color-white);
+}
+
+.reasons-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xxl);
+}
+
+.reason-card {
+  background: var(--color-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-light);
+}
+
+.reason-card h3 {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text-primary);
+  border-bottom: 2px solid var(--color-accent);
+  padding-bottom: var(--spacing-sm);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.reason-card p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+}
+
 /* Announcement Section */
 .announcement-section {
   background-color: var(--color-background);
@@ -784,6 +846,23 @@
 }
 
 @media (max-width: 768px) {
+  .empathy-content h2 {
+    font-size: 1.3rem;
+  }
+
+  .empathy-content p {
+    font-size: 0.95rem;
+  }
+
+  .reasons-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .reason-card h3 {
+    font-size: 1rem;
+  }
+
   .announcement-card {
     border-radius: var(--radius-md);
   }
@@ -803,21 +882,21 @@
 
   .hero-content h1,
   .hero-title-main {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
-  
+
   .hero-title-reading {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     letter-spacing: 0.15em;
   }
-  
+
   .hero-title-sub {
-    font-size: 1rem;
+    font-size: 0.95rem;
     letter-spacing: 0.1em;
   }
-  
+
   .hero-description {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
   
   .hero-price-amount {
@@ -872,7 +951,7 @@
   .about-text h2,
   .vision-text h2,
   .section-header h2 {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
   }
   
   .menu-grid {
@@ -927,30 +1006,34 @@
   }
   
   .hero-content {
-    padding: var(--spacing-xl) var(--spacing-sm);
+    padding: var(--spacing-md) var(--spacing-sm);
   }
-  
+
   .hero-content h1,
   .hero-title-main {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
-  
+
   .hero-title-reading {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     letter-spacing: 0.1em;
   }
-  
+
   .hero-title-sub {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     letter-spacing: 0.08em;
   }
   
   .about-text h2,
   .vision-text h2,
   .section-header h2 {
-    font-size: 1.8rem;
+    font-size: 1.1rem;
   }
-  
+
+  .reason-card h3 {
+    font-size: 0.875rem;
+  }
+
   .about-content,
   .vision-content {
     gap: var(--spacing-lg);
@@ -1722,6 +1805,16 @@
 }
 
 /* 320px対応のレスポンシブデザイン */
+@media (max-width: 480px) {
+  .empathy-content h2 {
+    font-size: 1.1rem;
+  }
+
+  .reason-card {
+    padding: var(--spacing-md);
+  }
+}
+
 @media (max-width: 320px) {
   /* ヒーローセクション */
   .hero-content h1,

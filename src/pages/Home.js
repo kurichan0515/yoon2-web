@@ -148,8 +148,8 @@ const Home = memo(() => {
             <p className="hero-title-sub">松山の耳つぼ・イヤーエステ専門サロン</p>
             <p className="hero-subtitle">ear esthetic & acupressure salon</p>
             <p className="hero-description">
-              イヤーエステと耳つぼで至福のひととき<br />
-              プロの技術で心身ともにリラックスできる特別な時間をお届けします
+              「取れる」快感と、耳から広がる深い眠り。<br />
+              迷走神経を優しく撫でる新感覚タッチで、蓄積した脳疲労をリセット。
             </p>
             {/* 初回価格バナー（appConfig.features.firstVisitDiscount で表示/非表示を切り替え） */}
             {appConfig.features.firstVisitDiscount && (
@@ -195,6 +195,16 @@ const Home = memo(() => {
                 コースを見る
               </button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Empathy Section */}
+      <section className="empathy-section section" ref={addToRefs}>
+        <div className="container">
+          <div className="empathy-content">
+            <h2>「休んでも疲れが取れない…」<br className="empathy-br" />それ、脳疲労かもしれません。</h2>
+            <p>デスクワークやスマホの使いすぎで、頭や目が重い。そんな現代の「脳疲労」を、耳からのアプローチで優しくリセットします。</p>
           </div>
         </div>
       </section>
@@ -259,6 +269,26 @@ const Home = memo(() => {
               <div className="image-placeholder" style={{display: 'none'}} aria-hidden="true">
                 <span>イヤーエステ・耳つぼの様子</span>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Reasons Section */}
+      <section className="reasons-section section" ref={addToRefs}>
+        <div className="container">
+          <div className="section-header">
+            <span className="section-label">Why yoon²</span>
+            <h2>yoon²のイヤーエステが選ばれる理由</h2>
+          </div>
+          <div className="reasons-grid">
+            <div className="reason-card">
+              <h3>モニターで確認。「取れる」圧倒的なスッキリ感</h3>
+              <p>イヤースコープを使用し、普段見えない耳の中を一緒に確認。プロの技術で汚れを取り除き、物理的なスッキリ感と安心感をお届けします。</p>
+            </div>
+            <div className="reason-card">
+              <h3>迷走神経へのタッチで、極上の「寝落ち」体験</h3>
+              <p>耳に密集するリラックスの神経（迷走神経）を優しく刺激。ヘッドスパとは一味違う、短時間で深く沈み込むような心地よい眠りへと導きます。</p>
             </div>
           </div>
         </div>
