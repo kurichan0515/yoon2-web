@@ -427,6 +427,89 @@ const Home = memo(() => {
       {/* FAQ Section */}
       <FAQ />
 
+      {/* Online Shop Section */}
+      <section id="online-shop" className="online-shop-section section" ref={addToRefs}>
+        <div className="container">
+          <div className="section-header">
+            <span className="section-label">Online Shop</span>
+            <h2>オンラインショップ</h2>
+            <p>スタッフのハンドメイド作品をオンラインで販売中</p>
+          </div>
+
+          <div className="shop-products-grid">
+            {/* ネイルチップ */}
+            <div className="shop-product-card">
+              <div className="shop-product-image-wrapper">
+                <img
+                  src="/images/shop/nail-chip.jpg"
+                  alt="ハンドメイドネイルチップ"
+                  className="shop-product-image"
+                  width={400}
+                  height={400}
+                  loading="lazy"
+                  decoding="async"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.nextElementSibling.style.display = 'flex';
+                  }}
+                />
+                <div className="shop-product-placeholder" style={{display: 'none'}} aria-hidden="true">
+                  <span>ネイルチップ 画像</span>
+                </div>
+              </div>
+              <div className="shop-product-info">
+                <h3 className="shop-product-name">ネイルチップ</h3>
+                <p className="shop-product-desc">
+                  スタッフが1点1点丁寧に手作りしたオリジナルネイルチップ。
+                  特別な日や普段使いにもぴったりな、こだわりのデザインをご用意しています。
+                </p>
+              </div>
+            </div>
+
+            {/* ステッカー */}
+            <div className="shop-product-card">
+              <div className="shop-product-image-wrapper">
+                <img
+                  src="/images/shop/sticker.jpg"
+                  alt="ハンドメイドステッカー"
+                  className="shop-product-image"
+                  width={400}
+                  height={400}
+                  loading="lazy"
+                  decoding="async"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.nextElementSibling.style.display = 'flex';
+                  }}
+                />
+                <div className="shop-product-placeholder" style={{display: 'none'}} aria-hidden="true">
+                  <span>ステッカー 画像</span>
+                </div>
+              </div>
+              <div className="shop-product-info">
+                <h3 className="shop-product-name">ステッカー</h3>
+                <p className="shop-product-desc">
+                  スタッフがデザインしたオリジナルステッカー。
+                  スマホやノートに貼ってお気に入りをカスタマイズしてください。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="shop-link-wrapper">
+            <a
+              href="https://example.com/shop"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary shop-link-btn"
+              aria-label="オンラインショップを見る（新しいウィンドウで開きます）"
+            >
+              オンラインショップを見る
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Social Section */}
       <section className="social-section section" ref={addToRefs}>
         <div className="container">

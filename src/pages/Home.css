@@ -1523,6 +1523,120 @@
   top: 0;
 }
 
+/* Online Shop Section */
+.online-shop-section {
+  background-color: var(--color-background);
+}
+
+.shop-products-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xxl);
+  margin-bottom: var(--spacing-xxl);
+}
+
+.shop-product-card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-light);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.shop-product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-medium);
+}
+
+.shop-product-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--color-primary);
+}
+
+.shop-product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+.shop-product-card:hover .shop-product-image {
+  transform: scale(1.05);
+}
+
+.shop-product-placeholder {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  font-family: var(--font-secondary);
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.shop-product-info {
+  padding: var(--spacing-xl);
+}
+
+.shop-product-name {
+  font-family: var(--font-primary);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--spacing-md);
+}
+
+.shop-product-desc {
+  font-family: var(--font-secondary);
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.shop-link-wrapper {
+  text-align: center;
+}
+
+.shop-link-btn {
+  display: inline-block;
+  text-decoration: none;
+  padding: var(--spacing-lg) var(--spacing-xxl);
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 768px) {
+  .shop-products-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+}
+
+@media (max-width: 320px) {
+  .shop-product-info {
+    padding: 1rem !important;
+  }
+
+  .shop-product-name {
+    font-size: 1.1rem !important;
+  }
+
+  .shop-product-desc {
+    font-size: 0.85rem !important;
+  }
+}
+
 /* Reserve Section */
 .reserve-section {
   background-color: var(--color-background);
