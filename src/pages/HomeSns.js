@@ -125,17 +125,17 @@ const Hero = () => {
           深い夜の静寂に包まれるような、究極の癒やし体験。<br className="sm:hidden" />
           耳から整う、心と身体の休息。
         </p>
-        {/* 初回価格バナー（appConfig.features.firstVisitDiscount で表示/非表示を切り替え） */}
-        {appConfig.features.firstVisitDiscount && (
-          <div className="mx-auto mb-3 sm:mb-4 max-w-xs bg-white/95 rounded-xl border-2 border-yellow-400 px-4 sm:px-5 py-3 shadow-lg shadow-black/30">
-            <p className="text-[#8B7355] text-[0.7rem] sm:text-xs font-semibold tracking-widest mb-1 text-center">初回限定特別価格</p>
-            <div className="flex items-baseline justify-center gap-1 leading-none">
-              <span className="text-[#E63946] text-4xl sm:text-5xl font-bold" style={{ fontFamily: "'Playfair Display', serif" }}>4,500</span>
-              <span className="text-[#E63946] text-xl sm:text-2xl font-semibold">円〜</span>
-            </div>
-            <p className="text-gray-400 text-[0.65rem] sm:text-xs text-center mt-1 line-through">通常5,000円</p>
+        {/* 耳つぼジュエリー訴求バナー */}
+        <div className="mx-auto mb-3 sm:mb-4 max-w-xs bg-white/95 rounded-xl border-2 border-yellow-400 px-4 sm:px-5 py-3 shadow-lg shadow-black/30">
+          <p className="text-[#c9a96e] text-[0.7rem] sm:text-xs font-bold tracking-widest mb-1 text-center">★ 女性一番人気 No.1</p>
+          <p className="text-[#2c2c2c] text-sm sm:text-base font-semibold tracking-wide mb-1 text-center" style={{ fontFamily: "'Playfair Display', serif" }}>耳つぼジュエリー</p>
+          <div className="flex items-baseline justify-center gap-0.5 leading-none">
+            <span className="text-[#c9a96e] text-xl sm:text-2xl font-semibold">¥</span>
+            <span className="text-[#c9a96e] text-4xl sm:text-5xl font-bold" style={{ fontFamily: "'Playfair Display', serif" }}>3,500</span>
+            <span className="text-[#c9a96e] text-xl sm:text-2xl font-semibold">〜</span>
           </div>
-        )}
+          <p className="text-gray-500 text-[0.65rem] sm:text-xs text-center mt-1">マッサージ＋ジュエリーつけ放題</p>
+        </div>
 
         {/* 口コミバッジ */}
         <div className="inline-flex items-center bg-white/90 rounded-lg px-3 sm:px-4 py-2 shadow-md shadow-black/20 mb-5 sm:mb-6" aria-label="ホットペッパービューティー 高評価獲得">
@@ -209,17 +209,17 @@ const SectionHeading = ({ title, subtitle }) => (
 const SNS_REVIEWS = [
   {
     id: 'r1',
-    text: '耳の中をイヤースコープで見ながら施術してもらえるので安心！不眠が改善されて本当に良かったです。',
+    text: '耳の中をスコープで確認しながら施術。不眠も改善して、通う価値しかないです！',
     age: '30代女性',
   },
   {
     id: 'r2',
-    text: '男性でも気軽に通えます。完全個室なので安心してリラックスできました。仕事のストレスが解消されました。',
+    text: '完全個室で男性でも安心。仕事疲れが施術後スッと消えました。',
     age: '40代男性',
   },
   {
     id: 'r3',
-    text: '初回4,500円でこのクオリティ！愛媛県でここだけのイヤーエステ。リピート確定です。',
+    text: 'ジュエリーつけ放題なのに肩まで軽くなった！また絶対来ます。',
     age: '20代女性',
   },
 ];
@@ -269,10 +269,11 @@ function ReviewsSnsSection() {
 
 // ダークテーマ用バッジスタイル
 const SNS_BADGE = {
-  '初回限定': 'bg-red-600 text-white',
-  '人気':     'bg-yellow-500 text-black',
-  'プレミアム':'bg-amber-800 text-white',
-  'オプション':'bg-gray-600 text-white',
+  '初回限定':   'bg-red-600 text-white',
+  '人気':       'bg-yellow-500 text-black',
+  'プレミアム': 'bg-amber-800 text-white',
+  'オプション': 'bg-gray-600 text-white',
+  '女性一番人気':'bg-rose-600 text-white',
 };
 
 // ダークテーマ用メニューカード
@@ -741,8 +742,186 @@ const HomeSns = () => {
         </div>
       </section>
 
+      {/* Reviews Section */}
+      <ReviewsSnsSection />
+
       {/* Menu Section */}
       <MenuSnsSection lineUrl={lineUrl} />
+
+      {/* FAQ Section */}
+      <FaqSnsSection lineUrl={lineUrl} />
+
+      {/* Social Section - HomeSnsデザインに合わせてカスタマイズ */}
+      <section className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6">
+          <SectionHeading title="Follow Us" subtitle="SOCIAL" />
+          <div className="bg-[#161B22] border border-white/5 p-4 sm:p-6 md:p-8 lg:p-12 rounded-lg">
+            <div className="text-center mb-6 sm:mb-8">
+              <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-6 flex-wrap">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCAF45] rounded-full flex items-center justify-center flex-shrink-0">
+                  <Instagram className="text-white w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
+                </div>
+                <div className="text-left min-w-0 flex-1">
+                  <h3 className="text-white text-lg sm:text-xl md:text-2xl tracking-wide sm:tracking-wider mb-1 whitespace-nowrap">@{instagramUsername}</h3>
+                  <p className="text-white/50 text-xs sm:text-sm">最新情報・施術の様子</p>
+                </div>
+              </div>
+              <p className="text-white/70 leading-relaxed mb-6 sm:mb-8 tracking-wide max-w-2xl mx-auto text-xs sm:text-sm px-2">
+                最新の投稿やお得な情報をお届けしています。<br className="hidden sm:block" />
+                Instagramでフォローして最新情報をチェックしてください。
+              </p>
+              <a
+                href={instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#FCAF45] text-white font-semibold text-xs sm:text-sm tracking-wide sm:tracking-widest hover:opacity-90 transition-all duration-300 transform hover:-translate-y-1 shadow-lg shadow-purple-500/20 whitespace-nowrap"
+                aria-label="Instagramを見る（新しいウィンドウで開きます）"
+              >
+                <Instagram className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden />
+                Instagramを見る
+                <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" aria-hidden />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Shop Info */}
+      <section id="shop" className="py-12 sm:py-16 md:py-24 px-3 sm:px-6 max-w-7xl mx-auto">
+        <SectionHeading title="Shop Information" subtitle="ACCESS" />
+        <div className="bg-[#161B22] p-4 sm:p-6 md:p-8 lg:p-16 border border-white/5 flex flex-col md:flex-row gap-6 sm:gap-8 md:gap-12 mb-8 sm:mb-12">
+          <div className="flex-1">
+            <div className="space-y-4 sm:space-y-6">
+              <div className="flex items-start gap-2 sm:gap-3 md:gap-4 text-white/70">
+                <MapPin className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />
+                <div className="min-w-0 flex-1">
+                  <h4 className="text-white mb-1 text-sm sm:text-base">住所</h4>
+                  <p className="text-xs sm:text-sm break-words">{shop?.address || appConfig.shop.address}</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-2 sm:gap-3 md:gap-4 text-white/70">
+                <MapPin className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />
+                <div className="min-w-0 flex-1">
+                  <h4 className="text-white mb-1 text-sm sm:text-base">最寄り駅</h4>
+                  {shop?.access?.stations?.filter(station => station).map((station, index) => (
+                    <p key={index} className="text-xs sm:text-sm">{station}</p>
+                  ))}
+                </div>
+              </div>
+              <div className="flex items-start gap-2 sm:gap-3 md:gap-4 text-white/70">
+                <Clock className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />
+                <div className="min-w-0 flex-1">
+                  <h4 className="text-white mb-1 text-sm sm:text-base">営業時間</h4>
+                  <p className="text-xs sm:text-sm">{shop?.hours?.weekday || appConfig.shop.hours.weekday}</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-2 sm:gap-3 md:gap-4 text-white/70">
+                <Phone className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />
+                <div className="min-w-0 flex-1">
+                  <h4 className="text-white mb-1 text-sm sm:text-base">電話番号</h4>
+                  <p className="text-xs sm:text-sm break-all">{shop?.phone || appConfig.shop.phone}</p>
+                </div>
+              </div>
+            </div>
+            <div className="mt-6 sm:mt-8 md:mt-10 flex gap-3 sm:gap-4">
+              <a
+                href={instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 sm:p-3 bg-white/5 hover:bg-[#3B82F6] transition-colors rounded-full flex-shrink-0"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden />
+              </a>
+              <a
+                href={lineUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 sm:p-3 bg-white/5 hover:bg-[#3B82F6] transition-colors rounded-full flex-shrink-0"
+                aria-label="LINEで予約"
+                onClick={() => trackLineAddConversion()}
+              >
+                <Calendar className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden />
+              </a>
+            </div>
+          </div>
+          <div className="flex-1 h-64 md:h-auto bg-[#0A0A0A] relative overflow-hidden border border-white/10 rounded">
+            <iframe
+              src={shop?.googleMapsUrl || appConfig.shop.googleMapsUrl}
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="店舗地図"
+            />
+          </div>
+        </div>
+
+        {/* 駐車場写真セクション */}
+        {shop?.access?.parkingPhotos?.parkingLot && (
+          <div className="mb-8 sm:mb-12">
+            <div className="mb-8 sm:mb-12">
+              <span className="text-[#3B82F6] text-[0.65rem] sm:text-xs tracking-[0.2em] sm:tracking-[0.4em] block mb-2 font-bold uppercase whitespace-nowrap">ACCESS</span>
+              <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light mb-3 sm:mb-4" style={{ fontFamily: 'Cinzel, serif' }}>
+                Parking
+              </h2>
+              <p className="text-white/60 text-[0.65rem] sm:text-xs md:text-sm text-center whitespace-nowrap">お車でお越しの際はこちらをご利用ください</p>
+            </div>
+            <div className="bg-[#161B22] border border-white/5 overflow-hidden rounded-lg">
+              <img
+                src={shop?.access?.parkingPhotos?.parkingLot || appConfig.shop.access.parkingPhotos.parkingLot}
+                alt="駐車場の様子"
+                width={800}
+                height={450}
+                className="w-full h-auto"
+                loading="lazy"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                }}
+              />
+            </div>
+          </div>
+        )}
+
+        {/* 駐車場から店舗までの写真セクション */}
+        {shop?.access?.parkingPhotos?.routeToShop && (
+          <div className="mb-8 sm:mb-12">
+            <div className="mb-8 sm:mb-12">
+              <span className="text-[#3B82F6] text-[0.65rem] sm:text-xs tracking-[0.2em] sm:tracking-[0.4em] block mb-2 font-bold uppercase whitespace-nowrap">ACCESS</span>
+              <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light mb-3 sm:mb-4" style={{ fontFamily: 'Cinzel, serif' }}>
+                Route to Shop
+              </h2>
+              <p className="text-white/60 text-[0.65rem] sm:text-xs md:text-sm text-center whitespace-nowrap">駐車場から店舗までの道のりをご案内します</p>
+            </div>
+            <div className="bg-[#161B22] border border-white/5 overflow-hidden rounded-lg">
+              <img
+                src={shop?.access?.parkingPhotos?.routeToShop || appConfig.shop.access.parkingPhotos.routeToShop}
+                alt="駐車場から店舗までの道順"
+                width={800}
+                height={450}
+                className="w-full h-auto"
+                loading="lazy"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                }}
+              />
+            </div>
+          </div>
+        )}
+
+{shop?.notes && shop.notes.length > 0 && (
+          <div className="bg-[#161B22] p-4 sm:p-6 md:p-8 border border-white/5">
+            <h4 className="text-white text-sm sm:text-base md:text-lg mb-3 sm:mb-4">📋 ご確認事項</h4>
+            <ul className="space-y-1.5 sm:space-y-2">
+              {shop.notes.map((note, index) => (
+                <li key={index} className="text-white/70 text-xs sm:text-sm">{note}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </section>
 
       {/* Reserve Section - SNS導線向けに強調 */}
       <section id="reserve" className="py-12 sm:py-16 md:py-24 bg-gradient-to-b from-[#101827] to-[#0A0A0A] relative overflow-hidden">
@@ -861,189 +1040,11 @@ const HomeSns = () => {
       {/* AdSense広告 - Reserve Section後 */}
       <section className="py-12 bg-[#0A0A0A]">
         <div className="max-w-7xl mx-auto px-6">
-          <AdSense 
-            adSlot="2647640133" 
+          <AdSense
+            adSlot="2647640133"
             adFormat="auto"
             className="adsense-reserve"
           />
-        </div>
-      </section>
-
-      {/* Shop Info */}
-      <section id="shop" className="py-12 sm:py-16 md:py-24 px-3 sm:px-6 max-w-7xl mx-auto">
-        <SectionHeading title="Shop Information" subtitle="ACCESS" />
-        <div className="bg-[#161B22] p-4 sm:p-6 md:p-8 lg:p-16 border border-white/5 flex flex-col md:flex-row gap-6 sm:gap-8 md:gap-12 mb-8 sm:mb-12">
-          <div className="flex-1">
-            <div className="space-y-4 sm:space-y-6">
-              <div className="flex items-start gap-2 sm:gap-3 md:gap-4 text-white/70">
-                <MapPin className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />
-                <div className="min-w-0 flex-1">
-                  <h4 className="text-white mb-1 text-sm sm:text-base">住所</h4>
-                  <p className="text-xs sm:text-sm break-words">{shop?.address || appConfig.shop.address}</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-2 sm:gap-3 md:gap-4 text-white/70">
-                <MapPin className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />
-                <div className="min-w-0 flex-1">
-                  <h4 className="text-white mb-1 text-sm sm:text-base">最寄り駅</h4>
-                  {shop?.access?.stations?.filter(station => station).map((station, index) => (
-                    <p key={index} className="text-xs sm:text-sm">{station}</p>
-                  ))}
-                </div>
-              </div>
-              <div className="flex items-start gap-2 sm:gap-3 md:gap-4 text-white/70">
-                <Clock className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />
-                <div className="min-w-0 flex-1">
-                  <h4 className="text-white mb-1 text-sm sm:text-base">営業時間</h4>
-                  <p className="text-xs sm:text-sm">{shop?.hours?.weekday || appConfig.shop.hours.weekday}</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-2 sm:gap-3 md:gap-4 text-white/70">
-                <Phone className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />
-                <div className="min-w-0 flex-1">
-                  <h4 className="text-white mb-1 text-sm sm:text-base">電話番号</h4>
-                  <p className="text-xs sm:text-sm break-all">{shop?.phone || appConfig.shop.phone}</p>
-                </div>
-              </div>
-            </div>
-            <div className="mt-6 sm:mt-8 md:mt-10 flex gap-3 sm:gap-4">
-              <a 
-                href={instagramUrl} 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 sm:p-3 bg-white/5 hover:bg-[#3B82F6] transition-colors rounded-full flex-shrink-0"
-                aria-label="Instagram"
-              >
-                <Instagram className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden />
-              </a>
-              <a
-                href={lineUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 sm:p-3 bg-white/5 hover:bg-[#3B82F6] transition-colors rounded-full flex-shrink-0"
-                aria-label="LINEで予約"
-                onClick={() => trackLineAddConversion()}
-              >
-                <Calendar className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden />
-              </a>
-            </div>
-          </div>
-          <div className="flex-1 h-64 md:h-auto bg-[#0A0A0A] relative overflow-hidden border border-white/10 rounded">
-            <iframe
-              src={shop?.googleMapsUrl || appConfig.shop.googleMapsUrl}
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="店舗地図"
-            />
-          </div>
-        </div>
-
-        {/* 駐車場写真セクション */}
-        {shop?.access?.parkingPhotos?.parkingLot && (
-          <div className="mb-8 sm:mb-12">
-            <div className="mb-8 sm:mb-12">
-              <span className="text-[#3B82F6] text-[0.65rem] sm:text-xs tracking-[0.2em] sm:tracking-[0.4em] block mb-2 font-bold uppercase whitespace-nowrap">ACCESS</span>
-              <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light mb-3 sm:mb-4" style={{ fontFamily: 'Cinzel, serif' }}>
-                Parking
-              </h2>
-              <p className="text-white/60 text-[0.65rem] sm:text-xs md:text-sm text-center whitespace-nowrap">お車でお越しの際はこちらをご利用ください</p>
-            </div>
-            <div className="bg-[#161B22] border border-white/5 overflow-hidden rounded-lg">
-              <img 
-                src={shop?.access?.parkingPhotos?.parkingLot || appConfig.shop.access.parkingPhotos.parkingLot}
-                alt="駐車場の様子"
-                width={800}
-                height={450}
-                className="w-full h-auto"
-                loading="lazy"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                }}
-              />
-            </div>
-          </div>
-        )}
-
-        {/* 駐車場から店舗までの写真セクション */}
-        {shop?.access?.parkingPhotos?.routeToShop && (
-          <div className="mb-8 sm:mb-12">
-            <div className="mb-8 sm:mb-12">
-              <span className="text-[#3B82F6] text-[0.65rem] sm:text-xs tracking-[0.2em] sm:tracking-[0.4em] block mb-2 font-bold uppercase whitespace-nowrap">ACCESS</span>
-              <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light mb-3 sm:mb-4" style={{ fontFamily: 'Cinzel, serif' }}>
-                Route to Shop
-              </h2>
-              <p className="text-white/60 text-[0.65rem] sm:text-xs md:text-sm text-center whitespace-nowrap">駐車場から店舗までの道のりをご案内します</p>
-            </div>
-            <div className="bg-[#161B22] border border-white/5 overflow-hidden rounded-lg">
-              <img 
-                src={shop?.access?.parkingPhotos?.routeToShop || appConfig.shop.access.parkingPhotos.routeToShop}
-                alt="駐車場から店舗までの道順"
-                width={800}
-                height={450}
-                className="w-full h-auto"
-                loading="lazy"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                }}
-              />
-            </div>
-          </div>
-        )}
-
-{shop?.notes && shop.notes.length > 0 && (
-          <div className="bg-[#161B22] p-4 sm:p-6 md:p-8 border border-white/5">
-            <h4 className="text-white text-sm sm:text-base md:text-lg mb-3 sm:mb-4">📋 ご確認事項</h4>
-            <ul className="space-y-1.5 sm:space-y-2">
-              {shop.notes.map((note, index) => (
-                <li key={index} className="text-white/70 text-xs sm:text-sm">{note}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </section>
-
-      {/* Reviews Section */}
-      <ReviewsSnsSection />
-
-      {/* FAQ Section */}
-      <FaqSnsSection lineUrl={lineUrl} />
-
-      {/* Social Section - HomeSnsデザインに合わせてカスタマイズ */}
-      <section className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6">
-          <SectionHeading title="Follow Us" subtitle="SOCIAL" />
-          <div className="bg-[#161B22] border border-white/5 p-4 sm:p-6 md:p-8 lg:p-12 rounded-lg">
-            <div className="text-center mb-6 sm:mb-8">
-              <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-6 flex-wrap">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCAF45] rounded-full flex items-center justify-center flex-shrink-0">
-                  <Instagram className="text-white w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
-                </div>
-                <div className="text-left min-w-0 flex-1">
-                  <h3 className="text-white text-lg sm:text-xl md:text-2xl tracking-wide sm:tracking-wider mb-1 whitespace-nowrap">@{instagramUsername}</h3>
-                  <p className="text-white/50 text-xs sm:text-sm">最新情報・施術の様子</p>
-                </div>
-              </div>
-              <p className="text-white/70 leading-relaxed mb-6 sm:mb-8 tracking-wide max-w-2xl mx-auto text-xs sm:text-sm px-2">
-                最新の投稿やお得な情報をお届けしています。<br className="hidden sm:block" />
-                Instagramでフォローして最新情報をチェックしてください。
-              </p>
-              <a
-                href={instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#FCAF45] text-white font-semibold text-xs sm:text-sm tracking-wide sm:tracking-widest hover:opacity-90 transition-all duration-300 transform hover:-translate-y-1 shadow-lg shadow-purple-500/20 whitespace-nowrap"
-                aria-label="Instagramを見る（新しいウィンドウで開きます）"
-              >
-                <Instagram className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden />
-                Instagramを見る
-                <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" aria-hidden />
-              </a>
-            </div>
-          </div>
         </div>
       </section>
 

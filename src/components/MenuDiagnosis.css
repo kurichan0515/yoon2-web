@@ -1,0 +1,239 @@
+.diagnosis-section {
+  background-color: var(--color-primary);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+.diagnosis-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.diagnosis-title {
+  font-family: var(--font-primary);
+  font-size: 2.2rem;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--color-text-primary);
+  margin-top: var(--spacing-sm);
+}
+
+/* カード2列レイアウト */
+.diagnosis-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* カード共通 */
+.diagnosis-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.diagnosis-card:hover {
+  transform: translateY(-6px);
+}
+
+.diagnosis-card-inner {
+  padding: var(--spacing-xl);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* MENU A/B タグ */
+.diagnosis-card-tag {
+  font-family: var(--font-secondary);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-sm);
+}
+
+/* カード名 */
+.diagnosis-card-name {
+  font-family: var(--font-primary);
+  font-size: 1.8rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 0;
+}
+
+/* ゴールドライン */
+.diagnosis-card-divider {
+  width: 40px;
+  height: 2px;
+  background-color: var(--color-accent);
+  margin: var(--spacing-sm) 0;
+}
+
+/* ターゲット */
+.diagnosis-card-target {
+  font-family: var(--font-secondary), var(--font-japanese);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-sm);
+}
+
+/* 内容リスト */
+.diagnosis-card-contents {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.diagnosis-card-contents li {
+  font-family: var(--font-secondary), var(--font-japanese);
+  font-size: 0.9rem;
+  padding-left: 1.2em;
+  position: relative;
+  line-height: 1.5;
+}
+
+.diagnosis-card-contents li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: 300;
+}
+
+/* 説明文 */
+.diagnosis-card-desc {
+  font-family: var(--font-secondary), var(--font-japanese);
+  font-size: 0.88rem;
+  line-height: 1.8;
+  flex: 1;
+  margin-bottom: var(--spacing-lg);
+}
+
+/* ボタン */
+.diagnosis-card-btn {
+  width: 100%;
+  padding: 0.85rem var(--spacing-md);
+  border-radius: var(--radius-md);
+  font-family: var(--font-secondary), var(--font-japanese);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: 2px solid var(--color-accent);
+  margin-top: auto;
+}
+
+/* ===== ライトカード ===== */
+.diagnosis-card--light {
+  background: linear-gradient(145deg, #ffffff 0%, #fdf9f4 100%);
+  box-shadow:
+    0 2px 4px rgba(44, 44, 44, 0.04),
+    0 8px 24px rgba(44, 44, 44, 0.08),
+    0 24px 48px rgba(201, 169, 110, 0.08);
+  border-top: 2px solid var(--color-accent);
+}
+
+.diagnosis-card--light .diagnosis-card-tag {
+  color: var(--color-accent);
+}
+
+.diagnosis-card--light .diagnosis-card-name {
+  color: var(--color-text-primary);
+}
+
+.diagnosis-card--light .diagnosis-card-target {
+  color: var(--color-text-secondary);
+}
+
+.diagnosis-card--light .diagnosis-card-desc {
+  color: var(--color-text-secondary);
+}
+
+.diagnosis-card--light .diagnosis-card-contents li {
+  color: var(--color-text-primary);
+}
+
+.diagnosis-card-btn--light {
+  background: transparent;
+  color: var(--color-accent);
+}
+
+.diagnosis-card-btn--light:hover {
+  background: var(--color-accent);
+  color: var(--color-white);
+}
+
+/* ===== ダークカード ===== */
+.diagnosis-card--dark {
+  background: linear-gradient(145deg, #2c2c2c 0%, #1e1e1e 100%);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.12),
+    0 8px 24px rgba(0, 0, 0, 0.2),
+    0 24px 48px rgba(201, 169, 110, 0.1);
+  border-top: 2px solid var(--color-accent);
+}
+
+.diagnosis-card--dark .diagnosis-card-tag {
+  color: var(--color-accent);
+}
+
+.diagnosis-card--dark .diagnosis-card-name {
+  color: #f4f1eb;
+}
+
+.diagnosis-card--dark .diagnosis-card-target {
+  color: rgba(244, 241, 235, 0.75);
+}
+
+.diagnosis-card--dark .diagnosis-card-desc {
+  color: rgba(244, 241, 235, 0.7);
+}
+
+.diagnosis-card--dark .diagnosis-card-contents li {
+  color: rgba(244, 241, 235, 0.85);
+}
+
+.diagnosis-card-btn--dark {
+  background: transparent;
+  color: var(--color-accent);
+}
+
+.diagnosis-card-btn--dark:hover {
+  background: var(--color-accent);
+  color: var(--color-white);
+}
+
+/* レスポンシブ: スマホは縦積み */
+@media (max-width: 768px) {
+  .diagnosis-cards {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .diagnosis-title {
+    font-size: 1.6rem;
+  }
+
+  .diagnosis-card-name {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .diagnosis-title {
+    font-size: 1.3rem;
+  }
+
+  .diagnosis-card-inner {
+    padding: var(--spacing-md);
+  }
+}

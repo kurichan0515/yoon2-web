@@ -121,6 +121,11 @@
   color: #ffffff;
 }
 
+.menu-badge--women {
+  background: linear-gradient(135deg, #C97B84 0%, #B5525A 100%);
+  color: #ffffff;
+}
+
 /* ===== メニュー名 ===== */
 .menu-item-name {
   font-family: var(--font-primary);

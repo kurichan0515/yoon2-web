@@ -2,6 +2,22 @@ export const HOTPEPPER_URL = 'https://beauty.hotpepper.jp/kr/slnH000744156/';
 
 export const MENU_DATA = [
   {
+    category: '耳つぼ',
+    categoryKey: 'mimitubo',
+    description: '耳つぼマッサージ＋ジュエリーつけ放題で24時間不調ケア',
+    menus: [
+      {
+        id: 'mimitubo-regular',
+        name: '【個数制限なし★】耳つぼ(ジュエリー込) 30-40分',
+        price: 3500,
+        time: 40,
+        description: '耳つぼマッサージでほぐした後、お悩みに合わせたジュエリーをつけ放題。耳掃除なしでその分マッサージをたっぷり。200以上のツボから不調箇所にアプローチし、ジュエリーで24時間体質改善をサポート。',
+        badge: '女性一番人気',
+        recommended: true,
+      },
+    ],
+  },
+  {
     category: 'イヤーエステ',
     categoryKey: 'ear-este',
     description: '愛媛県初！イヤースコープで見える耳かき',
@@ -86,21 +102,6 @@ export const MENU_DATA = [
         description: 'オイルでリンパを流した後、耳とヘッドをほぐし全身の疲労を取っていく至福の120分コース。いつも頑張っている自分へのご褒美に。※耳かきは含まれないコースです',
         badge: 'プレミアム',
         premium: true,
-      },
-    ],
-  },
-  {
-    category: '耳つぼ',
-    categoryKey: 'mimitubo',
-    description: '身体の不調にアプローチ',
-    menus: [
-      {
-        id: 'mimitubo-regular',
-        name: '【個数制限なし★】耳つぼ(ジュエリー込) 30-40分',
-        price: 3500,
-        time: 40,
-        description: '耳つぼを必要としている方に続けやすい価格を。耳には自律神経が集中していて全身に繋がる200以上のツボがあります。耳を刺激することで全身の不調改善に繋がります♪パーツも豊富♪',
-        badge: null,
       },
     ],
   },

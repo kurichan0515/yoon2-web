@@ -1,0 +1,135 @@
+.concern-section {
+  background-color: var(--color-background);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+.concern-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.concern-title {
+  font-family: var(--font-primary);
+  font-size: 2.4rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--color-text-primary);
+  margin-top: var(--spacing-sm);
+}
+
+/* 番号スタイルリスト */
+.concern-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.concern-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--color-border);
+  position: relative;
+  cursor: default;
+  transition: color 0.3s ease;
+}
+
+.concern-item:first-child {
+  border-top: 1px solid var(--color-border);
+}
+
+.concern-item:hover .concern-text {
+  color: var(--color-accent);
+}
+
+.concern-num {
+  font-family: var(--font-primary);
+  font-size: 2.8rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-accent);
+  opacity: 0.25;
+  line-height: 1;
+  min-width: 3rem;
+  text-align: right;
+  flex-shrink: 0;
+  transition: opacity 0.3s ease;
+}
+
+.concern-item:hover .concern-num {
+  opacity: 0.6;
+}
+
+.concern-text {
+  font-family: var(--font-secondary), var(--font-japanese);
+  font-size: 1rem;
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  transition: color 0.3s ease;
+}
+
+/* 誘導テキスト */
+.concern-lead {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  max-width: 640px;
+  margin: var(--spacing-xl) auto 0;
+}
+
+.concern-lead-line {
+  flex-shrink: 0;
+  width: 40px;
+  height: 2px;
+  background-color: var(--color-accent);
+}
+
+.concern-lead-text {
+  font-family: var(--font-secondary), var(--font-japanese);
+  font-size: 0.95rem;
+  color: var(--color-text-primary);
+  line-height: 1.7;
+}
+
+.concern-lead-text em {
+  font-style: normal;
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+  .concern-title {
+    font-size: 1.8rem;
+  }
+
+  .concern-num {
+    font-size: 2rem;
+    min-width: 2.4rem;
+  }
+
+  .concern-text {
+    font-size: 0.95rem;
+  }
+
+  .concern-lead-text {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .concern-title {
+    font-size: 1.5rem;
+  }
+
+  .concern-num {
+    font-size: 1.6rem;
+    min-width: 2rem;
+  }
+}

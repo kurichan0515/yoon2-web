@@ -3,11 +3,10 @@ import SocialFeed from '../components/SocialFeed';
 import FAQ from '../components/FAQ';
 import MenuSection from '../components/MenuSection';
 import ReviewsSection from '../components/ReviewsSection';
+import ConcernSection from '../components/ConcernSection';
+import MenuDiagnosis from '../components/MenuDiagnosis';
+import FlowSection from '../components/FlowSection';
 import AdSense from '../components/common/AdSense';
-import courseService from '../services/courseService';
-import { COURSE_CATEGORIES, COURSE_CATEGORY_LABELS } from '../types/courseTypes';
-import ErrorMessage from '../components/common/ErrorMessage';
-import LoadingSpinner from '../components/common/LoadingSpinner';
 import { setPageMeta } from '../utils/seoHelper';
 import appConfig from '../config/appConfig';
 import logger from '../utils/logger';
@@ -19,7 +18,6 @@ const Home = memo(() => {
   
   const heroRef = useRef(null);
   const sectionsRef = useRef([]);
-  const courseCardsRef = useRef([]);
   
   // Hero background: SPのみ別画像
   const [heroBg, setHeroBg] = useState('/images/shop/play-room.jpg');
@@ -30,12 +28,6 @@ const Home = memo(() => {
     mq.addEventListener('change', update);
     return () => mq.removeEventListener('change', update);
   }, []);
-
-  // Courses state
-  const [courses, setCourses] = useState([]);
-  const [coursesLoading, setCoursesLoading] = useState(true);
-  const [coursesError, setCoursesError] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState('all');
 
   useEffect(() => {
     logger.debug('Home useEffect called');
@@ -72,65 +64,11 @@ const Home = memo(() => {
     return () => observer.disconnect();
   }, []);
 
-  // Load courses
-  useEffect(() => {
-    const loadCourses = async () => {
-      try {
-        setCoursesLoading(true);
-        const result = await courseService.getAllCourses();
-        if (result.success) {
-          setCourses(result.data);
-        } else {
-          setCoursesError(result.error);
-        }
-      } catch (err) {
-        setCoursesError('コースの読み込みに失敗しました');
-      } finally {
-        setCoursesLoading(false);
-      }
-    };
-    loadCourses();
-  }, []);
-
-  // コースカード用のスクロールアニメーション用のIntersection Observer
-  useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-          // 少し遅延を入れて順番にアニメーション
-          setTimeout(() => {
-            entry.target.classList.add('fade-in-up');
-          }, index * 100); // 各カードに100msずつ遅延
-        }
-      });
-    }, observerOptions);
-
-    // 各コースカードを監視
-    courseCardsRef.current.forEach((card) => {
-      if (card) {
-        observer.observe(card);
-      }
-    });
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [courses, selectedCategory]);
-
   const addToRefs = (el) => {
     if (el && !sectionsRef.current.includes(el)) {
       sectionsRef.current.push(el);
     }
   };
-
-  const filteredCourses = selectedCategory === 'all' 
-    ? courses 
-    : courses.filter(course => course.category === selectedCategory);
 
   const { shop } = appConfig;
 
@@ -151,21 +89,25 @@ const Home = memo(() => {
               「取れる」快感と、耳から広がる深い眠り。<br />
               迷走神経を優しく撫でる新感覚タッチで、蓄積した脳疲労をリセット。
             </p>
-            {/* 初回価格バナー（appConfig.features.firstVisitDiscount で表示/非表示を切り替え） */}
-            {appConfig.features.firstVisitDiscount && (
-              <div className="hero-price-banner">
-                <p className="hero-price-label">初回限定特別価格</p>
-                <div className="hero-price-wrapper">
-                  <span className="hero-price-amount">4,500</span>
-                  <span className="hero-price-unit">円〜</span>
-                </div>
-                <p className="hero-price-note">通常5,000円</p>
+            {/* 耳つぼジュエリー訴求バナー */}
+            <div className="hero-price-banner">
+              <p className="hero-price-label">★ 女性一番人気 No.1</p>
+              <p className="hero-price-menu">耳つぼジュエリー</p>
+              <div className="hero-price-wrapper">
+                <span className="hero-price-yen">¥</span>
+                <span className="hero-price-amount">3,500</span>
+                <span className="hero-price-unit">〜</span>
               </div>
-            )}
+              <p className="hero-price-note">マッサージ＋ジュエリーつけ放題</p>
+            </div>
 
             {/* 口コミバッジ */}
-            <div className="hero-review-badge" aria-label="ホットペッパービューティー 高評価獲得">
-              <p className="hero-review-source">ホットペッパービューティーにて<br />多数の高評価をいただいています</p>
+            <div className="hero-review-badge" aria-label="ホットペッパービューティー 評価4.83">
+              <div className="hero-review-stars-row">
+                <span className="hero-review-stars" aria-hidden="true">★★★★★</span>
+                <span className="hero-review-rating">4.83</span>
+              </div>
+              <p className="hero-review-source">ホットペッパービューティー</p>
             </div>
 
             <div className="hero-actions">
@@ -199,103 +141,30 @@ const Home = memo(() => {
         </div>
       </section>
 
-      {/* Empathy Section */}
-      <section className="empathy-section section" ref={addToRefs}>
-        <div className="container">
-          <div className="empathy-content">
-            <h2>「休んでも疲れが取れない…」<br className="empathy-br" />それ、脳疲労かもしれません。</h2>
-            <p>デスクワークやスマホの使いすぎで、頭や目が重い。そんな現代の「脳疲労」を、耳からのアプローチで優しくリセットします。</p>
-          </div>
-        </div>
-      </section>
+      {/* お悩みセクション */}
+      <ConcernSection />
 
-      {/* Announcement Section */}
-      {/* 移転から3ヶ月以上経過したため非表示（2025年3月）。再表示する場合はコメントを外す。 */}
-      {/*
-      <section className="announcement-section section" ref={addToRefs}>
-        <div className="container">
-          <div className="announcement-card">
-            <img
-              src="/images/announcements/notification01.png"
-              alt="店舗移転のお知らせ"
-              className="announcement-image"
-              width={800}
-              height={450}
-              loading="lazy"
-              decoding="async"
-              onError={(e) => {
-                e.target.style.display = 'none';
-                e.target.nextElementSibling.style.display = 'flex';
-              }}
-            />
-            <div className="image-placeholder announcement-placeholder" style={{display: 'none'}} aria-hidden="true">
-              <span>お知らせ画像</span>
-            </div>
-          </div>
-        </div>
-      </section>
-      */}
+      {/* メニュー診断 */}
+      <MenuDiagnosis />
 
-      {/* About Section */}
-      <section id="about" className="about-section section" ref={addToRefs}>
-        <div className="container">
-          <div className="about-content">
-            <div className="about-text">
-              <span className="section-label">About Us</span>
-              <h2>サービスの特徴</h2>
-              <p>
-                イヤーエステと耳つぼで心身のバランスを整える専門サロンです。
-                お客様一人ひとりに合わせたオーダーメイドの施術で、深いリラクゼーションを提供いたします。
-              </p>
-              <p>
-                ドライヘッドスパとの組み合わせで、頭部全体の疲れを解消し、
-                日常のストレスから解放される特別な時間をお過ごしいただけます。
-              </p>
-            </div>
-            <div className="about-image">
-              <img 
-                src="/images/about/concept-interior.jpg"
-                alt="店内の様子 - リラクゼーション空間"
-                className="about-image-content"
-                width={600}
-                height={400}
-                loading="lazy"
-                decoding="async"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                  e.target.nextElementSibling.style.display = 'flex';
-                }}
-              />
-              <div className="image-placeholder" style={{display: 'none'}} aria-hidden="true">
-                <span>イヤーエステ・耳つぼの様子</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 施術の流れ */}
+      <FlowSection />
 
-      {/* Reasons Section */}
-      <section className="reasons-section section" ref={addToRefs}>
-        <div className="container">
-          <div className="section-header">
-            <span className="section-label">Why yoon²</span>
-            <h2>yoon²のイヤーエステが選ばれる理由</h2>
-          </div>
-          <div className="reasons-grid">
-            <div className="reason-card">
-              <h3>モニターで確認。「取れる」圧倒的なスッキリ感</h3>
-              <p>イヤースコープを使用し、普段見えない耳の中を一緒に確認。プロの技術で汚れを取り除き、物理的なスッキリ感と安心感をお届けします。</p>
-            </div>
-            <div className="reason-card">
-              <h3>迷走神経へのタッチで、極上の「寝落ち」体験</h3>
-              <p>耳に密集するリラックスの神経（迷走神経）を優しく刺激。ヘッドスパとは一味違う、短時間で深く沈み込むような心地よい眠りへと導きます。</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* お客様の声 */}
+      <ReviewsSection />
 
-      {/* Menu Section */}
+      {/* メニュー・料金 */}
       <MenuSection />
+
+      {/* FAQ Section */}
+      <FAQ />
+
+      {/* Social Section (Instagram誘導) */}
+      <section className="social-section section" ref={addToRefs}>
+        <div className="container">
+          <SocialFeed />
+        </div>
+      </section>
 
       {/* Shop Info Section */}
       <section id="shop" className="shop-section section" ref={addToRefs}>
@@ -366,7 +235,7 @@ const Home = memo(() => {
             </div>
             <div className="parking-photo-container">
               <div className="parking-image-wrapper">
-                <img 
+                <img
                   src={shop?.access?.parkingPhotos?.parkingLot || appConfig.shop.access.parkingPhotos.parkingLot}
                   alt="駐車場の様子"
                   className="parking-image"
@@ -399,7 +268,7 @@ const Home = memo(() => {
             </div>
             <div className="route-photo-container">
               <div className="route-image-wrapper">
-                <img 
+                <img
                   src={shop?.access?.parkingPhotos?.routeToShop || appConfig.shop.access.parkingPhotos.routeToShop}
                   alt="駐車場から店舗までの道順"
                   className="route-image"
@@ -448,19 +317,6 @@ const Home = memo(() => {
               </div>
             )}
           </div>
-        </div>
-      </section>
-
-      {/* Reviews Section */}
-      <ReviewsSection />
-
-      {/* FAQ Section */}
-      <FAQ />
-
-      {/* Social Section */}
-      <section className="social-section section" ref={addToRefs}>
-        <div className="container">
-          <SocialFeed />
         </div>
       </section>
 

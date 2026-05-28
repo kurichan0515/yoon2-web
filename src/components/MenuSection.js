@@ -5,10 +5,11 @@ import { trackHotpepperClick, trackLineClick, trackMenuView } from '../services/
 import './MenuSection.css';
 
 const BADGE_CLASS = {
-  '初回限定': 'menu-badge--new',
-  '人気':     'menu-badge--popular',
-  'プレミアム':'menu-badge--premium',
-  'オプション':'menu-badge--option',
+  '初回限定':   'menu-badge--new',
+  '人気':       'menu-badge--popular',
+  'プレミアム': 'menu-badge--premium',
+  'オプション': 'menu-badge--option',
+  '女性一番人気': 'menu-badge--women',
 };
 
 function MenuCard({ menu, lineUrl }) {
