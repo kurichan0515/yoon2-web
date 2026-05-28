@@ -98,7 +98,7 @@ const Home = memo(() => {
                 <span className="hero-price-amount">3,500</span>
                 <span className="hero-price-unit">〜</span>
               </div>
-              <p className="hero-price-note">マッサージ＋ジュエリーつけ放題</p>
+              <p className="hero-price-note">もみほぐし＋ジュエリーつけ放題</p>
             </div>
 
             {/* 口コミバッジ */}

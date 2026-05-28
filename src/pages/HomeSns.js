@@ -134,7 +134,7 @@ const Hero = () => {
             <span className="text-[#c9a96e] text-4xl sm:text-5xl font-bold" style={{ fontFamily: "'Playfair Display', serif" }}>3,500</span>
             <span className="text-[#c9a96e] text-xl sm:text-2xl font-semibold">〜</span>
           </div>
-          <p className="text-gray-500 text-[0.65rem] sm:text-xs text-center mt-1">マッサージ＋ジュエリーつけ放題</p>
+          <p className="text-gray-500 text-[0.65rem] sm:text-xs text-center mt-1">もみほぐし＋ジュエリーつけ放題</p>
         </div>
 
         {/* 口コミバッジ */}

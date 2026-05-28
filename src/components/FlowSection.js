@@ -17,7 +17,7 @@ const STEPS = [
   {
     num: '03',
     icon: '😴',
-    title: 'マッサージ',
+    title: 'もみほぐし',
     desc: '迷走神経を優しく刺激。ここで寝落ちされるお客様が続出です。',
     highlight: true,
   },

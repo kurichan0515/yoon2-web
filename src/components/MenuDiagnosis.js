@@ -44,11 +44,11 @@ function MenuDiagnosis() {
                 慢性的な不調ケア＋オシャレを楽しみたい方へ
               </p>
               <ul className="diagnosis-card-contents" aria-label="内容">
-                <li>耳つぼマッサージ</li>
+                <li>耳つぼもみほぐし</li>
                 <li>ジュエリーつけ放題</li>
               </ul>
               <p className="diagnosis-card-desc">
-                耳つぼマッサージでカチカチの耳をほぐし血流UP！お悩みに合わせたジュエリーつけ放題で、24時間可愛く体質改善をサポート。耳掃除なしでその分マッサージをたっぷり。
+                耳つぼもみほぐしでカチカチの耳をほぐし血流UP！お悩みに合わせたジュエリーつけ放題で、24時間可愛く体質改善をサポート。耳掃除なしでその分もみほぐしをたっぷり。
               </p>
               <button
                 className="diagnosis-card-btn diagnosis-card-btn--dark"
@@ -71,11 +71,11 @@ function MenuDiagnosis() {
               </p>
               <ul className="diagnosis-card-contents" aria-label="内容">
                 <li>耳掃除（スコープで確認しながら）</li>
-                <li>耳つぼマッサージ</li>
+                <li>耳つぼもみほぐし</li>
                 <li>ジュエリーつけ放題</li>
               </ul>
               <p className="diagnosis-card-desc">
-                スコープで耳の中を確認しながらプロの耳掃除でスッキリ。その後は耳つぼマッサージ＋ジュエリーつけ放題まで、フルコースで癒しと不調ケアを同時に体験。
+                スコープで耳の中を確認しながらプロの耳掃除でスッキリ。その後は耳つぼもみほぐし＋ジュエリーつけ放題まで、フルコースで癒しと不調ケアを同時に体験。
               </p>
               <button
                 className="diagnosis-card-btn diagnosis-card-btn--light"

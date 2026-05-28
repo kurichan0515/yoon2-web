@@ -222,7 +222,7 @@ class CalendarService {
 
     // サマリーから一般的なサービス名を抽出
     if (summary.includes('みみつぼ') || summary.includes('耳つぼ')) {
-      return 'みみつぼマッサージ';
+      return 'みみつぼもみほぐし';
     }
     if (summary.includes('イヤーエステ') || summary.includes('耳エステ')) {
       return 'イヤーエステ';
