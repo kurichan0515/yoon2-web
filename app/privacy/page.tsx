@@ -1,4 +1,3 @@
-import Providers from '../providers';
 import PublicLayout from '../../src/layouts/PublicLayout';
 import PrivacyPolicy from '../../src/views/PrivacyPolicy';
 
@@ -9,10 +8,8 @@ export const metadata = {
 
 export default function PrivacyPage() {
   return (
-    <Providers>
-      <PublicLayout>
-        <PrivacyPolicy />
-      </PublicLayout>
-    </Providers>
+    <PublicLayout>
+      <PrivacyPolicy />
+    </PublicLayout>
   );
 }

@@ -1,4 +1,3 @@
-import Providers from '../providers';
 import HomeSns from '../../src/views/HomeSns';
 
 export const metadata = {
@@ -7,9 +6,5 @@ export const metadata = {
 };
 
 export default function SnsPage() {
-  return (
-    <Providers>
-      <HomeSns />
-    </Providers>
-  );
+  return <HomeSns />;
 }
