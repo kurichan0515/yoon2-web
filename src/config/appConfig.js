@@ -8,26 +8,26 @@ const appConfig = {
 
   // Firebase設定（環境変数から取得、フォールバック値も設定）
   firebase: {
-    apiKey: process.env.REACT_APP_FIREBASE_API_KEY || "AIzaSyDemo1234567890abcdefghijklmnop",
-    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN || "demo-project.firebaseapp.com",
-    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID || "demo-project",
-    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET || "demo-project.appspot.com",
-    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID || "123456789012",
-    appId: process.env.REACT_APP_FIREBASE_APP_ID || "1:123456789012:web:abcdef123456"
+    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || "AIzaSyDemo1234567890abcdefghijklmnop",
+    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || "demo-project.firebaseapp.com",
+    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || "demo-project",
+    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || "demo-project.appspot.com",
+    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || "123456789012",
+    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || "1:123456789012:web:abcdef123456"
   },
 
   // SNS設定
   social: {
     twitter: {
-      url: process.env.REACT_APP_TWITTER_URL || "",
+      url: process.env.NEXT_PUBLIC_TWITTER_URL || "",
       username: ""
     },
     instagram: {
-      url: process.env.REACT_APP_INSTAGRAM_URL || "https://www.instagram.com/yoo.n.yoo.n/",
+      url: process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://www.instagram.com/yoo.n.yoo.n/",
       username: "@yoo.n.yoo.n"
     },
     line: {
-      url: process.env.REACT_APP_LINE_URL || "https://lin.ee/lyyKSqu",
+      url: process.env.NEXT_PUBLIC_LINE_URL || "https://lin.ee/lyyKSqu",
       note: "ご予約やお問い合わせは公式LINEにメッセージをお願いします"
     }
   },
@@ -272,24 +272,24 @@ const appConfig = {
   // Google AdSense設定
   adsense: {
     // パブリッシャーID（環境変数から取得、または直接設定）
-    publisherId: process.env.REACT_APP_ADSENSE_PUBLISHER_ID || "ca-pub-6862900859746528",
+    publisherId: process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID || "ca-pub-6862900859746528",
     // デフォルトの広告ユニットID（環境変数から取得、または直接設定）
-    defaultAdSlot: process.env.REACT_APP_ADSENSE_DEFAULT_SLOT || "2647640133",
+    defaultAdSlot: process.env.NEXT_PUBLIC_ADSENSE_DEFAULT_SLOT || "2647640133",
     // AdSenseを有効にするかどうか
-    enabled: process.env.REACT_APP_ADSENSE_ENABLED === 'true',
+    enabled: process.env.NEXT_PUBLIC_ADSENSE_ENABLED === 'true',
     // 開発モード（ローカル環境でプレースホルダーを表示）
-    devMode: process.env.REACT_APP_ADSENSE_DEV_MODE === 'true' || false
+    devMode: process.env.NEXT_PUBLIC_ADSENSE_DEV_MODE === 'true' || false
   },
 
   // Google Ads設定
   googleAds: {
     // コンバージョンID（環境変数から取得、または直接設定）
     // 形式: AW-1234567890
-    conversionId: process.env.REACT_APP_GOOGLE_ADS_CONVERSION_ID || "",
+    conversionId: process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID || "",
     // コンバージョンラベル（環境変数から取得、または直接設定）
-    conversionLabel: process.env.REACT_APP_GOOGLE_ADS_CONVERSION_LABEL || "",
+    conversionLabel: process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL || "",
     // Google Adsを有効にするかどうか
-    enabled: process.env.REACT_APP_GOOGLE_ADS_ENABLED === 'true' || false
+    enabled: process.env.NEXT_PUBLIC_GOOGLE_ADS_ENABLED === 'true' || false
   }
 };
 

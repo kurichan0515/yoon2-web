@@ -1,5 +1,6 @@
+'use client';
+
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Menu, X, Instagram, MapPin, Clock, Phone, Calendar, ArrowRight, ChevronRight, User, MessageCircle } from 'lucide-react';
 import appConfig from '../config/appConfig';
 import AdSense from '../components/common/AdSense';
@@ -20,7 +21,6 @@ import './Home.css';
 // --- Components ---
 
 const Navbar = ({ isScrolled, isMobileMenuOpen, setIsMobileMenuOpen }) => {
-  const navigate = useNavigate();
 
   const navLinks = [
     { name: 'HOME', href: '/sns', action: () => window.scrollTo({ top: 0, behavior: 'smooth' }) },
@@ -99,7 +99,6 @@ const Navbar = ({ isScrolled, isMobileMenuOpen, setIsMobileMenuOpen }) => {
 };
 
 const Hero = () => {
-  const navigate = useNavigate();
   const lineUrl = appConfig.shop.lineUrl || appConfig.social.line.url;
 
   return (
@@ -600,7 +599,6 @@ function FaqSnsSection({ lineUrl }) {
 }
 
 const HomeSns = () => {
-  const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const courseCardsRef = useRef([]);

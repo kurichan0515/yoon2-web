@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useRef, memo } from 'react';
 import { setPageMeta } from '../utils/seoHelper';
 import logger from '../utils/logger';

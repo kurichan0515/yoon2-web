@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import appConfig from '../config/appConfig';
 import { trackLineAddConversion } from '../services/googleAdsService';

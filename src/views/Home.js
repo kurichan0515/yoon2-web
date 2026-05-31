@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useRef, memo } from 'react';
 import SocialFeed from '../components/SocialFeed';
 import FAQ from '../components/FAQ';

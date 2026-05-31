@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import './UnauthorizedPage.css';
 
 const UnauthorizedPage = () => {
@@ -10,10 +12,10 @@ const UnauthorizedPage = () => {
         <h1>アクセス権限がありません</h1>
         <p>このページにアクセスするには管理者権限が必要です。</p>
         <div className="unauthorized-actions">
-          <Link to="/" className="btn btn-primary">
+          <Link href="/" className="btn btn-primary">
             ホームに戻る
           </Link>
-          <Link to="/system/login" className="btn btn-secondary">
+          <Link href="/system/login" className="btn btn-secondary">
             管理者ログイン
           </Link>
         </div>

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useRef, useState } from 'react';
 import appConfig from '../../config/appConfig';
 import logger from '../../utils/logger';
@@ -47,7 +49,7 @@ const AdSense = ({
     process.env.NODE_ENV === 'development' || 
     window.location.hostname === 'localhost' || 
     window.location.hostname === '127.0.0.1' ||
-    process.env.REACT_APP_ADSENSE_DEV_MODE === 'true';
+    process.env.NEXT_PUBLIC_ADSENSE_DEV_MODE === 'true';
 
   // 遅延読み込みされた adsbygoogle.js の準備完了を待つ（イベント発火がマウントより先の場合はポーリングで検知）
   useEffect(() => {

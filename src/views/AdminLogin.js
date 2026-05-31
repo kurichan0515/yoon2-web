@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import { signInAdmin, onAuthStateChange } from '../services/authService';
 import './AdminLogin.css';
