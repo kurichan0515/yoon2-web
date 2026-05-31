@@ -5,12 +5,12 @@ on:
     branches:
       - main
       - master
-  workflow_dispatch: # 手動実行も可能にする
+  workflow_dispatch:
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -28,21 +28,22 @@ jobs:
         run: npm run build
         env:
           NODE_OPTIONS: '--max-old-space-size=4096'
-          DISABLE_ESLINT_PLUGIN: 'true'
-          REACT_APP_GA4_MEASUREMENT_ID: ${{ secrets.REACT_APP_GA4_MEASUREMENT_ID }}
-          REACT_APP_GOOGLE_ADS_CONVERSION_ID: 'AW-621590738'
-          REACT_APP_GOOGLE_ADS_CONVERSION_LABEL: 'ydVVCILc-eAbENLxsqgC'
-          REACT_APP_GOOGLE_ADS_PAGEVIEW_CONVERSION_LABEL: 'ydVVCILc-eAbENLxsqgC'
-          REACT_APP_GOOGLE_ADS_HOTPEPPER_CONVERSION_LABEL: 'glIBCLuF8J8cENLxsqgC'
-          REACT_APP_GOOGLE_ADS_LINE_CONVERSION_LABEL: 'PT4wCL6F8J8cENLxsqgC'
-          REACT_APP_GOOGLE_ADS_ENABLED: 'true'
-          REACT_APP_ADSENSE_ENABLED: 'true'
-          REACT_APP_FIREBASE_API_KEY: ${{ secrets.REACT_APP_FIREBASE_API_KEY }}
-          REACT_APP_FIREBASE_AUTH_DOMAIN: ${{ secrets.REACT_APP_FIREBASE_AUTH_DOMAIN }}
-          REACT_APP_FIREBASE_PROJECT_ID: ${{ secrets.REACT_APP_FIREBASE_PROJECT_ID }}
-          REACT_APP_FIREBASE_STORAGE_BUCKET: ${{ secrets.REACT_APP_FIREBASE_STORAGE_BUCKET }}
-          REACT_APP_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.REACT_APP_FIREBASE_MESSAGING_SENDER_ID }}
-          REACT_APP_FIREBASE_APP_ID: ${{ secrets.REACT_APP_FIREBASE_APP_ID }}
+          # NOTE: GitHub Secrets名はREACT_APP_*のまま流用（リネーム保留）
+          # 気が向いたタイミングでSecrets側もNEXT_PUBLIC_*に統一すること
+          NEXT_PUBLIC_GA4_MEASUREMENT_ID: ${{ secrets.REACT_APP_GA4_MEASUREMENT_ID }}
+          NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID: 'AW-621590738'
+          NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL: 'ydVVCILc-eAbENLxsqgC'
+          NEXT_PUBLIC_GOOGLE_ADS_PAGEVIEW_CONVERSION_LABEL: 'ydVVCILc-eAbENLxsqgC'
+          NEXT_PUBLIC_GOOGLE_ADS_HOTPEPPER_CONVERSION_LABEL: 'glIBCLuF8J8cENLxsqgC'
+          NEXT_PUBLIC_GOOGLE_ADS_LINE_CONVERSION_LABEL: 'PT4wCL6F8J8cENLxsqgC'
+          NEXT_PUBLIC_GOOGLE_ADS_ENABLED: 'true'
+          NEXT_PUBLIC_ADSENSE_ENABLED: 'true'
+          NEXT_PUBLIC_FIREBASE_API_KEY: ${{ secrets.REACT_APP_FIREBASE_API_KEY }}
+          NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: ${{ secrets.REACT_APP_FIREBASE_AUTH_DOMAIN }}
+          NEXT_PUBLIC_FIREBASE_PROJECT_ID: ${{ secrets.REACT_APP_FIREBASE_PROJECT_ID }}
+          NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: ${{ secrets.REACT_APP_FIREBASE_STORAGE_BUCKET }}
+          NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.REACT_APP_FIREBASE_MESSAGING_SENDER_ID }}
+          NEXT_PUBLIC_FIREBASE_APP_ID: ${{ secrets.REACT_APP_FIREBASE_APP_ID }}
 
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
@@ -55,4 +56,4 @@ jobs:
         env:
           GOOGLE_SEARCH_CONSOLE_SERVICE_ACCOUNT: ${{ secrets.GOOGLE_SEARCH_CONSOLE_SERVICE_ACCOUNT }}
           SEARCH_CONSOLE_SITE_URL: ${{ secrets.SEARCH_CONSOLE_SITE_URL }}
-        continue-on-error: true  # エラーが発生してもデプロイは成功として扱う
+        continue-on-error: true

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect, useRef } from 'react';
 import appConfig from '../config/appConfig';
 import { MENU_DATA, HOTPEPPER_URL, getMenuStructuredData } from '../data/menuData';

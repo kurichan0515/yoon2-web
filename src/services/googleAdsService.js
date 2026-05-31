@@ -6,18 +6,18 @@
  * LINE追加コンバージョンを送信
  */
 export const trackLineAddConversion = () => {
-  const enabled = process.env.REACT_APP_GOOGLE_ADS_ENABLED === 'true';
+  const enabled = process.env.NEXT_PUBLIC_GOOGLE_ADS_ENABLED === 'true';
 
   if (!enabled) {
-    console.warn('Google広告コンバージョン追跡が無効です（REACT_APP_GOOGLE_ADS_ENABLED=false）');
+    console.warn('Google広告コンバージョン追跡が無効です（NEXT_PUBLIC_GOOGLE_ADS_ENABLED=false）');
     return;
   }
 
-  const conversionId = process.env.REACT_APP_GOOGLE_ADS_CONVERSION_ID;
-  const lineLabel = process.env.REACT_APP_GOOGLE_ADS_LINE_CONVERSION_LABEL;
+  const conversionId = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID;
+  const lineLabel = process.env.NEXT_PUBLIC_GOOGLE_ADS_LINE_CONVERSION_LABEL;
 
   if (!conversionId) {
-    console.error('Google広告コンバージョンIDが設定されていません（REACT_APP_GOOGLE_ADS_CONVERSION_ID）');
+    console.error('Google広告コンバージョンIDが設定されていません（NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID）');
     return;
   }
 
@@ -51,14 +51,14 @@ export const trackLineAddConversion = () => {
  * @param {number} value - コンバージョンの価値（円）
  */
 export const trackContactConversion = (value = 8000) => {
-  const enabled = process.env.REACT_APP_GOOGLE_ADS_ENABLED === 'true';
+  const enabled = process.env.NEXT_PUBLIC_GOOGLE_ADS_ENABLED === 'true';
 
   if (!enabled) {
     console.warn('Google広告コンバージョン追跡が無効です');
     return;
   }
 
-  const conversionId = process.env.REACT_APP_GOOGLE_ADS_CONVERSION_ID;
+  const conversionId = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID;
 
   if (!conversionId) {
     console.error('Google広告コンバージョンIDが設定されていません');
@@ -84,14 +84,14 @@ export const trackContactConversion = (value = 8000) => {
  * @param {number} value - コンバージョンの価値（円）
  */
 export const trackConversion = (eventName, value = null) => {
-  const enabled = process.env.REACT_APP_GOOGLE_ADS_ENABLED === 'true';
+  const enabled = process.env.NEXT_PUBLIC_GOOGLE_ADS_ENABLED === 'true';
 
   if (!enabled) {
     console.warn('Google広告コンバージョン追跡が無効です');
     return;
   }
 
-  const conversionId = process.env.REACT_APP_GOOGLE_ADS_CONVERSION_ID;
+  const conversionId = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID;
 
   if (!conversionId) {
     console.error('Google広告コンバージョンIDが設定されていません');

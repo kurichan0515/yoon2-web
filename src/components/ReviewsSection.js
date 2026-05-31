@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useRef, useEffect } from 'react';
 import { HOTPEPPER_URL } from '../data/menuData';
 import { trackReviewsView } from '../services/analyticsService';

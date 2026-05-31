@@ -1,5 +1,8 @@
+'use client';
+
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import appConfig from '../../config/appConfig';
 import { trackLineAddConversion } from '../../services/googleAdsService';
 import './PublicHeader.css';
@@ -7,7 +10,7 @@ import './PublicHeader.css';
 const PublicHeader = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
   const lastScrollY = useRef(0);
   const scrollTimeout = useRef(null);
 
@@ -72,10 +75,10 @@ const PublicHeader = () => {
       <div className="public-header-container">
         <div className="public-header-left">
           <Link
-            to="/"
+            href="/"
             className="public-logo"
             onClick={(e) => {
-              if (location.pathname === '/') {
+              if (pathname === '/') {
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }

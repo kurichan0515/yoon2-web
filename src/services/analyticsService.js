@@ -9,10 +9,10 @@ class AnalyticsService {
   }
 
   sendGoogleAdsPageViewConversion() {
-    const adsEnabled = process.env.REACT_APP_GOOGLE_ADS_ENABLED === 'true';
-    const adsId = process.env.REACT_APP_GOOGLE_ADS_CONVERSION_ID;
-    const pageViewLabel = process.env.REACT_APP_GOOGLE_ADS_PAGEVIEW_CONVERSION_LABEL
-      || process.env.REACT_APP_GOOGLE_ADS_CONVERSION_LABEL;
+    const adsEnabled = process.env.NEXT_PUBLIC_GOOGLE_ADS_ENABLED === 'true';
+    const adsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID;
+    const pageViewLabel = process.env.NEXT_PUBLIC_GOOGLE_ADS_PAGEVIEW_CONVERSION_LABEL
+      || process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL;
 
     if (!adsEnabled || !adsId || !pageViewLabel) return;
     if (typeof window === 'undefined' || typeof window.gtag !== 'function') return;
@@ -28,7 +28,7 @@ class AnalyticsService {
     
     try {
       // Firebase Analytics の設定（オプション）
-      const ga4Id = process.env.REACT_APP_GA4_MEASUREMENT_ID;
+      const ga4Id = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID;
       if (typeof window !== 'undefined' && window.gtag && ga4Id) {
         window.gtag('config', ga4Id);
       }
@@ -248,8 +248,8 @@ function gtag(...args) {
 }
 
 function sendGoogleAdsConversion(label, value = null, extraPayload = null) {
-  const adsEnabled = process.env.REACT_APP_GOOGLE_ADS_ENABLED === 'true';
-  const adsId = process.env.REACT_APP_GOOGLE_ADS_CONVERSION_ID;
+  const adsEnabled = process.env.NEXT_PUBLIC_GOOGLE_ADS_ENABLED === 'true';
+  const adsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID;
 
   if (!adsEnabled || !adsId || !label) {
     console.info('[AdsConversion:SKIP]', {
@@ -282,7 +282,7 @@ export function trackHotpepperClick(menuName = '') {
     event_label: menuName || 'Hotpepper Reservation Button',
     value: 5000,
   });
-  sendGoogleAdsConversion(process.env.REACT_APP_GOOGLE_ADS_HOTPEPPER_CONVERSION_LABEL, 5000);
+  sendGoogleAdsConversion(process.env.NEXT_PUBLIC_GOOGLE_ADS_HOTPEPPER_CONVERSION_LABEL, 5000);
 }
 
 /** LINE予約ボタンクリック */
@@ -293,7 +293,7 @@ export function trackLineClick(menuName = '') {
     event_label: menuName || 'LINE Reservation Button',
     value: 5000,
   });
-  sendGoogleAdsConversion(process.env.REACT_APP_GOOGLE_ADS_LINE_CONVERSION_LABEL, 5000);
+  sendGoogleAdsConversion(process.env.NEXT_PUBLIC_GOOGLE_ADS_LINE_CONVERSION_LABEL, 5000);
 }
 
 /** メニューセクション到達 */

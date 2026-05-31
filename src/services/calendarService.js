@@ -5,8 +5,8 @@ class CalendarService {
   constructor() {
     this.gapi = null;
     this.isInitialized = false;
-    this.calendarId = process.env.REACT_APP_GOOGLE_CALENDAR_ID;
-    this.apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
+    this.calendarId = process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_ID;
+    this.apiKey = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
   }
 
   // Google API初期化

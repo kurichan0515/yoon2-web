@@ -31,8 +31,8 @@ const BookingConfirmation = () => {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    const adsId = process.env.REACT_APP_GOOGLE_ADS_CONVERSION_ID;
-    const pageViewLabel = process.env.REACT_APP_GOOGLE_ADS_PAGEVIEW_CONVERSION_LABEL;
+    const adsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID;
+    const pageViewLabel = process.env.NEXT_PUBLIC_GOOGLE_ADS_PAGEVIEW_CONVERSION_LABEL;
 
     if (!adsId || !pageViewLabel) return;
 

@@ -1,5 +1,6 @@
+'use client';
+
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Menu, X, Instagram, MapPin, Clock, Phone, Calendar, ArrowRight, ChevronRight, User, MessageCircle } from 'lucide-react';
 import appConfig from '../config/appConfig';
 import AdSense from '../components/common/AdSense';
@@ -7,7 +8,6 @@ import courseService from '../services/courseService';
 import { COURSE_CATEGORIES, COURSE_CATEGORY_LABELS } from '../types/courseTypes';
 import ErrorMessage from '../components/common/ErrorMessage';
 import LoadingSpinner from '../components/common/LoadingSpinner';
-import { setPageMeta } from '../utils/seoHelper';
 import { trackPageView } from '../services/analyticsService';
 import { trackPageView as trackGoogleAdsPageView, trackLineAddConversion } from '../services/googleAdsService';
 import logger from '../utils/logger';
@@ -20,7 +20,6 @@ import './Home.css';
 // --- Components ---
 
 const Navbar = ({ isScrolled, isMobileMenuOpen, setIsMobileMenuOpen }) => {
-  const navigate = useNavigate();
 
   const navLinks = [
     { name: 'HOME', href: '/sns', action: () => window.scrollTo({ top: 0, behavior: 'smooth' }) },
@@ -99,7 +98,6 @@ const Navbar = ({ isScrolled, isMobileMenuOpen, setIsMobileMenuOpen }) => {
 };
 
 const Hero = () => {
-  const navigate = useNavigate();
   const lineUrl = appConfig.shop.lineUrl || appConfig.social.line.url;
 
   return (
@@ -600,7 +598,6 @@ function FaqSnsSection({ lineUrl }) {
 }
 
 const HomeSns = () => {
-  const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const courseCardsRef = useRef([]);
@@ -614,13 +611,6 @@ const HomeSns = () => {
   useEffect(() => {
     // ページの一番上にスクロール
     window.scrollTo(0, 0);
-    
-    // SEOメタタグを設定（SNS導線向け）
-    setPageMeta({
-      title: 'yoon² | 松山の耳つぼ・イヤーエステ SNSからのご予約',
-      description: '愛媛県松山市の耳つぼ・イヤーエステ専門サロン。初回3,500円～、オンライン予約OK。公式LINEから簡単予約。北久米駅徒歩5分、駐車場完備。',
-      path: '/sns'
-    });
     
     // インプレッションを記録
     trackPageView('SNSLanding', {

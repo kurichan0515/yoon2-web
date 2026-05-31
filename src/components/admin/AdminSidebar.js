@@ -1,9 +1,12 @@
+'use client';
+
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import './AdminSidebar.css';
 
 const AdminSidebar = () => {
-  const location = useLocation();
+  const pathname = usePathname();
 
   const menuItems = [
     {
@@ -30,9 +33,9 @@ const AdminSidebar = () => {
           {menuItems.map((item) => (
             <li key={item.path} className="admin-sidebar-item">
               <Link
-                to={item.path}
+                href={item.path}
                 className={`admin-sidebar-link ${
-                  location.pathname === item.path ? 'active' : ''
+                  pathname === item.path ? 'active' : ''
                 }`}
               >
                 <span className="admin-sidebar-icon">{item.icon}</span>

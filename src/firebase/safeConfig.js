@@ -1,3 +1,5 @@
+'use client';
+
 image.png// 安全なFirebase設定ファイル
 // このファイルはFirebase SDKエラーを完全に回避します
 

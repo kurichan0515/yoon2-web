@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import appConfig from '../../config/appConfig';
 import { trackLineAddConversion } from '../../services/googleAdsService';
 import './PublicFooter.css';
@@ -50,7 +52,7 @@ const PublicFooter = () => {
         <div className="footer-bottom">
           <p>&copy; 2025 {appConfig.shop.name}. All rights reserved.</p>
           <div className="footer-links-bottom">
-            <Link to="/privacy" className="footer-link">プライバシーポリシー</Link>
+            <Link href="/privacy" className="footer-link">プライバシーポリシー</Link>
           </div>
         </div>
       </div>
