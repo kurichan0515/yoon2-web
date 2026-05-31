@@ -74,7 +74,7 @@ const Home = memo(() => {
             <img
               src="/images/shop/play-room.jpg"
               alt=""
-              fetchpriority="high"
+              fetchPriority="high"
               decoding="async"
               className="hero-bg-img"
             />
