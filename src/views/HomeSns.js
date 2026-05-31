@@ -105,7 +105,9 @@ const Hero = () => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0 hero-background">
         <picture>
+          <source media="(max-width: 768px)" srcSet="/images/hero/hero-sp.webp" type="image/webp" />
           <source media="(max-width: 768px)" srcSet="/images/hero/hero-sp.jpg" />
+          <source srcSet="/images/shop/play-room.webp" type="image/webp" />
           <img
             src="/images/shop/play-room.jpg"
             alt=""

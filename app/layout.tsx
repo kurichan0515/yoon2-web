@@ -131,8 +131,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ja">
       <head>
-        <link rel="preload" as="image" href="/images/shop/play-room.jpg" media="(min-width: 769px)" />
-        <link rel="preload" as="image" href="/images/hero/hero-sp.jpg" media="(max-width: 768px)" />
+        <link rel="preload" as="image" href="/images/shop/play-room.webp" media="(min-width: 769px)" />
+        <link rel="preload" as="image" href="/images/hero/hero-sp.webp" media="(max-width: 768px)" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
@@ -152,13 +152,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body style={{ backgroundColor: '#f4f1eb', margin: 0 }}>
         {children}
-        {/* Google AdSense */}
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6862900859746528"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
         {/* Google tag (gtag.js) */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=AW-621590738`}

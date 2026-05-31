@@ -62,7 +62,9 @@ const Home = memo(() => {
       <section className="hero" ref={heroRef}>
         <div className="hero-background">
           <picture>
+            <source media="(max-width: 768px)" srcSet="/images/hero/hero-sp.webp" type="image/webp" />
             <source media="(max-width: 768px)" srcSet="/images/hero/hero-sp.jpg" />
+            <source srcSet="/images/shop/play-room.webp" type="image/webp" />
             <img
               src="/images/shop/play-room.jpg"
               alt=""

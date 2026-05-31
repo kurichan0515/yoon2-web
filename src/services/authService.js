@@ -22,12 +22,17 @@ class AuthService {
   initializeAuth() {
     logger.debug('initializeAuth called');
     try {
-      // Firebase設定を先に読み込む
-      const { auth: firebaseAuth } = require('../firebase/config');
-      logger.debug('Firebase config loaded', { authAvailable: !!firebaseAuth });
-      
-      if (firebaseAuth) {
-        this.auth = firebaseAuth;
+      const { initializeFirebase, auth: firebaseAuth } = require('../firebase/config');
+      // 管理画面アクセス時に初めてFirebaseを初期化
+      if (typeof initializeFirebase === 'function') {
+        initializeFirebase();
+      }
+      // 初期化後にauthを再取得
+      const { auth: initializedAuth } = require('../firebase/config');
+      logger.debug('Firebase config loaded', { authAvailable: !!initializedAuth });
+
+      if (initializedAuth) {
+        this.auth = initializedAuth;
         this.isInitialized = true;
         logger.debug('Firebase Auth obtained successfully');
       } else {

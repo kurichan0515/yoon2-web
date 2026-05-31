@@ -74,10 +74,9 @@ const getFirebaseServices = () => {
   return { app, db, auth, storage };
 };
 
-// ブラウザ環境でのみ初期化（SSG/SSR時のwindow未定義エラー回避）
-if (typeof window !== 'undefined') {
-  initializeFirebase();
-}
+// 自動初期化しない。
+// 管理画面(authService)からのみinitializeFirebase()を呼び出す。
+// 公開ページではFirebase初期化不要 → Auth iframeが読み込まれない。
 
-export { db, auth, storage };
+export { db, auth, storage, initializeFirebase };
 export default app;

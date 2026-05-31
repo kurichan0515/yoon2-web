@@ -1,3 +1,4 @@
+import Script from 'next/script';
 import HomeSns from '../../src/views/HomeSns';
 
 export const metadata = {
@@ -6,5 +7,15 @@ export const metadata = {
 };
 
 export default function SnsPage() {
-  return <HomeSns />;
+  return (
+    <>
+      <Script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6862900859746528"
+        crossOrigin="anonymous"
+        strategy="afterInteractive"
+      />
+      <HomeSns />
+    </>
+  );
 }
