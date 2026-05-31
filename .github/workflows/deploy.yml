@@ -27,7 +27,8 @@ jobs:
       - name: Build project
         run: npm run build
         env:
-          NODE_OPTIONS: '--max-old-space-size=4096'
+          NODE_OPTIONS: '--max-old-space-size=2048'
+          NEXT_TELEMETRY_DISABLED: '1'
           # NOTE: GitHub Secrets名はREACT_APP_*のまま流用（リネーム保留）
           # 気が向いたタイミングでSecrets側もNEXT_PUBLIC_*に統一すること
           NEXT_PUBLIC_GA4_MEASUREMENT_ID: ${{ secrets.REACT_APP_GA4_MEASUREMENT_ID }}
