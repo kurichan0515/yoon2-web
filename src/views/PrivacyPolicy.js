@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useRef, memo } from 'react';
-import { setPageMeta } from '../utils/seoHelper';
 import logger from '../utils/logger';
 import './PrivacyPolicy.css';
 
@@ -11,13 +10,6 @@ const PrivacyPolicy = memo(() => {
   useEffect(() => {
     // ページの一番上にスクロール
     window.scrollTo(0, 0);
-    
-    // SEOメタタグを設定
-    setPageMeta({
-      title: 'プライバシーポリシー | yoon² 松山の耳つぼ・イヤーエステ',
-      description: 'yoon²（ゆんゆん、松山の耳つぼ・イヤーエステ専門サロン）のプライバシーポリシー。個人情報の取り扱い、クッキーの使用、Google AdSenseについて説明しています。',
-      path: '/privacy'
-    });
     
     // Intersection Observer for animations
     const observer = new IntersectionObserver(

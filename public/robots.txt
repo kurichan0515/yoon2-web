@@ -7,7 +7,5 @@ Disallow: /admin/
 
 # その他の除外パス
 Disallow: /api/
-Disallow: /_next/
-Disallow: /static/
 
 Sitemap: https://yoon2.com/sitemap.xml

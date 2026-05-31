@@ -9,7 +9,6 @@ import ConcernSection from '../components/ConcernSection';
 import MenuDiagnosis from '../components/MenuDiagnosis';
 import FlowSection from '../components/FlowSection';
 import AdSense from '../components/common/AdSense';
-import { setPageMeta } from '../utils/seoHelper';
 import appConfig from '../config/appConfig';
 import logger from '../utils/logger';
 import { trackLineAddConversion } from '../services/googleAdsService';
@@ -25,13 +24,6 @@ const Home = memo(() => {
     logger.debug('Home useEffect called');
     // ページの一番上にスクロール
     window.scrollTo(0, 0);
-    
-    // SEOメタタグを設定
-    setPageMeta({
-      title: 'yoon² | 松山の耳つぼ・イヤーエステ専門サロン',
-      description: '愛媛県松山市の耳つぼ・イヤーエステ専門サロン。初回3,500円～、オンライン予約OK。北久米駅徒歩5分、駐車場完備。',
-      path: '/'
-    });
     
     // 分析・広告は遅延読み込みでメインスレッドを軽くする
     import('../services/analyticsService').then(({ trackPageView }) => {

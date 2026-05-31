@@ -8,7 +8,6 @@ import courseService from '../services/courseService';
 import { COURSE_CATEGORIES, COURSE_CATEGORY_LABELS } from '../types/courseTypes';
 import ErrorMessage from '../components/common/ErrorMessage';
 import LoadingSpinner from '../components/common/LoadingSpinner';
-import { setPageMeta } from '../utils/seoHelper';
 import { trackPageView } from '../services/analyticsService';
 import { trackPageView as trackGoogleAdsPageView, trackLineAddConversion } from '../services/googleAdsService';
 import logger from '../utils/logger';
@@ -612,13 +611,6 @@ const HomeSns = () => {
   useEffect(() => {
     // ページの一番上にスクロール
     window.scrollTo(0, 0);
-    
-    // SEOメタタグを設定（SNS導線向け）
-    setPageMeta({
-      title: 'yoon² | 松山の耳つぼ・イヤーエステ SNSからのご予約',
-      description: '愛媛県松山市の耳つぼ・イヤーエステ専門サロン。初回3,500円～、オンライン予約OK。公式LINEから簡単予約。北久米駅徒歩5分、駐車場完備。',
-      path: '/sns'
-    });
     
     // インプレッションを記録
     trackPageView('SNSLanding', {
