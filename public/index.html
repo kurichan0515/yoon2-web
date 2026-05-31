@@ -25,8 +25,9 @@
     
     <!-- Canonical URL - 重複コンテンツ対策 -->
     <link rel="canonical" href="https://yoon2.com/" />
-    <!-- LCP 改善: ヒーロー背景画像の先行読み込み（PCのみ有効・SPはhero-sp.jpgを使用） -->
+    <!-- LCP 改善: ヒーロー背景画像の先行読み込み -->
     <link rel="preload" as="image" href="/images/shop/play-room.jpg" media="(min-width: 769px)" />
+    <link rel="preload" as="image" href="/images/hero/hero-sp.jpg" media="(max-width: 768px)" />
     <!-- フォントの事前接続でレンダーブロックを軽減 -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -117,6 +118,68 @@
       "sameAs": [
         "https://www.instagram.com/yoo.n.yoo.n/",
         "https://lin.ee/lyyKSqu"
+      ]
+    }
+    </script>
+
+    <!-- Service スキーマ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "施術メニュー",
+      "itemListElement": [
+        {
+          "@type": "Service",
+          "position": 1,
+          "name": "イヤーエステ",
+          "description": "耳周りの筋肉をほぐし、顔のむくみ・リフトアップに効果的なエステ",
+          "provider": { "@type": "BeautySalon", "name": "yoon²ゆんゆん" },
+          "areaServed": { "@type": "City", "name": "松山市" },
+          "offers": { "@type": "Offer", "priceCurrency": "JPY", "price": "3500" }
+        },
+        {
+          "@type": "Service",
+          "position": 2,
+          "name": "耳つぼもみほぐし",
+          "description": "耳のツボを刺激し自律神経を整えるリラクゼーション施術",
+          "provider": { "@type": "BeautySalon", "name": "yoon²ゆんゆん" },
+          "areaServed": { "@type": "City", "name": "松山市" },
+          "offers": { "@type": "Offer", "priceCurrency": "JPY", "price": "2500" }
+        },
+        {
+          "@type": "Service",
+          "position": 3,
+          "name": "耳つぼジュエリー",
+          "description": "耳つぼもみほぐし＋ジュエリーつけ放題。女性人気No.1メニュー",
+          "provider": { "@type": "BeautySalon", "name": "yoon²ゆんゆん" },
+          "areaServed": { "@type": "City", "name": "松山市" },
+          "offers": { "@type": "Offer", "priceCurrency": "JPY", "price": "3500" }
+        },
+        {
+          "@type": "Service",
+          "position": 4,
+          "name": "ヘッドスパ",
+          "description": "頭皮マッサージで血行促進・ストレス解消",
+          "provider": { "@type": "BeautySalon", "name": "yoon²ゆんゆん" },
+          "areaServed": { "@type": "City", "name": "松山市" }
+        }
+      ]
+    }
+    </script>
+
+    <!-- BreadcrumbList スキーマ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "ホーム",
+          "item": "https://yoon2.com/"
+        }
       ]
     }
     </script>

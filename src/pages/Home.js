@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, memo, useState } from 'react';
+import React, { useEffect, useRef, memo } from 'react';
 import SocialFeed from '../components/SocialFeed';
 import FAQ from '../components/FAQ';
 import MenuSection from '../components/MenuSection';
@@ -18,16 +18,6 @@ const Home = memo(() => {
   
   const heroRef = useRef(null);
   const sectionsRef = useRef([]);
-  
-  // Hero background: SPのみ別画像
-  const [heroBg, setHeroBg] = useState('/images/shop/play-room.jpg');
-  useEffect(() => {
-    const mq = window.matchMedia('(max-width: 768px)');
-    const update = (e) => setHeroBg(e.matches ? '/images/hero/hero-sp.jpg' : '/images/shop/play-room.jpg');
-    update(mq);
-    mq.addEventListener('change', update);
-    return () => mq.removeEventListener('change', update);
-  }, []);
 
   useEffect(() => {
     logger.debug('Home useEffect called');
@@ -76,7 +66,17 @@ const Home = memo(() => {
     <div className="home">
       {/* Hero Section */}
       <section className="hero" ref={heroRef}>
-        <div className="hero-background" style={{backgroundImage: `url('${heroBg}')`}}>
+        <div className="hero-background">
+          <picture>
+            <source media="(max-width: 768px)" srcSet="/images/hero/hero-sp.jpg" />
+            <img
+              src="/images/shop/play-room.jpg"
+              alt=""
+              fetchpriority="high"
+              decoding="async"
+              className="hero-bg-img"
+            />
+          </picture>
           <div className="hero-overlay"></div>
         </div>
         <div className="container">
