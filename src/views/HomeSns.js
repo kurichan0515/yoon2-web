@@ -102,11 +102,18 @@ const Hero = () => {
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay — Home.js と同じ処理 */}
-      <div
-        className="absolute inset-0 z-0 hero-background"
-        style={{ backgroundImage: "url('/images/shop/play-room.jpg')" }}
-      >
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0 z-0 hero-background">
+        <picture>
+          <source media="(max-width: 768px)" srcSet="/images/hero/hero-sp.jpg" />
+          <img
+            src="/images/shop/play-room.jpg"
+            alt=""
+            fetchPriority="high"
+            decoding="async"
+            className="hero-bg-img"
+          />
+        </picture>
         <div className="hero-overlay" />
         <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.35)' }} />
       </div>
