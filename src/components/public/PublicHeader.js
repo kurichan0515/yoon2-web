@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import appConfig from '../../config/appConfig';
 import { trackLineAddConversion } from '../../services/googleAdsService';
-import './PublicHeader.css';
 
 const PublicHeader = () => {
   const [isVisible, setIsVisible] = useState(true);

@@ -4,7 +4,6 @@ import React from 'react';
 import Link from 'next/link';
 import appConfig from '../../config/appConfig';
 import { trackLineAddConversion } from '../../services/googleAdsService';
-import './PublicFooter.css';
 
 const PublicFooter = () => {
   return (

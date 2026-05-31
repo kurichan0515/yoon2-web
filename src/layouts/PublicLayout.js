@@ -4,7 +4,6 @@ import React from 'react';
 import PublicHeader from '../components/public/PublicHeader';
 import PublicFooter from '../components/public/PublicFooter';
 import logger from '../utils/logger';
-import './PublicLayout.css';
 
 const PublicLayout = ({ children }) => {
   logger.debug('PublicLayout rendered');

@@ -434,3 +434,7 @@ img[width][height] {
     font-size: 16px !important;
   }
 }
+/* 共通コンポーネントCSS統合（CSS requestを1本に削減） */
+@import './layouts/PublicLayout.css';
+@import './components/public/PublicHeader.css';
+@import './components/public/PublicFooter.css';
