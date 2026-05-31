@@ -45,10 +45,11 @@ const AdSense = ({
   const publisherId = appConfig.adsense.publisherId;
 
   // 開発環境かどうかを判定（localhost、127.0.0.1、または環境変数で制御）
-  const isDevelopment = 
-    process.env.NODE_ENV === 'development' || 
-    window.location.hostname === 'localhost' || 
-    window.location.hostname === '127.0.0.1' ||
+  const hostname = typeof window !== 'undefined' ? window.location.hostname : '';
+  const isDevelopment =
+    process.env.NODE_ENV === 'development' ||
+    hostname === 'localhost' ||
+    hostname === '127.0.0.1' ||
     process.env.NEXT_PUBLIC_ADSENSE_DEV_MODE === 'true';
 
   // 遅延読み込みされた adsbygoogle.js の準備完了を待つ（イベント発火がマウントより先の場合はポーリングで検知）
