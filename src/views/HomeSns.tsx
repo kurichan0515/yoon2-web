@@ -1,13 +1,9 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, Instagram, MapPin, Clock, Phone, Calendar, ArrowRight, ChevronRight, MessageCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Menu, X, Instagram, MapPin, Clock, Phone, Calendar, ArrowRight, MessageCircle } from 'lucide-react';
 import appConfig from '../config/appConfig';
 import AdSense from '../components/common/AdSense';
-import courseService from '../services/courseService';
-import { COURSE_CATEGORIES, COURSE_CATEGORY_LABELS } from '../types/courseTypes';
-import ErrorMessage from '../components/common/ErrorMessage';
-import LoadingSpinner from '../components/common/LoadingSpinner';
 import { trackPageView } from '../services/analyticsService';
 import { trackPageView as trackGoogleAdsPageView, trackLineAddConversion } from '../services/googleAdsService';
 import { FAQ_DATA, getFaqStructuredData } from '../data/faqData';
@@ -19,8 +15,6 @@ import './Home.css';
 // ---- 型定義 ----
 
 interface NavLink { name: string; href: string; action: (() => void) | null; }
-
-interface Course { id: string; name: string; description: string; price: number; duration: string; image: string; category: string; }
 
 interface MenuItem {
   id: string; name: string; price: number; originalPrice?: number;
@@ -54,7 +48,6 @@ interface NavbarProps { isScrolled: boolean; isMobileMenuOpen: boolean; setIsMob
 const Navbar = ({ isScrolled, isMobileMenuOpen, setIsMobileMenuOpen }: NavbarProps) => {
   const navLinks: NavLink[] = [
     { name: 'HOME',     href: '/sns',     action: () => window.scrollTo({ top: 0, behavior: 'smooth' }) },
-    { name: 'ABOUT',    href: '#about',   action: null },
     { name: 'SERVICES', href: '#courses', action: null },
     { name: 'SHOP',     href: '#shop',    action: null },
     { name: 'RESERVE',  href: '#reserve', action: null },
@@ -155,6 +148,124 @@ const Hero = () => {
     </section>
   );
 };
+
+// ---- ConcernSnsSection ----
+const CONCERNS = [
+  { num: '01', text: '休んでも疲れが取れない、頭や目が重い' },
+  { num: '02', text: '自分の耳の中がどうなっているか見てみたい' },
+  { num: '03', text: '肩こりや頭痛、むくみをどうにかしたい' },
+  { num: '04', text: '不調をケアしたいけど、オシャレも楽しみたい' },
+];
+
+function ConcernSnsSection() {
+  return (
+    <section className="py-12 sm:py-16 md:py-24 bg-[#101827]">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6">
+        <div className="mb-8 sm:mb-12 md:mb-16">
+          <span className="text-[#3B82F6] text-[0.65rem] sm:text-xs tracking-[0.2em] sm:tracking-[0.4em] block mb-2 font-bold uppercase">FOR YOU</span>
+          <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light" style={{ fontFamily: 'Cinzel, serif' }}>こんなお悩み、<br />抱えていませんか？</h2>
+        </div>
+        <ul className="space-y-3 sm:space-y-4 mb-8 sm:mb-12" aria-label="お悩みリスト">
+          {CONCERNS.map(item => (
+            <li key={item.num} className="flex items-center gap-4 sm:gap-6 bg-[#161B22] border border-white/5 hover:border-[#3B82F6]/30 transition-all duration-300 p-4 sm:p-5">
+              <span className="text-[#3B82F6] text-lg sm:text-xl font-bold tracking-wider flex-shrink-0 w-8 text-right" aria-hidden="true">{item.num}</span>
+              <span className="text-white/80 text-sm sm:text-base tracking-wide">{item.text}</span>
+            </li>
+          ))}
+        </ul>
+        <div className="border-t border-white/5 pt-6 sm:pt-8 text-center">
+          <p className="text-white/70 text-sm sm:text-base tracking-wide">
+            そのお悩み、yoon²の<span className="text-[#3B82F6] font-semibold">耳からのアプローチ</span>で解決できます
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ---- MenuDiagnosisSnsSection ----
+function MenuDiagnosisSnsSection() {
+  const scrollToMenu = () => document.getElementById('courses')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  return (
+    <section className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6">
+        <div className="mb-8 sm:mb-12 md:mb-16">
+          <span className="text-[#3B82F6] text-[0.65rem] sm:text-xs tracking-[0.2em] sm:tracking-[0.4em] block mb-2 font-bold uppercase">MENU GUIDE</span>
+          <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light" style={{ fontFamily: 'Cinzel, serif' }}>あなたにぴったりの<br />メニューはどちらですか？</h2>
+        </div>
+        <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+          <article className="bg-[#3B82F6] p-6 sm:p-8 flex flex-col">
+            <div className="text-white text-[0.65rem] sm:text-xs font-semibold tracking-[0.3em] mb-3">RECOMMENDED</div>
+            <h3 className="text-white text-xl sm:text-2xl font-medium tracking-wide mb-3">耳つぼジュエリー</h3>
+            <div className="w-8 h-[1px] bg-white/40 mb-4" aria-hidden="true" />
+            <p className="text-white/90 text-xs sm:text-sm mb-4 tracking-wide">慢性的な不調ケア＋オシャレを楽しみたい方へ</p>
+            <ul className="space-y-1 mb-5" aria-label="内容">
+              {['耳つぼもみほぐし', 'ジュエリーつけ放題'].map(t => (
+                <li key={t} className="flex items-center gap-2 text-white/80 text-xs sm:text-sm">
+                  <span className="text-white flex-shrink-0" aria-hidden="true">›</span>{t}
+                </li>
+              ))}
+            </ul>
+            <p className="text-white/80 text-xs leading-relaxed flex-1">耳つぼもみほぐしでカチカチの耳をほぐし血流UP！お悩みに合わせたジュエリーつけ放題で、24時間可愛く体質改善をサポート。耳掃除なしでその分もみほぐしをたっぷり。</p>
+            <button onClick={scrollToMenu} className="mt-6 w-full py-2.5 sm:py-3 bg-white text-[#3B82F6] text-xs font-semibold tracking-widest hover:bg-white/90 transition-colors" aria-label="耳つぼジュエリーの料金・詳細へ">料金・詳細を見る</button>
+          </article>
+          <article className="bg-[#161B22] border border-white/5 hover:border-[#3B82F6]/30 transition-all duration-300 p-6 sm:p-8 flex flex-col">
+            <div className="text-[#3B82F6] text-[0.65rem] sm:text-xs font-semibold tracking-[0.3em] mb-3">MENU B</div>
+            <h3 className="text-white text-xl sm:text-2xl font-medium tracking-wide mb-3">イヤーエステ</h3>
+            <div className="w-8 h-[1px] bg-white/20 mb-4" aria-hidden="true" />
+            <p className="text-white/70 text-xs sm:text-sm mb-4 tracking-wide">とにかく癒されたい・スッキリしたい方へ</p>
+            <ul className="space-y-1 mb-5" aria-label="内容">
+              {['耳掃除（スコープで確認しながら）', '耳つぼもみほぐし', 'ジュエリーつけ放題'].map(t => (
+                <li key={t} className="flex items-center gap-2 text-white/70 text-xs sm:text-sm">
+                  <span className="text-[#3B82F6] flex-shrink-0" aria-hidden="true">›</span>{t}
+                </li>
+              ))}
+            </ul>
+            <p className="text-white/60 text-xs leading-relaxed flex-1">スコープで耳の中を確認しながらプロの耳掃除でスッキリ。その後は耳つぼもみほぐし＋ジュエリーつけ放題まで、フルコースで癒しと不調ケアを同時に体験。</p>
+            <button onClick={scrollToMenu} className="mt-6 w-full py-2.5 sm:py-3 border border-[#3B82F6]/50 text-[#3B82F6] text-xs font-semibold tracking-widest hover:bg-[#3B82F6]/10 transition-colors" aria-label="イヤーエステの料金・詳細へ">料金・詳細を見る</button>
+          </article>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ---- FlowSnsSection ----
+const FLOW_STEPS = [
+  { num: '01', icon: '👂', title: 'カウンセリング', desc: 'スコープで耳の中を一緒に確認。お悩みや気になる点をヒアリングします。', highlight: false },
+  { num: '02', icon: '✨', title: '施術',           desc: '痛みなし・優しいタッチ。完全個室でリラックスできる環境で丁寧に施術。', highlight: false },
+  { num: '03', icon: '😴', title: 'もみほぐし',     desc: '迷走神経を優しく刺激。ここで寝落ちされるお客様が続出です。', highlight: true },
+  { num: '04', icon: '🌿', title: 'アフターケア',   desc: 'スッキリした状態を確認。お悩みに合わせたアドバイスをお伝えします。', highlight: false },
+];
+
+function FlowSnsSection() {
+  return (
+    <section className="py-12 sm:py-16 md:py-24 bg-[#101827]">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6">
+        <div className="mb-8 sm:mb-12 md:mb-16">
+          <span className="text-[#3B82F6] text-[0.65rem] sm:text-xs tracking-[0.2em] sm:tracking-[0.4em] block mb-2 font-bold uppercase">FLOW</span>
+          <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light" style={{ fontFamily: 'Cinzel, serif' }}>初めての方も安心！<br />ご来店からの流れ</h2>
+        </div>
+        <div className="flex flex-col max-w-2xl mx-auto" role="list">
+          {FLOW_STEPS.map((step, i) => (
+            <div key={step.num} className="flex gap-4 sm:gap-6 relative" role="listitem">
+              {i < FLOW_STEPS.length - 1 && <div className="absolute left-[23px] sm:left-[27px] top-12 bottom-0 w-[1px] bg-white/10" aria-hidden="true" />}
+              <div className={`flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center text-xl sm:text-2xl z-10 ${step.highlight ? 'bg-[#3B82F6]' : 'bg-[#161B22] border border-white/10'}`} aria-hidden="true">
+                {step.icon}
+              </div>
+              <div className={`flex-1 ${i < FLOW_STEPS.length - 1 ? 'pb-8 sm:pb-10' : ''}`}>
+                <div className="text-[#3B82F6] text-[0.6rem] sm:text-[0.65rem] tracking-[0.3em] mb-1">{step.num}</div>
+                <h3 className={`text-base sm:text-lg font-medium tracking-wide mb-2 ${step.highlight ? 'text-[#3B82F6]' : 'text-white'}`}>{step.title}</h3>
+                <p className="text-white/60 text-xs sm:text-sm leading-relaxed">{step.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p className="text-center text-white/40 text-[0.65rem] sm:text-xs tracking-widest mt-6 sm:mt-8">完全個室・全施術痛みなし</p>
+      </div>
+    </section>
+  );
+}
 
 // ---- ReviewsSnsSection ----
 const SNS_REVIEWS = [
@@ -433,11 +544,6 @@ function FaqSnsSection({ lineUrl }: { lineUrl: string }) {
 const HomeSns = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const courseCardsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const [courses, setCourses] = useState<Course[]>([]);
-  const [coursesLoading, setCoursesLoading] = useState(true);
-  const [coursesError, setCoursesError] = useState<string | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState('all');
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -448,149 +554,21 @@ const HomeSns = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    (async () => {
-      try {
-        setCoursesLoading(true);
-        const result = await courseService.getAllCourses();
-        if (result.success) setCourses(result.data as unknown as Course[]);
-        else setCoursesError(result.error as string);
-      } catch { setCoursesError('コースの読み込みに失敗しました'); }
-      finally { setCoursesLoading(false); }
-    })();
-  }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, index) => {
-        if (entry.isIntersecting) setTimeout(() => entry.target.classList.add('fade-in-up'), index * 100);
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-    courseCardsRef.current.forEach(c => { if (c) observer.observe(c); });
-    return () => observer.disconnect();
-  }, [courses, selectedCategory]);
-
-  const filteredCourses = selectedCategory === 'all' ? courses : courses.filter(c => c.category === selectedCategory);
   const lineUrl = (shop.lineUrl ?? social.line.url) as string;
   const instagramUrl = (shop.instagramUrl ?? social.instagram.url) as string;
-  const instagramUsername = social.instagram.username?.replace('@', '') ?? 'yoo.n.yoo.n';
 
   return (
     <div className="bg-[#0A0A0A] text-white selection:bg-[#3B82F6] selection:text-white font-sans">
       <Navbar isScrolled={isScrolled} isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
       <Hero />
 
-      <section id="about" className="py-12 sm:py-16 md:py-24 px-3 sm:px-6 max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
-          <div className="relative group">
-            <div className="absolute -inset-4 border border-[#3B82F6]/20 group-hover:border-[#3B82F6]/40 transition-all duration-700" />
-            <img src="/images/about/concept-interior.jpg" alt="店内の様子" width={600} height={400}
-              className="relative z-10 w-full grayscale hover:grayscale-0 transition-all duration-1000"
-              loading="lazy" decoding="async"
-              onError={e => { e.currentTarget.src = 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=800'; }} />
-          </div>
-          <div>
-            <div className="mb-8 sm:mb-12 md:mb-16">
-              <span className="text-[#3B82F6] text-[0.65rem] sm:text-xs tracking-[0.2em] sm:tracking-[0.4em] block mb-2 font-bold uppercase whitespace-nowrap">ABOUT US</span>
-              <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light" style={{ fontFamily: 'Cinzel, serif' }}>Concept</h2>
-            </div>
-            <p className="text-white/85 leading-relaxed sm:leading-loose mb-6 sm:mb-8 tracking-wide text-sm sm:text-base">
-              {shop.description ?? 'yoon²（ユンユン）は、プロフェッショナルな技術で日常の喧騒をリセットするイヤーエステサロンです。'}
-            </p>
-            <button type="button" onClick={() => document.getElementById('courses')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-              className="flex items-center gap-2 text-white hover:text-[#3B82F6] transition-colors group text-sm sm:text-base whitespace-nowrap"
-              aria-label="サービスメニューへスクロール">
-              VIEW SERVICES <ArrowRight size={14} className="sm:w-4 sm:h-4 group-hover:translate-x-2 transition-transform" aria-hidden />
-            </button>
-          </div>
-        </div>
-      </section>
+      <ConcernSnsSection />
+      <MenuDiagnosisSnsSection />
+      <FlowSnsSection />
 
       <ReviewsSnsSection />
       <MenuSnsSection lineUrl={lineUrl} />
       <FaqSnsSection lineUrl={lineUrl} />
-
-      <section className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6">
-          <div className="mb-8 sm:mb-12 md:mb-16">
-            <span className="text-[#3B82F6] text-[0.65rem] sm:text-xs tracking-[0.2em] sm:tracking-[0.4em] block mb-2 font-bold uppercase">SOCIAL</span>
-            <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light" style={{ fontFamily: 'Cinzel, serif' }}>Follow Us</h2>
-          </div>
-          <div className="bg-[#161B22] border border-white/5 p-4 sm:p-6 md:p-8 lg:p-12 rounded-lg">
-            <div className="text-center mb-6 sm:mb-8">
-              <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-6 flex-wrap">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCAF45] rounded-full flex items-center justify-center flex-shrink-0">
-                  <Instagram className="text-white w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
-                </div>
-                <div className="text-left min-w-0 flex-1">
-                  <h3 className="text-white text-lg sm:text-xl md:text-2xl tracking-wide sm:tracking-wider mb-1 whitespace-nowrap">@{instagramUsername}</h3>
-                  <p className="text-white/50 text-xs sm:text-sm">最新情報・施術の様子</p>
-                </div>
-              </div>
-              <p className="text-white/70 leading-relaxed mb-6 sm:mb-8 tracking-wide max-w-2xl mx-auto text-xs sm:text-sm px-2">
-                最新の投稿やお得な情報をお届けしています。<br className="hidden sm:block" />Instagramでフォローして最新情報をチェックしてください。
-              </p>
-              <a href={instagramUrl} target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#FCAF45] text-white font-semibold text-xs sm:text-sm tracking-wide sm:tracking-widest hover:opacity-90 transition-all duration-300 transform hover:-translate-y-1 shadow-lg shadow-purple-500/20 whitespace-nowrap"
-                aria-label="Instagramを見る（新しいウィンドウで開きます）">
-                <Instagram className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden />Instagramを見る<ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" aria-hidden />
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Courses Section */}
-      <section className="py-12 sm:py-16 md:py-24 bg-[#101827]">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6">
-          <div className="mb-8 sm:mb-12 md:mb-16">
-            <span className="text-[#3B82F6] text-[0.65rem] sm:text-xs tracking-[0.2em] sm:tracking-[0.4em] block mb-2 font-bold uppercase">COURSES</span>
-            <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light" style={{ fontFamily: 'Cinzel, serif' }}>Course Menu</h2>
-          </div>
-          {coursesLoading ? (
-            <div className="text-center py-12"><LoadingSpinner message="コース情報を読み込み中..." /></div>
-          ) : coursesError ? (
-            <div className="text-center py-12"><ErrorMessage error={new Error(coursesError)} title="コース情報の読み込みに失敗しました" message="しばらく時間をおいて再度お試しください。" /></div>
-          ) : (
-            <>
-              <div className="flex justify-center gap-2 mb-12 flex-wrap">
-                <button className={`px-6 py-2 text-sm tracking-wider transition-all ${selectedCategory === 'all' ? 'bg-[#3B82F6] text-white border border-[#3B82F6]' : 'bg-[#161B22] text-white/70 border border-white/5 hover:border-[#3B82F6]/50'}`}
-                  onClick={() => setSelectedCategory('all')}>すべて</button>
-                {(Object.values(COURSE_CATEGORIES) as string[]).map(cat => (
-                  <button key={cat} className={`px-6 py-2 text-sm tracking-wider transition-all ${selectedCategory === cat ? 'bg-[#3B82F6] text-white border border-[#3B82F6]' : 'bg-[#161B22] text-white/70 border border-white/5 hover:border-[#3B82F6]/50'}`}
-                    onClick={() => setSelectedCategory(cat)}>
-                    {(COURSE_CATEGORY_LABELS as Record<string, string>)[cat]}
-                  </button>
-                ))}
-              </div>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredCourses.map((course, i) => (
-                  <div key={course.id} ref={el => { courseCardsRef.current[i] = el; }}
-                    className="group bg-[#161B22] border border-white/5 hover:border-[#3B82F6]/50 transition-all duration-500 overflow-hidden scroll-animate">
-                    <div className="relative w-full aspect-[4/3] overflow-hidden bg-[#0A0A0A]">
-                      <img src={course.image} alt={`${course.name}の画像`} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000" loading="lazy" onError={hideImg} />
-                    </div>
-                    <div className="p-6">
-                      <div className="flex justify-between items-start mb-3">
-                        <h3 className="text-white text-lg tracking-wider flex-1">{course.name}</h3>
-                        <span className="bg-[#3B82F6]/20 text-[#3B82F6] px-2 py-1 text-xs tracking-wider ml-2">{(COURSE_CATEGORY_LABELS as Record<string, string>)[course.category]}</span>
-                      </div>
-                      <p className="text-white/50 text-sm leading-relaxed mb-4">{course.description}</p>
-                      <div className="flex justify-between items-center pt-4 border-t border-white/5">
-                        <div className="text-white/70 text-xs"><span className="block">時間</span><span className="text-white font-semibold">{course.duration}</span></div>
-                        <div className="text-right"><span className="text-white/70 text-xs block">価格</span><span className="text-[#3B82F6] font-bold">¥{course.price.toLocaleString()}</span></div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              {filteredCourses.length === 0 && (
-                <div className="text-center py-12 text-white/50"><h3 className="text-xl mb-2">該当するコースが見つかりませんでした</h3><p>他のカテゴリを選択してください</p></div>
-              )}
-            </>
-          )}
-        </div>
-      </section>
 
       <section id="shop" className="py-12 sm:py-16 md:py-24 px-3 sm:px-6 max-w-7xl mx-auto">
         <div className="mb-8 sm:mb-12 md:mb-16">
