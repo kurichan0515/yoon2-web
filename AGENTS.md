@@ -15,8 +15,8 @@ Kiro-style Spec Driven Development implementation on AI-DLC (AI Development Life
 **Specs** (`.kiro/specs/`) - Formalize development process for individual features
 
 ### Active Specifications
-- **remove-hotpepper-integration**: ホットペッパービューティー連携機能の削除とシンプル化（Phase: initialized）
-  - 連携不可のため関連コード・ドキュメントを削除し、よりシンプルな予約管理システムに移行
+
+(なし)
 
 Use `/kiro/spec-status [feature-name]` to check progress
 
