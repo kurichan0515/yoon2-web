@@ -1,106 +1,52 @@
-# クイックスタートガイド
-
-yoon² イヤーエステサロン ホームページのセットアップを素早く開始するためのガイドです。
+# クイックスタート
 
 ## 前提条件
 
-- Node.js (v14以上)
-- npm または yarn
+- Node.js v18 以上
+- npm
 - Git
-- Firebase CLI（オプション）
 
-## 1. リポジトリのクローン
+## セットアップ
 
 ```bash
 git clone <repository-url>
-cd react-firebase-project
-```
-
-## 2. 依存関係のインストール
-
-```bash
+cd yoon2-web
 npm install
 ```
 
-## 3. 環境変数の設定
+## 環境変数
 
 ```bash
-# 環境変数ファイルをコピー
-cp env.example .env
-
-# .envファイルを編集
-nano .env
+cp env.example .env.local
+# .env.local を編集
 ```
 
-### 必要な環境変数
+必須の環境変数 (詳細は `env.example` 参照):
+- `NEXT_PUBLIC_FIREBASE_*` — Firebase 設定
+- `NEXT_PUBLIC_GOOGLE_API_KEY` — Google Calendar API
+- `NEXT_PUBLIC_GOOGLE_CALENDAR_ID` — カレンダー ID
+
+## 開発サーバー起動
 
 ```bash
-# Firebase設定
-REACT_APP_FIREBASE_API_KEY=your_api_key
-REACT_APP_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
-REACT_APP_FIREBASE_PROJECT_ID=your_project_id
-REACT_APP_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
-REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-REACT_APP_FIREBASE_APP_ID=your_app_id
-
-# SNS設定
-REACT_APP_TWITTER_URL=https://twitter.com/your_account
-REACT_APP_INSTAGRAM_URL=https://instagram.com/your_account
-REACT_APP_LINE_URL=https://lin.ee/your_line_id
-
-# 店舗情報
-REACT_APP_SHOP_NAME=yoon²ゆんゆん
-REACT_APP_SHOP_PHONE=080-8478-1163
-REACT_APP_SHOP_ADDRESS=愛媛県松山市清水町３丁目２０１－２ ８Ｄｒｏｐｓ １０２号室
+npm run dev
+# http://localhost:3000
 ```
 
-## 4. 開発サーバーの起動
+## ビルド・テスト
 
 ```bash
-npm start
+npm run build     # 本番ビルド (静的エクスポート)
+npm test          # テスト実行 (jest)
+npx tsc --noEmit  # 型チェック
 ```
 
-ブラウザで [http://localhost:3000](http://localhost:3000) を開いて確認できます。
+## デプロイ
 
-## 5. Firebase設定（本格運用時）
+main ブランチに push → GitHub Actions が自動デプロイ。  
+詳細: [deployment/DEPLOYMENT.md](../deployment/DEPLOYMENT.md)
 
-### Firebase CLIのインストール
+## 管理画面
 
-```bash
-npm install -g firebase-tools
-```
-
-### Firebaseにログイン
-
-```bash
-firebase login
-```
-
-### Firebaseプロジェクトの初期化
-
-```bash
-firebase init
-```
-
-### デプロイ
-
-```bash
-npm run build
-firebase deploy
-```
-
-## トラブルシューティング
-
-詳細なトラブルシューティングについては、[トラブルシューティングガイド](../guides/TROUBLESHOOTING.md)を参照してください。
-
-### よくある問題
-
-1. **ポート3000が使用中**: `PORT=3001 npm start`
-2. **依存関係のエラー**: `rm -rf node_modules package-lock.json && npm install`
-3. **Firebase接続エラー**: 環境変数の確認とFirebaseプロジェクトの有効性確認
-
-## 次のステップ
-
-- [詳細セットアップガイド](./DETAILED_SETUP.md)
-- [Docker環境での開発](./DOCKER_GUIDE.md)
-- [設定ガイド](./CONFIGURATION_GUIDE.md)
+`/system/login` — Firebase Auth でログイン。  
+初期管理者アカウント作成: [ADMIN_ACCESS.md](ADMIN_ACCESS.md)
