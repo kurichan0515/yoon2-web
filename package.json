@@ -19,16 +19,25 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest --no-coverage",
+    "test:coverage": "jest --coverage"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/jest": "^30.0.0",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "autoprefixer": "^10.4.23",
     "ignore-loader": "^0.1.2",
+    "jest": "^30.4.2",
+    "jest-environment-jsdom": "^30.4.1",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.19",
+    "ts-jest": "^29.4.11",
+    "ts-node": "^10.9.2",
     "typescript": "^5.0.0"
   }
 }
