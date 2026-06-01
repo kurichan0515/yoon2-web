@@ -1,19 +1,33 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { CourseValidationError } from '../../domain/course/Course';
+
+const mockExecute = jest.fn();
+jest.mock('../../infrastructure/container', () => ({
+  courseUseCases: {
+    create: { execute: mockExecute },
+    getAll: { execute: jest.fn().mockResolvedValue([]) },
+    update: { execute: jest.fn() },
+    delete: { execute: jest.fn() },
+  },
+}));
+
 import CourseCreatePage from '../../views/CourseCreatePage';
-import courseService from '../../services/courseService';
-
-jest.mock('../../services/courseService');
-
-const mockedCourseService = jest.mocked(courseService);
 
 describe('CourseCreatePage Component', () => {
   const mockOnNavigate = jest.fn();
 
+  const fillForm = () => {
+    fireEvent.change(screen.getByLabelText(/コース名/), { target: { value: 'Test Course' } });
+    fireEvent.change(screen.getByLabelText(/説明/), { target: { value: 'Test Description' } });
+    fireEvent.change(screen.getByLabelText(/価格/), { target: { value: '5000' } });
+    fireEvent.change(screen.getByLabelText(/時間/), { target: { value: '60分' } });
+  };
+
   beforeEach(() => {
     mockOnNavigate.mockClear();
-    mockedCourseService.createCourse.mockResolvedValue({ success: true, data: { id: '1', name: 'Test Course' } });
+    mockExecute.mockResolvedValue({ id: '1', name: 'Test Course' });
   });
 
   test('renders course creation form', () => {
@@ -27,6 +41,12 @@ describe('CourseCreatePage Component', () => {
   });
 
   test('validates required fields', async () => {
+    mockExecute.mockRejectedValueOnce(new CourseValidationError({
+      name: 'コース名は必須です',
+      description: '説明は必須です',
+      price: '価格は0より大きい値である必要があります',
+      duration: '時間は必須です',
+    }));
     render(<CourseCreatePage onNavigate={mockOnNavigate} />);
     fireEvent.click(screen.getByText('コースを作成'));
     await waitFor(() => {
@@ -39,22 +59,16 @@ describe('CourseCreatePage Component', () => {
 
   test('submits form with valid data', async () => {
     render(<CourseCreatePage onNavigate={mockOnNavigate} />);
-    fireEvent.change(screen.getByLabelText(/コース名/), { target: { value: 'Test Course' } });
-    fireEvent.change(screen.getByLabelText(/説明/), { target: { value: 'Test Description' } });
-    fireEvent.change(screen.getByLabelText(/価格/), { target: { value: '5000' } });
-    fireEvent.change(screen.getByLabelText(/時間/), { target: { value: '60分' } });
+    fillForm();
     fireEvent.click(screen.getByText('コースを作成'));
     await waitFor(() => {
-      expect(mockedCourseService.createCourse).toHaveBeenCalled();
+      expect(mockExecute).toHaveBeenCalled();
     });
   });
 
   test('displays success message after successful creation', async () => {
     render(<CourseCreatePage onNavigate={mockOnNavigate} />);
-    fireEvent.change(screen.getByLabelText(/コース名/), { target: { value: 'Test Course' } });
-    fireEvent.change(screen.getByLabelText(/説明/), { target: { value: 'Test Description' } });
-    fireEvent.change(screen.getByLabelText(/価格/), { target: { value: '5000' } });
-    fireEvent.change(screen.getByLabelText(/時間/), { target: { value: '60分' } });
+    fillForm();
     fireEvent.click(screen.getByText('コースを作成'));
     await waitFor(() => {
       expect(screen.getByText('コースが正常に作成されました！')).toBeInTheDocument();
@@ -62,12 +76,9 @@ describe('CourseCreatePage Component', () => {
   });
 
   test('displays error message when creation fails', async () => {
-    mockedCourseService.createCourse.mockResolvedValue({ success: false, error: 'Creation failed' });
+    mockExecute.mockRejectedValueOnce(new Error('Creation failed'));
     render(<CourseCreatePage onNavigate={mockOnNavigate} />);
-    fireEvent.change(screen.getByLabelText(/コース名/), { target: { value: 'Test Course' } });
-    fireEvent.change(screen.getByLabelText(/説明/), { target: { value: 'Test Description' } });
-    fireEvent.change(screen.getByLabelText(/価格/), { target: { value: '5000' } });
-    fireEvent.change(screen.getByLabelText(/時間/), { target: { value: '60分' } });
+    fillForm();
     fireEvent.click(screen.getByText('コースを作成'));
     await waitFor(() => {
       expect(screen.getByText('エラー: Creation failed')).toBeInTheDocument();

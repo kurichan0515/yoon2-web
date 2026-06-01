@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-import courseService from '../services/courseService';
-import { COURSE_CATEGORIES, COURSE_CATEGORY_LABELS, validateCourseForm } from '../types/courseTypes';
-import { CourseCategoryValue } from '../domain/course/CourseCategory';
+import { courseUseCases } from '../infrastructure/container';
+import { COURSE_CATEGORY, COURSE_CATEGORY_LABELS, CourseCategoryValue } from '../domain/course/CourseCategory';
+import { CourseValidationError } from '../domain/course/Course';
 import './CourseCreatePage.css';
 
 interface FormData {
@@ -15,7 +15,7 @@ interface FormData {
 
 const INITIAL_FORM: FormData = {
   name: '', description: '', price: '', duration: '',
-  category: COURSE_CATEGORIES.RECOMMEND as CourseCategoryValue,
+  category: COURSE_CATEGORY.RECOMMEND as CourseCategoryValue,
   image: '',
 };
 
@@ -47,21 +47,19 @@ const CourseCreatePage = ({ onNavigate }: Props) => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const validation = validateCourseForm({ ...formData, price: Number(formData.price) });
-    if (!validation.isValid) { setErrors(validation.errors); return; }
     setIsSubmitting(true);
     setSubmitMessage('');
     try {
-      const result = await courseService.createCourse({ ...formData, price: Number(formData.price) });
-      if (result.success) {
-        setSubmitMessage('コースが正常に作成されました！');
-        setFormData(INITIAL_FORM);
-        setTimeout(() => onNavigate?.('home'), 3000);
-      } else {
-        setSubmitMessage(`エラー: ${result.error}`);
-      }
+      await courseUseCases.create.execute({ ...formData, price: Number(formData.price) });
+      setSubmitMessage('コースが正常に作成されました！');
+      setFormData(INITIAL_FORM);
+      setTimeout(() => onNavigate?.('home'), 3000);
     } catch (err: unknown) {
-      setSubmitMessage(`エラー: ${(err as Error).message}`);
+      if (err instanceof CourseValidationError) {
+        setErrors(err.errors);
+      } else {
+        setSubmitMessage(`エラー: ${(err as Error).message}`);
+      }
     } finally {
       setIsSubmitting(false);
     }
