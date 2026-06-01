@@ -3,8 +3,8 @@ import { Menu, X, Instagram, MapPin, Clock, Phone, Calendar, ArrowRight, Chevron
 import appConfig from '../config/appConfig';
 import AdSense from '../components/common/AdSense';
 import SocialFeed from '../components/SocialFeed';
-import courseService from '../services/courseService';
-import { COURSE_CATEGORIES, COURSE_CATEGORY_LABELS } from '../types/courseTypes';
+import { courseUseCases } from '../infrastructure/container';
+import { COURSE_CATEGORY, COURSE_CATEGORY_LABELS } from '../domain/course/CourseCategory';
 import ErrorMessage from '../components/common/ErrorMessage';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import { setPageMeta } from '../utils/seoHelper';
@@ -159,9 +159,8 @@ const HomeNew = () => {
     (async () => {
       try {
         setCoursesLoading(true);
-        const result = await courseService.getAllCourses();
-        if (result.success) setCourses(result.data as unknown as Course[]);
-        else setCoursesError(result.error as string);
+        const data = await courseUseCases.getAll.execute();
+        setCourses(data as unknown as Course[]);
       } catch {
         setCoursesError('コースの読み込みに失敗しました');
       } finally {
@@ -271,7 +270,7 @@ const HomeNew = () => {
                   onClick={() => setSelectedCategory('all')}>
                   すべて
                 </button>
-                {(Object.values(COURSE_CATEGORIES) as string[]).map(cat => (
+                {(Object.values(COURSE_CATEGORY) as string[]).map(cat => (
                   <button key={cat} className={`px-6 py-2 text-sm tracking-wider transition-all ${selectedCategory === cat ? 'bg-[#3B82F6] text-white border border-[#3B82F6]' : 'bg-[#161B22] text-white/70 border border-white/5 hover:border-[#3B82F6]/50'}`}
                     onClick={() => setSelectedCategory(cat)}>
                     {(COURSE_CATEGORY_LABELS as Record<string, string>)[cat]}
