@@ -28,3 +28,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# TypeScript build cache
+*.tsbuildinfo
+
+# env backup
+.env.backup
