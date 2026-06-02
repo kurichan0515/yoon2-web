@@ -6,8 +6,17 @@
 - [x] Next.js 15 App Router 移行
 - [x] TypeScript 全面採用 (strict: true)
 - [x] DDD設計 (domain/application/infrastructure)
+- [x] DI コンテナ (container.ts)
 - [x] jest テスト環境 (ts-jest)
 - [x] GitHub Actions 自動デプロイ (Firebase Hosting)
+
+### DDD 移行
+- [x] domain 層 (Course / Booking / Auth エンティティ・VO・リポジトリIF)
+- [x] application 層 (Course CRUD / Booking 統計・スロット / 日付範囲取得)
+- [x] infrastructure 層 (Firebase / GoogleCalendar / Mock リポジトリ実装)
+- [x] deprecated courseService 削除 (CourseCreatePage / HomeNew → UseCase 直呼び)
+- [x] deprecated calendarService 削除 (Calendar / AdminBookingDetails → UseCase 直呼び)
+- [x] deprecated courseTypes 削除
 
 ### 機能
 - [x] 公開ページ (/, /sns, /privacy)
@@ -25,16 +34,12 @@
 ## 残課題
 
 ### 優先度: 高
-- [ ] deprecated `services/` を UseCase 直呼びに移行
-  - CourseCreatePage.tsx → `courseUseCases` 直接使用
-  - HomeNew.tsx / HomeSns.tsx → 同上
-- [ ] Firebase Course Repository 本番投入 (現状 MockCourseRepository)
+- [ ] AdminSettings の Firestore 保存処理 (現状モック、保存されない)
 
 ### 優先度: 中
-- [ ] AdminSettings の Firestore 保存処理 (現状モック)
-- [ ] テストカバレッジ拡充 (views/components)
-- [ ] Google Calendar → DDD IBookingRepository 経由で完全動作確認
+- [ ] テストカバレッジ拡充 (views / components の主要ファイル)
+- [ ] Google Calendar API 本番環境での動作確認
 
 ### 優先度: 低
-- [ ] E2Eテスト (Playwright)
+- [ ] E2E テスト (Playwright)
 - [ ] PWA 対応
