@@ -4,7 +4,6 @@ interface Service {
 
 interface AppConfig {
   features: { firstVisitDiscount: boolean };
-  firebase: { apiKey: string; authDomain: string; projectId: string; storageBucket: string; messagingSenderId: string; appId: string };
   social: {
     twitter: { url: string; username: string };
     instagram: { url: string; username: string };
@@ -32,15 +31,6 @@ interface AppConfig {
 
 const appConfig: AppConfig = {
   features: { firstVisitDiscount: true },
-
-  firebase: {
-    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY ?? 'AIzaSyDemo1234567890abcdefghijklmnop',
-    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN ?? 'demo-project.firebaseapp.com',
-    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID ?? 'demo-project',
-    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET ?? 'demo-project.appspot.com',
-    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID ?? '123456789012',
-    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID ?? '1:123456789012:web:abcdef123456',
-  },
 
   social: {
     twitter: { url: process.env.NEXT_PUBLIC_TWITTER_URL ?? '', username: '' },
