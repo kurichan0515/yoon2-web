@@ -1,7 +1,9 @@
 'use client';
 
+// Noto Sans JP はシステムフォント優先にしてWebフォント読み込みを排除
+// Cinzel は HomeSns のセクション見出しで使用
 const FONTS_URL =
-  'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;600;700&family=Montserrat:wght@300;400;600;700&family=League+Spartan:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;700&display=swap';
+  'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;600&family=League+Spartan:wght@400;700&family=Cinzel:wght@400;700&display=swap';
 
 export default function FontLoader() {
   return (

@@ -134,11 +134,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ja">
       <head>
-        <link rel="preload" as="image" href="/images/shop/play-room.webp" media="(min-width: 769px)" />
-        <link rel="preload" as="image" href="/images/hero/hero-sp.webp" media="(max-width: 768px)" />
+        {/* LCP 画像 preload (fetchpriority=high でブラウザ優先度を明示) */}
+        <link rel="preload" as="image" href="/images/shop/play-room.webp" media="(min-width: 769px)" fetchPriority="high" />
+        <link rel="preload" as="image" href="/images/hero/hero-sp.webp" media="(max-width: 768px)" fetchPriority="high" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
+        {/* AdSense 接続を先行確立 (LCP -300ms 推定) */}
+        <link rel="preconnect" href="https://googleads.g.doubleclick.net" />
         <FontLoader />
         {/* AdSense: <Script> で strategy を付けると data-nscript が付与され警告になるため直接 <script> タグを使用 */}
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
