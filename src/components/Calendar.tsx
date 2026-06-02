@@ -4,7 +4,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Calendar as BigCalendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import calendarService from '../services/calendarService';
+import { bookingUseCases } from '../infrastructure/container';
+import { Booking } from '../domain/booking/Booking';
 import logger from '../utils/logger';
 import './Calendar.css';
 
@@ -39,6 +40,22 @@ interface CalendarEvent {
   bookingDetails: BookingDetails;
 }
 
+const toCalendarEvent = (b: Booking): CalendarEvent => ({
+  id: b.id,
+  title: b.title,
+  start: b.slot.start,
+  end: b.slot.end,
+  isAllDay: b.isAllDay,
+  isHotPepperBooking: b.isHotPepperBooking,
+  bookingDetails: {
+    customerName: b.details.customerName,
+    service: b.details.service,
+    phone: b.details.phone,
+    notes: b.details.notes,
+    bookingSource: b.source.toString(),
+  },
+});
+
 const Calendar = () => {
   const [events, setEvents] = useState<CalendarEvent[]>([]);
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(null);
@@ -51,9 +68,10 @@ const Calendar = () => {
     try {
       setLoading(true);
       setError(null);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const evts = await (calendarService as any).getEvents(startDate?.toISOString(), endDate?.toISOString());
-      setEvents(evts as CalendarEvent[]);
+      const start = startDate ?? new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+      const end = endDate ?? new Date(new Date().getFullYear(), new Date().getMonth() + 2, 0);
+      const bookings = await bookingUseCases.getByDateRange.execute(start, end);
+      setEvents(bookings.map(toCalendarEvent));
     } catch (err) {
       logger.error('イベント取得エラー:', err);
       setError('予約情報の取得に失敗しました。しばらく後でもう一度お試しください。');
@@ -65,7 +83,6 @@ const Calendar = () => {
   useEffect(() => {
     (async () => {
       try {
-        await calendarService.initialize();
         await fetchEvents(
           moment(date).startOf('month').toDate(),
           moment(date).endOf('month').add(1, 'week').toDate()

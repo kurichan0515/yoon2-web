@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useEffect, ChangeEvent } from 'react';
-import { getEventsByDate, getMonthlyBookingStats } from '../services/calendarService';
+import { bookingUseCases } from '../infrastructure/container';
+import { Booking } from '../domain/booking/Booking';
 import logger from '../utils/logger';
 import './AdminBookingDetails.css';
 
@@ -59,14 +60,31 @@ const AdminBookingDetails = () => {
   const fetchBookings = async (date: Date) => {
     try {
       setIsLoading(true);
-      setBookings(await getEventsByDate(date) as CalendarEvent[]);
+      const start = new Date(date); start.setHours(0, 0, 0, 0);
+      const end = new Date(date); end.setHours(23, 59, 59, 999);
+      const results = await bookingUseCases.getByDateRange.execute(start, end);
+      setBookings(results.map((b: Booking): CalendarEvent => ({
+        id: b.id, title: b.title, start: b.slot.start, end: b.slot.end,
+        isAllDay: b.isAllDay, isHotPepperBooking: b.isHotPepperBooking,
+        bookingDetails: {
+          bookingSource: b.source.toString(),
+          customerName: b.details.customerName,
+          service: b.details.service,
+          estimatedDuration: undefined,
+          customerType: b.details.customerType,
+          priority: b.priority.toString(),
+          phone: b.details.phone,
+          email: b.details.email,
+          notes: b.details.notes,
+        },
+      })));
     } catch (e) { logger.error('予約取得エラー:', e); setBookings([]); }
     finally { setIsLoading(false); }
   };
 
   const fetchMonthlyStats = async (date: Date) => {
     try {
-      setMonthlyStats(await getMonthlyBookingStats(date.getFullYear(), date.getMonth() + 1) as MonthlyStats);
+      setMonthlyStats(await bookingUseCases.getMonthlyStats.execute(date.getFullYear(), date.getMonth() + 1) as MonthlyStats);
     } catch (e) { console.error('統計取得エラー:', e); setMonthlyStats(null); }
   };
 
