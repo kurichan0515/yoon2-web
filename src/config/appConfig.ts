@@ -26,7 +26,6 @@ interface AppConfig {
     notes: string[];
     services: Service[];
   };
-  booking: { availableTimes: string[]; advanceBookingDays: number; minAdvanceHours: number };
   adsense: { publisherId: string; defaultAdSlot: string; enabled: boolean; devMode: boolean };
   googleAds: { conversionId: string; conversionLabel: string; enabled: boolean };
 }
@@ -113,12 +112,6 @@ const appConfig: AppConfig = {
       { id: 'oil-opt-60', name: '【追加】オイル60分', duration: '60分', price: 6000, description: '他メニューとの組み合わせオプション', category: 'oil' },
       { id: 'oil-opt-30', name: '【追加】オイル30分', duration: '30分', price: 4000, description: '他メニューとの組み合わせオプション', category: 'oil' },
     ],
-  },
-
-  booking: {
-    availableTimes: ['10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00'],
-    advanceBookingDays: 30,
-    minAdvanceHours: 2,
   },
 
   adsense: {
