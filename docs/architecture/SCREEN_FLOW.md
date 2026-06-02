@@ -3,20 +3,12 @@
 ## ルート一覧
 
 ```
-yoon²
-├── / ──────────────── ホーム (Home.tsx)
-├── /sns ───────────── SNS導線ページ (HomeSns.tsx)
-├── /privacy ───────── プライバシーポリシー (PrivacyPolicy.tsx)
-└── /system
-    ├── /system/login     管理者ログイン (AdminLogin.tsx)
-    ├── /system           管理者ダッシュボード (AdminDashboard.tsx) ※要認証
-    ├── /system/analytics アナリティクス (AnalyticsDashboard.tsx) ※要認証
-    └── /system/settings  設定 (AdminSettings.tsx) ※要認証
+/         → ホーム (Home.tsx)
+/sns      → SNS導線ページ (HomeSns.tsx)
+/privacy  → プライバシーポリシー (PrivacyPolicy.tsx)
 ```
 
 ## ユーザーフロー
-
-### 一般ユーザー
 
 ```
 / (ホーム)
@@ -26,21 +18,10 @@ yoon²
 └── /privacy → プライバシーポリシー
 ```
 
-### 管理者
-
-```
-/system/login
-  → Firebase Auth 認証
-  → 管理者ロール確認 (Firestore admins/{uid})
-  → /system (ダッシュボード)
-     ├── /system/analytics
-     └── /system/settings
-```
-
 ## ページ詳細
 
 ### / (ホーム) — `src/views/Home.tsx`
-- Hero (LINE予約CTA + 耳つぼジュエリー価格バナー)
+- Hero (LINE予約CTA + 耳つぼジュエリー価格バナー + 口コミバッジ)
 - ConcernSection — お悩みリスト
 - MenuDiagnosis — メニュー診断
 - FlowSection — 施術の流れ
@@ -53,27 +34,13 @@ yoon²
 
 ### /sns — `src/views/HomeSns.tsx`
 - SNS流入向けダークテーマデザイン
-- Navbar / Hero / 口コミ / メニュー・料金 / FAQ / 店舗情報 / 予約CTA (LINE + Instagram)
+- Navbar / Hero / 口コミ / メニュー・料金 (FAQ含む) / 店舗情報 / 予約CTA (LINE + Instagram)
 
-### /system/* — 管理画面
-- `AdminLayout` (AdminHeader + AdminSidebar) でラップ
-- `PrivateRoute` で未認証リダイレクト → `/system/login`
-- ダッシュボード: 外部リンク + 店舗情報表示
-- アナリティクス: Firebase pageViews / events 集計
-- 設定: 店舗情報フォーム
+### /privacy — `src/views/PrivacyPolicy.tsx`
+- プライバシーポリシー文書
 
-## レイアウト構成
+## レイアウト
 
 ```
-公開ページ: PublicLayout  → PublicHeader + {children} + PublicFooter
-管理画面:   AdminLayout   → AdminHeader + AdminSidebar + {children}
-```
-
-## 認証ガード (PrivateRoute)
-
-```
-loading中 → LoadingSpinner
-未認証    → router.replace('/system/login')
-非管理者  → UnauthorizedPage
-管理者    → children 表示
+全ページ: PublicLayout → PublicHeader + {children} + PublicFooter
 ```

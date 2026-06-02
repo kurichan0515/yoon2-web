@@ -6,8 +6,7 @@
 
 - **Next.js 15** (App Router, Static Export)
 - **React 19** + **TypeScript 5** (strict)
-- **DDD設計** (Domain-Driven Design)
-- **Firebase** (Auth / Firestore / Hosting)
+- **Firebase Hosting** (デプロイのみ)
 - **Tailwind CSS 3**
 - **jest** + **ts-jest** (テスト)
 
@@ -35,40 +34,26 @@ npm run typecheck    # 型チェック (tsc --noEmit)
 ## ルート構成
 
 ```
-/              → ホーム (src/views/Home.tsx)
-/sns           → SNS導線ページ (src/views/HomeSns.tsx)
-/privacy       → プライバシーポリシー
-/system/login  → 管理者ログイン
-/system        → 管理者ダッシュボード (要認証)
-/system/analytics → アナリティクス (要認証)
-/system/settings  → 設定 (要認証)
+/         → ホーム (src/views/Home.tsx)
+/sns      → SNS導線ページ (src/views/HomeSns.tsx)
+/privacy  → プライバシーポリシー (src/views/PrivacyPolicy.tsx)
 ```
 
-## アーキテクチャ (DDD)
+## ファイル構成
 
 ```
 src/
-├── domain/          # エンティティ・値オブジェクト・リポジトリIF
-│   ├── course/      # Course, CourseCategory
-│   ├── booking/     # Booking, TimeSlot, BookingSource, CustomerPriority
-│   └── auth/        # Admin
-├── application/     # ユースケース
-│   ├── course/      # Create / GetAll / Update / Delete
-│   └── booking/     # GetAvailableSlots / GetByDateRange / GetMonthlyStats
-├── infrastructure/  # リポジトリ実装・DI
-│   ├── firebase/    # FirebaseCourseRepository, FirebaseAdminRepository
-│   ├── google/      # GoogleCalendarBookingRepository
-│   ├── mock/        # MockCourseRepository (開発用)
-│   └── container.ts # DI組み立て
-├── views/           # ページコンポーネント
-├── components/      # UIコンポーネント
-├── services/        # 外部サービス (Analytics / Auth / GoogleAds)
-├── config/          # appConfig.ts (店舗情報一元管理)
-├── data/            # faqData.ts / menuData.ts (静的データ)
-└── ...
+├── views/        # ページコンポーネント (Home / HomeSns / PrivacyPolicy)
+├── components/   # UIコンポーネント
+│   ├── common/   # AdSense, Button, ErrorBoundary, LoadingSpinner 等
+│   └── public/   # PublicHeader, PublicFooter
+├── layouts/      # PublicLayout
+├── services/     # analyticsService (GA4/gtag), googleAdsService
+├── config/       # appConfig.ts (店舗情報一元管理)
+├── data/         # faqData.ts / menuData.ts (静的データ)
+├── types/        # global.d.ts
+└── utils/        # logger / validation / seoHelper 等
 ```
-
-詳細: [docs/architecture/ARCHITECTURE.md](docs/architecture/ARCHITECTURE.md)
 
 ## デプロイ
 

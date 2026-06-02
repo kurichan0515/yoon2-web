@@ -5,130 +5,81 @@
 - **Next.js 15** (App Router, Static Export) — フレームワーク
 - **React 19** — UI
 - **TypeScript 5** (strict: true, noUncheckedIndexedAccess) — 型安全
-- **Firebase 12** — Auth / Firestore / Hosting
+- **Firebase Hosting** — 静的サイトホスティング (認証・DBは使用しない)
 - **Tailwind CSS 3** — ユーティリティCSS
-- **jest + ts-jest** — テスト (17テスト)
+- **jest + ts-jest** — テスト
 
-## アーキテクチャ: DDD (Domain-Driven Design)
+## ファイル構成
 
 ```
 src/
-├── domain/              # ドメイン層 — ビジネスルール (外部依存なし)
-│   ├── course/
-│   │   ├── Course.ts           # エンティティ (バリデーション含む)
-│   │   ├── CourseCategory.ts   # 値オブジェクト
-│   │   └── ICourseRepository.ts
-│   ├── booking/
-│   │   ├── Booking.ts          # エンティティ
-│   │   ├── TimeSlot.ts         # 値オブジェクト
-│   │   ├── BookingSource.ts    # 値オブジェクト
-│   │   ├── CustomerPriority.ts # 値オブジェクト
-│   │   └── IBookingRepository.ts
-│   └── auth/
-│       ├── Admin.ts            # エンティティ
-│       └── IAdminRepository.ts
-│
-├── application/         # アプリケーション層 — ユースケース
-│   ├── course/
-│   │   ├── CreateCourseUseCase.ts
-│   │   ├── GetAllCoursesUseCase.ts
-│   │   ├── UpdateCourseUseCase.ts
-│   │   └── DeleteCourseUseCase.ts
-│   └── booking/
-│       ├── GetAvailableSlotsUseCase.ts
-│       ├── GetBookingsByDateRangeUseCase.ts
-│       └── GetMonthlyStatsUseCase.ts
-│
-├── infrastructure/      # インフラ層 — 外部依存の実装
-│   ├── firebase/
-│   │   ├── FirebaseCourseRepository.ts
-│   │   └── FirebaseAdminRepository.ts
-│   ├── google/
-│   │   └── GoogleCalendarBookingRepository.ts
-│   ├── mock/
-│   │   └── MockCourseRepository.ts  # 開発用 (Firebase未初期化時フォールバック)
-│   └── container.ts     # DI組み立て (courseUseCases / bookingUseCases)
-│
-├── services/            # 外部サービス連携 (deprecated ではない)
-│   ├── analyticsService.ts  # Firebase Firestore + GA4 + Google Ads
-│   ├── authService.ts       # Firebase Auth ラッパー
-│   └── googleAdsService.ts  # Google Ads コンバージョン送信
-│
-├── views/               # プレゼンテーション層 — ページコンポーネント
-│   ├── Home.tsx / HomeSns.tsx / HomeNew.tsx
-│   ├── Booking.tsx / BookingConfirmation.tsx
-│   ├── PrivacyPolicy.tsx / MainScreen.tsx
-│   ├── AdminDashboard.tsx / AdminLogin.tsx
-│   └── admin/AdminSettings.tsx / common/UnauthorizedPage.tsx
+├── views/               # ページコンポーネント
+│   ├── Home.tsx         # ホームページ (/)
+│   ├── HomeSns.tsx      # SNS導線ページ (/sns)
+│   └── PrivacyPolicy.tsx
 │
 ├── components/          # UIコンポーネント
-│   ├── common/          # Button, LoadingSpinner, ErrorBoundary 等
-│   ├── public/          # PublicHeader, PublicFooter
-│   ├── admin/           # AdminSidebar
-│   └── (ページ固有コンポーネント群)
+│   ├── common/
+│   │   ├── AdSense.tsx        # Google AdSense
+│   │   ├── Button.tsx
+│   │   ├── ErrorBoundary.tsx
+│   │   ├── ErrorMessage.tsx
+│   │   └── LoadingSpinner.tsx
+│   └── public/
+│       ├── PublicHeader.tsx
+│       └── PublicFooter.tsx
 │
-├── layouts/             # AdminLayout / PublicLayout
-├── contexts/            # AuthContext
-├── hooks/               # useAuth
-├── config/              # appConfig.ts — 店舗設定一元管理
-├── data/                # faqData.ts / menuData.ts — 静的データ
-├── firebase/            # Firebase 初期化 (config.ts / fallback.ts)
-├── types/               # global.d.ts / gapi.d.ts 等
-└── utils/               # logger / validation / seoHelper 等
+├── components/ (ページ固有)
+│   ├── ConcernSection.tsx    # お悩みセクション
+│   ├── FAQ.tsx               # よくある質問
+│   ├── FlowSection.tsx       # 施術の流れ
+│   ├── MenuDiagnosis.tsx     # メニュー診断
+│   ├── MenuSection.tsx       # メニュー・料金
+│   ├── ReviewsSection.tsx    # 口コミ
+│   └── SocialFeed.tsx        # Instagram誘導
+│
+├── layouts/
+│   └── PublicLayout.tsx      # PublicHeader + {children} + PublicFooter
+│
+├── services/
+│   ├── analyticsService.ts   # GA4/gtag イベント送信
+│   └── googleAdsService.ts   # Google Ads コンバージョン
+│
+├── config/
+│   └── appConfig.ts          # 店舗情報・SNS・広告設定を一元管理
+│
+├── data/
+│   ├── faqData.ts            # FAQ 静的データ
+│   └── menuData.ts           # メニュー・料金 静的データ
+│
+├── types/
+│   └── global.d.ts           # window.gtag / adsbygoogle 型定義
+│
+└── utils/
+    ├── logger.ts
+    ├── seoHelper.ts
+    └── validation.ts
 ```
 
 ## ルーティング (Next.js App Router)
 
 ```
 app/
-├── page.tsx               → / (ホーム)
-├── sns/page.tsx           → /sns (SNS導線ページ)
-├── privacy/page.tsx       → /privacy
-└── system/
-    ├── page.tsx           → /system (管理者ダッシュボード) ※要認証
-    ├── login/page.tsx     → /system/login
-    ├── analytics/page.tsx → /system/analytics ※要認証
-    └── settings/page.tsx  → /system/settings ※要認証
+├── page.tsx          → / (ホーム)
+├── sns/page.tsx      → /sns (SNS導線ページ)
+└── privacy/page.tsx  → /privacy (プライバシーポリシー)
 ```
-
-## データフロー
-
-```
-UI Component / View
-  ↓
-UseCase (application/)
-  ↓
-Repository Interface (domain/)
-  ↓
-Repository Implementation (infrastructure/)
-  ↓
-Firebase Firestore / Google Calendar API
-```
-
-## DI (Dependency Injection)
-
-`src/infrastructure/container.ts` で組み立て:
-
-```typescript
-// Course: クライアント側でFirebase利用可能な場合はFirebaseCourseRepository
-//         それ以外はMockCourseRepository (SSR / 未初期化時フォールバック)
-export const courseUseCases = { getAll, create, update, delete };
-
-// Booking: GoogleCalendarBookingRepository (Google Calendar API)
-export const bookingUseCases = { getByDateRange, getAvailableSlots, getMonthlyStats };
-```
-
-## 認証
-
-- Firebase Authentication (メール/パスワード)
-- `AuthContext` + `useAuth` フックで状態共有
-- `PrivateRoute` で管理画面保護 → 未認証は `/system/login` にリダイレクト
-- Firestore `admins/{uid}` で管理者ロール確認
 
 ## 設定管理
 
-`src/config/appConfig.ts` — 店舗情報・SNS・AdSense・Google Ads を一元管理。  
-環境変数 (`NEXT_PUBLIC_*`) から Firebase・API Key 等を取得。
+`src/config/appConfig.ts` — 店舗情報・SNS URL・AdSense・Google Ads を一元管理。  
+環境変数 (`NEXT_PUBLIC_*`) から API Key 等を取得。
+
+## 計測・広告
+
+- **Google Analytics (GA4)**: `analyticsService.trackPageView()` でページビュー送信
+- **Google Ads**: コンバージョン (`trackLineClick`, `trackHotpepperClick` 等)
+- **Google AdSense**: `AdSense` コンポーネント, `layout.tsx` の `<script async>` タグ
 
 ## デプロイ
 
@@ -138,12 +89,7 @@ export const bookingUseCases = { getByDateRange, getAvailableSlots, getMonthlySt
 ## テスト
 
 ```bash
-npm test              # jest (17テスト)
+npm test              # jest (2テスト)
 npm run test:coverage # カバレッジ付き
 npm run typecheck     # tsc --noEmit
 ```
-
-- `jest.config.ts` — ts-jest + jsdom
-- `tsconfig.test.json` — テスト専用 TS コンフィグ
-- `__mocks__/` — firebase / next/navigation / next/link モック
-- `src/setupTests.ts` — IntersectionObserver / scrollTo / matchMedia グローバルモック

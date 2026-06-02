@@ -2,8 +2,6 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-// Firebase・外部サービスのモック
-jest.mock('../../firebase/config', () => ({ db: null, auth: null, storage: null, initializeFirebase: jest.fn() }));
 jest.mock('../../services/analyticsService', () => ({
   default: { trackPageView: jest.fn() },
   trackPageView: jest.fn(), trackMenuView: jest.fn(), trackFaqView: jest.fn(),
@@ -11,7 +9,6 @@ jest.mock('../../services/analyticsService', () => ({
 }));
 jest.mock('../../services/googleAdsService', () => ({ trackLineAddConversion: jest.fn(), trackPageView: jest.fn() }));
 
-// Home.tsx が使う子コンポーネントをすべてモック
 jest.mock('../../components/SocialFeed', () => () => <div data-testid="social-feed" />);
 jest.mock('../../components/FAQ', () => () => <div data-testid="faq" />);
 jest.mock('../../components/MenuSection', () => () => <div data-testid="menu-section" />);
