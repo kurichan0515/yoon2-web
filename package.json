@@ -3,6 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@supabase/ssr": "^0.10.3",
+    "@supabase/supabase-js": "^2.107.0",
+    "@tiptap/extension-image": "^3.26.0",
+    "@tiptap/extension-link": "^3.26.0",
+    "@tiptap/react": "^3.26.0",
+    "@tiptap/starter-kit": "^3.26.0",
     "firebase": "^12.3.0",
     "google-auth-library": "^10.3.0",
     "googleapis": "^160.0.0",
@@ -13,6 +19,7 @@
     "react-big-calendar": "^1.19.4",
     "react-calendar": "^6.0.0",
     "react-dom": "^19.1.1",
+    "slugify": "^1.6.9",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
