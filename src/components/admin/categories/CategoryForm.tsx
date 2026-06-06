@@ -2,8 +2,6 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { createClient } from '@/lib/supabase/client';
-import { generateSlug } from '@/utils/slug';
 import type { Category } from '@/types';
 
 interface Props {
@@ -21,15 +19,18 @@ export default function CategoryForm({ category }: Props) {
     setLoading(true);
     setError(null);
 
-    const supabase = createClient();
-    const slug = category?.slug ?? generateSlug(name);
+    const url = category ? `/api/admin/categories/${category.id}` : '/api/admin/categories';
+    const method = category ? 'PUT' : 'POST';
 
-    const { error } = category
-      ? await supabase.from('categories').update({ name, slug }).eq('id', category.id)
-      : await supabase.from('categories').insert({ name, slug });
+    const res = await fetch(url, {
+      method,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name }),
+    });
 
-    if (error) {
-      setError(error.message);
+    if (!res.ok) {
+      const data = await res.json();
+      setError(data.error ?? '保存に失敗しました');
       setLoading(false);
       return;
     }

@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase/server';
+import { prisma } from '@/lib/prisma';
 import PostCard from '@/components/blog/PostCard';
 import Pagination from '@/components/blog/Pagination';
 
@@ -11,21 +11,27 @@ interface Props {
 export default async function BlogPage({ searchParams }: Props) {
   const { page } = await searchParams;
   const currentPage = Math.max(1, Number(page) || 1);
-  const from = (currentPage - 1) * PER_PAGE;
+  const skip = (currentPage - 1) * PER_PAGE;
 
-  const supabase = await createClient();
-  const { data: posts, count } = await supabase
-    .from('posts')
-    .select('*, categories:post_categories(categories(*)), tags:post_tags(tags(*))', { count: 'exact' })
-    .eq('status', 'published')
-    .order('published_at', { ascending: false })
-    .range(from, from + PER_PAGE - 1);
+  const [posts, total] = await Promise.all([
+    prisma.post.findMany({
+      where: { status: 'PUBLISHED' },
+      orderBy: { publishedAt: 'desc' },
+      skip,
+      take: PER_PAGE,
+      include: {
+        categories: { include: { category: true } },
+        tags: { include: { tag: true } },
+      },
+    }),
+    prisma.post.count({ where: { status: 'PUBLISHED' } }),
+  ]);
 
-  const totalPages = Math.ceil((count ?? 0) / PER_PAGE);
-  const normalizedPosts = (posts ?? []).map((p: any) => ({
+  const totalPages = Math.ceil(total / PER_PAGE);
+  const normalizedPosts = posts.map((p) => ({
     ...p,
-    categories: p.categories.map((c: any) => c.categories),
-    tags: p.tags.map((t: any) => t.tags),
+    categories: p.categories.map((c) => c.category),
+    tags: p.tags.map((t) => t.tag),
   }));
 
   return (

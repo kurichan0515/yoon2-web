@@ -1,31 +1,19 @@
-export type PostStatus = 'published' | 'draft' | 'archived';
+import type { Post as PrismaPost, Category as PrismaCategory, Tag as PrismaTag, PostStatus } from '@prisma/client';
 
-export interface Category {
-  id: string;
-  name: string;
-  slug: string;
-  created_at: string;
-}
+export type { PostStatus };
 
-export interface Tag {
-  id: string;
-  name: string;
-  slug: string;
-  created_at: string;
-}
+export type Category = Pick<PrismaCategory, 'id' | 'name' | 'slug' | 'createdAt'> & {
+  createdAt: Date;
+};
 
-export interface Post {
-  id: string;
-  title: string;
-  slug: string;
-  body: string;
-  status: PostStatus;
-  eyecatch_url: string | null;
-  ogp_image_url: string | null;
-  meta_description: string | null;
-  published_at: string | null;
-  created_at: string;
-  updated_at: string;
+export type Tag = Pick<PrismaTag, 'id' | 'name' | 'slug' | 'createdAt'> & {
+  createdAt: Date;
+};
+
+export type Post = Pick<
+  PrismaPost,
+  'id' | 'title' | 'slug' | 'body' | 'status' | 'eyecatchUrl' | 'ogpImageUrl' | 'metaDescription' | 'publishedAt' | 'createdAt' | 'updatedAt'
+> & {
   categories: Category[];
   tags: Tag[];
-}
+};

@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { createClient } from '@/lib/supabase/client';
 import PostStatusBadge from './PostStatusBadge';
 import type { Post } from '@/types';
 
@@ -15,8 +14,7 @@ export default function PostList({ posts }: Props) {
 
   async function handleDelete(id: string) {
     if (!confirm('削除しますか？')) return;
-    const supabase = createClient();
-    await supabase.from('posts').delete().eq('id', id);
+    await fetch(`/api/admin/posts/${id}`, { method: 'DELETE' });
     router.refresh();
   }
 

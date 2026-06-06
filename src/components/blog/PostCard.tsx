@@ -5,15 +5,15 @@ import TagBadge from './TagBadge';
 import type { Post } from '@/types';
 
 export default function PostCard({ post }: { post: Post }) {
-  const date = post.published_at
-    ? new Date(post.published_at).toLocaleDateString('ja-JP')
+  const date = post.publishedAt
+    ? new Date(post.publishedAt).toLocaleDateString('ja-JP')
     : '';
 
   return (
     <article className="rounded-lg border bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-      {post.eyecatch_url && (
+      {post.eyecatchUrl && (
         <div className="relative h-48 w-full">
-          <Image src={post.eyecatch_url} alt={post.title} fill className="object-cover" />
+          <Image src={post.eyecatchUrl} alt={post.title} fill className="object-cover" />
         </div>
       )}
       <div className="p-4 space-y-2">
@@ -27,8 +27,8 @@ export default function PostCard({ post }: { post: Post }) {
             {post.title}
           </Link>
         </h2>
-        {post.meta_description && (
-          <p className="text-sm text-gray-600 line-clamp-2">{post.meta_description}</p>
+        {post.metaDescription && (
+          <p className="text-sm text-gray-600 line-clamp-2">{post.metaDescription}</p>
         )}
         <div className="flex flex-wrap gap-1">
           {post.tags.map((tag) => (

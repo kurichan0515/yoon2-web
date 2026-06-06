@@ -4,12 +4,11 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
-import Image from '@tiptap/extension-image';
-import Link from '@tiptap/extension-link';
-import { createClient } from '@/lib/supabase/client';
-import { generateSlug } from '@/utils/slug';
+import TiptapImage from '@tiptap/extension-image';
+import TiptapLink from '@tiptap/extension-link';
 import ImageUploader from './ImageUploader';
-import type { Post, Category, Tag, PostStatus } from '@/types';
+import type { Post, Category, Tag } from '@/types';
+import type { PostStatus } from '@prisma/client';
 
 interface Props {
   post?: Post;
@@ -20,10 +19,10 @@ interface Props {
 export default function PostForm({ post, categories, tags }: Props) {
   const router = useRouter();
   const [title, setTitle] = useState(post?.title ?? '');
-  const [status, setStatus] = useState<PostStatus>(post?.status ?? 'draft');
-  const [eyecatchUrl, setEyecatchUrl] = useState(post?.eyecatch_url ?? '');
-  const [ogpImageUrl, setOgpImageUrl] = useState(post?.ogp_image_url ?? '');
-  const [metaDescription, setMetaDescription] = useState(post?.meta_description ?? '');
+  const [status, setStatus] = useState<PostStatus>(post?.status ?? 'DRAFT');
+  const [eyecatchUrl, setEyecatchUrl] = useState(post?.eyecatchUrl ?? '');
+  const [ogpImageUrl, setOgpImageUrl] = useState(post?.ogpImageUrl ?? '');
+  const [metaDescription, setMetaDescription] = useState(post?.metaDescription ?? '');
   const [selectedCategories, setSelectedCategories] = useState<string[]>(
     post?.categories.map((c) => c.id) ?? []
   );
@@ -34,7 +33,7 @@ export default function PostForm({ post, categories, tags }: Props) {
   const [loading, setLoading] = useState(false);
 
   const editor = useEditor({
-    extensions: [StarterKit, Image, Link.configure({ openOnClick: false })],
+    extensions: [StarterKit, TiptapImage, TiptapLink.configure({ openOnClick: false })],
     content: post?.body ?? '',
   });
 
@@ -55,47 +54,32 @@ export default function PostForm({ post, categories, tags }: Props) {
     setLoading(true);
     setError(null);
 
-    const supabase = createClient();
     const body = editor?.getHTML() ?? '';
-    const slug = post?.slug ?? generateSlug(title);
-    const published_at = status === 'published' ? (post?.published_at ?? new Date().toISOString()) : null;
-
-    const postData = {
+    const payload = {
       title,
-      slug,
       body,
       status,
-      eyecatch_url: eyecatchUrl || null,
-      ogp_image_url: ogpImageUrl || null,
-      meta_description: metaDescription || null,
-      published_at,
-      updated_at: new Date().toISOString(),
+      eyecatchUrl: eyecatchUrl || null,
+      ogpImageUrl: ogpImageUrl || null,
+      metaDescription: metaDescription || null,
+      categoryIds: selectedCategories,
+      tagIds: selectedTags,
     };
 
-    let postId = post?.id;
+    const url = post ? `/api/admin/posts/${post.id}` : '/api/admin/posts';
+    const method = post ? 'PUT' : 'POST';
 
-    if (post) {
-      const { error } = await supabase.from('posts').update(postData).eq('id', post.id);
-      if (error) { setError(error.message); setLoading(false); return; }
-    } else {
-      const { data, error } = await supabase.from('posts').insert(postData).select('id').single();
-      if (error) { setError(error.message); setLoading(false); return; }
-      postId = data.id;
-    }
+    const res = await fetch(url, {
+      method,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
 
-    // カテゴリ・タグの関連付けを更新
-    await supabase.from('post_categories').delete().eq('post_id', postId);
-    await supabase.from('post_tags').delete().eq('post_id', postId);
-
-    if (selectedCategories.length > 0) {
-      await supabase.from('post_categories').insert(
-        selectedCategories.map((category_id) => ({ post_id: postId, category_id }))
-      );
-    }
-    if (selectedTags.length > 0) {
-      await supabase.from('post_tags').insert(
-        selectedTags.map((tag_id) => ({ post_id: postId, tag_id }))
-      );
+    if (!res.ok) {
+      const data = await res.json();
+      setError(data.error ?? '保存に失敗しました');
+      setLoading(false);
+      return;
     }
 
     router.push('/admin/posts');
@@ -129,21 +113,21 @@ export default function PostForm({ post, categories, tags }: Props) {
           onChange={(e) => setStatus(e.target.value as PostStatus)}
           className="rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
         >
-          <option value="draft">下書き</option>
-          <option value="published">公開</option>
-          <option value="archived">アーカイブ</option>
+          <option value="DRAFT">下書き</option>
+          <option value="PUBLISHED">公開</option>
+          <option value="ARCHIVED">アーカイブ</option>
         </select>
       </div>
 
       <div>
         <label className="mb-1 block text-sm font-medium text-gray-700">アイキャッチ画像</label>
-        <ImageUploader bucket="eyecatch" onUploaded={setEyecatchUrl} />
+        <ImageUploader onUploaded={setEyecatchUrl} />
         {eyecatchUrl && <p className="mt-1 text-xs text-gray-500 break-all">{eyecatchUrl}</p>}
       </div>
 
       <div>
         <label className="mb-1 block text-sm font-medium text-gray-700">OGP画像</label>
-        <ImageUploader bucket="ogp" onUploaded={setOgpImageUrl} />
+        <ImageUploader onUploaded={setOgpImageUrl} />
         {ogpImageUrl && <p className="mt-1 text-xs text-gray-500 break-all">{ogpImageUrl}</p>}
       </div>
 

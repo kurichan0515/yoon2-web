@@ -1,7 +1,6 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { createClient } from '@/lib/supabase/client';
 import type { Tag } from '@/types';
 
 interface Props {
@@ -13,8 +12,7 @@ export default function TagList({ tags }: Props) {
 
   async function handleDelete(id: string) {
     if (!confirm('削除しますか？')) return;
-    const supabase = createClient();
-    await supabase.from('tags').delete().eq('id', id);
+    await fetch(`/api/admin/tags/${id}`, { method: 'DELETE' });
     router.refresh();
   }
 

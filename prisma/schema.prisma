@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum PostStatus {
+  PUBLISHED
+  DRAFT
+  ARCHIVED
+}
+
+model Post {
+  id              String       @id @default(uuid())
+  title           String
+  slug            String       @unique
+  body            String?
+  status          PostStatus   @default(DRAFT)
+  eyecatchUrl     String?
+  ogpImageUrl     String?
+  metaDescription String?
+  publishedAt     DateTime?
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  categories      CategoryPost[]
+  tags            PostTag[]
+}
+
+model Category {
+  id        String         @id @default(uuid())
+  name      String
+  slug      String         @unique
+  createdAt DateTime       @default(now())
+  posts     CategoryPost[]
+}
+
+model CategoryPost {
+  postId     String
+  categoryId String
+  post       Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@id([postId, categoryId])
+}
+
+model Tag {
+  id        String    @id @default(uuid())
+  name      String
+  slug      String    @unique
+  createdAt DateTime  @default(now())
+  posts     PostTag[]
+}
+
+model PostTag {
+  postId String
+  tagId  String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  tag    Tag    @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([postId, tagId])
+}

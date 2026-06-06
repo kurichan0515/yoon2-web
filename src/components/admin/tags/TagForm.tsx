@@ -2,8 +2,6 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { createClient } from '@/lib/supabase/client';
-import { generateSlug } from '@/utils/slug';
 import type { Tag } from '@/types';
 
 interface Props {
@@ -21,15 +19,18 @@ export default function TagForm({ tag }: Props) {
     setLoading(true);
     setError(null);
 
-    const supabase = createClient();
-    const slug = tag?.slug ?? generateSlug(name);
+    const url = tag ? `/api/admin/tags/${tag.id}` : '/api/admin/tags';
+    const method = tag ? 'PUT' : 'POST';
 
-    const { error } = tag
-      ? await supabase.from('tags').update({ name, slug }).eq('id', tag.id)
-      : await supabase.from('tags').insert({ name, slug });
+    const res = await fetch(url, {
+      method,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name }),
+    });
 
-    if (error) {
-      setError(error.message);
+    if (!res.ok) {
+      const data = await res.json();
+      setError(data.error ?? '保存に失敗しました');
       setLoading(false);
       return;
     }

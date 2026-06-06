@@ -1,13 +1,11 @@
 import Link from 'next/link';
-import { createClient } from '@/lib/supabase/server';
+import { prisma } from '@/lib/prisma';
 import CategoryList from '@/components/admin/categories/CategoryList';
 
 export default async function CategoriesPage() {
-  const supabase = await createClient();
-  const { data: categories } = await supabase
-    .from('categories')
-    .select('*')
-    .order('created_at', { ascending: false });
+  const categories = await prisma.category.findMany({
+    orderBy: { createdAt: 'desc' },
+  });
 
   return (
     <div className="space-y-4">
@@ -20,7 +18,7 @@ export default async function CategoriesPage() {
           新規作成
         </Link>
       </div>
-      <CategoryList categories={categories ?? []} />
+      <CategoryList categories={categories} />
     </div>
   );
 }

@@ -1,18 +1,20 @@
 import Link from 'next/link';
-import { createClient } from '@/lib/supabase/server';
+import { prisma } from '@/lib/prisma';
 import PostList from '@/components/admin/posts/PostList';
 
 export default async function PostsPage() {
-  const supabase = await createClient();
-  const { data: posts } = await supabase
-    .from('posts')
-    .select('*, categories:post_categories(categories(*)), tags:post_tags(tags(*))')
-    .order('created_at', { ascending: false });
+  const posts = await prisma.post.findMany({
+    orderBy: { createdAt: 'desc' },
+    include: {
+      categories: { include: { category: true } },
+      tags: { include: { tag: true } },
+    },
+  });
 
-  const normalizedPosts = (posts ?? []).map((p: any) => ({
+  const normalizedPosts = posts.map((p) => ({
     ...p,
-    categories: p.categories.map((c: any) => c.categories),
-    tags: p.tags.map((t: any) => t.tags),
+    categories: p.categories.map((c) => c.category),
+    tags: p.tags.map((t) => t.tag),
   }));
 
   return (

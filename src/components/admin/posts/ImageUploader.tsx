@@ -1,14 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { createClient } from '@/lib/supabase/client';
 
 interface Props {
-  bucket: string;
   onUploaded: (url: string) => void;
 }
 
-export default function ImageUploader({ bucket, onUploaded }: Props) {
+export default function ImageUploader({ onUploaded }: Props) {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -19,18 +17,33 @@ export default function ImageUploader({ bucket, onUploaded }: Props) {
     setUploading(true);
     setError(null);
 
-    const supabase = createClient();
-    const path = `${Date.now()}-${file.name}`;
-    const { error: uploadError } = await supabase.storage.from(bucket).upload(path, file);
+    const res = await fetch('/api/admin/upload', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ filename: file.name, contentType: file.type }),
+    });
 
-    if (uploadError) {
-      setError(uploadError.message);
+    if (!res.ok) {
+      setError('URLの取得に失敗しました');
       setUploading(false);
       return;
     }
 
-    const { data } = supabase.storage.from(bucket).getPublicUrl(path);
-    onUploaded(data.publicUrl);
+    const { presignedUrl, publicUrl } = await res.json();
+
+    const uploadRes = await fetch(presignedUrl, {
+      method: 'PUT',
+      headers: { 'Content-Type': file.type },
+      body: file,
+    });
+
+    if (!uploadRes.ok) {
+      setError('アップロードに失敗しました');
+      setUploading(false);
+      return;
+    }
+
+    onUploaded(publicUrl);
     setUploading(false);
   }
 

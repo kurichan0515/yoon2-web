@@ -1,7 +1,6 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { createClient } from '@/lib/supabase/client';
 import type { Category } from '@/types';
 
 interface Props {
@@ -13,8 +12,7 @@ export default function CategoryList({ categories }: Props) {
 
   async function handleDelete(id: string) {
     if (!confirm('削除しますか？')) return;
-    const supabase = createClient();
-    await supabase.from('categories').delete().eq('id', id);
+    await fetch(`/api/admin/categories/${id}`, { method: 'DELETE' });
     router.refresh();
   }
 

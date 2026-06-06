@@ -1,13 +1,11 @@
 import Link from 'next/link';
-import { createClient } from '@/lib/supabase/server';
+import { prisma } from '@/lib/prisma';
 import TagList from '@/components/admin/tags/TagList';
 
 export default async function TagsPage() {
-  const supabase = await createClient();
-  const { data: tags } = await supabase
-    .from('tags')
-    .select('*')
-    .order('created_at', { ascending: false });
+  const tags = await prisma.tag.findMany({
+    orderBy: { createdAt: 'desc' },
+  });
 
   return (
     <div className="space-y-4">
@@ -20,7 +18,7 @@ export default async function TagsPage() {
           新規作成
         </Link>
       </div>
-      <TagList tags={tags ?? []} />
+      <TagList tags={tags} />
     </div>
   );
 }
