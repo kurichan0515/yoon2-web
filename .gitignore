@@ -38,3 +38,12 @@ yarn-error.log*
 
 # env backup
 .env.backup
+
+/src/generated/prisma
+
+# Terraform
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.backup
+terraform/terraform.tfvars
+terraform/.terraform.lock.hcl
