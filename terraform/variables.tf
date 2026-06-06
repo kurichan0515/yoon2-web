@@ -24,7 +24,8 @@ variable "allowed_ssh_cidr" {
   default     = "0.0.0.0/0"
 }
 
-variable "s3_bucket_name" {
-  type    = string
-  default = "yoon2-images"
+variable "s3_bucket_prefix" {
+  type        = string
+  default     = "yoon2"
+  description = "S3バケット命名: {prefix}-images-{account_id}"
 }

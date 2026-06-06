@@ -1,8 +1,12 @@
+locals {
+  images_bucket_name = "${var.s3_bucket_prefix}-images-${data.aws_caller_identity.current.account_id}"
+}
+
 resource "aws_s3_bucket" "images" {
-  bucket = var.s3_bucket_name
+  bucket = local.images_bucket_name
 
   tags = {
-    Name    = var.s3_bucket_name
+    Name    = local.images_bucket_name
     Project = var.project
   }
 }
