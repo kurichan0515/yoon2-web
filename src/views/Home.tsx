@@ -170,12 +170,13 @@ const Home = memo(() => {
             <div className="section-header">
               <span className="section-label">Access</span>
               <h2>アクセス案内</h2>
-              <p className="section-header-description">車・バス・電車でのアクセス方法をご確認ください</p>
+              <p className="section-header-description">お車でのアクセス方法をご確認ください</p>
+              <p className="section-header-description">駐車場：北久米町412番地</p>
             </div>
             <div className="route-photo-container">
               <div className="route-image-wrapper">
-                <img src={shop.access.parkingPhotos.accessGuide} alt="アクセス案内 — 車・バス・電車の行き方と駐車場マップ"
-                  className="route-image" width={800} height={1100} loading="lazy"
+                <img src={shop.access.parkingPhotos.accessGuide} alt="駐車場・店舗へのアクセスマップ"
+                  className="route-image" width={800} height={600} loading="lazy"
                   onError={hideImgShowPlaceholder} />
                 <div className="image-placeholder" style={{ display: 'none' }} aria-hidden="true">
                   <span>アクセス案内の画像</span>

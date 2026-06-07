@@ -603,9 +603,10 @@ const HomeSns = () => {
         </div>
         {shop.access?.parkingPhotos?.accessGuide && (
           <div className="mb-8 sm:mb-12">
-            <p className="text-white/50 text-xs tracking-[0.15em] uppercase mb-3">Access Guide</p>
+            <p className="text-white/50 text-xs tracking-[0.15em] uppercase mb-2">Access Guide</p>
+            <p className="text-white/40 text-xs mb-3">駐車場：北久米町412番地</p>
             <div className="bg-[#161B22] border border-white/5 overflow-hidden">
-              <img src={shop.access.parkingPhotos.accessGuide} alt="アクセス案内 — 車・バス・電車の行き方と駐車場マップ" width={800} height={1100} className="w-full h-auto" loading="lazy" onError={hideImg} />
+              <img src={shop.access.parkingPhotos.accessGuide} alt="駐車場・店舗へのアクセスマップ" width={800} height={600} className="w-full h-auto" loading="lazy" onError={hideImg} />
             </div>
           </div>
         )}

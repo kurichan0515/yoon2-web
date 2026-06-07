@@ -50,7 +50,7 @@ const appConfig: AppConfig = {
       parkingPhotos: {
         parkingLot: '/images/parking/parking.png',
         routeToShop: '/images/parking/parking-to-shop.png',
-        accessGuide: '/images/parking/S__24363034.jpg',
+        accessGuide: '/images/parking/S__24436743.jpg',
       },
     },
     hours: {
