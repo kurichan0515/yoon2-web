@@ -36,7 +36,7 @@ interface ShopCfg {
   address?: string; phone?: string; lineUrl?: string; instagramUrl?: string;
   googleMapsUrl?: string; description?: string; notes?: string[];
   hours?: { weekday?: string; weekend?: string };
-  access?: { stations?: string[]; parkingPhotos?: { parkingLot?: string; routeToShop?: string } };
+  access?: { stations?: string[]; parkingPhotos?: { parkingLot?: string; routeToShop?: string; accessGuide?: string } };
 }
 
 const hideImg = (e: React.SyntheticEvent<HTMLImageElement>) => { e.currentTarget.style.display = 'none'; };
@@ -106,14 +106,14 @@ const Hero = () => {
         <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.35)' }} />
       </div>
       <div className="relative z-20 text-center px-4 sm:px-6">
-        <h1 className="text-3xl sm:text-5xl md:text-8xl text-white font-bold mb-1 sm:mb-2" style={{ fontFamily: "'League Spartan', sans-serif", letterSpacing: '-0.05em' }}>yoon²</h1>
+        <h1 className="text-3xl sm:text-5xl md:text-8xl text-white font-light mb-1 sm:mb-2" style={{ fontFamily: "'League Spartan', sans-serif", letterSpacing: '-0.05em' }}>yoon²</h1>
         <p className="text-white/80 text-sm sm:text-base mb-4 sm:mb-6" style={{ fontFamily: 'Cinzel, serif' }} aria-label="読み方">ゆんゆん</p>
         <p className="text-white/80 text-xs sm:text-sm tracking-[0.3em] sm:tracking-[0.5em] mb-6 sm:mb-8" style={{ fontFamily: 'Cinzel, serif' }} aria-hidden="true">EAR ESTHETIC &amp; ACUPRESSURE</p>
         <p className="text-white/90 max-w-lg mx-auto mb-6 sm:mb-8 text-xs sm:text-sm md:text-base leading-relaxed tracking-wide sm:tracking-wider px-2">
           深い夜の静寂に包まれるような、究極の癒やし体験。<br className="sm:hidden" />耳から整う、心と身体の休息。
         </p>
-        <div className="mx-auto mb-3 sm:mb-4 max-w-xs bg-white/95 rounded-xl border-2 border-yellow-400 px-4 sm:px-5 py-3 shadow-lg shadow-black/30">
-          <p className="text-[#c9a96e] text-[0.7rem] sm:text-xs font-bold tracking-widest mb-1 text-center">★ 女性一番人気 No.1</p>
+        <div className="mx-auto mb-3 sm:mb-4 max-w-xs bg-white/95 border border-[#c9a96e]/50 px-4 sm:px-5 py-3 shadow-md shadow-black/20">
+          <p className="text-[#c9a96e] text-[0.7rem] sm:text-xs font-semibold tracking-[0.12em] mb-1 text-center uppercase">女性一番人気</p>
           <p className="text-[#2c2c2c] text-sm sm:text-base font-semibold tracking-wide mb-1 text-center" style={{ fontFamily: "'Playfair Display', serif" }}>耳つぼジュエリー</p>
           <div className="flex items-baseline justify-center gap-0.5 leading-none">
             <span className="text-[#c9a96e] text-xl sm:text-2xl font-semibold">¥</span>
@@ -122,11 +122,11 @@ const Hero = () => {
           </div>
           <p className="text-gray-500 text-[0.65rem] sm:text-xs text-center mt-1">もみほぐし＋ジュエリーつけ放題</p>
         </div>
-        <div className="inline-flex items-center bg-white/90 rounded-lg px-3 sm:px-4 py-2 shadow-md shadow-black/20 mb-5 sm:mb-6" aria-label="ホットペッパービューティー 高評価獲得">
+        <div className="inline-flex items-center bg-white/90 px-3 sm:px-4 py-2 shadow-sm shadow-black/10 mb-5 sm:mb-6" aria-label="ホットペッパービューティー 高評価獲得">
           <span className="text-gray-600 text-[0.65rem] sm:text-xs">ホットペッパービューティーにて多数の高評価をいただいています</span>
         </div>
-        <div className="mb-6 sm:mb-8 p-3 sm:p-4 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 max-w-md mx-auto">
-          <p className="text-white text-xs sm:text-sm mb-2 sm:mb-3 tracking-wide">✨ SNSからご来店の方へ</p>
+        <div className="mb-6 sm:mb-8 p-3 sm:p-4 border border-white/15 max-w-md mx-auto">
+          <p className="text-white text-xs sm:text-sm mb-2 sm:mb-3 tracking-wide">SNSからご来店の方へ</p>
           <p className="text-white/90 text-[0.65rem] sm:text-xs leading-relaxed">公式LINEから簡単予約！当日予約OK・駐車場完備</p>
         </div>
         <div className="flex flex-col md:flex-row gap-3 sm:gap-4 justify-center px-2">
@@ -162,7 +162,7 @@ function ConcernSnsSection() {
     <section className="py-12 sm:py-16 md:py-24 bg-[#101827]">
       <div className="max-w-7xl mx-auto px-3 sm:px-6">
         <div className="mb-8 sm:mb-12 md:mb-16">
-          <span className="text-[#3B82F6] text-[0.65rem] sm:text-xs tracking-[0.2em] sm:tracking-[0.4em] block mb-2 font-bold uppercase">FOR YOU</span>
+          <span className="text-[#3B82F6]/75 text-xs tracking-[0.15em] block mb-3 font-normal uppercase">FOR YOU</span>
           <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light" style={{ fontFamily: 'Cinzel, serif' }}>こんなお悩み、<br />抱えていませんか？</h2>
         </div>
         <ul className="space-y-3 sm:space-y-4 mb-8 sm:mb-12" aria-label="お悩みリスト">
@@ -190,7 +190,7 @@ function MenuDiagnosisSnsSection() {
     <section className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">
       <div className="max-w-7xl mx-auto px-3 sm:px-6">
         <div className="mb-8 sm:mb-12 md:mb-16">
-          <span className="text-[#3B82F6] text-[0.65rem] sm:text-xs tracking-[0.2em] sm:tracking-[0.4em] block mb-2 font-bold uppercase">MENU GUIDE</span>
+          <span className="text-[#3B82F6]/75 text-xs tracking-[0.15em] block mb-3 font-normal uppercase">MENU GUIDE</span>
           <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light" style={{ fontFamily: 'Cinzel, serif' }}>あなたにぴったりの<br />メニューはどちらですか？</h2>
         </div>
         <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
@@ -243,14 +243,14 @@ function FlowSnsSection() {
     <section className="py-12 sm:py-16 md:py-24 bg-[#101827]">
       <div className="max-w-7xl mx-auto px-3 sm:px-6">
         <div className="mb-8 sm:mb-12 md:mb-16">
-          <span className="text-[#3B82F6] text-[0.65rem] sm:text-xs tracking-[0.2em] sm:tracking-[0.4em] block mb-2 font-bold uppercase">FLOW</span>
+          <span className="text-[#3B82F6]/75 text-xs tracking-[0.15em] block mb-3 font-normal uppercase">FLOW</span>
           <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light" style={{ fontFamily: 'Cinzel, serif' }}>初めての方も安心！<br />ご来店からの流れ</h2>
         </div>
         <div className="flex flex-col max-w-2xl mx-auto" role="list">
           {FLOW_STEPS.map((step, i) => (
             <div key={step.num} className="flex gap-4 sm:gap-6 relative" role="listitem">
               {i < FLOW_STEPS.length - 1 && <div className="absolute left-[23px] sm:left-[27px] top-12 bottom-0 w-[1px] bg-white/10" aria-hidden="true" />}
-              <div className={`flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center text-xl sm:text-2xl z-10 ${step.highlight ? 'bg-[#3B82F6]' : 'bg-[#161B22] border border-white/10'}`} aria-hidden="true">
+              <div className={`flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center text-xl sm:text-2xl z-10 ${step.highlight ? 'bg-[#3B82F6]' : 'bg-[#161B22] border border-white/10'}`} aria-hidden="true">
                 {step.icon}
               </div>
               <div className={`flex-1 ${i < FLOW_STEPS.length - 1 ? 'pb-8 sm:pb-10' : ''}`}>
@@ -279,7 +279,7 @@ function ReviewsSnsSection() {
     <section id="reviews" className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">
       <div className="max-w-7xl mx-auto px-3 sm:px-6">
         <div className="mb-8 sm:mb-12 md:mb-16">
-          <span className="text-[#3B82F6] text-[0.65rem] sm:text-xs tracking-[0.2em] sm:tracking-[0.4em] block mb-2 font-bold uppercase">REVIEWS</span>
+          <span className="text-[#3B82F6]/75 text-xs tracking-[0.15em] block mb-3 font-normal uppercase">REVIEWS</span>
           <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light mb-3" style={{ fontFamily: 'Cinzel, serif' }}>お客様の声</h2>
           <p className="text-white/40 text-xs tracking-wide">ホットペッパービューティーにて多数の高評価をいただいています</p>
         </div>
@@ -309,16 +309,18 @@ function ReviewsSnsSection() {
 
 // ---- MenuSnsCard ----
 const SNS_BADGE: Record<string, string> = {
-  '初回限定': 'bg-red-600 text-white', '人気': 'bg-yellow-500 text-black',
-  'プレミアム': 'bg-amber-800 text-white', 'オプション': 'bg-gray-600 text-white',
-  '女性一番人気': 'bg-rose-600 text-white',
+  '初回限定': 'border border-[#3B82F6]/60 text-[#3B82F6]',
+  '人気': 'border border-[#3B82F6]/60 text-[#3B82F6]',
+  'プレミアム': 'border border-white/30 text-white/70',
+  'オプション': 'border border-white/20 text-white/40',
+  '女性一番人気': 'border border-[#3B82F6]/60 text-[#3B82F6]',
 };
 
 function MenuSnsCard({ menu, lineUrl }: { menu: MenuItem; lineUrl: string }) {
   return (
     <article className={`group bg-[#161B22] border ${menu.recommended ? 'border-[#3B82F6]/40' : 'border-white/5'} hover:border-[#3B82F6]/50 transition-all duration-300 p-5 sm:p-6 flex flex-col gap-3`}>
       {menu.badge && (
-        <span className={`inline-block self-start px-2 py-0.5 rounded text-xs font-semibold tracking-wide ${SNS_BADGE[menu.badge] ?? 'bg-gray-600 text-white'}`}>{menu.badge}</span>
+        <span className={`inline-block self-start px-2 py-0.5 text-xs font-medium tracking-[0.08em] uppercase ${SNS_BADGE[menu.badge] ?? 'border border-white/20 text-white/40'}`}>{menu.badge}</span>
       )}
       <h3 className="text-white text-base sm:text-lg font-medium tracking-wide leading-snug">{menu.name}</h3>
       <div className="flex items-baseline gap-3 flex-wrap">
@@ -375,7 +377,7 @@ function MenuSnsSection({ lineUrl }: { lineUrl: string }) {
     <section id="courses" className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">
       <div className="max-w-7xl mx-auto px-3 sm:px-6">
         <div className="mb-8 sm:mb-12 md:mb-16">
-          <span className="text-[#3B82F6] text-[0.65rem] sm:text-xs tracking-[0.2em] sm:tracking-[0.4em] block mb-2 font-bold uppercase">MENU &amp; PRICE</span>
+          <span className="text-[#3B82F6]/75 text-xs tracking-[0.15em] block mb-3 font-normal uppercase">MENU &amp; PRICE</span>
           <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light" style={{ fontFamily: 'Cinzel, serif' }}>メニュー・料金</h2>
         </div>
         <div className="flex flex-wrap gap-2 mb-4 sm:mb-6" role="tablist" aria-label="メニューカテゴリ">
@@ -458,8 +460,8 @@ function FaqSnsItem({ item, isOpen, onToggle, lineUrl }: FaqSnsItemProps) {
       <button className="w-full flex justify-between items-center gap-3 sm:gap-4 px-4 sm:px-6 py-4 sm:py-5 text-left min-h-[52px] hover:bg-white/5 transition-colors"
         onClick={onToggle} aria-expanded={isOpen} aria-controls={`faq-sns-answer-${item.id}`}>
         <span className="text-white/90 text-xs sm:text-sm font-medium tracking-wide flex-1 leading-relaxed">{item.question}</span>
-        <span className={`flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 rounded-full border flex items-center justify-center text-base transition-all duration-300 ${isOpen ? 'bg-[#3B82F6] border-[#3B82F6] text-white' : 'border-white/30 text-white/50'}`} aria-hidden="true">
-          {isOpen ? '−' : '+'}
+        <span className={`flex-shrink-0 w-5 h-5 flex items-center justify-center text-lg font-light transition-transform duration-300 ${isOpen ? 'text-[#3B82F6] rotate-45' : 'text-white/40'}`} aria-hidden="true">
+          +
         </span>
       </button>
       <div id={`faq-sns-answer-${item.id}`} className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-[500px]' : 'max-h-0'}`}>
@@ -471,11 +473,11 @@ function FaqSnsItem({ item, isOpen, onToggle, lineUrl }: FaqSnsItemProps) {
 
 // ---- FaqSnsSection ----
 const CATEGORY_COLORS: Record<string, { dot: string; label: string }> = {
-  reservation:  { dot: 'bg-blue-400',   label: 'text-blue-400'   },
-  'first-visit': { dot: 'bg-green-400', label: 'text-green-400' },
-  mens:          { dot: 'bg-amber-500', label: 'text-amber-500' },
-  access:        { dot: 'bg-orange-400',label: 'text-orange-400'},
-  payment:       { dot: 'bg-yellow-400',label: 'text-yellow-400'},
+  reservation:  { dot: 'bg-[#3B82F6]', label: 'text-[#3B82F6]' },
+  'first-visit': { dot: 'bg-[#3B82F6]', label: 'text-[#3B82F6]' },
+  mens:          { dot: 'bg-[#3B82F6]', label: 'text-[#3B82F6]' },
+  access:        { dot: 'bg-[#3B82F6]', label: 'text-[#3B82F6]' },
+  payment:       { dot: 'bg-[#3B82F6]', label: 'text-[#3B82F6]' },
 };
 
 function FaqSnsSection({ lineUrl }: { lineUrl: string }) {
@@ -496,7 +498,7 @@ function FaqSnsSection({ lineUrl }: { lineUrl: string }) {
     <section id="faq" className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">
       <div className="max-w-7xl mx-auto px-3 sm:px-6">
         <div className="mb-8 sm:mb-12 md:mb-16">
-          <span className="text-[#3B82F6] text-[0.65rem] sm:text-xs tracking-[0.2em] sm:tracking-[0.4em] block mb-2 font-bold uppercase">FAQ</span>
+          <span className="text-[#3B82F6]/75 text-xs tracking-[0.15em] block mb-3 font-normal uppercase">FAQ</span>
           <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light" style={{ fontFamily: 'Cinzel, serif' }}>よくある質問</h2>
         </div>
         <div className="flex flex-col gap-4 sm:gap-6 max-w-3xl mx-auto">
@@ -572,7 +574,7 @@ const HomeSns = () => {
 
       <section id="shop" className="py-12 sm:py-16 md:py-24 px-3 sm:px-6 max-w-7xl mx-auto">
         <div className="mb-8 sm:mb-12 md:mb-16">
-          <span className="text-[#3B82F6] text-[0.65rem] sm:text-xs tracking-[0.2em] sm:tracking-[0.4em] block mb-2 font-bold uppercase whitespace-nowrap">ACCESS</span>
+          <span className="text-[#3B82F6]/75 text-xs tracking-[0.15em] block mb-3 font-normal uppercase whitespace-nowrap">ACCESS</span>
           <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light" style={{ fontFamily: 'Cinzel, serif' }}>Shop Information</h2>
         </div>
         <div className="bg-[#161B22] p-4 sm:p-6 md:p-8 lg:p-16 border border-white/5 flex flex-col md:flex-row gap-6 sm:gap-8 md:gap-12 mb-8 sm:mb-12">
@@ -591,44 +593,48 @@ const HomeSns = () => {
               ))}
             </div>
             <div className="mt-6 sm:mt-8 md:mt-10 flex gap-3 sm:gap-4">
-              <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="p-2 sm:p-3 bg-white/5 hover:bg-[#3B82F6] transition-colors rounded-full flex-shrink-0" aria-label="Instagram"><Instagram className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden /></a>
-              <a href={lineUrl} target="_blank" rel="noopener noreferrer" className="p-2 sm:p-3 bg-white/5 hover:bg-[#3B82F6] transition-colors rounded-full flex-shrink-0" aria-label="LINEで予約" onClick={() => trackLineAddConversion()}><Calendar className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden /></a>
+              <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="p-2 sm:p-3 bg-white/5 hover:bg-[#3B82F6] transition-colors flex-shrink-0" aria-label="Instagram"><Instagram className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden /></a>
+              <a href={lineUrl} target="_blank" rel="noopener noreferrer" className="p-2 sm:p-3 bg-white/5 hover:bg-[#3B82F6] transition-colors flex-shrink-0" aria-label="LINEで予約" onClick={() => trackLineAddConversion()}><Calendar className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden /></a>
             </div>
           </div>
-          <div className="flex-1 h-64 md:h-auto bg-[#0A0A0A] relative overflow-hidden border border-white/10 rounded">
+          <div className="flex-1 h-64 md:h-auto bg-[#0A0A0A] relative overflow-hidden border border-white/10">
             <iframe src={shop.googleMapsUrl ?? ''} width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="店舗地図" />
           </div>
         </div>
+        {shop.access?.parkingPhotos?.accessGuide && (
+          <div className="mb-8 sm:mb-12">
+            <p className="text-white/50 text-xs tracking-[0.15em] uppercase mb-3">Access Guide</p>
+            <div className="bg-[#161B22] border border-white/5 overflow-hidden">
+              <img src={shop.access.parkingPhotos.accessGuide} alt="アクセス案内 — 車・バス・電車の行き方と駐車場マップ" width={800} height={1100} className="w-full h-auto" loading="lazy" onError={hideImg} />
+            </div>
+          </div>
+        )}
         {shop.access?.parkingPhotos?.parkingLot && (
           <div className="mb-8 sm:mb-12">
-            <div className="bg-[#161B22] border border-white/5 overflow-hidden rounded-lg">
+            <div className="bg-[#161B22] border border-white/5 overflow-hidden">
               <img src={shop.access.parkingPhotos.parkingLot} alt="駐車場の様子" width={800} height={450} className="w-full h-auto" loading="lazy" onError={hideImg} />
             </div>
           </div>
         )}
         {shop.access?.parkingPhotos?.routeToShop && (
           <div className="mb-8 sm:mb-12">
-            <div className="bg-[#161B22] border border-white/5 overflow-hidden rounded-lg">
+            <div className="bg-[#161B22] border border-white/5 overflow-hidden">
               <img src={shop.access.parkingPhotos.routeToShop} alt="駐車場から店舗までの道順" width={800} height={450} className="w-full h-auto" loading="lazy" onError={hideImg} />
             </div>
           </div>
         )}
         {shop.notes && shop.notes.length > 0 && (
           <div className="bg-[#161B22] p-4 sm:p-6 md:p-8 border border-white/5">
-            <h4 className="text-white text-sm sm:text-base md:text-lg mb-3 sm:mb-4">📋 ご確認事項</h4>
+            <h4 className="text-white text-sm sm:text-base md:text-lg mb-3 sm:mb-4 tracking-wide">ご確認事項</h4>
             <ul className="space-y-1.5 sm:space-y-2">{shop.notes.map((note, i) => <li key={i} className="text-white/70 text-xs sm:text-sm">{note}</li>)}</ul>
           </div>
         )}
       </section>
 
-      <section id="reserve" className="py-12 sm:py-16 md:py-24 bg-gradient-to-b from-[#101827] to-[#0A0A0A] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-[#3B82F6] rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#3B82F6] rounded-full blur-3xl"></div>
-        </div>
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 relative z-10">
+      <section id="reserve" className="py-12 sm:py-16 md:py-24 bg-[#101827]">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6">
           <div className="text-center mb-8 sm:mb-12">
-            <span className="text-[#3B82F6] text-[0.65rem] sm:text-xs tracking-[0.2em] sm:tracking-[0.4em] block mb-2 font-bold uppercase whitespace-nowrap">RESERVATION</span>
+            <span className="text-[#3B82F6]/75 text-xs tracking-[0.15em] block mb-3 font-normal uppercase whitespace-nowrap">RESERVATION</span>
             <h2 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-wide sm:tracking-widest font-light mb-3 sm:mb-4" style={{ fontFamily: 'Cinzel, serif' }}>ご予約・お問い合わせ</h2>
             <p className="text-white/80 text-sm sm:text-base md:text-lg tracking-wide max-w-2xl mx-auto px-2">SNSからご来店の方も大歓迎！公式LINEから簡単にご予約いただけます</p>
           </div>
@@ -639,7 +645,7 @@ const HomeSns = () => {
               <div className="absolute top-0 right-0 p-2 sm:p-4 opacity-10 group-hover:opacity-100 transition-opacity"><MessageCircle className="text-[#3B82F6] w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" /></div>
               <div className="relative z-10">
                 <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-[#3B82F6]/20 rounded-full flex items-center justify-center group-hover:bg-[#3B82F6]/30 transition-colors flex-shrink-0"><MessageCircle className="text-[#3B82F6] w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" /></div>
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-[#3B82F6]/20 flex items-center justify-center group-hover:bg-[#3B82F6]/30 transition-colors flex-shrink-0"><MessageCircle className="text-[#3B82F6] w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" /></div>
                   <div className="min-w-0 flex-1"><h3 className="text-white text-lg sm:text-xl md:text-2xl tracking-wide sm:tracking-wider mb-1 whitespace-nowrap">LINE</h3><p className="text-white/50 text-xs sm:text-sm">公式LINEで予約・お問い合わせ</p></div>
                 </div>
                 <p className="text-white/70 leading-relaxed mb-4 sm:mb-6 tracking-wide text-xs sm:text-sm">{social.line.note ?? 'ご予約やお問い合わせの際はお手数ですが公式LINEにメッセージをお願いします'}</p>
@@ -655,7 +661,7 @@ const HomeSns = () => {
               <div className="absolute top-0 right-0 p-2 sm:p-4 opacity-10 group-hover:opacity-100 transition-opacity"><Instagram className="text-[#3B82F6] w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" /></div>
               <div className="relative z-10">
                 <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-[#3B82F6]/20 rounded-full flex items-center justify-center group-hover:bg-[#3B82F6]/30 transition-colors flex-shrink-0"><Instagram className="text-[#3B82F6] w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" /></div>
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-[#3B82F6]/20 flex items-center justify-center group-hover:bg-[#3B82F6]/30 transition-colors flex-shrink-0"><Instagram className="text-[#3B82F6] w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" /></div>
                   <div className="min-w-0 flex-1"><h3 className="text-white text-lg sm:text-xl md:text-2xl tracking-wide sm:tracking-wider mb-1 whitespace-nowrap">Instagram</h3><p className="text-white/50 text-xs sm:text-sm">最新情報・施術の様子</p></div>
                 </div>
                 <p className="text-white/70 leading-relaxed mb-4 sm:mb-6 tracking-wide text-xs sm:text-sm">{social.instagram.username ?? '@yoo.n.yoo.n'}で最新の施術の様子やお知らせを配信しています。</p>
@@ -667,8 +673,8 @@ const HomeSns = () => {
             </a>
           </div>
           <div className="mt-8 sm:mt-12 text-center px-2">
-            <div className="bg-[#161B22] border border-white/10 p-4 sm:p-6 rounded-lg max-w-2xl mx-auto">
-              <p className="text-white font-semibold mb-2 text-sm sm:text-base md:text-lg">📱 公式LINEで簡単予約</p>
+            <div className="bg-[#161B22] border border-white/10 p-4 sm:p-6 max-w-2xl mx-auto">
+              <p className="text-white font-semibold mb-2 text-sm sm:text-base md:text-lg">公式LINEで簡単予約</p>
               <p className="text-white/70 text-xs sm:text-sm tracking-wide mb-3 sm:mb-4">ご予約・お問い合わせは公式LINEからお気軽にどうぞ。24時間受付中！</p>
               <a href={lineUrl} target="_blank" rel="noopener noreferrer"
                 className="inline-block px-6 sm:px-8 py-2.5 sm:py-3 bg-[#3B82F6] text-white font-semibold text-xs sm:text-sm tracking-wide sm:tracking-widest hover:bg-[#2563EB] transition-all duration-300 transform hover:-translate-y-1 whitespace-nowrap"
@@ -693,7 +699,7 @@ const HomeSns = () => {
 
       <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 md:hidden">
         <a href={lineUrl} target="_blank" rel="noopener noreferrer"
-          className="w-12 h-12 sm:w-14 sm:h-14 bg-[#3B82F6] text-white rounded-full flex items-center justify-center shadow-lg shadow-blue-500/20"
+          className="w-12 h-12 sm:w-14 sm:h-14 bg-[#3B82F6] text-white flex items-center justify-center shadow-lg shadow-blue-500/20"
           aria-label="LINEで予約（新しいウィンドウで開きます）" onClick={() => trackLineAddConversion()}>
           <Calendar className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden />
         </a>

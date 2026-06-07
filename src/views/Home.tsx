@@ -23,7 +23,7 @@ interface ShopConfig {
   hours?: { weekday?: string };
   access?: {
     stations?: string[];
-    parkingPhotos?: { parkingLot?: string; routeToShop?: string };
+    parkingPhotos?: { parkingLot?: string; routeToShop?: string; accessGuide?: string };
   };
 }
 
@@ -83,7 +83,7 @@ const Home = memo(() => {
               迷走神経を優しく撫でる新感覚タッチで、蓄積した脳疲労をリセット。
             </p>
             <div className="hero-price-banner">
-              <p className="hero-price-label">★ 女性一番人気 No.1</p>
+              <p className="hero-price-label">女性人気 No.1</p>
               <p className="hero-price-menu">耳つぼジュエリー</p>
               <div className="hero-price-wrapper">
                 <span className="hero-price-yen">¥</span>
@@ -145,7 +145,7 @@ const Home = memo(() => {
                 ['📞','電話番号', <p key="phone">{shop.phone ?? '080-8478-1163'}</p>],
               ].map(([icon, title, content]) => (
                 <div key={title as string} className="info-card">
-                  <div className="info-icon">{icon}</div>
+                  <div className="info-icon" aria-hidden="true">{icon}</div>
                   <div className="info-content"><h4>{title}</h4>{content}</div>
                 </div>
               ))}
@@ -163,6 +163,28 @@ const Home = memo(() => {
           </div>
         </div>
       </section>
+
+      {shop.access?.parkingPhotos?.accessGuide && (
+        <section className="access-guide-section section" ref={addToRefs}>
+          <div className="container">
+            <div className="section-header">
+              <span className="section-label">Access</span>
+              <h2>アクセス案内</h2>
+              <p className="section-header-description">車・バス・電車でのアクセス方法をご確認ください</p>
+            </div>
+            <div className="route-photo-container">
+              <div className="route-image-wrapper">
+                <img src={shop.access.parkingPhotos.accessGuide} alt="アクセス案内 — 車・バス・電車の行き方と駐車場マップ"
+                  className="route-image" width={800} height={1100} loading="lazy"
+                  onError={hideImgShowPlaceholder} />
+                <div className="image-placeholder" style={{ display: 'none' }} aria-hidden="true">
+                  <span>アクセス案内の画像</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {shop.access?.parkingPhotos?.parkingLot && (
         <section className="parking-section section" ref={addToRefs}>

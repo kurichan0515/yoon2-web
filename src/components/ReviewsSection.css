@@ -1,6 +1,18 @@
 /* お客様の声セクション */
 .reviews-section {
-  background-color: var(--color-primary);
+  background-color: #2a2118;
+}
+
+.reviews-section .section-label {
+  color: rgba(201, 169, 110, 0.85);
+}
+
+.reviews-section .section-header h2 {
+  color: #f4f1eb;
+}
+
+.reviews-section .reviews-overall-note {
+  color: rgba(244, 241, 235, 0.55);
 }
 
 /* 総合評価 */
@@ -41,18 +53,28 @@
 
 /* カード */
 .review-card {
-  background: linear-gradient(145deg, #ffffff 0%, #fdf9f4 100%);
+  background: #ffffff;
   padding: var(--spacing-lg);
   border-radius: var(--radius-lg);
-  box-shadow:
-    0 2px 4px rgba(44, 44, 44, 0.04),
-    0 8px 24px rgba(44, 44, 44, 0.07),
-    0 16px 40px rgba(201, 169, 110, 0.06);
-  border-top: 2px solid var(--color-accent);
+  box-shadow: 0 2px 4px rgba(44, 44, 44, 0.04), 0 8px 24px rgba(44, 44, 44, 0.07);
+  border: 1px solid rgba(229, 224, 215, 0.8);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+}
+
+.review-card::before {
+  content: '\201C';
+  font-family: var(--font-display);
+  font-size: 4rem;
+  color: rgba(201, 169, 110, 0.18);
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  line-height: 1;
+  pointer-events: none;
 }
 
 .review-card:hover {
@@ -108,12 +130,14 @@
 
 .reviews-link {
   display: inline-block;
-  color: var(--color-text-secondary);
-  font-size: 0.95rem;
-  font-weight: 600;
+  color: rgba(244, 241, 235, 0.6);
+  font-size: 0.82rem;
+  font-weight: 500;
   text-decoration: none;
   font-family: var(--font-secondary);
-  border-bottom: 2px solid var(--color-border);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(244, 241, 235, 0.25);
   padding-bottom: 4px;
   transition: color 0.2s ease, border-color 0.2s ease;
 }

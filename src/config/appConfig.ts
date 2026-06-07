@@ -13,7 +13,7 @@ interface AppConfig {
     name: string; phone: string; postalCode: string; address: string;
     access: {
       stations: string[]; landmarks: string; parking: string;
-      parkingPhotos: { parkingLot: string; routeToShop: string };
+      parkingPhotos: { parkingLot: string; routeToShop: string; accessGuide?: string };
     };
     hours: { open: string; close: string; weekday: string; weekend: string; note: string };
     holidays: string; description: string; email: string;
@@ -50,6 +50,7 @@ const appConfig: AppConfig = {
       parkingPhotos: {
         parkingLot: '/images/parking/parking.png',
         routeToShop: '/images/parking/parking-to-shop.png',
+        accessGuide: '/images/parking/S__24363034.jpg',
       },
     },
     hours: {

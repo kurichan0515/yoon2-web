@@ -53,6 +53,7 @@
   
   /* フォント */
   --font-primary: 'Playfair Display', serif;
+  --font-display: 'Cormorant Garamond', 'Playfair Display', serif;
   --font-secondary: 'Montserrat', sans-serif;
   --font-japanese: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'メイリオ', sans-serif;
   
@@ -208,9 +209,9 @@ p {
 a {
   color: var(--color-accent);
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: color 0.3s ease;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0.08);
-  touch-action: manipulation; /* ダブルタップ遅延の軽減・意図しないズーム防止 */
+  touch-action: manipulation;
 }
 
 a:hover {
@@ -224,7 +225,7 @@ button {
   cursor: pointer;
   border: none;
   outline: none;
-  transition: all 0.3s ease;
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
   font-weight: 500;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0.08);
   touch-action: manipulation;
@@ -250,12 +251,14 @@ a:focus:not(:focus-visible) {
   background-color: var(--color-accent);
   color: var(--color-white);
   padding: var(--spacing-md) var(--spacing-xl);
-  border-radius: var(--radius-md);
-  font-size: 1rem;
-  letter-spacing: 0.5px;
-  box-shadow: var(--shadow-light);
-  min-height: 44px; /* タッチターゲット最小サイズ */
-  min-width: 120px; /* 最小幅を確保 */
+  border-radius: 0;
+  font-size: 0.82rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+  box-shadow: none;
+  min-height: 44px;
+  min-width: 120px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -263,27 +266,30 @@ a:focus:not(:focus-visible) {
 
 .btn-primary:hover {
   background-color: #b8956a;
-  box-shadow: 0 8px 24px rgba(201, 169, 110, 0.35);
-  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(201, 169, 110, 0.3);
+  transform: translateY(-1px);
 }
 
 .btn-secondary {
   background-color: transparent;
   color: var(--color-text-primary);
   padding: var(--spacing-md) var(--spacing-xl);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-md);
-  font-size: 1rem;
-  min-height: 44px; /* タッチターゲット最小サイズ */
-  min-width: 120px; /* 最小幅を確保 */
+  border: 1px solid var(--color-text-primary);
+  border-radius: 0;
+  font-size: 0.82rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 500;
+  min-height: 44px;
+  min-width: 120px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 
 .btn-secondary:hover {
-  background-color: var(--color-primary);
-  border-color: var(--color-accent);
+  background-color: var(--color-text-primary);
+  color: var(--color-white);
 }
 
 /* フォーム要素の基本スタイル */
@@ -292,7 +298,7 @@ input, select, textarea {
   border: 2px solid var(--color-border);
   border-radius: var(--radius-sm);
   padding: var(--spacing-sm);
-  transition: all 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 input:focus, select:focus, textarea:focus {
@@ -432,5 +438,23 @@ img[width][height] {
   select,
   textarea {
     font-size: 16px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .section {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .fade-in {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
   }
 }
