@@ -129,7 +129,7 @@ const Home = memo(() => {
         <div className="container"><SocialFeed /></div>
       </section>
 
-      <section id="shop" className="shop-section section" ref={addToRefs}>
+      <section id="access" className="shop-section section" ref={addToRefs}>
         <div className="container">
           <div className="section-header">
             <span className="section-label">Shop Information</span>

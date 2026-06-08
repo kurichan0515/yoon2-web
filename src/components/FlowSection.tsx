@@ -27,7 +27,7 @@ function FlowSection() {
   }, []);
 
   return (
-    <section className="flow-section section" ref={sectionRef}>
+    <section id="flow" className="flow-section section" ref={sectionRef}>
       <div className="container">
         <div className="flow-header">
           <span className="section-label">Flow</span>
