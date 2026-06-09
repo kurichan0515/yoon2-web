@@ -159,7 +159,7 @@ const CONCERNS = [
 
 function ConcernSnsSection() {
   return (
-    <section className="py-12 sm:py-16 md:py-24 bg-[#101827]">
+    <section id="concern" className="py-12 sm:py-16 md:py-24 bg-[#101827]">
       <div className="max-w-7xl mx-auto px-3 sm:px-6">
         <div className="mb-8 sm:mb-12 md:mb-16">
           <span className="text-[#3B82F6]/75 text-xs tracking-[0.15em] block mb-3 font-normal uppercase">FOR YOU</span>
@@ -187,7 +187,7 @@ function ConcernSnsSection() {
 function MenuDiagnosisSnsSection() {
   const scrollToMenu = () => document.getElementById('courses')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   return (
-    <section className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">
+    <section id="diagnosis" className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">
       <div className="max-w-7xl mx-auto px-3 sm:px-6">
         <div className="mb-8 sm:mb-12 md:mb-16">
           <span className="text-[#3B82F6]/75 text-xs tracking-[0.15em] block mb-3 font-normal uppercase">MENU GUIDE</span>

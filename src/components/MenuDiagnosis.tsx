@@ -22,7 +22,7 @@ function MenuDiagnosis() {
   };
 
   return (
-    <section className="diagnosis-section section" ref={sectionRef}>
+    <section id="diagnosis" className="diagnosis-section section" ref={sectionRef}>
       <div className="container">
         <div className="diagnosis-header">
           <span className="section-label">Menu Guide</span>

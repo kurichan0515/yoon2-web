@@ -25,7 +25,7 @@ function ConcernSection() {
   }, []);
 
   return (
-    <section className="concern-section section" ref={sectionRef}>
+    <section id="concern" className="concern-section section" ref={sectionRef}>
       <div className="container">
         <div className="concern-header">
           <span className="section-label">For You</span>
