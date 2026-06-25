@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, memo, RefCallback } from 'react';
+import AdSense from '../components/common/AdSense';
 import './PrivacyPolicy.css';
 
 const PrivacyPolicy = memo(() => {
@@ -137,6 +138,8 @@ const PrivacyPolicy = memo(() => {
                 <p>LINE: <a href="https://lin.ee/lyyKSqu" target="_blank" rel="noopener noreferrer">公式LINEアカウント</a></p>
               </div>
             </div>
+
+            <AdSense adSlot="2647640133" adFormat="auto" />
 
             <div className="privacy-footer" ref={addToRefs}>
               <p className="last-updated">最終更新日: 2026年1月15日</p>

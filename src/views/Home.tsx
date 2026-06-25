@@ -68,6 +68,7 @@ const Home = memo(() => {
             <source media="(max-width: 768px)" srcSet="/images/hero/hero-sp.jpg" />
             <source srcSet="/images/shop/play-room.webp" type="image/webp" />
             <img src="/images/shop/play-room.jpg" alt=""
+              width={1920} height={1280}
               fetchPriority="high" decoding="async" className="hero-bg-img" />
           </picture>
           <div className="hero-overlay"></div>

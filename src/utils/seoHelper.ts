@@ -30,7 +30,7 @@ const updateOrCreateLink = (rel: string, href: string) => {
   link.setAttribute('href', href);
 };
 
-export const setPageMeta = ({ title, description, path = '/', image = `${BASE_URL}/logo512.png`, type = 'website' }: PageMetaOptions) => {
+export const setPageMeta = ({ title, description, path = '/', image = `${BASE_URL}/images/about/concept-interior.jpg`, type = 'website' }: PageMetaOptions) => {
   const fullUrl = `${BASE_URL}${path === '/' ? '' : path}`;
   const fullTitle = title.includes('yoon²') ? title : `${title} | yoon²`;
   document.title = fullTitle;
@@ -41,6 +41,8 @@ export const setPageMeta = ({ title, description, path = '/', image = `${BASE_UR
   updateOrCreateMeta('og:url', fullUrl, true);
   updateOrCreateMeta('og:type', type, true);
   updateOrCreateMeta('og:image', image, true);
+  updateOrCreateMeta('og:image:width', '1920', true);
+  updateOrCreateMeta('og:image:height', '1280', true);
   updateOrCreateMeta('og:image:alt', fullTitle, true);
   updateOrCreateMeta('og:site_name', 'yoon²', true);
   updateOrCreateMeta('og:locale', 'ja_JP', true);

@@ -16,9 +16,9 @@ export const metadata: Metadata = {
     locale: 'ja_JP',
     images: [
       {
-        url: 'https://yoon2.com/logo512.png',
-        width: 512,
-        height: 512,
+        url: 'https://yoon2.com/images/about/concept-interior.jpg',
+        width: 1920,
+        height: 1280,
         alt: 'yoon² - 松山の耳つぼ・イヤーエステ専門サロン',
       },
     ],
@@ -27,10 +27,13 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'yoon² | 松山の耳つぼ・イヤーエステ専門サロン',
     description: '愛媛県松山市の耳つぼ・イヤーエステ専門サロン。初回3,500円～、オンライン予約OK。北久米駅徒歩5分、駐車場完備。',
-    images: ['https://yoon2.com/logo512.png'],
+    images: ['https://yoon2.com/images/about/concept-interior.jpg'],
   },
   alternates: {
     canonical: 'https://yoon2.com/',
+    languages: {
+      'ja': 'https://yoon2.com/',
+    },
   },
   icons: {
     icon: '/favicon-32x32.png',
