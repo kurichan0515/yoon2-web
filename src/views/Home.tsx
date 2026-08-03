@@ -5,6 +5,7 @@ import SocialFeed from '../components/SocialFeed';
 import FAQ from '../components/FAQ';
 import MenuSection from '../components/MenuSection';
 import ReviewsSection from '../components/ReviewsSection';
+import StaffSection from '../components/StaffSection';
 import ConcernSection from '../components/ConcernSection';
 import MenuDiagnosis from '../components/MenuDiagnosis';
 import FlowSection from '../components/FlowSection';
@@ -123,6 +124,7 @@ const Home = memo(() => {
       <MenuDiagnosis />
       <FlowSection />
       <ReviewsSection />
+      <StaffSection />
       <MenuSection />
       <FAQ />
 
