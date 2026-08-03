@@ -93,10 +93,10 @@ const Home = memo(() => {
               </div>
               <p className="hero-price-note">もみほぐし＋ジュエリーつけ放題</p>
             </div>
-            <div className="hero-review-badge" aria-label="ホットペッパービューティー 評価4.83">
+            <div className="hero-review-badge" aria-label="ホットペッパービューティー 評価4.91">
               <div className="hero-review-stars-row">
                 <span className="hero-review-stars" aria-hidden="true">★★★★★</span>
-                <span className="hero-review-rating">4.83</span>
+                <span className="hero-review-rating">4.91</span>
               </div>
               <p className="hero-review-source">ホットペッパービューティー</p>
             </div>

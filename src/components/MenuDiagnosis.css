@@ -18,12 +18,12 @@
   margin-top: var(--spacing-sm);
 }
 
-/* カード2列レイアウト */
+/* カード3列レイアウト */
 .diagnosis-cards {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: var(--spacing-lg);
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -172,6 +172,55 @@
   color: var(--color-white);
 }
 
+/* ===== オイルリンパ強調カード ===== */
+.diagnosis-card--oil {
+  background: linear-gradient(145deg, #3e5c4e 0%, #2c4438 100%);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.12),
+    0 8px 24px rgba(0, 0, 0, 0.18),
+    0 24px 48px rgba(62, 92, 78, 0.2);
+  border-top: 2px solid #a8c4a2;
+}
+
+.diagnosis-card--oil .diagnosis-card-tag {
+  color: #a8c4a2;
+}
+
+.diagnosis-card--oil .diagnosis-card-name {
+  color: #f4f1eb;
+}
+
+.diagnosis-card--oil .diagnosis-card-divider {
+  background-color: #a8c4a2;
+}
+
+.diagnosis-card--oil .diagnosis-card-target {
+  color: rgba(244, 241, 235, 0.75);
+}
+
+.diagnosis-card--oil .diagnosis-card-desc {
+  color: rgba(244, 241, 235, 0.7);
+}
+
+.diagnosis-card--oil .diagnosis-card-contents li {
+  color: rgba(244, 241, 235, 0.85);
+}
+
+.diagnosis-card--oil .diagnosis-card-contents li::before {
+  color: #a8c4a2;
+}
+
+.diagnosis-card-btn--oil {
+  background: transparent;
+  color: #a8c4a2;
+  border: 2px solid #a8c4a2;
+}
+
+.diagnosis-card-btn--oil:hover {
+  background: #a8c4a2;
+  color: #1e1e1e;
+}
+
 /* ===== ダークカード ===== */
 .diagnosis-card--dark {
   background: linear-gradient(145deg, #2c2c2c 0%, #1e1e1e 100%);
@@ -210,6 +259,14 @@
 .diagnosis-card-btn--dark:hover {
   background: var(--color-accent);
   color: var(--color-white);
+}
+
+/* レスポンシブ: タブレットは2列 */
+@media (max-width: 1024px) {
+  .diagnosis-cards {
+    grid-template-columns: 1fr 1fr;
+    max-width: 700px;
+  }
 }
 
 /* レスポンシブ: スマホは縦積み */

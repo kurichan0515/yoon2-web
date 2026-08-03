@@ -193,9 +193,9 @@ function MenuDiagnosisSnsSection() {
           <span className="text-[#3B82F6]/75 text-xs tracking-[0.15em] block mb-3 font-normal uppercase">MENU GUIDE</span>
           <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light" style={{ fontFamily: 'Cinzel, serif' }}>あなたにぴったりの<br />メニューはどちらですか？</h2>
         </div>
-        <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+        <div className="grid sm:grid-cols-3 gap-4 sm:gap-6">
           <article className="bg-[#3B82F6] p-6 sm:p-8 flex flex-col">
-            <div className="text-white text-[0.65rem] sm:text-xs font-semibold tracking-[0.3em] mb-3">RECOMMENDED</div>
+            <div className="text-white text-[0.65rem] sm:text-xs font-semibold tracking-[0.3em] mb-3">女性におすすめ</div>
             <h3 className="text-white text-xl sm:text-2xl font-medium tracking-wide mb-3">耳つぼジュエリー</h3>
             <div className="w-8 h-[1px] bg-white/40 mb-4" aria-hidden="true" />
             <p className="text-white/90 text-xs sm:text-sm mb-4 tracking-wide">慢性的な不調ケア＋オシャレを楽しみたい方へ</p>
@@ -208,6 +208,21 @@ function MenuDiagnosisSnsSection() {
             </ul>
             <p className="text-white/80 text-xs leading-relaxed flex-1">耳つぼもみほぐしでカチカチの耳をほぐし血流UP！お悩みに合わせたジュエリーつけ放題で、24時間可愛く体質改善をサポート。耳掃除なしでその分もみほぐしをたっぷり。</p>
             <button onClick={scrollToMenu} className="mt-6 w-full py-2.5 sm:py-3 bg-white text-[#3B82F6] text-xs font-semibold tracking-widest hover:bg-white/90 transition-colors" aria-label="耳つぼジュエリーの料金・詳細へ">料金・詳細を見る</button>
+          </article>
+          <article className="bg-[#059669] p-6 sm:p-8 flex flex-col">
+            <div className="text-white text-[0.65rem] sm:text-xs font-semibold tracking-[0.3em] mb-3">男性におすすめ</div>
+            <h3 className="text-white text-xl sm:text-2xl font-medium tracking-wide mb-3">オイルリンパ</h3>
+            <div className="w-8 h-[1px] bg-white/40 mb-4" aria-hidden="true" />
+            <p className="text-white/90 text-xs sm:text-sm mb-4 tracking-wide">冷えやむくみ・全身の疲れをリセットしたい方へ</p>
+            <ul className="space-y-1 mb-5" aria-label="内容">
+              {['全身オイルトリートメント', 'リンパの流れを整える'].map(t => (
+                <li key={t} className="flex items-center gap-2 text-white/80 text-xs sm:text-sm">
+                  <span className="text-white flex-shrink-0" aria-hidden="true">›</span>{t}
+                </li>
+              ))}
+            </ul>
+            <p className="text-white/80 text-xs leading-relaxed flex-1">厳選オイルでリンパの滞りをじっくり丁寧に流し、冷え性やむくみ、身体の重だるさをスッキリ解消。深いリラックスと巡りの良さを同時に体感。</p>
+            <button onClick={scrollToMenu} className="mt-6 w-full py-2.5 sm:py-3 bg-white text-[#059669] text-xs font-semibold tracking-widest hover:bg-white/90 transition-colors" aria-label="オイルリンパの料金・詳細へ">料金・詳細を見る</button>
           </article>
           <article className="bg-[#161B22] border border-white/5 hover:border-[#3B82F6]/30 transition-all duration-300 p-6 sm:p-8 flex flex-col">
             <div className="text-[#3B82F6] text-[0.65rem] sm:text-xs font-semibold tracking-[0.3em] mb-3">MENU B</div>
