@@ -84,7 +84,7 @@ const Home = memo(() => {
               迷走神経を優しく撫でる新感覚タッチで、蓄積した脳疲労をリセット。
             </p>
             <div className="hero-price-banner">
-              <p className="hero-price-label">女性人気 No.1</p>
+              <p className="hero-price-label">女性スタッフ対応</p>
               <p className="hero-price-menu">耳つぼジュエリー</p>
               <div className="hero-price-wrapper">
                 <span className="hero-price-yen">¥</span>
