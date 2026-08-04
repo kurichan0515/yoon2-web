@@ -49,6 +49,15 @@ function FlowSection() {
           ))}
         </div>
         <p className="flow-note">完全個室・全施術痛みなし</p>
+        <a
+          href="https://mimitubojapan.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flow-certification-badge"
+        >
+          <span aria-hidden="true">🏅</span>
+          一般社団法人日本フランス式耳つぼ協会認定
+        </a>
       </div>
     </section>
   );

@@ -274,6 +274,36 @@
   letter-spacing: 0.03em;
 }
 
+/* ===== Hero 協会認定バッジ ===== */
+.hero-certification-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: #666;
+  background: rgba(250, 247, 240, 0.88);
+  padding: 0.5rem 1rem;
+  border-radius: 2px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  margin: 0 auto 1.25rem;
+  border: 1px solid rgba(201, 169, 110, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  text-decoration: none;
+  font-family: var(--font-secondary), var(--font-japanese);
+  max-width: 320px;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.hero-certification-badge:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
 .hero-actions {
   display: flex;
   gap: var(--spacing-md);
@@ -874,6 +904,12 @@
   .hero-review-badge {
     margin: 0 auto 0.4rem;
     padding: 0.3rem 0.9rem;
+  }
+
+  .hero-certification-badge {
+    margin: 0 auto 1rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.62rem;
   }
 
   .hero-actions {

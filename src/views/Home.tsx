@@ -100,6 +100,15 @@ const Home = memo(() => {
               </div>
               <p className="hero-review-source">ホットペッパービューティー</p>
             </div>
+            <a
+              href="https://mimitubojapan.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hero-certification-badge"
+            >
+              <span aria-hidden="true">🏅</span>
+              一般社団法人日本フランス式耳つぼ協会認定
+            </a>
             <div className="hero-actions">
               <a href={lineUrl} target="_blank" rel="noopener noreferrer"
                 className="btn-primary hero-cta line-booking-btn"
