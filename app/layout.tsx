@@ -6,11 +6,11 @@ import '../src/App.css';
 export const metadata: Metadata = {
   metadataBase: new URL('https://yoon2.com'),
   title: 'yoon² | 松山の耳つぼ・イヤーエステ専門サロン',
-  description: '愛媛県松山市の耳つぼ・イヤーエステ専門サロン。初回3,500円～、オンライン予約OK。北久米駅徒歩5分、駐車場完備。',
+  description: '愛媛県松山市の耳つぼ専門サロン。凝り固まった心とからだをやさしくほぐし、不調をリセット。北久米駅徒歩5分、初回3,500円～。',
   openGraph: {
     type: 'website',
     title: 'yoon² | 松山の耳つぼ・イヤーエステ専門サロン',
-    description: '愛媛県松山市の耳つぼ・イヤーエステ専門サロン。初回3,500円～、オンライン予約OK。北久米駅徒歩5分、駐車場完備。',
+    description: '愛媛県松山市の耳つぼ専門サロン。凝り固まった心とからだをやさしくほぐし、不調をリセット。北久米駅徒歩5分、初回3,500円～。',
     url: 'https://yoon2.com',
     siteName: 'yoon²',
     locale: 'ja_JP',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'yoon² | 松山の耳つぼ・イヤーエステ専門サロン',
-    description: '愛媛県松山市の耳つぼ・イヤーエステ専門サロン。初回3,500円～、オンライン予約OK。北久米駅徒歩5分、駐車場完備。',
+    description: '愛媛県松山市の耳つぼ専門サロン。凝り固まった心とからだをやさしくほぐし、不調をリセット。北久米駅徒歩5分、初回3,500円～。',
     images: ['https://yoon2.com/images/about/concept-interior.jpg'],
   },
   alternates: {
