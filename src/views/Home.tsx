@@ -150,6 +150,15 @@ const Home = memo(() => {
             <div className="shop-info-details">
               {[
                 ['📍','住所', <p key="addr">{shop.address ?? '住所情報を取得中...'}</p>],
+                ['🚗','駐車場のご案内', (
+                  <div key="parking">
+                    <p>店舗前に駐車スペースがございません。店舗近くの専用駐車場（北久米町412番地）をご利用ください。</p>
+                    <a href="https://maps.google.com/?cid=10357450395002350789" target="_blank" rel="noopener noreferrer"
+                      className="btn-secondary" style={{ display: 'inline-block', marginTop: 'var(--spacing-sm)' }}>
+                      駐車場の地図を見る
+                    </a>
+                  </div>
+                )],
                 ['🚃','最寄り駅', shop.access?.stations?.filter(Boolean).map((s, i) => <p key={i}>{s}</p>)],
                 ['🕐','営業時間', <p key="hours">月〜日 {shop.hours?.weekday ?? '10:00 - 20:00'}</p>],
                 ['📞','電話番号', <p key="phone">{shop.phone ?? '080-8478-1163'}</p>],
