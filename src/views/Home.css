@@ -51,7 +51,8 @@
   position: absolute;
   inset: 0;
   width: 100%;
-  height: 100%;
+  /* App.cssのimg[width][height]{height:auto}(詳細度0,2,1)に打ち勝つため!important */
+  height: 100% !important;
   object-fit: cover;
   object-position: center;
   z-index: 0;
@@ -104,7 +105,8 @@
 }
 
 /* ヒーロー・メインタイトル（店の雰囲気に合わせた表記） */
-.hero-title-main {
+/* .hero-content h1 より詳細度を上げてcolor: #ffffffを確実に効かせる */
+.hero-content .hero-title-main {
   font-size: 6rem;
   font-weight: 300;
   margin-bottom: 0.25em;
@@ -112,7 +114,11 @@
   color: #ffffff;
   font-family: 'League Spartan', sans-serif;
   line-height: 0.95;
-  text-shadow: 0 2px 24px rgba(0,0,0,0.5);
+  -webkit-text-stroke: 1px rgba(0,0,0,0.55);
+  text-shadow:
+    0 0 6px rgba(0,0,0,0.9),
+    0 0 16px rgba(0,0,0,0.75),
+    0 2px 8px rgba(0,0,0,0.7);
 }
 
 /* 店名の読み方（ゆんゆん）を控えめに表示 */
@@ -123,7 +129,10 @@
   letter-spacing: 0.2em;
   color: rgba(255,255,255,0.9);
   font-family: var(--font-secondary), var(--font-japanese);
-  text-shadow: 0 1px 10px rgba(0,0,0,0.45);
+  text-shadow:
+    0 0 4px rgba(0,0,0,0.9),
+    0 0 10px rgba(0,0,0,0.75),
+    0 1px 5px rgba(0,0,0,0.7);
 }
 
 .hero-title-sub {
@@ -133,7 +142,10 @@
   letter-spacing: 0.15em;
   color: #ffffff;
   font-family: var(--font-secondary), var(--font-japanese);
-  text-shadow: 0 1px 10px rgba(0,0,0,0.45);
+  text-shadow:
+    0 0 4px rgba(0,0,0,0.9),
+    0 0 10px rgba(0,0,0,0.75),
+    0 1px 5px rgba(0,0,0,0.7);
 }
 
 .hero-subtitle {
@@ -858,8 +870,8 @@
     padding: 0.8rem var(--spacing-md);
   }
 
-  .hero-title-main {
-    font-size: 7rem;
+  .hero-content .hero-title-main {
+    font-size: 2.5rem;
     letter-spacing: -0.04em;
     line-height: 0.95;
     margin-bottom: 0.2em;
@@ -993,8 +1005,17 @@
     }
   }
 
+  .hero-background::after {
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.55) 0%,
+      rgba(0,0,0,0.5) 50%,
+      rgba(0,0,0,0.58) 100%
+    );
+  }
+
   .hero-content h1,
-  .hero-title-main {
+  .hero-content .hero-title-main {
     font-size: 2.5rem;
   }
 
@@ -1108,13 +1129,13 @@
   .hero {
     padding-top: max(70px, env(safe-area-inset-top, 0px));
     min-height: 100vh;
-    height: 100vh;
+    height: auto;
   }
-  
+
   @supports (min-height: 100dvh) {
     .hero {
       min-height: 100dvh;
-      height: 100dvh;
+      height: auto;
     }
   }
   
@@ -1123,7 +1144,7 @@
   }
 
   .hero-content h1,
-  .hero-title-main {
+  .hero-content .hero-title-main {
     font-size: 2rem;
   }
 
