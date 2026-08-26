@@ -46,10 +46,10 @@ describe('Home Component', () => {
     expect(screen.getAllByText('yoon²').length).toBeGreaterThan(0);
   });
 
-  test('renders child sections', () => {
+  test('renders child sections', async () => {
     render(<Home />);
-    expect(screen.getByTestId('social-feed')).toBeInTheDocument();
-    expect(screen.getByTestId('faq')).toBeInTheDocument();
-    expect(screen.getByTestId('menu-section')).toBeInTheDocument();
+    expect(await screen.findByTestId('social-feed')).toBeInTheDocument();
+    expect(await screen.findByTestId('faq')).toBeInTheDocument();
+    expect(await screen.findByTestId('menu-section')).toBeInTheDocument();
   });
 });

@@ -44,15 +44,15 @@ function MenuCard({ menu, lineUrl }: { menu: MenuItem; lineUrl: string }) {
       <div className="menu-item-actions">
         <a href={HOTPEPPER_URL} target="_blank" rel="noopener noreferrer"
           className="menu-item-btn menu-item-btn--primary"
-          aria-label={`${menu.name}をホットペッパーで予約（新しいウィンドウで開きます）`}
           onClick={() => trackHotpepperClick(menu.name)}>
           今すぐ予約する
+          <span className="visually-hidden">（{menu.name}、新しいウィンドウで開きます）</span>
         </a>
         <a href={lineUrl} target="_blank" rel="noopener noreferrer"
           className="menu-item-btn menu-item-btn--secondary"
-          aria-label={`${menu.name}についてLINEで相談（新しいウィンドウで開きます）`}
           onClick={() => trackLineClick(menu.name)}>
           LINEで予約・相談
+          <span className="visually-hidden">（{menu.name}、新しいウィンドウで開きます）</span>
         </a>
       </div>
     </article>

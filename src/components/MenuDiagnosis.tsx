@@ -42,8 +42,9 @@ function MenuDiagnosis() {
               <p className="diagnosis-card-desc">
                 耳つぼもみほぐしでカチカチの耳をほぐし血流UP！お悩みに合わせたジュエリーつけ放題で、24時間可愛く体質改善をサポート。耳掃除なしでその分もみほぐしをたっぷり。
               </p>
-              <button className="diagnosis-card-btn diagnosis-card-btn--dark" onClick={scrollToMenu} aria-label="耳つぼジュエリーの料金・詳細へ">
+              <button className="diagnosis-card-btn diagnosis-card-btn--dark" onClick={scrollToMenu}>
                 料金・詳細を見る
+                <span className="visually-hidden">（耳つぼジュエリー）</span>
               </button>
             </div>
           </article>
@@ -60,27 +61,29 @@ function MenuDiagnosis() {
               <p className="diagnosis-card-desc">
                 厳選オイルでリンパの滞りをじっくり丁寧に流し、冷え性やむくみ、身体の重だるさをスッキリ解消。深いリラックスと巡りの良さを同時に体感。
               </p>
-              <button className="diagnosis-card-btn diagnosis-card-btn--oil" onClick={scrollToMenu} aria-label="オイルリンパの料金・詳細へ">
+              <button className="diagnosis-card-btn diagnosis-card-btn--oil" onClick={scrollToMenu}>
                 料金・詳細を見る
+                <span className="visually-hidden">（オイルリンパ）</span>
               </button>
             </div>
           </article>
           <article className="diagnosis-card diagnosis-card--light">
             <div className="diagnosis-card-inner">
-              <div className="diagnosis-card-tag">MENU B</div>
-              <h3 className="diagnosis-card-name">イヤーエステ</h3>
+              <div className="diagnosis-card-tag">迷ったらこれ</div>
+              <h3 className="diagnosis-card-name">贅沢ロングコース</h3>
               <div className="diagnosis-card-divider" aria-hidden="true" />
-              <p className="diagnosis-card-target">とにかく癒されたい・スッキリしたい方へ</p>
+              <p className="diagnosis-card-target">じっくり120分で全身の疲れをまるごとリセットしたい方へ</p>
               <ul className="diagnosis-card-contents" aria-label="内容">
-                <li>耳掃除（スコープで確認しながら）</li>
+                <li>オイルリンパ</li>
                 <li>耳つぼもみほぐし</li>
-                <li>ジュエリーつけ放題</li>
+                <li>ヘッドほぐし</li>
               </ul>
               <p className="diagnosis-card-desc">
-                スコープで耳の中を確認しながらプロの耳掃除でスッキリ。その後は耳つぼもみほぐし＋ジュエリーつけ放題まで、フルコースで癒しと不調ケアを同時に体験。
+                オイルでリンパを流した後、耳とヘッドをほぐし全身の疲労を取っていく至福の120分コース。いつも頑張っている自分へのご褒美に。
               </p>
-              <button className="diagnosis-card-btn diagnosis-card-btn--light" onClick={scrollToMenu} aria-label="イヤーエステの料金・詳細へ">
+              <button className="diagnosis-card-btn diagnosis-card-btn--light" onClick={scrollToMenu}>
                 料金・詳細を見る
+                <span className="visually-hidden">（贅沢ロングコース）</span>
               </button>
             </div>
           </article>

@@ -10,7 +10,7 @@ import { FAQ_DATA, getFaqStructuredData } from '../data/faqData';
 import { MENU_DATA, HOTPEPPER_URL, getMenuStructuredData } from '../data/menuData';
 import { trackHotpepperClick, trackLineClick } from '../services/analyticsService';
 import './HomeSns.css';
-import './Home.css';
+import './HeroBackground.css';
 
 // ---- 型定義 ----
 
@@ -58,7 +58,7 @@ const Navbar = ({ isScrolled, isMobileMenuOpen, setIsMobileMenuOpen }: NavbarPro
       <div className="max-w-7xl mx-auto px-3 sm:px-6 flex justify-between items-center">
         <button type="button" className="text-xl sm:text-2xl font-bold text-white cursor-pointer whitespace-nowrap bg-transparent border-0"
           style={{ fontFamily: "'League Spartan', sans-serif", letterSpacing: '-0.05em' }}
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label="トップへ">
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           yoon²
         </button>
         <div className="hidden md:flex space-x-4 lg:space-x-8">
@@ -132,12 +132,12 @@ const Hero = () => {
         <div className="flex flex-col md:flex-row gap-3 sm:gap-4 justify-center px-2">
           <a href={lineUrl} target="_blank" rel="noopener noreferrer"
             className="px-6 sm:px-10 py-3 sm:py-4 bg-white text-black font-semibold text-xs sm:text-sm tracking-wide sm:tracking-widest hover:bg-[#3B82F6] hover:text-white transition-all duration-300 transform hover:-translate-y-1 inline-block text-center shadow-lg shadow-white/20"
-            aria-label="LINEで予約・お問い合わせ（新しいウィンドウで開きます）" onClick={() => trackLineAddConversion()}>
+            onClick={() => trackLineAddConversion()}>
             <span className="line-booking-text"><span className="line-booking-line1">📱 LINEで予約</span><span className="line-booking-line2">お問い合わせ</span></span>
+            <span className="sr-only">（新しいウィンドウで開きます）</span>
           </a>
           <button type="button" onClick={() => document.getElementById('courses')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-            className="px-6 sm:px-10 py-3 sm:py-4 border border-white text-white font-semibold text-xs sm:text-sm tracking-wide sm:tracking-widest hover:bg-white/10 transition-all duration-300 whitespace-nowrap"
-            aria-label="サービスメニューへスクロール">
+            className="px-6 sm:px-10 py-3 sm:py-4 border border-white text-white font-semibold text-xs sm:text-sm tracking-wide sm:tracking-widest hover:bg-white/10 transition-all duration-300 whitespace-nowrap">
             VIEW SERVICES
           </button>
         </div>
@@ -162,7 +162,7 @@ function ConcernSnsSection() {
     <section id="concern" className="py-12 sm:py-16 md:py-24 bg-[#101827]">
       <div className="max-w-7xl mx-auto px-3 sm:px-6">
         <div className="mb-8 sm:mb-12 md:mb-16">
-          <span className="text-[#3B82F6]/75 text-xs tracking-[0.15em] block mb-3 font-normal uppercase">FOR YOU</span>
+          <span className="text-[#3B82F6] text-xs tracking-[0.15em] block mb-3 font-normal uppercase">FOR YOU</span>
           <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light" style={{ fontFamily: 'Cinzel, serif' }}>こんなお悩み、<br />抱えていませんか？</h2>
         </div>
         <ul className="space-y-3 sm:space-y-4 mb-8 sm:mb-12" aria-label="お悩みリスト">
@@ -190,54 +190,54 @@ function MenuDiagnosisSnsSection() {
     <section id="diagnosis" className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">
       <div className="max-w-7xl mx-auto px-3 sm:px-6">
         <div className="mb-8 sm:mb-12 md:mb-16">
-          <span className="text-[#3B82F6]/75 text-xs tracking-[0.15em] block mb-3 font-normal uppercase">MENU GUIDE</span>
+          <span className="text-[#3B82F6] text-xs tracking-[0.15em] block mb-3 font-normal uppercase">MENU GUIDE</span>
           <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light" style={{ fontFamily: 'Cinzel, serif' }}>あなたにぴったりの<br />メニューはどちらですか？</h2>
         </div>
         <div className="grid sm:grid-cols-3 gap-4 sm:gap-6">
-          <article className="bg-[#3B82F6] p-6 sm:p-8 flex flex-col">
+          <article className="bg-[#2563EB] p-6 sm:p-8 flex flex-col">
             <div className="text-white text-[0.65rem] sm:text-xs font-semibold tracking-[0.3em] mb-3">女性におすすめ</div>
             <h3 className="text-white text-xl sm:text-2xl font-medium tracking-wide mb-3">耳つぼジュエリー</h3>
             <div className="w-8 h-[1px] bg-white/40 mb-4" aria-hidden="true" />
-            <p className="text-white/90 text-xs sm:text-sm mb-4 tracking-wide">慢性的な不調ケア＋オシャレを楽しみたい方へ</p>
+            <p className="text-white text-xs sm:text-sm mb-4 tracking-wide">慢性的な不調ケア＋オシャレを楽しみたい方へ</p>
             <ul className="space-y-1 mb-5" aria-label="内容">
               {['耳つぼもみほぐし', 'ジュエリーつけ放題'].map(t => (
-                <li key={t} className="flex items-center gap-2 text-white/80 text-xs sm:text-sm">
+                <li key={t} className="flex items-center gap-2 text-white text-xs sm:text-sm">
                   <span className="text-white flex-shrink-0" aria-hidden="true">›</span>{t}
                 </li>
               ))}
             </ul>
-            <p className="text-white/80 text-xs leading-relaxed flex-1">耳つぼもみほぐしでカチカチの耳をほぐし血流UP！お悩みに合わせたジュエリーつけ放題で、24時間可愛く体質改善をサポート。耳掃除なしでその分もみほぐしをたっぷり。</p>
-            <button onClick={scrollToMenu} className="mt-6 w-full py-2.5 sm:py-3 bg-white text-[#3B82F6] text-xs font-semibold tracking-widest hover:bg-white/90 transition-colors" aria-label="耳つぼジュエリーの料金・詳細へ">料金・詳細を見る</button>
+            <p className="text-white text-xs leading-relaxed flex-1">耳つぼもみほぐしでカチカチの耳をほぐし血流UP！お悩みに合わせたジュエリーつけ放題で、24時間可愛く体質改善をサポート。耳掃除なしでその分もみほぐしをたっぷり。</p>
+            <button onClick={scrollToMenu} className="mt-6 w-full py-2.5 sm:py-3 bg-white text-[#2563EB] text-xs font-semibold tracking-widest hover:bg-white/90 transition-colors">料金・詳細を見る<span className="sr-only">（耳つぼジュエリー）</span></button>
           </article>
-          <article className="bg-[#059669] p-6 sm:p-8 flex flex-col">
+          <article className="bg-[#047857] p-6 sm:p-8 flex flex-col">
             <div className="text-white text-[0.65rem] sm:text-xs font-semibold tracking-[0.3em] mb-3">男性におすすめ</div>
             <h3 className="text-white text-xl sm:text-2xl font-medium tracking-wide mb-3">オイルリンパ</h3>
             <div className="w-8 h-[1px] bg-white/40 mb-4" aria-hidden="true" />
-            <p className="text-white/90 text-xs sm:text-sm mb-4 tracking-wide">冷えやむくみ・全身の疲れをリセットしたい方へ</p>
+            <p className="text-white text-xs sm:text-sm mb-4 tracking-wide">冷えやむくみ・全身の疲れをリセットしたい方へ</p>
             <ul className="space-y-1 mb-5" aria-label="内容">
               {['全身オイルトリートメント', 'リンパの流れを整える'].map(t => (
-                <li key={t} className="flex items-center gap-2 text-white/80 text-xs sm:text-sm">
+                <li key={t} className="flex items-center gap-2 text-white text-xs sm:text-sm">
                   <span className="text-white flex-shrink-0" aria-hidden="true">›</span>{t}
                 </li>
               ))}
             </ul>
-            <p className="text-white/80 text-xs leading-relaxed flex-1">厳選オイルでリンパの滞りをじっくり丁寧に流し、冷え性やむくみ、身体の重だるさをスッキリ解消。深いリラックスと巡りの良さを同時に体感。</p>
-            <button onClick={scrollToMenu} className="mt-6 w-full py-2.5 sm:py-3 bg-white text-[#059669] text-xs font-semibold tracking-widest hover:bg-white/90 transition-colors" aria-label="オイルリンパの料金・詳細へ">料金・詳細を見る</button>
+            <p className="text-white text-xs leading-relaxed flex-1">厳選オイルでリンパの滞りをじっくり丁寧に流し、冷え性やむくみ、身体の重だるさをスッキリ解消。深いリラックスと巡りの良さを同時に体感。</p>
+            <button onClick={scrollToMenu} className="mt-6 w-full py-2.5 sm:py-3 bg-white text-[#047857] text-xs font-semibold tracking-widest hover:bg-white/90 transition-colors">料金・詳細を見る<span className="sr-only">（オイルリンパ）</span></button>
           </article>
           <article className="bg-[#161B22] border border-white/5 hover:border-[#3B82F6]/30 transition-all duration-300 p-6 sm:p-8 flex flex-col">
-            <div className="text-[#3B82F6] text-[0.65rem] sm:text-xs font-semibold tracking-[0.3em] mb-3">MENU B</div>
-            <h3 className="text-white text-xl sm:text-2xl font-medium tracking-wide mb-3">イヤーエステ</h3>
+            <div className="text-[#3B82F6] text-[0.65rem] sm:text-xs font-semibold tracking-[0.3em] mb-3">迷ったらこれ</div>
+            <h3 className="text-white text-xl sm:text-2xl font-medium tracking-wide mb-3">贅沢ロングコース</h3>
             <div className="w-8 h-[1px] bg-white/20 mb-4" aria-hidden="true" />
-            <p className="text-white/70 text-xs sm:text-sm mb-4 tracking-wide">とにかく癒されたい・スッキリしたい方へ</p>
+            <p className="text-white/70 text-xs sm:text-sm mb-4 tracking-wide">じっくり120分で全身の疲れをまるごとリセットしたい方へ</p>
             <ul className="space-y-1 mb-5" aria-label="内容">
-              {['耳掃除（スコープで確認しながら）', '耳つぼもみほぐし', 'ジュエリーつけ放題'].map(t => (
+              {['オイルリンパ', '耳つぼもみほぐし', 'ヘッドほぐし'].map(t => (
                 <li key={t} className="flex items-center gap-2 text-white/70 text-xs sm:text-sm">
                   <span className="text-[#3B82F6] flex-shrink-0" aria-hidden="true">›</span>{t}
                 </li>
               ))}
             </ul>
-            <p className="text-white/60 text-xs leading-relaxed flex-1">スコープで耳の中を確認しながらプロの耳掃除でスッキリ。その後は耳つぼもみほぐし＋ジュエリーつけ放題まで、フルコースで癒しと不調ケアを同時に体験。</p>
-            <button onClick={scrollToMenu} className="mt-6 w-full py-2.5 sm:py-3 border border-[#3B82F6]/50 text-[#3B82F6] text-xs font-semibold tracking-widest hover:bg-[#3B82F6]/10 transition-colors" aria-label="イヤーエステの料金・詳細へ">料金・詳細を見る</button>
+            <p className="text-white/60 text-xs leading-relaxed flex-1">オイルでリンパを流した後、耳とヘッドをほぐし全身の疲労を取っていく至福の120分コース。いつも頑張っている自分へのご褒美に。</p>
+            <button onClick={scrollToMenu} className="mt-6 w-full py-2.5 sm:py-3 border border-[#3B82F6]/50 text-[#3B82F6] text-xs font-semibold tracking-widest hover:bg-[#3B82F6]/10 transition-colors">料金・詳細を見る<span className="sr-only">（贅沢ロングコース）</span></button>
           </article>
         </div>
       </div>
@@ -258,7 +258,7 @@ function FlowSnsSection() {
     <section className="py-12 sm:py-16 md:py-24 bg-[#101827]">
       <div className="max-w-7xl mx-auto px-3 sm:px-6">
         <div className="mb-8 sm:mb-12 md:mb-16">
-          <span className="text-[#3B82F6]/75 text-xs tracking-[0.15em] block mb-3 font-normal uppercase">FLOW</span>
+          <span className="text-[#3B82F6] text-xs tracking-[0.15em] block mb-3 font-normal uppercase">FLOW</span>
           <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light" style={{ fontFamily: 'Cinzel, serif' }}>初めての方も安心！<br />ご来店からの流れ</h2>
         </div>
         <div className="flex flex-col max-w-2xl mx-auto" role="list">
@@ -276,7 +276,7 @@ function FlowSnsSection() {
             </div>
           ))}
         </div>
-        <p className="text-center text-white/40 text-[0.65rem] sm:text-xs tracking-widest mt-6 sm:mt-8">完全個室・全施術痛みなし</p>
+        <p className="text-center text-white/50 text-[0.65rem] sm:text-xs tracking-widest mt-6 sm:mt-8">完全個室・全施術痛みなし</p>
       </div>
     </section>
   );
@@ -294,9 +294,9 @@ function ReviewsSnsSection() {
     <section id="reviews" className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">
       <div className="max-w-7xl mx-auto px-3 sm:px-6">
         <div className="mb-8 sm:mb-12 md:mb-16">
-          <span className="text-[#3B82F6]/75 text-xs tracking-[0.15em] block mb-3 font-normal uppercase">REVIEWS</span>
+          <span className="text-[#3B82F6] text-xs tracking-[0.15em] block mb-3 font-normal uppercase">REVIEWS</span>
           <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light mb-3" style={{ fontFamily: 'Cinzel, serif' }}>お客様の声</h2>
-          <p className="text-white/40 text-xs tracking-wide">ホットペッパービューティーにて多数の高評価をいただいています</p>
+          <p className="text-white/50 text-xs tracking-wide">ホットペッパービューティーにて多数の高評価をいただいています</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-10">
           {SNS_REVIEWS.map(r => (
@@ -305,16 +305,16 @@ function ReviewsSnsSection() {
               <p className="text-white/75 text-xs sm:text-sm leading-relaxed flex-1">「{r.text}」</p>
               <div className="flex justify-between items-center border-t border-white/5 pt-3 mt-1">
                 <span className="text-white/50 text-xs font-semibold">{r.age}</span>
-                <span className="text-white/30 text-[0.65rem]">ホットペッパー</span>
+                <span className="text-white/50 text-[0.65rem]">ホットペッパー</span>
               </div>
             </div>
           ))}
         </div>
         <div className="text-center">
           <a href={HOTPEPPER_URL} target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-white/50 text-xs sm:text-sm hover:text-[#3B82F6] transition-colors duration-200 border-b border-white/20 hover:border-[#3B82F6] pb-1"
-            aria-label="ホットペッパービューティーですべての口コミを見る（新しいウィンドウで開きます）">
+            className="inline-flex items-center gap-2 text-white/50 text-xs sm:text-sm hover:text-[#3B82F6] transition-colors duration-200 border-b border-white/20 hover:border-[#3B82F6] pb-1">
             すべての口コミを見る <ArrowRight size={14} aria-hidden />
+            <span className="sr-only">（ホットペッパービューティー、新しいウィンドウで開きます）</span>
           </a>
         </div>
       </div>
@@ -327,7 +327,7 @@ const SNS_BADGE: Record<string, string> = {
   '初回限定': 'border border-[#3B82F6]/60 text-[#3B82F6]',
   '人気': 'border border-[#3B82F6]/60 text-[#3B82F6]',
   'プレミアム': 'border border-white/30 text-white/70',
-  'オプション': 'border border-white/20 text-white/40',
+  'オプション': 'border border-white/20 text-white/50',
   '女性一番人気': 'border border-[#3B82F6]/60 text-[#3B82F6]',
 };
 
@@ -335,25 +335,27 @@ function MenuSnsCard({ menu, lineUrl }: { menu: MenuItem; lineUrl: string }) {
   return (
     <article className={`group bg-[#161B22] border ${menu.recommended ? 'border-[#3B82F6]/40' : 'border-white/5'} hover:border-[#3B82F6]/50 transition-all duration-300 p-5 sm:p-6 flex flex-col gap-3`}>
       {menu.badge && (
-        <span className={`inline-block self-start px-2 py-0.5 text-xs font-medium tracking-[0.08em] uppercase ${SNS_BADGE[menu.badge] ?? 'border border-white/20 text-white/40'}`}>{menu.badge}</span>
+        <span className={`inline-block self-start px-2 py-0.5 text-xs font-medium tracking-[0.08em] uppercase ${SNS_BADGE[menu.badge] ?? 'border border-white/20 text-white/50'}`}>{menu.badge}</span>
       )}
       <h3 className="text-white text-base sm:text-lg font-medium tracking-wide leading-snug">{menu.name}</h3>
       <div className="flex items-baseline gap-3 flex-wrap">
         <span className="text-[#3B82F6] text-2xl sm:text-3xl font-bold tracking-tight">¥{menu.price.toLocaleString()}</span>
-        {menu.originalPrice && <span className="text-white/30 text-sm line-through">¥{menu.originalPrice.toLocaleString()}</span>}
+        {menu.originalPrice && <span className="text-white/50 text-sm line-through">¥{menu.originalPrice.toLocaleString()}</span>}
       </div>
-      <div className="flex items-center gap-1.5 text-white/40 text-xs"><Clock size={12} aria-hidden /><span>約{menu.time}分</span></div>
+      <div className="flex items-center gap-1.5 text-white/50 text-xs"><Clock size={12} aria-hidden /><span>約{menu.time}分</span></div>
       <p className="text-white/60 text-xs sm:text-sm leading-relaxed flex-1">{menu.description}</p>
       <div className="flex flex-col gap-2 mt-auto pt-2">
         <a href={HOTPEPPER_URL} target="_blank" rel="noopener noreferrer"
-          className="block text-center px-4 py-2.5 bg-[#3B82F6] text-white text-xs font-semibold tracking-widest hover:bg-[#2563EB] transition-colors duration-200"
-          aria-label={`${menu.name}をホットペッパーで予約`} onClick={() => trackHotpepperClick(menu.name)}>
+          className="block text-center px-4 py-2.5 bg-[#2563EB] text-white text-xs font-semibold tracking-widest hover:bg-[#1d4ed8] transition-colors duration-200"
+          onClick={() => trackHotpepperClick(menu.name)}>
           今すぐ予約する
+          <span className="sr-only">（{menu.name}、新しいウィンドウで開きます）</span>
         </a>
         <a href={lineUrl} target="_blank" rel="noopener noreferrer"
           className="block text-center px-4 py-2.5 border border-[#3B82F6]/50 text-[#3B82F6] text-xs font-semibold tracking-widest hover:bg-[#3B82F6]/10 transition-colors duration-200"
-          aria-label={`${menu.name}についてLINEで相談`} onClick={() => { trackLineClick(menu.name); trackLineAddConversion(); }}>
+          onClick={() => { trackLineClick(menu.name); trackLineAddConversion(); }}>
           LINEで予約・相談
+          <span className="sr-only">（{menu.name}、新しいウィンドウで開きます）</span>
         </a>
       </div>
     </article>
@@ -392,14 +394,14 @@ function MenuSnsSection({ lineUrl }: { lineUrl: string }) {
     <section id="courses" className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">
       <div className="max-w-7xl mx-auto px-3 sm:px-6">
         <div className="mb-8 sm:mb-12 md:mb-16">
-          <span className="text-[#3B82F6]/75 text-xs tracking-[0.15em] block mb-3 font-normal uppercase">MENU &amp; PRICE</span>
+          <span className="text-[#3B82F6] text-xs tracking-[0.15em] block mb-3 font-normal uppercase">MENU &amp; PRICE</span>
           <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light" style={{ fontFamily: 'Cinzel, serif' }}>メニュー・料金</h2>
         </div>
         <div className="flex flex-wrap gap-2 mb-4 sm:mb-6" role="tablist" aria-label="メニューカテゴリ">
           {menus.map((cat, i) => (
             <button key={cat.categoryKey} role="tab" aria-selected={i === activeTab}
               aria-controls={`menu-sns-panel-${cat.categoryKey}`} id={`menu-sns-tab-${cat.categoryKey}`}
-              className={`px-3 sm:px-4 py-2 text-xs font-semibold tracking-widest uppercase transition-all duration-200 whitespace-nowrap min-h-[40px] ${i === activeTab ? 'bg-[#3B82F6] text-white' : 'bg-white/5 text-white/50 border border-white/10 hover:border-[#3B82F6]/50 hover:text-white/80'}`}
+              className={`px-3 sm:px-4 py-2 text-xs font-semibold tracking-widest uppercase transition-all duration-200 whitespace-nowrap min-h-[40px] ${i === activeTab ? 'bg-[#2563EB] text-white' : 'bg-white/5 text-white/50 border border-white/10 hover:border-[#3B82F6]/50 hover:text-white/80'}`}
               onClick={() => handleTabChange(i)}
               onKeyDown={e => {
                 if (e.key === 'ArrowRight') handleTabChange((i + 1) % menus.length);
@@ -409,7 +411,7 @@ function MenuSnsSection({ lineUrl }: { lineUrl: string }) {
             </button>
           ))}
         </div>
-        <p className="text-white/40 text-xs tracking-widest mb-6 sm:mb-8">{current.description}</p>
+        <p className="text-white/50 text-xs tracking-widest mb-6 sm:mb-8">{current.description}</p>
         <div id={`menu-sns-panel-${current.categoryKey}`} role="tabpanel"
           aria-labelledby={`menu-sns-tab-${current.categoryKey}`}
           className={`grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 transition-opacity duration-200 ${fading ? 'opacity-0' : 'opacity-100'}`}>
@@ -513,7 +515,7 @@ function FaqSnsSection({ lineUrl }: { lineUrl: string }) {
     <section id="faq" className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">
       <div className="max-w-7xl mx-auto px-3 sm:px-6">
         <div className="mb-8 sm:mb-12 md:mb-16">
-          <span className="text-[#3B82F6]/75 text-xs tracking-[0.15em] block mb-3 font-normal uppercase">FAQ</span>
+          <span className="text-[#3B82F6] text-xs tracking-[0.15em] block mb-3 font-normal uppercase">FAQ</span>
           <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light" style={{ fontFamily: 'Cinzel, serif' }}>よくある質問</h2>
         </div>
         <div className="flex flex-col gap-4 sm:gap-6 max-w-3xl mx-auto">
@@ -540,13 +542,13 @@ function FaqSnsSection({ lineUrl }: { lineUrl: string }) {
             <p className="text-white/60 text-xs sm:text-sm tracking-wide mb-4">その他のご質問はお気軽にお問い合わせください</p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a href={lineUrl} target="_blank" rel="noopener noreferrer"
-                className="inline-block px-6 sm:px-8 py-2.5 sm:py-3 bg-[#3B82F6] text-white font-semibold text-xs sm:text-sm tracking-widest hover:bg-[#2563EB] transition-all duration-300 transform hover:-translate-y-1 whitespace-nowrap text-center"
-                aria-label="LINEでお問い合わせ（新しいウィンドウで開きます）" onClick={() => trackLineAddConversion()}>
+                className="inline-block px-6 sm:px-8 py-2.5 sm:py-3 bg-[#2563EB] text-white font-semibold text-xs sm:text-sm tracking-widest hover:bg-[#1d4ed8] transition-all duration-300 transform hover:-translate-y-1 whitespace-nowrap text-center"
+                onClick={() => trackLineAddConversion()}>
                 LINEでお問い合わせ →
+                <span className="sr-only">（新しいウィンドウで開きます）</span>
               </a>
               <a href={`tel:${(appConfig.shop.phone as string).replace(/-/g, '')}`}
-                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 border border-white/20 text-white/70 text-xs sm:text-sm tracking-widest hover:border-[#3B82F6] hover:text-white transition-all duration-300 whitespace-nowrap"
-                aria-label={`電話で問い合わせ: ${appConfig.shop.phone}`}>
+                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 border border-white/20 text-white/70 text-xs sm:text-sm tracking-widest hover:border-[#3B82F6] hover:text-white transition-all duration-300 whitespace-nowrap">
                 <Phone size={14} aria-hidden />{appConfig.shop.phone as string}
               </a>
             </div>
@@ -589,21 +591,21 @@ const HomeSns = () => {
 
       <section id="shop" className="py-12 sm:py-16 md:py-24 px-3 sm:px-6 max-w-7xl mx-auto">
         <div className="mb-8 sm:mb-12 md:mb-16">
-          <span className="text-[#3B82F6]/75 text-xs tracking-[0.15em] block mb-3 font-normal uppercase whitespace-nowrap">ACCESS</span>
+          <span className="text-[#3B82F6] text-xs tracking-[0.15em] block mb-3 font-normal uppercase whitespace-nowrap">ACCESS</span>
           <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light" style={{ fontFamily: 'Cinzel, serif' }}>Shop Information</h2>
         </div>
         <div className="bg-[#161B22] p-4 sm:p-6 md:p-8 lg:p-16 border border-white/5 flex flex-col md:flex-row gap-6 sm:gap-8 md:gap-12 mb-8 sm:mb-12">
           <div className="flex-1">
             <div className="space-y-4 sm:space-y-6">
               {[
-                { icon: <MapPin className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '住所', content: <p className="text-xs sm:text-sm break-words">{shop.address}</p> },
-                { icon: <MapPin className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '最寄り駅', content: shop.access?.stations?.filter(Boolean).map((s, i) => <p key={i} className="text-xs sm:text-sm">{s}</p>) },
-                { icon: <Clock className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '営業時間', content: <p className="text-xs sm:text-sm">{shop.hours?.weekday}</p> },
-                { icon: <Phone className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '電話番号', content: <p className="text-xs sm:text-sm break-all">{shop.phone}</p> },
+                { icon: <MapPin className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '住所', content: <p className="text-xs sm:text-sm break-words !text-white/70">{shop.address}</p> },
+                { icon: <MapPin className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '最寄り駅', content: shop.access?.stations?.filter(Boolean).map((s, i) => <p key={i} className="text-xs sm:text-sm !text-white/70">{s}</p>) },
+                { icon: <Clock className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '営業時間', content: <p className="text-xs sm:text-sm !text-white/70">{shop.hours?.weekday}</p> },
+                { icon: <Phone className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '電話番号', content: <p className="text-xs sm:text-sm break-all !text-white/70">{shop.phone}</p> },
               ].map(({ icon, label, content }) => (
                 <div key={label} className="flex items-start gap-2 sm:gap-3 md:gap-4 text-white/70">
                   {icon}
-                  <div className="min-w-0 flex-1"><h4 className="text-white mb-1 text-sm sm:text-base">{label}</h4>{content}</div>
+                  <div className="min-w-0 flex-1"><h3 className="text-white mb-1 text-sm sm:text-base">{label}</h3>{content}</div>
                 </div>
               ))}
             </div>
@@ -619,7 +621,7 @@ const HomeSns = () => {
         {shop.access?.parkingPhotos?.accessGuide && (
           <div className="mb-8 sm:mb-12">
             <p className="text-white/50 text-xs tracking-[0.15em] uppercase mb-2">Access Guide</p>
-            <p className="text-white/40 text-xs mb-3">駐車場：北久米町412番地</p>
+            <p className="text-white/50 text-xs mb-3">駐車場：北久米町412番地</p>
             <div className="bg-[#161B22] border border-white/5 overflow-hidden">
               <img src={shop.access.parkingPhotos.accessGuide} alt="駐車場・店舗へのアクセスマップ" width={800} height={600} className="w-full h-auto" loading="lazy" onError={hideImg} />
             </div>
@@ -641,7 +643,7 @@ const HomeSns = () => {
         )}
         {shop.notes && shop.notes.length > 0 && (
           <div className="bg-[#161B22] p-4 sm:p-6 md:p-8 border border-white/5">
-            <h4 className="text-white text-sm sm:text-base md:text-lg mb-3 sm:mb-4 tracking-wide">ご確認事項</h4>
+            <h3 className="text-white text-sm sm:text-base md:text-lg mb-3 sm:mb-4 tracking-wide">ご確認事項</h3>
             <ul className="space-y-1.5 sm:space-y-2">{shop.notes.map((note, i) => <li key={i} className="text-white/70 text-xs sm:text-sm">{note}</li>)}</ul>
           </div>
         )}
@@ -650,14 +652,14 @@ const HomeSns = () => {
       <section id="reserve" className="py-12 sm:py-16 md:py-24 bg-[#101827]">
         <div className="max-w-7xl mx-auto px-3 sm:px-6">
           <div className="text-center mb-8 sm:mb-12">
-            <span className="text-[#3B82F6]/75 text-xs tracking-[0.15em] block mb-3 font-normal uppercase whitespace-nowrap">RESERVATION</span>
+            <span className="text-[#3B82F6] text-xs tracking-[0.15em] block mb-3 font-normal uppercase whitespace-nowrap">RESERVATION</span>
             <h2 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-wide sm:tracking-widest font-light mb-3 sm:mb-4" style={{ fontFamily: 'Cinzel, serif' }}>ご予約・お問い合わせ</h2>
             <p className="text-white/80 text-sm sm:text-base md:text-lg tracking-wide max-w-2xl mx-auto px-2">SNSからご来店の方も大歓迎！公式LINEから簡単にご予約いただけます</p>
           </div>
           <div className="grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
             <a href={lineUrl} target="_blank" rel="noopener noreferrer"
               className="group bg-gradient-to-br from-[#161B22] to-[#0A0A0A] p-4 sm:p-6 md:p-8 lg:p-12 border-2 border-[#3B82F6]/30 hover:border-[#3B82F6] transition-all duration-500 relative overflow-hidden shadow-lg shadow-[#3B82F6]/20 hover:shadow-[#3B82F6]/40"
-              aria-label="LINEで予約・お問い合わせ（新しいウィンドウで開きます）" onClick={() => trackLineAddConversion()}>
+              onClick={() => trackLineAddConversion()}>
               <div className="absolute top-0 right-0 p-2 sm:p-4 opacity-10 group-hover:opacity-100 transition-opacity"><MessageCircle className="text-[#3B82F6] w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" /></div>
               <div className="relative z-10">
                 <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6">
@@ -669,11 +671,11 @@ const HomeSns = () => {
                   <span className="text-xs sm:text-sm font-semibold tracking-wide sm:tracking-widest uppercase"><span className="line-booking-line1">LINEで予約</span><span className="line-booking-line2">お問い合わせ</span></span>
                   <ArrowRight size={14} className="sm:w-4 sm:h-4 group-hover:translate-x-2 transition-transform flex-shrink-0" />
                 </div>
+                <span className="sr-only">（新しいウィンドウで開きます）</span>
               </div>
             </a>
             <a href={instagramUrl} target="_blank" rel="noopener noreferrer"
-              className="group bg-[#161B22] p-4 sm:p-6 md:p-8 lg:p-12 border border-white/5 hover:border-[#3B82F6]/50 transition-all duration-500 relative overflow-hidden"
-              aria-label="Instagramで最新情報を見る（新しいウィンドウで開きます）">
+              className="group bg-[#161B22] p-4 sm:p-6 md:p-8 lg:p-12 border border-white/5 hover:border-[#3B82F6]/50 transition-all duration-500 relative overflow-hidden">
               <div className="absolute top-0 right-0 p-2 sm:p-4 opacity-10 group-hover:opacity-100 transition-opacity"><Instagram className="text-[#3B82F6] w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" /></div>
               <div className="relative z-10">
                 <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6">
@@ -685,6 +687,7 @@ const HomeSns = () => {
                   <span className="text-xs sm:text-sm font-semibold tracking-wide sm:tracking-widest uppercase whitespace-nowrap">VIEW PROFILE</span>
                   <ArrowRight size={14} className="sm:w-4 sm:h-4 group-hover:translate-x-2 transition-transform flex-shrink-0" />
                 </div>
+                <span className="sr-only">（新しいウィンドウで開きます）</span>
               </div>
             </a>
           </div>
@@ -693,9 +696,10 @@ const HomeSns = () => {
               <p className="text-white font-semibold mb-2 text-sm sm:text-base md:text-lg">公式LINEで簡単予約</p>
               <p className="text-white/70 text-xs sm:text-sm tracking-wide mb-3 sm:mb-4">ご予約・お問い合わせは公式LINEからお気軽にどうぞ。24時間受付中！</p>
               <a href={lineUrl} target="_blank" rel="noopener noreferrer"
-                className="inline-block px-6 sm:px-8 py-2.5 sm:py-3 bg-[#3B82F6] text-white font-semibold text-xs sm:text-sm tracking-wide sm:tracking-widest hover:bg-[#2563EB] transition-all duration-300 transform hover:-translate-y-1 whitespace-nowrap"
-                aria-label="LINEを開く（新しいウィンドウで開きます）" onClick={() => trackLineAddConversion()}>
+                className="inline-block px-6 sm:px-8 py-2.5 sm:py-3 bg-[#2563EB] text-white font-semibold text-xs sm:text-sm tracking-wide sm:tracking-widest hover:bg-[#1d4ed8] transition-all duration-300 transform hover:-translate-y-1 whitespace-nowrap"
+                onClick={() => trackLineAddConversion()}>
                 LINEを開く →
+                <span className="sr-only">（新しいウィンドウで開きます）</span>
               </a>
             </div>
           </div>
@@ -710,9 +714,9 @@ const HomeSns = () => {
 
       <footer className="py-8 sm:py-12 border-t border-white/5 text-center px-3">
         <div className="text-lg sm:text-xl font-bold text-white mb-4 sm:mb-6 whitespace-nowrap" style={{ fontFamily: "'League Spartan', sans-serif", letterSpacing: '-0.05em' }}>yoon²</div>
-        <p className="text-white/30 text-[0.65rem] sm:text-xs tracking-wide sm:tracking-widest break-words">&copy; 2025 yoon² EAR ESTHETIC SALON. ALL RIGHTS RESERVED.</p>
+        <p className="text-white/50 text-[0.65rem] sm:text-xs tracking-wide sm:tracking-widest break-words">&copy; 2025 yoon² EAR ESTHETIC SALON. ALL RIGHTS RESERVED.</p>
         <p className="mt-3">
-          <a href="/privacy" className="text-white/30 text-[0.65rem] sm:text-xs tracking-wide hover:text-white/60 transition-colors">プライバシーポリシー</a>
+          <a href="/privacy" className="text-white/50 text-[0.65rem] sm:text-xs tracking-wide hover:text-white/70 transition-colors">プライバシーポリシー</a>
         </p>
       </footer>
 

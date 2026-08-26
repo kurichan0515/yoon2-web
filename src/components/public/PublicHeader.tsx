@@ -62,7 +62,6 @@ const PublicHeader = () => {
             onClick={(e) => {
               if (pathname === '/') { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
             }}
-            aria-label="トップページへ"
           >
             <p className="public-logo-text">yoon<sup>2</sup></p>
           </Link>
@@ -73,10 +72,10 @@ const PublicHeader = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="line-button"
-            aria-label="LINEで予約・お問い合わせ（新しいウィンドウで開きます）"
             onClick={() => trackLineAddConversion()}
           >
             LINEで予約
+            <span className="visually-hidden">（新しいウィンドウで開きます）</span>
           </a>
         </div>
       </div>

@@ -36,52 +36,6 @@
   width: 100%;
 }
 
-.hero-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--color-primary);
-}
-
-.hero-bg-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  /* App.cssのimg[width][height]{height:auto}(詳細度0,2,1)に打ち勝つため!important */
-  height: 100% !important;
-  object-fit: cover;
-  object-position: center;
-  z-index: 0;
-}
-
-.hero-background::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.28) 0%,
-    rgba(0,0,0,0.40) 50%,
-    rgba(0,0,0,0.52) 100%
-  );
-}
-
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(244, 241, 235, 0.04);
-}
-
 .hero-content {
   position: relative;
   z-index: 2;
@@ -1005,15 +959,6 @@
     }
   }
 
-  .hero-background::after {
-    background: linear-gradient(
-      to bottom,
-      rgba(0,0,0,0.55) 0%,
-      rgba(0,0,0,0.5) 50%,
-      rgba(0,0,0,0.58) 100%
-    );
-  }
-
   .hero-content h1,
   .hero-content .hero-title-main {
     font-size: 2.5rem;
@@ -1582,7 +1527,7 @@
   margin-top: var(--spacing-xs);
 }
 
-.info-content h4 {
+.info-content h3 {
   font-family: var(--font-primary);
   font-size: 1.3rem;
   font-weight: 500;
@@ -1687,7 +1632,7 @@
   box-shadow: var(--shadow-medium);
 }
 
-.hours-card h4 {
+.hours-card h3 {
   font-family: var(--font-primary);
   font-size: 1.4rem;
   font-weight: 500;
@@ -1717,7 +1662,7 @@
   border: 1px solid rgba(201, 169, 110, 0.2);
 }
 
-.hours-notes h4 {
+.hours-notes h3 {
   font-family: var(--font-primary);
   font-size: 1.2rem;
   font-weight: 500;
@@ -1758,7 +1703,7 @@
   text-align: center;
 }
 
-.contact-info h4 {
+.contact-info h3 {
   font-family: var(--font-primary);
   font-size: 1.2rem;
   font-weight: 500;
@@ -1803,7 +1748,7 @@
 
 .contact-info .btn-primary {
   background-color: var(--color-accent);
-  color: var(--color-white);
+  color: var(--color-text-primary);
   text-decoration: none;
   font-weight: 500;
   border: none;
@@ -1813,7 +1758,7 @@
 
 .contact-info .btn-primary:hover {
   background-color: #b8956a;
-  color: var(--color-white);
+  color: var(--color-text-primary);
   text-decoration: none;
   transform: translateY(-2px);
   box-shadow: var(--shadow-medium);
@@ -2069,7 +2014,7 @@
     padding: 1rem !important;
   }
   
-  .info-content h4 {
+  .info-content h3 {
     font-size: 1rem !important;
   }
   
@@ -2096,7 +2041,7 @@
     padding: 0 0.5rem;
   }
   
-  .contact-info h4 {
+  .contact-info h3 {
     font-size: 1rem !important;
   }
   

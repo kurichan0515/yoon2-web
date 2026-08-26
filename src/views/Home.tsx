@@ -1,18 +1,21 @@
 'use client';
 
 import React, { useEffect, useRef, memo, RefCallback } from 'react';
-import SocialFeed from '../components/SocialFeed';
-import FAQ from '../components/FAQ';
-import MenuSection from '../components/MenuSection';
-import ReviewsSection from '../components/ReviewsSection';
-import ConcernSection from '../components/ConcernSection';
-import MenuDiagnosis from '../components/MenuDiagnosis';
-import FlowSection from '../components/FlowSection';
+import dynamic from 'next/dynamic';
 import AdSense from '../components/common/AdSense';
 import appConfig from '../config/appConfig';
 import logger from '../utils/logger';
 import { trackLineAddConversion } from '../services/googleAdsService';
+import './HeroBackground.css';
 import './Home.css';
+
+const SocialFeed = dynamic(() => import('../components/SocialFeed'));
+const FAQ = dynamic(() => import('../components/FAQ'));
+const MenuSection = dynamic(() => import('../components/MenuSection'));
+const ReviewsSection = dynamic(() => import('../components/ReviewsSection'));
+const ConcernSection = dynamic(() => import('../components/ConcernSection'));
+const MenuDiagnosis = dynamic(() => import('../components/MenuDiagnosis'));
+const FlowSection = dynamic(() => import('../components/FlowSection'));
 
 interface ShopConfig {
   address?: string;
@@ -112,12 +115,12 @@ const Home = memo(() => {
             <div className="hero-actions">
               <a href={lineUrl} target="_blank" rel="noopener noreferrer"
                 className="btn-primary hero-cta line-booking-btn"
-                aria-label="LINEで予約・お問い合わせ（新しいウィンドウで開きます）"
                 onClick={() => trackLineAddConversion()}>
                 <span className="line-booking-text">
                   <span className="line-booking-line1">LINEで予約</span>
                   <span className="line-booking-line2">お問い合わせ</span>
                 </span>
+                <span className="visually-hidden">（新しいウィンドウで開きます）</span>
               </a>
               <button onClick={() => document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
                 className="btn-secondary" style={{ whiteSpace: 'nowrap' }}>
@@ -165,7 +168,7 @@ const Home = memo(() => {
               ].map(([icon, title, content]) => (
                 <div key={title as string} className="info-card">
                   <div className="info-icon" aria-hidden="true">{icon}</div>
-                  <div className="info-content"><h4>{title}</h4>{content}</div>
+                  <div className="info-content"><h3>{title}</h3>{content}</div>
                 </div>
               ))}
             </div>
@@ -260,14 +263,14 @@ const Home = memo(() => {
           <div className="hours-content">
             <div className="hours-grid" style={{ gridTemplateColumns: '1fr' }}>
               <div className="hours-card">
-                <h4>月〜日・祝</h4>
+                <h3>月〜日・祝</h3>
                 <p className="hours-time">月〜日 {shop.hours?.weekday ?? '10:00 - 20:00'}</p>
                 <p className="hours-note">毎日営業</p>
               </div>
             </div>
             {shop.notes && shop.notes.length > 0 && (
               <div className="hours-notes">
-                <h4>📋 ご確認事項</h4>
+                <h3>📋 ご確認事項</h3>
                 <ul>{shop.notes.map((note, i) => <li key={i}>{note}</li>)}</ul>
               </div>
             )}
@@ -283,10 +286,10 @@ const Home = memo(() => {
             <p>お気軽にお問い合わせください</p>
           </div>
           <div className="contact-info">
-            <h4 className="contact-heading">
+            <h3 className="contact-heading">
               <span className="contact-heading-line1">💬 ご予約</span>
               <span className="contact-heading-line2">お問い合わせについて</span>
-            </h4>
+            </h3>
             <p>ご予約やお問い合わせは<strong>公式LINE</strong>にメッセージをお願いします。</p>
             <a href={lineUrl} target="_blank" rel="noopener noreferrer"
               className="btn-primary line-booking-btn"

@@ -140,16 +140,15 @@ function FAQ() {
           <div className="faq-contact-actions">
             <a href={appConfig.shop.lineUrl as string} target="_blank" rel="noopener noreferrer"
               className="btn-primary line-booking-btn"
-              aria-label="LINEでお問い合わせ（新しいウィンドウで開きます）"
               onClick={() => trackLineClick('FAQ Contact CTA')}>
               <span className="line-booking-text">
                 <span className="line-booking-line1">LINEで予約</span>
                 <span className="line-booking-line2">お問い合わせ</span>
               </span>
+              <span className="visually-hidden">（新しいウィンドウで開きます）</span>
             </a>
             <a href={`tel:${(appConfig.shop.phone as string).replace(/-/g, '')}`}
-              className="btn-secondary faq-tel-btn"
-              aria-label={`電話で問い合わせ: ${appConfig.shop.phone}`}>
+              className="btn-secondary faq-tel-btn">
               {appConfig.shop.phone as string}
             </a>
           </div>

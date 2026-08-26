@@ -51,9 +51,9 @@ function ReviewsSection() {
           ))}
         </div>
         <div className="reviews-cta">
-          <a href={HOTPEPPER_URL} target="_blank" rel="noopener noreferrer" className="reviews-link"
-            aria-label="ホットペッパービューティーですべての口コミを見る（新しいウィンドウで開きます）">
+          <a href={HOTPEPPER_URL} target="_blank" rel="noopener noreferrer" className="reviews-link">
             すべての口コミを見る →
+            <span className="visually-hidden">（ホットペッパービューティー、新しいウィンドウで開きます）</span>
           </a>
         </div>
       </div>

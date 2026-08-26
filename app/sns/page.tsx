@@ -1,4 +1,3 @@
-import Script from 'next/script';
 import HomeSns from '../../src/views/HomeSns';
 import { MENU_DATA, getMenuStructuredData } from '../../src/data/menuData';
 import { FAQ_DATA, getFaqStructuredData } from '../../src/data/faqData';
@@ -62,12 +61,6 @@ export default function SnsPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: getMenuStructuredData() }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: getFaqStructuredData() }} />
-      <Script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6862900859746528"
-        crossOrigin="anonymous"
-        strategy="afterInteractive"
-      />
 
       {/* クローラー向け静的コンテンツ */}
       <div style={srOnly} aria-hidden="true">

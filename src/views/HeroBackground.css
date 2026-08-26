@@ -1,0 +1,58 @@
+/* /sns 用ヒーロー背景CSS切り出し(Home.cssの該当ルールから移動) */
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-primary);
+}
+
+.hero-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  /* App.cssのimg[width][height]{height:auto}(詳細度0,2,1)に打ち勝つため!important */
+  height: 100% !important;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+.hero-background::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.28) 0%,
+    rgba(0,0,0,0.40) 50%,
+    rgba(0,0,0,0.52) 100%
+  );
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(244, 241, 235, 0.04);
+}
+
+@media (max-width: 768px) {
+  .hero-background::after {
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.55) 0%,
+      rgba(0,0,0,0.5) 50%,
+      rgba(0,0,0,0.58) 100%
+    );
+  }
+}
