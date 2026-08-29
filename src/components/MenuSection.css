@@ -1,6 +1,7 @@
 /* メニュー・料金セクション */
 .menu-section {
   background-color: var(--color-background);
+  scroll-margin-top: 70px; /* 固定ヘッダー高さ分オフセット */
 }
 
 /* ===== タブナビゲーション ===== */

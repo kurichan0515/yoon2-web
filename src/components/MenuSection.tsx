@@ -99,6 +99,24 @@ function MenuSection() {
   }, []);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    if (!params.get('menu')) return;
+
+    const scrollToSection = () => {
+      sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    if (document.readyState === 'complete') {
+      requestAnimationFrame(() => requestAnimationFrame(scrollToSection));
+    } else {
+      window.addEventListener('load', () => {
+        requestAnimationFrame(() => requestAnimationFrame(scrollToSection));
+      }, { once: true });
+    }
+  }, []);
+
+  useEffect(() => {
     const id = 'menu-structured-data';
     if (document.getElementById(id)) return;
     const script = document.createElement('script');
