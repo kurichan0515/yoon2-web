@@ -61,8 +61,17 @@ function MenuCard({ menu, lineUrl }: { menu: MenuItem; lineUrl: string }) {
 
 const menus = MENU_DATA as MenuCategory[];
 
+function getInitialTabIndex(): number {
+  if (typeof window === 'undefined') return 0;
+  const params = new URLSearchParams(window.location.search);
+  const menuParam = params.get('menu');
+  if (!menuParam) return 0;
+  const idx = menus.findIndex(cat => cat.categoryKey === menuParam);
+  return idx >= 0 ? idx : 0;
+}
+
 function MenuSection() {
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState(getInitialTabIndex);
   const [fading, setFading] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const lineUrl = appConfig.shop.lineUrl as string;
