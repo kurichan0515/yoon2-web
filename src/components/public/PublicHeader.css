@@ -122,7 +122,9 @@
 .public-header-right {
   flex: 1;
   display: flex;
+  align-items: center;
   justify-content: flex-end;
+  gap: 20px;
 }
 
 .line-button {

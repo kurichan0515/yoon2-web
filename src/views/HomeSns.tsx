@@ -51,6 +51,7 @@ const Navbar = ({ isScrolled, isMobileMenuOpen, setIsMobileMenuOpen }: NavbarPro
     { name: 'SERVICES', href: '#courses', action: null },
     { name: 'SHOP',     href: '#shop',    action: null },
     { name: 'RESERVE',  href: '#reserve', action: null },
+    { name: '法人のお客様へ', href: '/corporate', action: null },
   ];
   const handleNavClick = (e: React.MouseEvent, link: NavLink) => { if (link.action) { e.preventDefault(); link.action(); } };
   return (
@@ -715,7 +716,8 @@ const HomeSns = () => {
       <footer className="py-8 sm:py-12 border-t border-white/5 text-center px-3">
         <div className="text-lg sm:text-xl font-bold text-white mb-4 sm:mb-6 whitespace-nowrap" style={{ fontFamily: "'League Spartan', sans-serif", letterSpacing: '-0.05em' }}>yoon²</div>
         <p className="text-white/50 text-[0.65rem] sm:text-xs tracking-wide sm:tracking-widest break-words">&copy; 2025 yoon² EAR ESTHETIC SALON. ALL RIGHTS RESERVED.</p>
-        <p className="mt-3">
+        <p className="mt-3 flex flex-wrap justify-center gap-4">
+          <a href="/corporate" className="text-white/50 text-[0.65rem] sm:text-xs tracking-wide hover:text-white/70 transition-colors">法人のお客様へ</a>
           <a href="/privacy" className="text-white/50 text-[0.65rem] sm:text-xs tracking-wide hover:text-white/70 transition-colors">プライバシーポリシー</a>
         </p>
       </footer>
