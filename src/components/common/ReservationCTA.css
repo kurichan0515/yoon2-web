@@ -1,0 +1,36 @@
+.reservation-cta {
+  background: var(--color-primary);
+}
+
+.reservation-cta-box {
+  text-align: center;
+  padding: var(--spacing-xl) var(--spacing-md);
+}
+
+.reservation-cta-heading {
+  font-size: 1.8rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.reservation-cta-desc {
+  max-width: 560px;
+  margin: 0 auto var(--spacing-lg);
+}
+
+.reservation-cta-btn {
+  text-decoration: none;
+}
+
+@media (max-width: 480px) {
+  .reservation-cta-box {
+    padding: var(--spacing-lg) var(--spacing-sm);
+  }
+
+  .reservation-cta-heading {
+    font-size: 1.4rem;
+  }
+
+  .reservation-cta-btn {
+    width: 100%;
+  }
+}

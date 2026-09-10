@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef, useEffect } from 'react';
+import Link from 'next/link';
 import './MenuDiagnosis.css';
 
 function MenuDiagnosis() {
@@ -46,6 +47,10 @@ function MenuDiagnosis() {
                 料金・詳細を見る
                 <span className="visually-hidden">（耳つぼジュエリー）</span>
               </button>
+              <Link href="/menu/mimitsubo" className="diagnosis-card-more-link">
+                詳しく見る
+                <span aria-hidden="true"> →</span>
+              </Link>
             </div>
           </article>
           <article className="diagnosis-card diagnosis-card--oil">
@@ -65,6 +70,10 @@ function MenuDiagnosis() {
                 料金・詳細を見る
                 <span className="visually-hidden">（オイルリンパ）</span>
               </button>
+              <Link href="/menu/oil-lymph" className="diagnosis-card-more-link">
+                詳しく見る
+                <span aria-hidden="true"> →</span>
+              </Link>
             </div>
           </article>
           <article className="diagnosis-card diagnosis-card--light">
