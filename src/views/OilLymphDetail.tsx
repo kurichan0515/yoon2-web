@@ -124,8 +124,19 @@ export default function OilLymphDetail() {
             </div>
             <div className="detail-gallery-item">
               <Image
-                src="/images/shop/play-room.jpg"
-                alt="施術ベッドのある個室"
+                src="/images/menus/oil-treatment-2.jpg"
+                alt="脚のオイルトリートメント"
+                width={480}
+                height={360}
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                style={{ width: '100%', height: '100%' }}
+              />
+            </div>
+            <div className="detail-gallery-item">
+              <Image
+                src="/images/menus/oil-treatment-3.jpg"
+                alt="ふくらはぎのオイルトリートメント"
                 width={480}
                 height={360}
                 loading="lazy"
