@@ -97,13 +97,13 @@ export default function MimitsuboDetail() {
         <div className="container">
           <div className="detail-section-header">
             <span className="detail-section-label">Gallery</span>
-            <h2>店内の様子</h2>
+            <h2>施術風景・店内の様子</h2>
           </div>
           <div className="detail-gallery-grid">
             <div className="detail-gallery-item">
               <Image
-                src="/images/about/concept-interior.jpg"
-                alt="落ち着いた雰囲気の施術室"
+                src="/images/menus/ear-treatment-1.jpg"
+                alt="イヤースコープを使った耳かきの施術風景"
                 width={480}
                 height={360}
                 loading="lazy"
@@ -113,8 +113,30 @@ export default function MimitsuboDetail() {
             </div>
             <div className="detail-gallery-item">
               <Image
-                src="/images/shop/play-room.jpg"
-                alt="施術ベッドのある個室"
+                src="/images/menus/ear-treatment-2.jpg"
+                alt="耳の施術風景"
+                width={480}
+                height={360}
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                style={{ width: '100%', height: '100%' }}
+              />
+            </div>
+            <div className="detail-gallery-item">
+              <Image
+                src="/images/menus/ear-treatment-3.jpg"
+                alt="耳もみほぐしの施術風景"
+                width={480}
+                height={360}
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                style={{ width: '100%', height: '100%' }}
+              />
+            </div>
+            <div className="detail-gallery-item">
+              <Image
+                src="/images/about/concept-interior.jpg"
+                alt="落ち着いた雰囲気の施術室"
                 width={480}
                 height={360}
                 loading="lazy"
