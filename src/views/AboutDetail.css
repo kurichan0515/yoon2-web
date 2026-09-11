@@ -1,0 +1,37 @@
+.about-story {
+  max-width: 760px;
+}
+
+.about-shop-summary {
+  background: var(--color-primary);
+}
+
+.about-shop-dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--spacing-lg);
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.about-shop-dl dt {
+  font-family: var(--font-secondary);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 0.25em;
+}
+
+.about-shop-dl dd {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--color-text-primary);
+}
+
+@media (max-width: 480px) {
+  .about-shop-dl {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+  }
+}
