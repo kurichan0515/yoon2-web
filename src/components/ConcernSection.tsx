@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef, useEffect } from 'react';
+import Link from 'next/link';
 import './ConcernSection.css';
 
 const CONCERNS = [
@@ -41,9 +42,15 @@ function ConcernSection() {
         </ul>
         <div className="concern-lead">
           <div className="concern-lead-line" aria-hidden="true" />
-          <p className="concern-lead-text">
-            そのお悩み、yoon²の<em>耳からのアプローチ</em>で解決できます
-          </p>
+          <div>
+            <p className="concern-lead-text">
+              そのお悩み、yoon²の<em>耳からのアプローチ</em>で解決できます
+            </p>
+            <Link href="/about" className="concern-about-link">
+              yoon²についてはこちら
+              <span aria-hidden="true"> →</span>
+            </Link>
+          </div>
         </div>
       </div>
     </section>

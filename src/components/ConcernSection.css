@@ -103,6 +103,21 @@
   font-weight: 600;
 }
 
+.concern-about-link {
+  display: inline-block;
+  margin-top: var(--spacing-xs);
+  font-family: var(--font-secondary), var(--font-japanese);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.concern-about-link:hover {
+  text-decoration: underline;
+}
+
 /* レスポンシブ */
 @media (max-width: 768px) {
   .concern-title {

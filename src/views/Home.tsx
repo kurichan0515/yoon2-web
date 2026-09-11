@@ -131,8 +131,8 @@ const Home = memo(() => {
         </div>
       </section>
 
-      <ConcernSection />
       <MenuDiagnosis />
+      <ConcernSection />
       <FlowSection />
       <ReviewsSection />
       <MenuSection />
