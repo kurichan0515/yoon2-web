@@ -229,6 +229,74 @@
   text-decoration: underline;
 }
 
+/* こんな方におすすめ */
+.detail-recommend-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.detail-recommend-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: 0.92rem;
+}
+
+.detail-recommend-item::before {
+  content: '✓';
+  flex-shrink: 0;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+/* よくある質問 */
+.detail-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.detail-faq-item {
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-md) var(--spacing-lg);
+}
+
+.detail-faq-item h3 {
+  font-size: 0.98rem;
+  margin-bottom: var(--spacing-xs);
+  display: flex;
+  gap: 0.5em;
+}
+
+.detail-faq-item h3::before {
+  content: 'Q';
+  flex-shrink: 0;
+  color: var(--color-accent);
+  font-family: var(--font-secondary);
+  font-weight: 700;
+}
+
+.detail-faq-item p {
+  margin: 0;
+  font-size: 0.9rem;
+  display: flex;
+  gap: 0.5em;
+}
+
+.detail-faq-item p::before {
+  content: 'A';
+  flex-shrink: 0;
+  color: var(--color-text-light);
+  font-family: var(--font-secondary);
+  font-weight: 700;
+}
+
 /* パンくず */
 .detail-breadcrumb-wrap {
   background: var(--color-background);
