@@ -1157,14 +1157,14 @@
   }
 }
 
-/* Intersection Observer準備用のクラス */
-.section {
+/* Intersection Observer準備用のクラス（LPホームのみに限定。.sectionは他ページでも使う汎用クラス名のため） */
+.home .section {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.section.fade-in {
+.home .section.fade-in {
   opacity: 1;
   transform: translateY(0);
 }
