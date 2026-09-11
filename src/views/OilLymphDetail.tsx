@@ -45,7 +45,7 @@ export default function OilLymphDetail() {
       <section className="detail-hero">
         <div className="detail-hero-bg">
           <Image
-            src="/images/about/concept-interior.jpg"
+            src="/images/menus/oil-treatment.jpg"
             alt=""
             fill
             priority
@@ -108,9 +108,20 @@ export default function OilLymphDetail() {
         <div className="container">
           <div className="detail-section-header">
             <span className="detail-section-label">Gallery</span>
-            <h2>店内の様子</h2>
+            <h2>施術風景・店内の様子</h2>
           </div>
           <div className="detail-gallery-grid">
+            <div className="detail-gallery-item">
+              <Image
+                src="/images/menus/oil-treatment.jpg"
+                alt="オイルリンパトリートメントの施術風景"
+                width={480}
+                height={360}
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                style={{ width: '100%', height: '100%' }}
+              />
+            </div>
             <div className="detail-gallery-item">
               <Image
                 src="/images/shop/play-room.jpg"

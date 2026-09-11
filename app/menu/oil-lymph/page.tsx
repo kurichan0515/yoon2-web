@@ -13,9 +13,9 @@ export const metadata: Metadata = {
     siteName: 'yoon²',
     locale: 'ja_JP',
     images: [{
-      url: 'https://yoon2.com/images/about/concept-interior.jpg',
-      width: 1920,
-      height: 1280,
+      url: 'https://yoon2.com/images/menus/oil-treatment.jpg',
+      width: 1600,
+      height: 1067,
       alt: 'yoon² - オイルリンパトリートメント',
     }],
   },
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'オイルこだわりのリンパトリートメント｜yoon²(松山市)',
     description: '愛媛県松山市のオイルリンパトリートメント。厳選オイルで滞ったリンパをじっくり丁寧に流し、冷え・むくみ・全身の重だるさをケア。ご予約は公式LINEから簡単に。',
-    images: ['https://yoon2.com/images/about/concept-interior.jpg'],
+    images: ['https://yoon2.com/images/menus/oil-treatment.jpg'],
   },
   alternates: {
     canonical: 'https://yoon2.com/menu/oil-lymph',
