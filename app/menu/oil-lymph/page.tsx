@@ -4,11 +4,11 @@ import OilLymphDetail from '../../../src/views/OilLymphDetail';
 
 export const metadata: Metadata = {
   title: 'オイルこだわりのリンパトリートメント｜yoon²(松山市)',
-  description: '愛媛県松山市のオイルリンパトリートメント。肌にやさしい厳選オイルを使用し、滞ったリンパをじっくり丁寧に流して冷え・むくみ・全身の重だるさをケア。オイル選定のこだわりや60分・90分の施術の流れも紹介。ご予約は公式LINEから簡単に。',
+  description: '愛媛県松山市のオイルリンパトリートメント。木・水・土の3種から選べる「5sトリートメントオイル」を使用し、滞ったリンパをじっくり丁寧に流して冷え・むくみ・重だるさをケア。植物由来成分99%以上で肌に優しく、拭き取り不要。ご予約は公式LINEから簡単に。',
   openGraph: {
     type: 'website',
     title: 'オイルこだわりのリンパトリートメント｜yoon²(松山市)',
-    description: '愛媛県松山市のオイルリンパトリートメント。厳選オイルで滞ったリンパをじっくり丁寧に流し、冷え・むくみ・全身の重だるさをケア。ご予約は公式LINEから簡単に。',
+    description: '愛媛県松山市のオイルリンパトリートメント。木・水・土の3種から選べる「5sトリートメントオイル」を使用し、滞ったリンパをじっくり丁寧に流します。ご予約は公式LINEから簡単に。',
     url: 'https://yoon2.com/menu/oil-lymph',
     siteName: 'yoon²',
     locale: 'ja_JP',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'オイルこだわりのリンパトリートメント｜yoon²(松山市)',
-    description: '愛媛県松山市のオイルリンパトリートメント。厳選オイルで滞ったリンパをじっくり丁寧に流し、冷え・むくみ・全身の重だるさをケア。ご予約は公式LINEから簡単に。',
+    description: '愛媛県松山市のオイルリンパトリートメント。木・水・土の3種から選べる「5sトリートメントオイル」を使用し、滞ったリンパをじっくり丁寧に流します。ご予約は公式LINEから簡単に。',
     images: ['https://yoon2.com/images/menus/oil-treatment.jpg'],
   },
   alternates: {

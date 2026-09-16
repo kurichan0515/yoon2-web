@@ -8,16 +8,31 @@ const oilMenus = appConfig.shop.services.filter(s => s.category === 'oil' && !s.
 
 const OILS = [
   {
-    name: '厳選ボタニカルオイル',
-    description: '肌なじみのよい植物由来オイルを使用。摩擦を抑えながら滑らかに滑り、リンパの流れに沿った丁寧な圧をしっかり伝えます。ベタつきが少なく、施術後もさらっとした付け心地です。',
+    key: 'moku',
+    label: '木 - moku',
+    name: '身体をほぐす木のオイル',
+    tagline: 'ストレスや疲労、カチカチの筋肉に',
+    scent: 'グレープフルーツ、ベルガモットの爽やかな柑橘系',
+    for: 'イライラしやすい、肩こりや筋肉のハリが気になる、自律神経を整えたい方へ',
+    description: '自律神経やホルモンバランスにアプローチし、心身の緊張を解きほぐします。イヤーエステやヘッドスパと合わせることで、さらに深い「寝落ち体験」へと導きます。',
   },
   {
-    name: '低刺激・敏感肌対応',
-    description: '香りや添加物を抑えた処方を選定。肌が敏感な方や妊娠中の方にも安心して受けていただけるよう配慮しています。気になる香りの強さなども、施術前にお気軽にご相談ください。',
+    key: 'sui',
+    label: '水 - sui',
+    name: '排出機能を助ける水のオイル',
+    tagline: 'むくみや冷え、重だるい身体のデトックスに',
+    scent: 'サイプレス、ゼラニウムのすっきりとしたフローラル・ウッディ系',
+    for: '夕方になると足がむくむ、足腰がだるい、体内の老廃物をスッキリ流したい方へ',
+    description: '水分代謝を促し、体に溜まった余分な水分や老廃物の排出をサポートします。血の巡りを良くして、全身のラインをシャープに整えます。',
   },
   {
-    name: '巡りを整える効果',
-    description: '滞ったリンパの流れを促し、冷えやむくみ、身体の重だるさにアプローチ。深いリラックスと巡りの良さを同時に体感できます。一定のリズムで圧をかけることで、施術中に眠ってしまう方も多いメニューです。',
+    key: 'do',
+    label: '土 - do',
+    name: '栄養補給の土のオイル',
+    tagline: '元気が出ない、疲れが抜けない時のパワーチャージに',
+    scent: 'ペパーミント、レモンのリフレッシュ系',
+    for: '胃腸の調子が優れない、気力が湧かない、栄養や元気が足りていないと感じる方へ',
+    description: '消化機能や栄養代謝にアプローチ。スーッと突き抜ける爽やかな香りで心身をリフレッシュさせながら、体に活力を与えます。',
   },
 ];
 
@@ -71,9 +86,9 @@ export default function OilLymphDetail() {
         </div>
         <div className="detail-hero-content">
           <span className="detail-hero-label">Oil Lymph Treatment</span>
-          <h1 className="detail-hero-title">厳選オイルで巡りを整える、オイルリンパトリートメント</h1>
+          <h1 className="detail-hero-title">選べる3つのアロマで巡りを整える、オイルリンパトリートメント</h1>
           <p className="detail-hero-copy">
-            肌にやさしい厳選オイルで、滞ったリンパをじっくり丁寧に流す。冷えやむくみ、身体の重だるさをほぐし、深い巡りとリラックスへ導きます。
+            五行論とフィトテラピーを融合したサロン専売「5sトリートメントオイル」を、その日のお悩みに合わせて選択。滞ったリンパをじっくり丁寧に流し、深い巡りとリラックスへ導きます。
           </p>
         </div>
       </section>
@@ -96,12 +111,41 @@ export default function OilLymphDetail() {
         <div className="container">
           <div className="detail-section-header">
             <span className="detail-section-label">About the Oil</span>
-            <h2>こだわりのオイル</h2>
+            <h2>選べるアロマ・オイルリンパマッサージ</h2>
+          </div>
+          <div className="detail-body detail-oil-intro">
+            <p>
+              東洋の「五行論」と西洋の「フィトテラピー（植物療法）」を融合させた、サロン専売の「5sトリートメントオイル」を贅沢に使用した極上のリンパドレナージュです。
+            </p>
+            <p>
+              植物由来成分99%以上で肌に優しく、浸透性が高いため施術後のベタつきがありません。拭き取り不要で、お帰りまでサラサラ・ポカポカの心地よさが続きます。
+            </p>
+            <p>
+              その日のお悩みや体調に合わせて、以下の3つのオイルからあなたにぴったりの1つをお選びいただけます。
+            </p>
+          </div>
+          <div className="detail-oil-bottle-img">
+            <Image
+              src="/images/menus/oil-bottles.jpg"
+              alt="5sトリートメントオイル 木・水・土の3種"
+              width={360}
+              height={640}
+              loading="lazy"
+              sizes="(max-width: 768px) 60vw, 300px"
+            />
           </div>
           <div className="detail-oil-grid">
             {OILS.map(oil => (
-              <div className="detail-oil-card" key={oil.name}>
+              <div className="detail-oil-card" key={oil.key}>
+                <div className="detail-oil-card-label">{oil.label}</div>
                 <h3>{oil.name}</h3>
+                <p className="detail-oil-card-tagline">〜{oil.tagline}〜</p>
+                <dl className="detail-oil-card-meta">
+                  <dt>香り</dt>
+                  <dd>{oil.scent}</dd>
+                  <dt>こんな方に</dt>
+                  <dd>{oil.for}</dd>
+                </dl>
                 <p>{oil.description}</p>
               </div>
             ))}

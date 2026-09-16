@@ -110,6 +110,26 @@
 }
 
 /* オイル説明カード */
+.detail-oil-intro {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.detail-oil-bottle-img {
+  max-width: 300px;
+  margin: 0 auto var(--spacing-xl);
+}
+
+.detail-oil-bottle-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-sm);
+}
+
 .detail-oil-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -122,10 +142,44 @@
   padding: var(--spacing-lg);
 }
 
+.detail-oil-card-label {
+  display: inline-block;
+  font-family: var(--font-secondary);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  padding: 0.2em 0.7em;
+  margin-bottom: var(--spacing-sm);
+}
+
 .detail-oil-card h3 {
   font-size: 1.15rem;
   margin-bottom: var(--spacing-xs);
   color: var(--color-accent);
+}
+
+.detail-oil-card-tagline {
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-sm);
+}
+
+.detail-oil-card-meta {
+  margin: 0 0 var(--spacing-sm);
+  font-size: 0.85rem;
+}
+
+.detail-oil-card-meta dt {
+  font-family: var(--font-secondary);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-top: 0.5em;
+}
+
+.detail-oil-card-meta dd {
+  margin: 0;
+  color: var(--color-text-secondary);
 }
 
 .detail-oil-card p {
