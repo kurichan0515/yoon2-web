@@ -1,6 +1,10 @@
 import type { Metadata } from 'next';
 import PublicLayout from '../../../src/layouts/PublicLayout';
 import EarEsteDetail from '../../../src/views/EarEsteDetail';
+import { MENU_DATA } from '../../../src/data/menuData';
+
+const earEsteMenus = MENU_DATA.find(c => c.categoryKey === 'ear-este')?.menus ?? [];
+const earEsteMinPrice = Math.min(...earEsteMenus.map(m => m.price));
 
 export const metadata: Metadata = {
   title: 'イヤーエステ｜愛媛初の見る耳かき｜yoon²(松山市)',
@@ -38,7 +42,7 @@ const serviceSchema = {
   description: 'イヤースコープで耳の中を見ながら受けられる見る耳かき。自律神経を刺激し頭や耳の重だるさをケア。',
   provider: { '@type': 'BeautySalon', name: 'yoon²ゆんゆん' },
   areaServed: { '@type': 'City', name: '松山市' },
-  offers: { '@type': 'Offer', priceCurrency: 'JPY', price: '4500' },
+  offers: { '@type': 'Offer', priceCurrency: 'JPY', price: String(earEsteMinPrice) },
 };
 
 export default function EarEstePage() {

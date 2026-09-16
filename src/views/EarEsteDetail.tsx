@@ -1,10 +1,12 @@
 import Image from 'next/image';
-import appConfig from '../config/appConfig';
+import { MENU_DATA } from '../data/menuData';
 import Breadcrumb from '../components/common/Breadcrumb';
 import ReservationCTA from '../components/common/ReservationCTA';
 import './MenuDetail.css';
 
-const earEsteMenus = appConfig.shop.services.filter(s => s.category === 'ear-este');
+const earEsteMenus = MENU_DATA.find(c => c.categoryKey === 'ear-este')?.menus ?? [];
+const earEsteTimes = [...new Set(earEsteMenus.map(m => m.time))].sort((a, b) => a - b);
+const earEstePrices = earEsteMenus.map(m => m.price);
 
 const RECOMMENDS = [
   '自分の耳の中がどうなっているか見てみたい',
@@ -93,7 +95,7 @@ export default function EarEsteDetail() {
           </div>
           {earEsteMenus.length > 0 && (
             <p style={{ marginTop: '1.5rem', fontSize: '0.9rem', color: 'var(--color-text-light)' }}>
-              {earEsteMenus.map(m => `${m.duration}（¥${m.price.toLocaleString()}〜）`).join(' / ')}
+              {earEsteTimes.map(t => `${t}分`).join(' / ')}（¥{Math.min(...earEstePrices).toLocaleString()}〜¥{Math.max(...earEstePrices).toLocaleString()}）
             </p>
           )}
         </div>

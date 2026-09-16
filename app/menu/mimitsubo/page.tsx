@@ -1,6 +1,10 @@
 import type { Metadata } from 'next';
 import PublicLayout from '../../../src/layouts/PublicLayout';
 import MimitsuboDetail from '../../../src/views/MimitsuboDetail';
+import { MENU_DATA } from '../../../src/data/menuData';
+
+const mimitsuboMenus = MENU_DATA.find(c => c.categoryKey === 'mimitubo')?.menus ?? [];
+const mimitsuboMinPrice = Math.min(...mimitsuboMenus.map(m => m.price));
 
 export const metadata: Metadata = {
   title: '耳つぼ施術詳細｜日本フランス式耳つぼ協会認定｜yoon²',
@@ -38,7 +42,7 @@ const serviceSchema = {
   description: '耳つぼもみほぐし＋ジュエリーつけ放題。200以上のツボから不調にアプローチ。',
   provider: { '@type': 'BeautySalon', name: 'yoon²ゆんゆん' },
   areaServed: { '@type': 'City', name: '松山市' },
-  offers: { '@type': 'Offer', priceCurrency: 'JPY', price: '3500' },
+  offers: { '@type': 'Offer', priceCurrency: 'JPY', price: String(mimitsuboMinPrice) },
 };
 
 export default function MimitsuboPage() {

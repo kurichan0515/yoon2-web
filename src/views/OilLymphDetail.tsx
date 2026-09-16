@@ -1,10 +1,12 @@
 import Image from 'next/image';
-import appConfig from '../config/appConfig';
+import { MENU_DATA } from '../data/menuData';
 import Breadcrumb from '../components/common/Breadcrumb';
 import ReservationCTA from '../components/common/ReservationCTA';
 import './MenuDetail.css';
 
-const oilMenus = appConfig.shop.services.filter(s => s.category === 'oil' && !s.id.includes('opt'));
+const oilMenus = MENU_DATA.find(c => c.categoryKey === 'oil')?.menus ?? [];
+const oilTimes = [...new Set(oilMenus.map(m => m.time))].sort((a, b) => a - b);
+const oilPrices = oilMenus.map(m => m.price);
 
 const OILS = [
   {
@@ -171,7 +173,7 @@ export default function OilLymphDetail() {
           </ol>
           {oilMenus.length > 0 && (
             <p style={{ marginTop: '1.5rem', fontSize: '0.9rem', color: 'var(--color-text-light)' }}>
-              {oilMenus.map(m => `${m.duration}（¥${m.price.toLocaleString()}）`).join(' / ')} からお選びいただけます。
+              {oilTimes.map(t => `${t}分`).join(' / ')}（¥{Math.min(...oilPrices).toLocaleString()}〜¥{Math.max(...oilPrices).toLocaleString()}）からお選びいただけます。
             </p>
           )}
         </div>

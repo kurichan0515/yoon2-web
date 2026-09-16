@@ -1,6 +1,10 @@
 import type { Metadata } from 'next';
 import PublicLayout from '../../../src/layouts/PublicLayout';
 import OilLymphDetail from '../../../src/views/OilLymphDetail';
+import { MENU_DATA } from '../../../src/data/menuData';
+
+const oilMenus = MENU_DATA.find(c => c.categoryKey === 'oil')?.menus ?? [];
+const oilMinPrice = Math.min(...oilMenus.map(m => m.price));
 
 export const metadata: Metadata = {
   title: 'オイルこだわりのリンパトリートメント｜yoon²(松山市)',
@@ -38,7 +42,7 @@ const serviceSchema = {
   description: '厳選オイルを使用したリンパドレナージュ。冷え性やむくみ、身体の重だるさを解消。',
   provider: { '@type': 'BeautySalon', name: 'yoon²ゆんゆん' },
   areaServed: { '@type': 'City', name: '松山市' },
-  offers: { '@type': 'Offer', priceCurrency: 'JPY', price: '7800' },
+  offers: { '@type': 'Offer', priceCurrency: 'JPY', price: String(oilMinPrice) },
 };
 
 export default function OilLymphPage() {

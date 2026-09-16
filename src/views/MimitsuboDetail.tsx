@@ -1,10 +1,12 @@
 import Image from 'next/image';
-import appConfig from '../config/appConfig';
+import { MENU_DATA } from '../data/menuData';
 import Breadcrumb from '../components/common/Breadcrumb';
 import ReservationCTA from '../components/common/ReservationCTA';
 import './MenuDetail.css';
 
-const mimitsuboMenus = appConfig.shop.services.filter(s => s.category === 'mimitubo');
+const mimitsuboMenus = MENU_DATA.find(c => c.categoryKey === 'mimitubo')?.menus ?? [];
+const mimitsuboTimes = [...new Set(mimitsuboMenus.map(m => m.time))].sort((a, b) => a - b);
+const mimitsuboPrices = mimitsuboMenus.map(m => m.price);
 
 const RECOMMENDS = [
   '耳がカチカチに凝っている気がする',
@@ -82,7 +84,7 @@ export default function MimitsuboDetail() {
           </div>
           {mimitsuboMenus.length > 0 && (
             <p style={{ marginTop: '1.5rem', fontSize: '0.9rem', color: 'var(--color-text-light)' }}>
-              {mimitsuboMenus.map(m => `${m.duration}（¥${m.price.toLocaleString()}〜）`).join(' / ')}
+              {mimitsuboTimes.map(t => `${t}分`).join(' / ')}（¥{Math.min(...mimitsuboPrices).toLocaleString()}〜）
             </p>
           )}
         </div>
