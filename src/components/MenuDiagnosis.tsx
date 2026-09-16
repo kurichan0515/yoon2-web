@@ -53,29 +53,6 @@ function MenuDiagnosis() {
               </Link>
             </div>
           </article>
-          <article className="diagnosis-card diagnosis-card--oil">
-            <div className="diagnosis-card-inner">
-              <div className="diagnosis-card-tag">男性におすすめ</div>
-              <h3 className="diagnosis-card-name">オイルリンパ</h3>
-              <div className="diagnosis-card-divider" aria-hidden="true" />
-              <p className="diagnosis-card-target">冷えやむくみ・全身の疲れをリセットしたい方へ</p>
-              <ul className="diagnosis-card-contents" aria-label="内容">
-                <li>全身オイルトリートメント</li>
-                <li>リンパの流れを整える</li>
-              </ul>
-              <p className="diagnosis-card-desc">
-                厳選オイルでリンパの滞りをじっくり丁寧に流し、冷え性やむくみ、身体の重だるさをスッキリ解消。深いリラックスと巡りの良さを同時に体感。
-              </p>
-              <button className="diagnosis-card-btn diagnosis-card-btn--oil" onClick={scrollToMenu}>
-                料金・詳細を見る
-                <span className="visually-hidden">（オイルリンパ）</span>
-              </button>
-              <Link href="/menu/oil-lymph" className="diagnosis-card-more-link">
-                詳しく見る
-                <span aria-hidden="true"> →</span>
-              </Link>
-            </div>
-          </article>
           <article className="diagnosis-card diagnosis-card--light">
             <div className="diagnosis-card-inner">
               <div className="diagnosis-card-tag">愛媛県初！</div>
@@ -94,6 +71,29 @@ function MenuDiagnosis() {
                 <span className="visually-hidden">（イヤーエステ）</span>
               </button>
               <Link href="/menu/ear-este" className="diagnosis-card-more-link">
+                詳しく見る
+                <span aria-hidden="true"> →</span>
+              </Link>
+            </div>
+          </article>
+          <article className="diagnosis-card diagnosis-card--oil">
+            <div className="diagnosis-card-inner">
+              <div className="diagnosis-card-tag">男性におすすめ</div>
+              <h3 className="diagnosis-card-name">オイルリンパ</h3>
+              <div className="diagnosis-card-divider" aria-hidden="true" />
+              <p className="diagnosis-card-target">冷えやむくみ・全身の疲れをリセットしたい方へ</p>
+              <ul className="diagnosis-card-contents" aria-label="内容">
+                <li>全身オイルトリートメント</li>
+                <li>リンパの流れを整える</li>
+              </ul>
+              <p className="diagnosis-card-desc">
+                厳選オイルでリンパの滞りをじっくり丁寧に流し、冷え性やむくみ、身体の重だるさをスッキリ解消。深いリラックスと巡りの良さを同時に体感。
+              </p>
+              <button className="diagnosis-card-btn diagnosis-card-btn--oil" onClick={scrollToMenu}>
+                料金・詳細を見る
+                <span className="visually-hidden">（オイルリンパ）</span>
+              </button>
+              <Link href="/menu/oil-lymph" className="diagnosis-card-more-link">
                 詳しく見る
                 <span aria-hidden="true"> →</span>
               </Link>
