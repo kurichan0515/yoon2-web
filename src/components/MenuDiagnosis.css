@@ -261,6 +261,34 @@
   color: var(--color-white);
 }
 
+/* 出張イベント募集バナー */
+.diagnosis-event-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  max-width: 1200px;
+  margin: var(--spacing-lg) auto 0;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  font-family: var(--font-secondary), var(--font-japanese);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: background-color 0.25s ease;
+}
+
+.diagnosis-event-banner:hover {
+  background-color: rgba(201, 169, 110, 0.08);
+}
+
+.diagnosis-event-banner-arrow {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
 /* レスポンシブ: タブレットは2列 */
 @media (max-width: 1024px) {
   .diagnosis-cards {
@@ -282,6 +310,12 @@
 
   .diagnosis-card-name {
     font-size: 1.5rem;
+  }
+
+  .diagnosis-event-banner {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    text-align: center;
   }
 }
 

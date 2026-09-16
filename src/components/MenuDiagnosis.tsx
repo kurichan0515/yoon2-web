@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef, useEffect } from 'react';
+import Link from 'next/link';
 import './MenuDiagnosis.css';
 
 function MenuDiagnosis() {
@@ -88,6 +89,10 @@ function MenuDiagnosis() {
             </div>
           </article>
         </div>
+        <Link href="/event" className="diagnosis-event-banner">
+          <span>出張イベント開催先 募集中</span>
+          <span className="diagnosis-event-banner-arrow">詳しくはこちら →</span>
+        </Link>
       </div>
     </section>
   );
