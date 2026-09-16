@@ -202,6 +202,28 @@ export default function EarEsteDetail() {
                 style={{ width: '100%', height: '100%' }}
               />
             </div>
+            <div className="detail-gallery-item">
+              <Image
+                src="/images/menus/jewelry-material-1.jpg"
+                alt="耳つぼジュエリーの種類"
+                width={480}
+                height={360}
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                style={{ width: '100%', height: '100%' }}
+              />
+            </div>
+            <div className="detail-gallery-item">
+              <Image
+                src="/images/menus/jewelry-material-2.jpg"
+                alt="耳つぼの位置を確認しながらの施術"
+                width={480}
+                height={360}
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                style={{ width: '100%', height: '100%' }}
+              />
+            </div>
           </div>
         </div>
       </section>
