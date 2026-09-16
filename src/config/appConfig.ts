@@ -98,7 +98,7 @@ const appConfig: AppConfig = {
       { id: 'mimitubo-new', name: '耳つぼ（新規）', duration: '40分', price: 4000, description: '初回限定特別価格', category: 'mimitubo' },
       { id: 'foot-45', name: '足つぼ45分', duration: '45分', price: 5500, description: '全身バランス調整', category: 'foot' },
       { id: 'foot-opt-30', name: '【追加】足つぼ30分', duration: '30分', price: 3500, description: '他メニューとの組み合わせオプション', category: 'foot' },
-      { id: 'oil-60', name: 'オイルリンパ60分', duration: '60分', price: 6800, description: 'リンパドレナージュ', category: 'oil' },
+      { id: 'oil-60', name: 'オイルリンパ60分', duration: '60分', price: 7800, description: 'リンパドレナージュ', category: 'oil' },
       { id: 'oil-90', name: 'オイルリンパ90分', duration: '90分', price: 11000, description: 'ゆったりリンパ流し', category: 'oil' },
       { id: 'oil-opt-60', name: '【追加】オイル60分', duration: '60分', price: 6000, description: '他メニューとの組み合わせオプション', category: 'oil' },
       { id: 'oil-opt-30', name: '【追加】オイル30分', duration: '30分', price: 4000, description: '他メニューとの組み合わせオプション', category: 'oil' },

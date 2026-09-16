@@ -40,13 +40,6 @@ export const MENU_DATA: MenuCategory[] = [
         description: '《耳つぼjewelry》種類豊富、パーツ選びも楽しく体感♪おそろいにしたりお互いの不調共有したり、耳つぼ体験の仕方は無限大★ ※詳細はホットペッパービューティー内をご確認ください',
         badge: 'ペア',
       },
-      {
-        id: 'mimitubo-summer-30',
-        name: '夏休み限定★耳つぼ(ジュエリー込)個数制限なし 30分',
-        price: 3300, time: 30,
-        description: '【夏休み限定】ジュエリー付け放題♪カウンセリングからしっかり行い、耳つぼで元々持っている自己免疫や自然治癒力を活性化していきましょう ※詳細はホットペッパービューティー内をご確認ください',
-        badge: '季節限定',
-      },
     ],
   },
   {
@@ -69,13 +62,6 @@ export const MENU_DATA: MenuCategory[] = [
         badge: '人気', recommended: true,
       },
       {
-        id: 'ear-40-earlybook',
-        name: '【1週間前までのご予約でお得】イヤーエステ40分',
-        price: 4800, time: 40, originalPrice: 5000,
-        description: '1週間前までにご予約いただいた方限定クーポン！モニターを見ながらプロの耳掃除で耳の中を綺麗に！',
-        badge: '再来割引',
-      },
-      {
         id: 'ear-60',
         name: '【当店人気♪】愛媛初の見る耳掃除ゆったり60分',
         price: 7000, time: 60,
@@ -84,9 +70,9 @@ export const MENU_DATA: MenuCategory[] = [
       },
       {
         id: 'ear-60-weekday',
-        name: '【平日10-12時限定】イヤーエステ60分',
-        price: 6300, time: 60, originalPrice: 7000,
-        description: '平日の午前中を有効活用！プロによる耳そうじと、耳ツボを刺激するリフレクソロジーのセット。',
+        name: '【平日限定★お疲れケア】極上イヤーエステ60分＋ヘッドスパ5分延長',
+        price: 7000, time: 60,
+        description: '平日限定でお得に。見る耳掃除とヘッドスパを5分延長でたっぷりケア。お疲れが気になる方の集中リセットコースです。',
         badge: '平日限定',
       },
       {
@@ -102,6 +88,20 @@ export const MENU_DATA: MenuCategory[] = [
         price: 10000, time: 80, originalPrice: 10500,
         description: '丁寧に耳掃除をした後に泡とオイルで耳周りをほぐし、ヘッドと耳つぼの刺激で耳から身体の疲れを取り除いていく当店おすすめのコース。',
         badge: '初回限定', newCustomer: true,
+      },
+      {
+        id: 'ear-80-fun-new',
+        name: '【★迷ったらコレ!】見て楽しむ×眠れる耳集中80分',
+        price: 10000, time: 80,
+        description: '初めての方におすすめ。見て楽しいイヤースコープと、思わず眠ってしまう心地よさを両方体感できる80分コースです。',
+        badge: '初回限定', newCustomer: true,
+      },
+      {
+        id: 'ear-80-fun-popular',
+        name: '◇人気No.1【見て楽しい×眠れる】耳掃除・イヤーエステ80分',
+        price: 10500, time: 80,
+        description: '当店イチ押しの耳集中コース。見て楽しいイヤースコープと、眠りに誘う極上のほぐしをたっぷり80分。',
+        badge: '人気No.1', recommended: true,
       },
       {
         id: 'ear-headspa-hand-50',
@@ -147,16 +147,16 @@ export const MENU_DATA: MenuCategory[] = [
     menus: [
       {
         id: 'oil-60',
-        name: '★ サクッと整う全身リンパ60分',
-        price: 6800, time: 60,
-        description: '厳選オイルを使用し、滞ったリンパをじっくり丁寧に流します。冷え性や浮腫み、身体の重だるさを解消したい方に。',
+        name: '【首肩デコルテ集中】極上全身オイルリンパ60分',
+        price: 7800, time: 60,
+        description: '厳選オイルで全身をじっくり流したのち、首・肩・デコルテを集中ケア。冷えやむくみ、肩まわりの重だるさをまるごとリセットしたい方に。',
         badge: null,
       },
       {
         id: 'oil-60-weekday',
-        name: '【平日10-12時限定】オイルリンパ60分',
-        price: 6100, time: 60, originalPrice: 6800,
-        description: '午前中の施術で、一日を軽やかにスタート！厳選オイルを使用し、滞ったリンパをじっくり丁寧に流します。',
+        name: '【平日限定★】極上ドライヘッドスパ＆デコルテ付オイルリンパ',
+        price: 7800, time: 65,
+        description: '平日限定でお得に。オイルリンパにドライヘッドスパとデコルテケアをプラスした欲張りコース。頭から首肩までまるごとほぐしたい方に。',
         badge: '平日限定',
       },
       {
@@ -213,6 +213,13 @@ export const MENU_DATA: MenuCategory[] = [
         name: 'オイル30分（追加）',
         price: 4000, time: 30,
         description: '他メニューに追加できるオイル30分。',
+        badge: 'オプション',
+      },
+      {
+        id: 'option-jewelry',
+        name: '耳つぼジュエリー（追加）',
+        price: 3500, time: 10,
+        description: '他メニューに追加できる耳つぼジュエリーつけ放題。',
         badge: 'オプション',
       },
     ],

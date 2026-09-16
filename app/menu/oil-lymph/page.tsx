@@ -38,7 +38,7 @@ const serviceSchema = {
   description: '厳選オイルを使用したリンパドレナージュ。冷え性やむくみ、身体の重だるさを解消。',
   provider: { '@type': 'BeautySalon', name: 'yoon²ゆんゆん' },
   areaServed: { '@type': 'City', name: '松山市' },
-  offers: { '@type': 'Offer', priceCurrency: 'JPY', price: '6800' },
+  offers: { '@type': 'Offer', priceCurrency: 'JPY', price: '7800' },
 };
 
 export default function OilLymphPage() {
