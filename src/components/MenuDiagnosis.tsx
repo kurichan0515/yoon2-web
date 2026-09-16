@@ -78,25 +78,32 @@ function MenuDiagnosis() {
           </article>
           <article className="diagnosis-card diagnosis-card--light">
             <div className="diagnosis-card-inner">
-              <div className="diagnosis-card-tag">迷ったらこれ</div>
-              <h3 className="diagnosis-card-name">贅沢ロングコース</h3>
+              <div className="diagnosis-card-tag">愛媛県初！</div>
+              <h3 className="diagnosis-card-name">イヤーエステ</h3>
               <div className="diagnosis-card-divider" aria-hidden="true" />
-              <p className="diagnosis-card-target">じっくり120分で全身の疲れをまるごとリセットしたい方へ</p>
+              <p className="diagnosis-card-target">自分の耳の中を見てみたい方、休んでも疲れが取れない方へ</p>
               <ul className="diagnosis-card-contents" aria-label="内容">
-                <li>オイルリンパ</li>
-                <li>耳つぼもみほぐし</li>
-                <li>ヘッドほぐし</li>
+                <li>イヤースコープで見る耳かき</li>
+                <li>自律神経を刺激してすっきり</li>
               </ul>
               <p className="diagnosis-card-desc">
-                オイルでリンパを流した後、耳とヘッドをほぐし全身の疲労を取っていく至福の120分コース。いつも頑張っている自分へのご褒美に。
+                モニターを見ながらのプロの耳掃除で、耳の中をすっきり綺麗に。自律神経を刺激する耳掃除で、頭や目の重だるさもリセットできる愛媛県初の新感覚メニュー。
               </p>
               <button className="diagnosis-card-btn diagnosis-card-btn--light" onClick={scrollToMenu}>
                 料金・詳細を見る
-                <span className="visually-hidden">（贅沢ロングコース）</span>
+                <span className="visually-hidden">（イヤーエステ）</span>
               </button>
+              <Link href="/menu/ear-este" className="diagnosis-card-more-link">
+                詳しく見る
+                <span aria-hidden="true"> →</span>
+              </Link>
             </div>
           </article>
         </div>
+        <Link href="/event" className="diagnosis-event-banner">
+          <span>出張イベント開催先 募集中</span>
+          <span className="diagnosis-event-banner-arrow">詳しくはこちら →</span>
+        </Link>
       </div>
     </section>
   );
