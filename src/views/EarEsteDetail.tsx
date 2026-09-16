@@ -169,6 +169,39 @@ export default function EarEsteDetail() {
                 style={{ width: '100%', height: '100%' }}
               />
             </div>
+            <div className="detail-gallery-item">
+              <Image
+                src="/images/menus/jewelry-1.jpg"
+                alt="耳つぼジュエリーをつけた仕上がり"
+                width={480}
+                height={360}
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                style={{ width: '100%', height: '100%' }}
+              />
+            </div>
+            <div className="detail-gallery-item">
+              <Image
+                src="/images/menus/jewelry-2.jpg"
+                alt="耳つぼジュエリーをつけた仕上がり"
+                width={480}
+                height={360}
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                style={{ width: '100%', height: '100%' }}
+              />
+            </div>
+            <div className="detail-gallery-item">
+              <Image
+                src="/images/menus/jewelry-3.jpg"
+                alt="耳つぼジュエリーをつけた仕上がり"
+                width={480}
+                height={360}
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                style={{ width: '100%', height: '100%' }}
+              />
+            </div>
           </div>
         </div>
       </section>
