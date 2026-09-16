@@ -76,20 +76,6 @@ export const MENU_DATA: MenuCategory[] = [
         badge: '平日限定',
       },
       {
-        id: 'ear-80',
-        name: '【耳特化！】とにかく耳集中コース80分',
-        price: 10500, time: 80,
-        description: '丁寧に耳掃除をした後に泡とオイルで耳周りをほぐし、ヘッドと耳つぼの刺激で耳から身体の疲れを取り除いていく当店おすすめのコース。',
-        badge: 'おすすめ', recommended: true,
-      },
-      {
-        id: 'ear-80-new',
-        name: '【新規】初めての方におすすめ耳集中80分コース',
-        price: 10000, time: 80, originalPrice: 10500,
-        description: '丁寧に耳掃除をした後に泡とオイルで耳周りをほぐし、ヘッドと耳つぼの刺激で耳から身体の疲れを取り除いていく当店おすすめのコース。',
-        badge: '初回限定', newCustomer: true,
-      },
-      {
         id: 'ear-80-fun-new',
         name: '【★迷ったらコレ!】見て楽しむ×眠れる耳集中80分',
         price: 10000, time: 80,
