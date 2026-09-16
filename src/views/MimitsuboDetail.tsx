@@ -68,98 +68,6 @@ export default function MimitsuboDetail() {
       <section className="section">
         <div className="container">
           <div className="detail-section-header">
-            <span className="detail-section-label">About the Treatment</span>
-            <h2>耳つぼ施術について</h2>
-          </div>
-          <div className="detail-body">
-            <p>
-              耳には全身に対応する200以上のツボが集まっているといわれています。耳つぼもみほぐしでカチカチにこった耳をやさしくほぐし、血流を促進。お悩みに合わせたジュエリーをつけ放題で、施術後も24時間体質改善をサポートします。
-            </p>
-            <p>
-              耳掃除は行わず、その分もみほぐしとカウンセリングにたっぷり時間をかけるのが特徴。冷え・むくみ・自律神経の乱れが気になる方、女性に特に人気のメニューです。
-            </p>
-            <p>
-              ジュエリーは種類が豊富で、パーツ選びも楽しみのひとつ。お友達や家族、恋人とおそろいにしたり、お悩みを共有しながら選んだりと、耳つぼ体験の仕方はさまざまです。個数制限なしでつけ放題なので、その日の気分やコーディネートに合わせてお楽しみいただけます。
-            </p>
-          </div>
-          {mimitsuboMenus.length > 0 && (
-            <p style={{ marginTop: '1.5rem', fontSize: '0.9rem', color: 'var(--color-text-light)' }}>
-              {mimitsuboTimes.map(t => `${t}分`).join(' / ')}（¥{Math.min(...mimitsuboPrices).toLocaleString()}〜）
-            </p>
-          )}
-        </div>
-      </section>
-
-      <section className="section" style={{ background: 'var(--color-white)' }}>
-        <div className="container">
-          <div className="detail-section-header">
-            <span className="detail-section-label">For You</span>
-            <h2>こんな方におすすめ</h2>
-          </div>
-          <div className="detail-recommend-grid">
-            {RECOMMENDS.map(item => (
-              <div className="detail-recommend-item" key={item}>{item}</div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container">
-          <div className="detail-section-header">
-            <span className="detail-section-label">Flow</span>
-            <h2>施術の流れ</h2>
-          </div>
-          <ol className="detail-flow-list">
-            {FLOW.map(step => (
-              <li className="detail-flow-step" key={step.title}>
-                <div>
-                  <h3>{step.title}</h3>
-                  <p>{step.desc}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <section className="section" style={{ background: 'var(--color-white)' }}>
-        <div className="container">
-          <div className="detail-section-header">
-            <span className="detail-section-label">Certification</span>
-            <h2>認定情報</h2>
-          </div>
-          <div className="detail-cert-box">
-            <span className="detail-cert-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="9" r="6" />
-                <path d="M9 14.2 7.5 21 12 18.5 16.5 21 15 14.2" />
-              </svg>
-            </span>
-            <div>
-              <h3>一般社団法人日本フランス式耳つぼ協会 認定</h3>
-              <p>
-                当店の耳つぼ施術は、一般社団法人日本フランス式耳つぼ協会の認定技術に基づいて行っています。詳しくは
-                {' '}
-                <a
-                  href="https://mimitubojapan.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="detail-cert-link"
-                >
-                  協会公式サイト
-                </a>
-                {' '}
-                をご確認ください。
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container">
-          <div className="detail-section-header">
             <span className="detail-section-label">Gallery</span>
             <h2>施術風景・店内の様子</h2>
           </div>
@@ -251,6 +159,98 @@ export default function MimitsuboDetail() {
                 sizes="(max-width: 768px) 100vw, 33vw"
                 style={{ width: '100%', height: '100%' }}
               />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section" style={{ background: 'var(--color-white)' }}>
+        <div className="container">
+          <div className="detail-section-header">
+            <span className="detail-section-label">About the Treatment</span>
+            <h2>耳つぼ施術について</h2>
+          </div>
+          <div className="detail-body">
+            <p>
+              耳には全身に対応する200以上のツボが集まっているといわれています。耳つぼもみほぐしでカチカチにこった耳をやさしくほぐし、血流を促進。お悩みに合わせたジュエリーをつけ放題で、施術後も24時間体質改善をサポートします。
+            </p>
+            <p>
+              耳掃除は行わず、その分もみほぐしとカウンセリングにたっぷり時間をかけるのが特徴。冷え・むくみ・自律神経の乱れが気になる方、女性に特に人気のメニューです。
+            </p>
+            <p>
+              ジュエリーは種類が豊富で、パーツ選びも楽しみのひとつ。お友達や家族、恋人とおそろいにしたり、お悩みを共有しながら選んだりと、耳つぼ体験の仕方はさまざまです。個数制限なしでつけ放題なので、その日の気分やコーディネートに合わせてお楽しみいただけます。
+            </p>
+          </div>
+          {mimitsuboMenus.length > 0 && (
+            <p style={{ marginTop: '1.5rem', fontSize: '0.9rem', color: 'var(--color-text-light)' }}>
+              {mimitsuboTimes.map(t => `${t}分`).join(' / ')}（¥{Math.min(...mimitsuboPrices).toLocaleString()}〜）
+            </p>
+          )}
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="detail-section-header">
+            <span className="detail-section-label">For You</span>
+            <h2>こんな方におすすめ</h2>
+          </div>
+          <div className="detail-recommend-grid">
+            {RECOMMENDS.map(item => (
+              <div className="detail-recommend-item" key={item}>{item}</div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section" style={{ background: 'var(--color-white)' }}>
+        <div className="container">
+          <div className="detail-section-header">
+            <span className="detail-section-label">Flow</span>
+            <h2>施術の流れ</h2>
+          </div>
+          <ol className="detail-flow-list">
+            {FLOW.map(step => (
+              <li className="detail-flow-step" key={step.title}>
+                <div>
+                  <h3>{step.title}</h3>
+                  <p>{step.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="detail-section-header">
+            <span className="detail-section-label">Certification</span>
+            <h2>認定情報</h2>
+          </div>
+          <div className="detail-cert-box">
+            <span className="detail-cert-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="9" r="6" />
+                <path d="M9 14.2 7.5 21 12 18.5 16.5 21 15 14.2" />
+              </svg>
+            </span>
+            <div>
+              <h3>一般社団法人日本フランス式耳つぼ協会 認定</h3>
+              <p>
+                当店の耳つぼ施術は、一般社団法人日本フランス式耳つぼ協会の認定技術に基づいて行っています。詳しくは
+                {' '}
+                <a
+                  href="https://mimitubojapan.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="detail-cert-link"
+                >
+                  協会公式サイト
+                </a>
+                {' '}
+                をご確認ください。
+              </p>
             </div>
           </div>
         </div>

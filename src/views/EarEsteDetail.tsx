@@ -65,61 +65,6 @@ export default function EarEsteDetail() {
         </div>
       </section>
 
-      <section className="section" style={{ background: 'var(--color-white)' }}>
-        <div className="container">
-          <div className="detail-section-header">
-            <span className="detail-section-label">For You</span>
-            <h2>こんな方におすすめ</h2>
-          </div>
-          <div className="detail-recommend-grid">
-            {RECOMMENDS.map(item => (
-              <div className="detail-recommend-item" key={item}>{item}</div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container">
-          <div className="detail-section-header">
-            <span className="detail-section-label">About the Treatment</span>
-            <h2>イヤーエステについて</h2>
-          </div>
-          <div className="detail-body">
-            <p>
-              愛媛県初、イヤースコープのモニターを見ながら受けられる新感覚の耳掃除メニューです。自分では見えない耳の中の状態を確認しながら、プロが丁寧に耳垢を取り除いていきます。
-            </p>
-            <p>
-              耳のまわりには自律神経に関わるとされるポイントが集まっており、優しい刺激で頭や目の重だるさ、なかなか取れない疲れにもアプローチ。40分の耳掃除中心コースから、耳周り・ヘッドまでじっくりほぐす80分コースまで、お悩みに合わせてお選びいただけます。
-            </p>
-          </div>
-          {earEsteMenus.length > 0 && (
-            <p style={{ marginTop: '1.5rem', fontSize: '0.9rem', color: 'var(--color-text-light)' }}>
-              {earEsteTimes.map(t => `${t}分`).join(' / ')}（¥{Math.min(...earEstePrices).toLocaleString()}〜¥{Math.max(...earEstePrices).toLocaleString()}）
-            </p>
-          )}
-        </div>
-      </section>
-
-      <section className="section" style={{ background: 'var(--color-white)' }}>
-        <div className="container">
-          <div className="detail-section-header">
-            <span className="detail-section-label">Flow</span>
-            <h2>施術の流れ</h2>
-          </div>
-          <ol className="detail-flow-list">
-            {FLOW.map(step => (
-              <li className="detail-flow-step" key={step.title}>
-                <div>
-                  <h3>{step.title}</h3>
-                  <p>{step.desc}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
       <section className="section">
         <div className="container">
           <div className="detail-section-header">
@@ -231,6 +176,61 @@ export default function EarEsteDetail() {
       </section>
 
       <section className="section" style={{ background: 'var(--color-white)' }}>
+        <div className="container">
+          <div className="detail-section-header">
+            <span className="detail-section-label">For You</span>
+            <h2>こんな方におすすめ</h2>
+          </div>
+          <div className="detail-recommend-grid">
+            {RECOMMENDS.map(item => (
+              <div className="detail-recommend-item" key={item}>{item}</div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="detail-section-header">
+            <span className="detail-section-label">About the Treatment</span>
+            <h2>イヤーエステについて</h2>
+          </div>
+          <div className="detail-body">
+            <p>
+              愛媛県初、イヤースコープのモニターを見ながら受けられる新感覚の耳掃除メニューです。自分では見えない耳の中の状態を確認しながら、プロが丁寧に耳垢を取り除いていきます。
+            </p>
+            <p>
+              耳のまわりには自律神経に関わるとされるポイントが集まっており、優しい刺激で頭や目の重だるさ、なかなか取れない疲れにもアプローチ。40分の耳掃除中心コースから、耳周り・ヘッドまでじっくりほぐす80分コースまで、お悩みに合わせてお選びいただけます。
+            </p>
+          </div>
+          {earEsteMenus.length > 0 && (
+            <p style={{ marginTop: '1.5rem', fontSize: '0.9rem', color: 'var(--color-text-light)' }}>
+              {earEsteTimes.map(t => `${t}分`).join(' / ')}（¥{Math.min(...earEstePrices).toLocaleString()}〜¥{Math.max(...earEstePrices).toLocaleString()}）
+            </p>
+          )}
+        </div>
+      </section>
+
+      <section className="section" style={{ background: 'var(--color-white)' }}>
+        <div className="container">
+          <div className="detail-section-header">
+            <span className="detail-section-label">Flow</span>
+            <h2>施術の流れ</h2>
+          </div>
+          <ol className="detail-flow-list">
+            {FLOW.map(step => (
+              <li className="detail-flow-step" key={step.title}>
+                <div>
+                  <h3>{step.title}</h3>
+                  <p>{step.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="section">
         <div className="container">
           <div className="detail-section-header">
             <span className="detail-section-label">FAQ</span>

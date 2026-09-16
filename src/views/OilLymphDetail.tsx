@@ -95,6 +95,61 @@ export default function OilLymphDetail() {
         </div>
       </section>
 
+      <section className="section">
+        <div className="container">
+          <div className="detail-section-header">
+            <span className="detail-section-label">Gallery</span>
+            <h2>施術風景・店内の様子</h2>
+          </div>
+          <div className="detail-gallery-grid">
+            <div className="detail-gallery-item">
+              <Image
+                src="/images/menus/oil-treatment.jpg"
+                alt="オイルリンパトリートメントの施術風景"
+                width={480}
+                height={360}
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                style={{ width: '100%', height: '100%' }}
+              />
+            </div>
+            <div className="detail-gallery-item">
+              <Image
+                src="/images/menus/oil-treatment-2.jpg"
+                alt="脚のオイルトリートメント"
+                width={480}
+                height={360}
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                style={{ width: '100%', height: '100%' }}
+              />
+            </div>
+            <div className="detail-gallery-item">
+              <Image
+                src="/images/menus/oil-treatment-3.jpg"
+                alt="ふくらはぎのオイルトリートメント"
+                width={480}
+                height={360}
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                style={{ width: '100%', height: '100%' }}
+              />
+            </div>
+            <div className="detail-gallery-item">
+              <Image
+                src="/images/about/concept-interior.jpg"
+                alt="落ち着いた雰囲気の施術室"
+                width={480}
+                height={360}
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                style={{ width: '100%', height: '100%' }}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="section" style={{ background: 'var(--color-white)' }}>
         <div className="container">
           <div className="detail-section-header">
@@ -180,61 +235,6 @@ export default function OilLymphDetail() {
       </section>
 
       <section className="section">
-        <div className="container">
-          <div className="detail-section-header">
-            <span className="detail-section-label">Gallery</span>
-            <h2>施術風景・店内の様子</h2>
-          </div>
-          <div className="detail-gallery-grid">
-            <div className="detail-gallery-item">
-              <Image
-                src="/images/menus/oil-treatment.jpg"
-                alt="オイルリンパトリートメントの施術風景"
-                width={480}
-                height={360}
-                loading="lazy"
-                sizes="(max-width: 768px) 100vw, 33vw"
-                style={{ width: '100%', height: '100%' }}
-              />
-            </div>
-            <div className="detail-gallery-item">
-              <Image
-                src="/images/menus/oil-treatment-2.jpg"
-                alt="脚のオイルトリートメント"
-                width={480}
-                height={360}
-                loading="lazy"
-                sizes="(max-width: 768px) 100vw, 33vw"
-                style={{ width: '100%', height: '100%' }}
-              />
-            </div>
-            <div className="detail-gallery-item">
-              <Image
-                src="/images/menus/oil-treatment-3.jpg"
-                alt="ふくらはぎのオイルトリートメント"
-                width={480}
-                height={360}
-                loading="lazy"
-                sizes="(max-width: 768px) 100vw, 33vw"
-                style={{ width: '100%', height: '100%' }}
-              />
-            </div>
-            <div className="detail-gallery-item">
-              <Image
-                src="/images/about/concept-interior.jpg"
-                alt="落ち着いた雰囲気の施術室"
-                width={480}
-                height={360}
-                loading="lazy"
-                sizes="(max-width: 768px) 100vw, 33vw"
-                style={{ width: '100%', height: '100%' }}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section" style={{ background: 'var(--color-white)' }}>
         <div className="container">
           <div className="detail-section-header">
             <span className="detail-section-label">FAQ</span>
