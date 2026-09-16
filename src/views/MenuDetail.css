@@ -1,0 +1,373 @@
+.detail-page {
+  background: var(--color-background);
+  padding-top: 120px;
+}
+
+/* ヒーロー: 480px以下でも height:auto ベース（100vh指定によるCSSバグを回避） */
+.detail-hero {
+  position: relative;
+  padding: var(--spacing-xxl) 0;
+  min-height: 320px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: var(--color-white);
+}
+
+.detail-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.detail-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detail-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(44, 44, 44, 0.55) 0%, rgba(44, 44, 44, 0.75) 100%);
+  z-index: 1;
+}
+
+.detail-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.detail-hero-label {
+  display: inline-block;
+  font-family: var(--font-secondary);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--spacing-sm);
+}
+
+.detail-hero-title {
+  color: var(--color-white);
+  font-size: 2.4rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.detail-hero-copy {
+  color: var(--color-white);
+  opacity: 0.92;
+  font-size: 1.05rem;
+  line-height: 1.9;
+}
+
+@media (max-width: 480px) {
+  .detail-hero {
+    padding: var(--spacing-xl) 0;
+    min-height: 260px;
+  }
+
+  .detail-hero-title {
+    font-size: 1.7rem;
+  }
+
+  .detail-hero-copy {
+    font-size: 0.95rem;
+  }
+}
+
+/* セクション共通 */
+.detail-section-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.detail-section-label {
+  display: inline-block;
+  font-family: var(--font-secondary);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--spacing-xs);
+}
+
+.detail-section-header h2 {
+  font-size: 1.9rem;
+}
+
+.detail-body p {
+  margin-bottom: var(--spacing-md);
+}
+
+.detail-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* オイル説明カード */
+.detail-oil-intro {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.detail-oil-bottle-img {
+  max-width: 300px;
+  margin: 0 auto var(--spacing-xl);
+}
+
+.detail-oil-bottle-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-sm);
+}
+
+.detail-oil-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.detail-oil-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-lg);
+}
+
+.detail-oil-card-label {
+  display: inline-block;
+  font-family: var(--font-secondary);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  padding: 0.2em 0.7em;
+  margin-bottom: var(--spacing-sm);
+}
+
+.detail-oil-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-accent);
+}
+
+.detail-oil-card-tagline {
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-sm);
+}
+
+.detail-oil-card-meta {
+  margin: 0 0 var(--spacing-sm);
+  font-size: 0.85rem;
+}
+
+.detail-oil-card-meta dt {
+  font-family: var(--font-secondary);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-top: 0.5em;
+}
+
+.detail-oil-card-meta dd {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+.detail-oil-card p {
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+/* 施術の流れ */
+.detail-flow-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: flow-step;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.detail-flow-step {
+  counter-increment: flow-step;
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: flex-start;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-md) var(--spacing-lg);
+}
+
+.detail-flow-step::before {
+  content: counter(flow-step);
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-secondary);
+  font-weight: 600;
+}
+
+.detail-flow-step h3 {
+  font-size: 1rem;
+  margin-bottom: 0.25em;
+}
+
+.detail-flow-step p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* ギャラリー */
+.detail-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.detail-gallery-item {
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  aspect-ratio: 4 / 3;
+}
+
+.detail-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 認定情報 */
+.detail-cert-box {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-lg);
+}
+
+.detail-cert-icon {
+  flex-shrink: 0;
+  color: var(--color-accent);
+}
+
+.detail-cert-icon svg {
+  width: 40px;
+  height: 40px;
+}
+
+.detail-cert-box h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.25em;
+}
+
+.detail-cert-box p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.detail-cert-link {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+/* こんな方におすすめ */
+.detail-recommend-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.detail-recommend-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: 0.92rem;
+}
+
+.detail-recommend-item::before {
+  content: '✓';
+  flex-shrink: 0;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+/* よくある質問 */
+.detail-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.detail-faq-item {
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-md) var(--spacing-lg);
+}
+
+.detail-faq-item h3 {
+  font-size: 0.98rem;
+  margin-bottom: var(--spacing-xs);
+  display: flex;
+  gap: 0.5em;
+}
+
+.detail-faq-item h3::before {
+  content: 'Q';
+  flex-shrink: 0;
+  color: var(--color-accent);
+  font-family: var(--font-secondary);
+  font-weight: 700;
+}
+
+.detail-faq-item p {
+  margin: 0;
+  font-size: 0.9rem;
+  display: flex;
+  gap: 0.5em;
+}
+
+.detail-faq-item p::before {
+  content: 'A';
+  flex-shrink: 0;
+  color: var(--color-text-light);
+  font-family: var(--font-secondary);
+  font-weight: 700;
+}
+
+/* パンくず */
+.detail-breadcrumb-wrap {
+  background: var(--color-background);
+}
+
+@media (max-width: 480px) {
+  .detail-flow-step {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .detail-cert-box {
+    flex-direction: column;
+    text-align: center;
+  }
+}

@@ -132,6 +132,29 @@
   margin-top: auto;
 }
 
+.diagnosis-card-more-link {
+  display: block;
+  text-align: center;
+  margin-top: 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.diagnosis-card-more-link:hover {
+  text-decoration: underline;
+}
+
+.diagnosis-card--oil .diagnosis-card-more-link {
+  color: #a8c4a2;
+}
+
+.diagnosis-card--dark .diagnosis-card-more-link {
+  color: var(--color-accent);
+}
+
 /* ===== ライトカード ===== */
 .diagnosis-card--light {
   background: linear-gradient(145deg, #ffffff 0%, #fdf9f4 100%);
