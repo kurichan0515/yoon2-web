@@ -1,7 +1,8 @@
 'use client';
 
 import appConfig from '../../config/appConfig';
-import { trackLineClick } from '../../services/analyticsService';
+import { HOTPEPPER_URL } from '../../data/menuData';
+import { trackLineClick, trackHotpepperClick } from '../../services/analyticsService';
 import './ReservationCTA.css';
 
 interface Props {
@@ -19,16 +20,28 @@ function ReservationCTA({ heading = 'ご予約はLINEから', description, sourc
         <div className="reservation-cta-box">
           <h2 className="reservation-cta-heading">{heading}</h2>
           {description && <p className="reservation-cta-desc">{description}</p>}
-          <a
-            href={lineUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary reservation-cta-btn"
-            onClick={() => trackLineClick(sourceLabel)}
-          >
-            LINEで予約・相談する
-            <span className="visually-hidden">（{sourceLabel}、新しいウィンドウで開きます）</span>
-          </a>
+          <div className="reservation-cta-actions">
+            <a
+              href={lineUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary reservation-cta-btn"
+              onClick={() => trackLineClick(sourceLabel)}
+            >
+              LINEで予約・相談する
+              <span className="visually-hidden">（{sourceLabel}、新しいウィンドウで開きます）</span>
+            </a>
+            <a
+              href={HOTPEPPER_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary reservation-cta-btn"
+              onClick={() => trackHotpepperClick(sourceLabel)}
+            >
+              ホットペッパービューティーで予約
+              <span className="visually-hidden">（{sourceLabel}、新しいウィンドウで開きます）</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>

@@ -128,7 +128,12 @@ export default function MimitsuboDetail() {
             <h2>認定情報</h2>
           </div>
           <div className="detail-cert-box">
-            <span className="detail-cert-icon" aria-hidden="true">🏅</span>
+            <span className="detail-cert-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="9" r="6" />
+                <path d="M9 14.2 7.5 21 12 18.5 16.5 21 15 14.2" />
+              </svg>
+            </span>
             <div>
               <h3>一般社団法人日本フランス式耳つぼ協会 認定</h3>
               <p>
@@ -157,17 +162,6 @@ export default function MimitsuboDetail() {
             <h2>施術風景・店内の様子</h2>
           </div>
           <div className="detail-gallery-grid">
-            <div className="detail-gallery-item">
-              <Image
-                src="/images/menus/ear-treatment-1.jpg"
-                alt="イヤースコープを使った耳かきの施術風景"
-                width={480}
-                height={360}
-                loading="lazy"
-                sizes="(max-width: 768px) 100vw, 33vw"
-                style={{ width: '100%', height: '100%' }}
-              />
-            </div>
             <div className="detail-gallery-item">
               <Image
                 src="/images/menus/ear-treatment-2.jpg"

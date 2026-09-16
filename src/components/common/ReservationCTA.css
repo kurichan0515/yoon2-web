@@ -17,6 +17,13 @@
   margin: 0 auto var(--spacing-lg);
 }
 
+.reservation-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  justify-content: center;
+}
+
 .reservation-cta-btn {
   text-decoration: none;
 }
@@ -28,6 +35,10 @@
 
   .reservation-cta-heading {
     font-size: 1.4rem;
+  }
+
+  .reservation-cta-actions {
+    flex-direction: column;
   }
 
   .reservation-cta-btn {

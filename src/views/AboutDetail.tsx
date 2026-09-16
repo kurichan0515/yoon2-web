@@ -98,7 +98,12 @@ export default function AboutDetail() {
             <h2>オーナー紹介</h2>
           </div>
           <div className="detail-cert-box">
-            <span className="detail-cert-icon" aria-hidden="true">🏅</span>
+            <span className="detail-cert-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="9" r="6" />
+                <path d="M9 14.2 7.5 21 12 18.5 16.5 21 15 14.2" />
+              </svg>
+            </span>
             <div>
               <h3>chiharu</h3>
               <p>
