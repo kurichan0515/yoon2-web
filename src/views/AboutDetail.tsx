@@ -105,7 +105,7 @@ export default function AboutDetail() {
               </svg>
             </span>
             <div>
-              <h3>chiharu</h3>
+              <h3>yuki</h3>
               <p>
                 一般社団法人日本フランス式耳つぼ協会認定の技術で、耳つぼ・イヤーエステ施術を担当。お客様一人ひとりの体調やお悩みに向き合い、心身がゆるむ時間をご提供しています。
               </p>
