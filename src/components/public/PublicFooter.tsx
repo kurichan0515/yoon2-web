@@ -47,7 +47,9 @@ const PublicFooter = () => (
       <div className="footer-bottom">
         <p>&copy; 2025 {appConfig.shop.name}. All rights reserved.</p>
         <div className="footer-links-bottom">
+          <Link href="/about" className="footer-link">yoon²について</Link>
           <Link href="/corporate" className="footer-link">法人のお客様へ</Link>
+          <Link href="/event" className="footer-link">出張イベント募集</Link>
           <Link href="/privacy" className="footer-link">プライバシーポリシー</Link>
         </div>
       </div>

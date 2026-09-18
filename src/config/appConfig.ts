@@ -1,7 +1,3 @@
-interface Service {
-  id: string; name: string; duration: string; price: number; description: string; category: string;
-}
-
 interface AppConfig {
   features: { firstVisitDiscount: boolean };
   social: {
@@ -23,7 +19,7 @@ interface AppConfig {
     payment: string[];
     facilities: { totalSeats: number; staffCount: number; parkingSpaces: number; features: string[] };
     notes: string[];
-    services: Service[];
+    // メニュー価格・時間は src/data/menuData.ts (MENU_DATA) が単一の情報源。ここには置かない。
   };
   adsense: { publisherId: string; defaultAdSlot: string; enabled: boolean; devMode: boolean };
   googleAds: { conversionId: string; conversionLabel: string; enabled: boolean };
@@ -85,23 +81,6 @@ const appConfig: AppConfig = {
       '施術直前のキャンセルは施術料の50%',
       '無断キャンセルは施術料の100%',
       'ご理解の上ご予約ください',
-    ],
-    services: [
-      { id: 'ear-este-40', name: 'イヤーエステ40分', duration: '40分', price: 5000, description: '基本的なイヤーエステ', category: 'ear-este' },
-      { id: 'ear-este-60', name: 'イヤーエステ60分', duration: '60分', price: 7000, description: 'じっくりケアコース', category: 'ear-este' },
-      { id: 'ear-este-80', name: '耳集中80分コース', duration: '80分', price: 10500, description: '耳掃除からヘッド・耳つぼまで全方位ケア', category: 'ear-este' },
-      { id: 'ear-este-trial-new', name: 'イヤーエステ40分（新規）', duration: '40分', price: 4500, description: '初回限定特別価格', category: 'ear-este' },
-      { id: 'full-120', name: '全身疲労回復120分コース', duration: '120分', price: 13000, description: 'オイルリンパ×耳×ヘッドの至福コース', category: 'recommend' },
-      { id: 'dry-head-40', name: 'ドライヘッドスパ40分', duration: '40分', price: 4500, description: '頭皮からリフレッシュ', category: 'dry-head' },
-      { id: 'head-opt-15', name: '【追加】ヘッドスパ15分', duration: '15分', price: 1500, description: '他メニューとの組み合わせオプション', category: 'dry-head' },
-      { id: 'mimitubo-regular', name: '耳つぼ（ジュエリー込み）30-40分', duration: '30-40分', price: 3500, description: '個数制限なし', category: 'mimitubo' },
-      { id: 'mimitubo-new', name: '耳つぼ（新規）', duration: '40分', price: 4000, description: '初回限定特別価格', category: 'mimitubo' },
-      { id: 'foot-45', name: '足つぼ45分', duration: '45分', price: 5500, description: '全身バランス調整', category: 'foot' },
-      { id: 'foot-opt-30', name: '【追加】足つぼ30分', duration: '30分', price: 3500, description: '他メニューとの組み合わせオプション', category: 'foot' },
-      { id: 'oil-60', name: 'オイルリンパ60分', duration: '60分', price: 6800, description: 'リンパドレナージュ', category: 'oil' },
-      { id: 'oil-90', name: 'オイルリンパ90分', duration: '90分', price: 11000, description: 'ゆったりリンパ流し', category: 'oil' },
-      { id: 'oil-opt-60', name: '【追加】オイル60分', duration: '60分', price: 6000, description: '他メニューとの組み合わせオプション', category: 'oil' },
-      { id: 'oil-opt-30', name: '【追加】オイル30分', duration: '30分', price: 4000, description: '他メニューとの組み合わせオプション', category: 'oil' },
     ],
   },
 

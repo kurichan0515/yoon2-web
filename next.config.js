@@ -5,6 +5,12 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  experimental: {
+    staleTimes: {
+      dynamic: 0,
+      static: 0,
+    },
+  },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.(test|spec)\.(js|jsx|ts|tsx)$/,

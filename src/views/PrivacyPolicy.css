@@ -195,15 +195,15 @@
   font-style: italic;
 }
 
-/* Section Animation */
-.section {
+/* Section Animation（プライバシーポリシーページのみに限定。.sectionは他ページでも使う汎用クラス名のため） */
+.privacy-policy-page .section {
   padding: var(--spacing-xxl) 0;
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.8s ease;
 }
 
-.section.fade-in {
+.privacy-policy-page .section.fade-in {
   opacity: 1;
   transform: translateY(0);
 }
