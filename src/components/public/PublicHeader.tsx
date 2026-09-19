@@ -67,6 +67,9 @@ const PublicHeader = () => {
           </Link>
         </div>
         <div className="public-header-right">
+          <Link href="/corporate" className="nav-link">
+            法人のお客様へ
+          </Link>
           <a
             href={appConfig.shop.lineUrl || appConfig.social.line.url}
             target="_blank"
