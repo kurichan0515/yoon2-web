@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Heart, Sparkles, Gift, MessageCircle, Ear, Droplets } from 'lucide-react';
+import { Heart, Sparkles, Gift, MessageCircle, Ear, Droplets, Award, BadgePercent } from 'lucide-react';
 import appConfig from '../config/appConfig';
 import './HomeSns.css';
 import './HeroBackground.css';
@@ -16,38 +16,63 @@ const USE_CASES: UseCaseItem[] = [
   { icon: <Gift className="text-[#c9a96e] w-5 h-5 sm:w-6 sm:h-6" aria-hidden />, text: '社内表彰やプレゼントに' },
 ];
 
-interface TicketPlan {
-  id: string; name: string; time: string; forWhom: string; contents: string[];
-  accent: string; accentBg: string; icon: React.ReactNode;
-}
+interface CommonMenuItem { name: string; time: string; forWhom: string; icon: React.ReactNode; accent: string; accentBg: string; }
 
-const TICKET_PLANS: TicketPlan[] = [
+const COMMON_MENUS: CommonMenuItem[] = [
   {
-    id: 'ear-este',
-    name: 'イヤーエステチケット',
-    time: '40分',
-    forWhom: 'デスクワーク中心の方に',
-    contents: ['耳かき', '耳つぼ／頭／首のほぐし'],
-    accent: '#2196F3',
-    accentBg: '#E3F2FD',
+    name: 'イヤーエステ', time: '60分',
+    forWhom: '眼精疲労、脳疲労、睡眠不足に',
     icon: <Ear className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden />,
+    accent: '#2196F3', accentBg: '#E3F2FD',
   },
   {
-    id: 'all-in-one',
-    name: 'オールインワンチケット',
-    time: '90〜100分',
-    forWhom: '現場作業中心の方に',
-    contents: ['耳かき', '耳つぼ／頭／首のほぐし', '全身オイルトリートメント'],
-    accent: '#4CAF50',
-    accentBg: '#E8F5E9',
+    name: 'オイルリンパ', time: '60分',
+    forWhom: '首・肩のコリ、全身の重だるさに',
     icon: <Droplets className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden />,
+    accent: '#4CAF50', accentBg: '#E8F5E9',
+  },
+];
+
+interface CorporatePlan {
+  id: string; label: string; title: string; subtitle: string;
+  accent: string; accentBg: string; icon: React.ReactNode;
+  bullets: string[]; footnote: string;
+}
+
+const CORPORATE_PLANS: CorporatePlan[] = [
+  {
+    id: 'plan-a',
+    label: 'プランA',
+    title: '法人限定・共通回数券（まとめ買い）',
+    subtitle: '頑張る社員へのご褒美・インセンティブに',
+    accent: '#c9a96e', accentBg: '#f8f1e4',
+    icon: <Award className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden />,
+    bullets: [
+      '会社がチケットをまとめて購入し、福利厚生として社員様に配布',
+      '10枚セット／30枚セットからお選びいただけます',
+    ],
+    footnote: '有効期限：発行より1年間。成績優秀者へのギフト、社内イベントの景品等に最適です。',
+  },
+  {
+    id: 'plan-b',
+    label: 'プランB',
+    title: '社員様限定・優待割引プラン',
+    subtitle: 'まずはここから！企業様の費用負担なし',
+    accent: '#4CAF50', accentBg: '#E8F5E9',
+    icon: <BadgePercent className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden />,
+    bullets: [
+      '貴社（企業側）の費用負担は完全ゼロ。リスクなしで導入いただけます',
+      'ご来店時、貴社従業員様限定の優待価格でご利用いただけます',
+      '利用条件：お会計時に貴社の「社員証」または「名刺」をご提示ください',
+    ],
+    footnote: '社内掲示板やイントラネット等でご紹介いただくだけで、すぐに福利厚生メニューを増やせます。',
   },
 ];
 
 const FLOW_STEPS = [
   '公式LINEから「法人契約について」とメッセージ',
   '従業員数・利用シーンをヒアリング',
-  'チケット枚数・お見積りをご案内',
+  'プラン内容・お見積りをご案内',
   'ご契約後、チケット発行・ご利用開始',
 ];
 
@@ -96,50 +121,92 @@ const Corporate = () => {
         </div>
       </section>
 
-      {/* チケット種別 */}
+      {/* 法人限定福利厚生メニュー */}
       <section className="py-12 sm:py-16 md:py-24 bg-[#faf9f7]">
-        <div className="max-w-5xl mx-auto px-3 sm:px-6">
-          <div className="mb-8 sm:mb-12 md:mb-16 text-center">
-            <span className="text-[#c9a96e] text-xs tracking-[0.15em] block mb-3 font-normal uppercase">TICKET</span>
-            <h2 className="text-[#2c2c2c] text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light" style={{ fontFamily: headingFont }}>選べる2種類のチケット</h2>
+        <div className="max-w-6xl mx-auto px-3 sm:px-6">
+          <div className="mb-4 sm:mb-6 text-center">
+            <span className="text-[#c9a96e] text-xs tracking-[0.15em] block mb-3 font-normal uppercase">MENU &amp; PRICE</span>
+            <h2 className="text-[#2c2c2c] text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light mb-4" style={{ fontFamily: headingFont }}>
+              【60分一律価格】yoon² 法人限定福利厚生メニュー
+            </h2>
+            <p className="text-[#6b6b6b] text-sm sm:text-base tracking-wide max-w-2xl mx-auto">
+              貴社の予算や目的に合わせて、2つのスタイルからお選びいただけます。
+            </p>
+            <p className="text-[#8e8e8e] text-xs sm:text-sm tracking-wide mt-2">※全プラン「1年契約（自動更新）」となります。</p>
           </div>
-          <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
-            {TICKET_PLANS.map(plan => (
+
+          {/* 共通メニュー */}
+          <div className="mb-10 sm:mb-14 max-w-3xl mx-auto">
+            <p className="text-center text-[#6b6b6b] text-xs sm:text-sm tracking-wide mb-4 sm:mb-6">
+              当日の体調や気分に合わせて、以下の2つのメニューから毎回自由にお選びいただけます。
+            </p>
+            <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+              {COMMON_MENUS.map(menu => (
+                <div key={menu.name} className="flex items-center gap-3 sm:gap-4 bg-white border border-[#e5e0d7] p-4 sm:p-5 shadow-sm">
+                  <div
+                    className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full flex-shrink-0"
+                    style={{ backgroundColor: menu.accentBg, color: menu.accent }}
+                  >
+                    {menu.icon}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[#2c2c2c] text-sm sm:text-base font-medium tracking-wide">{menu.name} {menu.time}</p>
+                    <p className="text-[#6b6b6b] text-xs sm:text-sm mt-0.5">⇒ {menu.forWhom}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* プランA/B/C */}
+          <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto">
+            {CORPORATE_PLANS.map(plan => (
               <article
                 key={plan.id}
                 className="bg-white border border-[#e5e0d7] overflow-hidden transition-all duration-300 shadow-sm flex flex-col"
               >
                 <div className="h-2" style={{ backgroundColor: plan.accent }} aria-hidden="true" />
-                <div className="p-6 sm:p-8 flex flex-col flex-1">
-                  <div className="flex items-center justify-between mb-4">
+                <div className="p-6 sm:p-7 flex flex-col flex-1">
+                  <div className="flex items-center gap-3 mb-4">
                     <div
-                      className="w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center rounded-full flex-shrink-0"
+                      className="w-11 h-11 flex items-center justify-center rounded-full flex-shrink-0"
                       style={{ backgroundColor: plan.accentBg, color: plan.accent }}
                     >
                       {plan.icon}
                     </div>
                     <span
-                      className="inline-block px-2.5 py-1 text-xs font-semibold tracking-[0.08em] uppercase text-white"
+                      className="inline-block px-2.5 py-1 text-xs font-semibold tracking-[0.08em] text-white"
                       style={{ backgroundColor: plan.accent }}
                     >
-                      お問い合わせでご案内
+                      {plan.label}
                     </span>
                   </div>
-                  <h3 className="text-[#2c2c2c] text-lg sm:text-xl font-medium tracking-wide mb-2">{plan.name}</h3>
-                  <p className="text-[#8e8e8e] text-xs sm:text-sm mb-4">約{plan.time}</p>
-                  <p className="text-[#6b6b6b] text-xs sm:text-sm mb-4 tracking-wide">{plan.forWhom}</p>
-                  <ul className="space-y-1.5 mb-6" aria-label="内容">
-                    {plan.contents.map(c => (
-                      <li key={c} className="flex items-center gap-2 text-[#2c2c2c] text-xs sm:text-sm">
-                        <span className="flex-shrink-0 font-bold" style={{ color: plan.accent }} aria-hidden="true">›</span>{c}
+                  <p className="text-[#8e8e8e] text-xs sm:text-sm tracking-wide mb-1">{plan.subtitle}</p>
+                  <h3 className="text-[#2c2c2c] text-base sm:text-lg font-medium tracking-wide mb-3 leading-snug">「{plan.title}」</h3>
+
+                  <span
+                    className="inline-block self-start px-2.5 py-1 mb-4 text-xs font-medium tracking-[0.08em] uppercase border"
+                    style={{ borderColor: plan.accent, color: plan.accent }}
+                  >
+                    お問い合わせでご案内
+                  </span>
+
+                  <ul className="space-y-1.5 mb-4" aria-label="内容">
+                    {plan.bullets.map(b => (
+                      <li key={b} className="flex items-start gap-2 text-[#2c2c2c] text-xs sm:text-sm leading-relaxed">
+                        <span className="flex-shrink-0 font-bold mt-0.5" style={{ color: plan.accent }} aria-hidden="true">›</span>{b}
                       </li>
                     ))}
                   </ul>
-                  <p className="text-[#8e8e8e] text-xs mt-auto pt-4 border-t border-[#e5e0d7]">料金・枚数につきましては公式LINEよりお問い合わせください</p>
+
+                  <p className="text-[#8e8e8e] text-xs mt-auto pt-4 border-t border-[#e5e0d7] leading-relaxed">{plan.footnote}</p>
                 </div>
               </article>
             ))}
           </div>
+          <p className="text-center text-[#8e8e8e] text-xs sm:text-sm tracking-wide mt-8 sm:mt-10">
+            料金・割引・お申込みにつきましては公式LINEよりお問い合わせください
+          </p>
         </div>
       </section>
 
