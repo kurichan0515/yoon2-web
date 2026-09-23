@@ -45,6 +45,17 @@
   flex-direction: column;
 }
 
+/* 画像2枚並び（イヤーエステ×オイルリンパカード） */
+.diagnosis-card-images {
+  display: flex;
+  height: 140px;
+}
+
+.diagnosis-card-image-wrap {
+  position: relative;
+  flex: 1;
+}
+
 /* MENU A/B タグ */
 .diagnosis-card-tag {
   font-family: var(--font-secondary);

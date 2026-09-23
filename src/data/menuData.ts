@@ -16,6 +16,8 @@ export interface MenuCategory {
   categoryKey: string;
   description: string;
   menus: MenuItem[];
+  /** true の場合、メニュー・料金セクションのタブ一覧や構造化データには出さない（説明ページのみ生かす） */
+  hidden?: boolean;
 }
 
 export const HOTPEPPER_URL = 'https://beauty.hotpepper.jp/kr/slnH000744156/';
@@ -133,6 +135,21 @@ export const MENU_DATA: MenuCategory[] = [
       },
     ],
   },
+  {
+    category: '耳つぼ',
+    categoryKey: 'mimitubo',
+    description: '耳つぼもみほぐし＋ジュエリーつけ放題で24時間不調ケア',
+    hidden: true,
+    menus: [
+      {
+        id: 'mimitubo-regular',
+        name: '【個数制限なし★】耳つぼ(ジュエリー込) 30-40分',
+        price: 3500, time: 40,
+        description: '耳つぼもみほぐしでほぐした後、お悩みに合わせたジュエリーをつけ放題。耳掃除なしでその分もみほぐしをたっぷり。200以上のツボから不調箇所にアプローチし、ジュエリーで24時間体質改善をサポート。',
+        badge: null,
+      },
+    ],
+  },
   // TODO: オプション（ヘッドスパ10分延長 / 足つぼ / 部分オイルリンパ / 耳つぼジュエリー）
   // 価格・時間 確定後に追加。description は下記を想定。
   // {
@@ -144,7 +161,7 @@ export const MENU_DATA: MenuCategory[] = [
 ];
 
 export function getMenuStructuredData(): string {
-  const items = MENU_DATA.flatMap((cat, ci) =>
+  const items = MENU_DATA.filter(cat => !cat.hidden).flatMap((cat, ci) =>
     cat.menus.map((menu, mi) => ({
       '@type': 'ListItem',
       position: ci * 10 + mi + 1,

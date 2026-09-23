@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef, useEffect } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import './MenuDiagnosis.css';
 
@@ -86,6 +87,14 @@ function MenuDiagnosis() {
             </div>
           </article>
           <article className="diagnosis-card diagnosis-card--dark">
+            <div className="diagnosis-card-images" aria-hidden="true">
+              <div className="diagnosis-card-image-wrap">
+                <Image src="/images/menus/ear-treatment-2.jpg" alt="" fill sizes="(max-width: 768px) 50vw, 200px" style={{ objectFit: 'cover' }} />
+              </div>
+              <div className="diagnosis-card-image-wrap">
+                <Image src="/images/menus/oil-treatment.jpg" alt="" fill sizes="(max-width: 768px) 50vw, 200px" style={{ objectFit: 'cover' }} />
+              </div>
+            </div>
             <div className="diagnosis-card-inner">
               <div className="diagnosis-card-tag">迷ったらコレ</div>
               <h3 className="diagnosis-card-name">イヤーエステ×オイルリンパ</h3>

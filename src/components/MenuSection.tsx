@@ -17,7 +17,7 @@ interface MenuItem {
   recommended?: boolean;
   newCustomer?: boolean;
 }
-interface MenuCategory { category: string; categoryKey: string; description: string; menus: MenuItem[]; }
+interface MenuCategory { category: string; categoryKey: string; description: string; menus: MenuItem[]; hidden?: boolean; }
 
 const BADGE_CLASS: Record<string, string> = {
   '初回限定': 'menu-badge--new',
@@ -59,7 +59,7 @@ function MenuCard({ menu, lineUrl }: { menu: MenuItem; lineUrl: string }) {
   );
 }
 
-const menus = MENU_DATA as MenuCategory[];
+const menus = (MENU_DATA as MenuCategory[]).filter(cat => !cat.hidden);
 
 function getInitialTabIndex(): number {
   if (typeof window === 'undefined') return 0;
