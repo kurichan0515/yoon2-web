@@ -86,32 +86,13 @@ const Home = memo(() => {
               「取れる」快感と、耳から広がる深い眠り。<br />
               迷走神経を優しく撫でる新感覚タッチで、蓄積した脳疲労をリセット。
             </p>
-            <div className="hero-price-banner">
-              <p className="hero-price-label">女性スタッフ対応</p>
-              <p className="hero-price-menu">耳つぼジュエリー</p>
-              <div className="hero-price-wrapper">
-                <span className="hero-price-yen">¥</span>
-                <span className="hero-price-amount">3,500</span>
-                <span className="hero-price-unit">〜</span>
-              </div>
-              <p className="hero-price-note">もみほぐし＋ジュエリーつけ放題</p>
-            </div>
-            <div className="hero-review-badge" aria-label="ホットペッパービューティー 評価4.93">
+            <div className="hero-review-badge hero-review-badge--standalone" aria-label="ホットペッパービューティー 評価4.93">
               <div className="hero-review-stars-row">
                 <span className="hero-review-stars" aria-hidden="true">★★★★★</span>
                 <span className="hero-review-rating">4.93</span>
               </div>
               <p className="hero-review-source">ホットペッパービューティー</p>
             </div>
-            <a
-              href="https://mimitubojapan.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hero-certification-badge"
-            >
-              <span aria-hidden="true">🏅</span>
-              一般社団法人日本フランス式耳つぼ協会認定
-            </a>
             <div className="hero-actions">
               <a href={lineUrl} target="_blank" rel="noopener noreferrer"
                 className="btn-primary hero-cta line-booking-btn"
