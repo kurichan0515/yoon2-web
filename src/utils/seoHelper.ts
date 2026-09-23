@@ -55,6 +55,6 @@ export const setPageMeta = ({ title, description, path = '/', image = `${BASE_UR
 
 export const resetPageMeta = () => setPageMeta({
   title: 'yoon² | 松山の耳つぼ・イヤーエステ専門サロン',
-  description: '愛媛県松山市の耳つぼ・イヤーエステ専門サロン。初回3,500円～、オンライン予約OK。北久米駅徒歩5分、駐車場完備。',
+  description: '愛媛県松山市の耳つぼ・イヤーエステ専門サロン。初回4,500円～、オンライン予約OK。北久米駅徒歩5分、駐車場完備。',
   path: '/',
 });
