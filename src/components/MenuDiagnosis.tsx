@@ -41,6 +41,11 @@ function MenuDiagnosis() {
         </div>
         <div className="diagnosis-cards">
           <article className="diagnosis-card diagnosis-card--light">
+            <div className="diagnosis-card-images" aria-hidden="true">
+              <div className="diagnosis-card-image-wrap">
+                <Image src="/images/menus/ear-treatment-2.jpg" alt="" fill sizes="(max-width: 768px) 50vw, 400px" style={{ objectFit: 'cover' }} />
+              </div>
+            </div>
             <div className="diagnosis-card-inner">
               <div className="diagnosis-card-tag">愛媛県初！</div>
               <h3 className="diagnosis-card-name">イヤーエステ</h3>
@@ -64,6 +69,11 @@ function MenuDiagnosis() {
             </div>
           </article>
           <article className="diagnosis-card diagnosis-card--oil">
+            <div className="diagnosis-card-images" aria-hidden="true">
+              <div className="diagnosis-card-image-wrap">
+                <Image src="/images/menus/oil-treatment.jpg" alt="" fill sizes="(max-width: 768px) 50vw, 400px" style={{ objectFit: 'cover' }} />
+              </div>
+            </div>
             <div className="diagnosis-card-inner">
               <div className="diagnosis-card-tag">男性におすすめ</div>
               <h3 className="diagnosis-card-name">オイルリンパ</h3>
