@@ -24,7 +24,7 @@ const BADGE_CLASS: Record<string, string> = {
   '人気': 'menu-badge--popular',
   'プレミアム': 'menu-badge--premium',
   'オプション': 'menu-badge--option',
-  '女性一番人気': 'menu-badge--women',
+  '1日2名限定': 'menu-badge--premium',
 };
 
 function MenuCard({ menu, lineUrl }: { menu: MenuItem; lineUrl: string }) {

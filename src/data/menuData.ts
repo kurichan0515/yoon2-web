@@ -20,21 +20,14 @@ export interface MenuCategory {
 
 export const HOTPEPPER_URL = 'https://beauty.hotpepper.jp/kr/slnH000744156/';
 
+const EAR_DESC =
+  'モニターを見ながらのプロの耳掃除で耳の中を綺麗に！自律神経を刺激する耳掃除で不調も取れる身体に導きます！';
+const EAR_OIL_DESC =
+  'オイルでリンパを流した後、耳とヘッドをほぐし全身の疲労を取っていく至福のコース。いつも頑張っている自分へのご褒美に。';
+const OIL_DESC =
+  '厳選オイルを使用し、滞ったリンパをじっくり丁寧に流します。冷え性や浮腫み、身体の重だるさを解消したい方に。';
+
 export const MENU_DATA: MenuCategory[] = [
-  {
-    category: '耳つぼ',
-    categoryKey: 'mimitubo',
-    description: '耳つぼもみほぐし＋ジュエリーつけ放題で24時間不調ケア',
-    menus: [
-      {
-        id: 'mimitubo-regular',
-        name: '【個数制限なし★】耳つぼ(ジュエリー込) 30-40分',
-        price: 3500, time: 40,
-        description: '耳つぼもみほぐしでほぐした後、お悩みに合わせたジュエリーをつけ放題。耳掃除なしでその分もみほぐしをたっぷり。200以上のツボから不調箇所にアプローチし、ジュエリーで24時間体質改善をサポート。',
-        badge: '女性一番人気', recommended: true,
-      },
-    ],
-  },
   {
     category: 'イヤーエステ',
     categoryKey: 'ear-este',
@@ -43,16 +36,16 @@ export const MENU_DATA: MenuCategory[] = [
       {
         id: 'ear-40-new',
         name: '【まずはお試し！】新規イヤーエステ40分',
-        price: 4500, time: 40, originalPrice: 5000,
-        description: 'モニターを見ながらのプロの耳掃除で耳の中を綺麗に！自律神経を刺激する耳掃除で不調も取れる身体に導きます！',
+        price: 4500, originalPrice: 5000, time: 40,
+        description: EAR_DESC,
         badge: '初回限定', newCustomer: true,
       },
       {
         id: 'ear-40',
         name: '【愛媛初！】新感覚★見る耳掃除/イヤーエステ 40分',
         price: 5000, time: 40,
-        description: 'モニターを見ながらのプロの耳掃除で耳の中を綺麗に！自律神経を刺激する耳掃除で不調も取れる身体に導きます！',
-        badge: '人気', recommended: true,
+        description: EAR_DESC,
+        badge: null,
       },
       {
         id: 'ear-60',
@@ -62,53 +55,46 @@ export const MENU_DATA: MenuCategory[] = [
         badge: '人気', recommended: true,
       },
       {
-        id: 'ear-60-weekday',
-        name: '【平日限定★お疲れケア】極上イヤーエステ60分＋ヘッドスパ5分延長',
-        price: 7000, time: 60,
-        description: '平日限定でお得に。見る耳掃除とヘッドスパを5分延長でたっぷりケア。お疲れが気になる方の集中リセットコースです。',
-        badge: '平日限定',
-      },
-      {
-        id: 'ear-80-fun-new',
-        name: '【★迷ったらコレ!】見て楽しむ×眠れる耳集中80分',
+        id: 'ear-80',
+        name: '【見て楽しい×眠れる】耳集中80分',
         price: 10000, time: 80,
-        description: '初めての方におすすめ。見て楽しいイヤースコープと、思わず眠ってしまう心地よさを両方体感できる80分コースです。',
-        badge: '初回限定', newCustomer: true,
-      },
-      {
-        id: 'ear-80-fun-popular',
-        name: '◇人気No.1【見て楽しい×眠れる】耳掃除・イヤーエステ80分',
-        price: 10500, time: 80,
-        description: '当店イチ押しの耳集中コース。見て楽しいイヤースコープと、眠りに誘う極上のほぐしをたっぷり80分。',
-        badge: '人気No.1', recommended: true,
-      },
-      {
-        id: 'ear-headspa-hand-50',
-        name: '[chiharu指名限定]ドライヘッドスパ＋ハンドケア至福の50分コース',
-        price: 5500, time: 50,
-        description: '眠れない方・デスクワークで疲れた方・手先を使う事が多い方へ。頭をほぐした後、オイルを利用したハンドケアで日頃の疲れを癒す ※詳細はホットペッパービューティー内をご確認ください',
-        badge: '指名限定',
-      },
-      {
-        id: 'ear-headspa-40',
-        name: '【爽快!!】耳からほぐすドライヘッドスパ 40分',
-        price: 4500, time: 40,
-        description: '眠れない方・デスクワークで疲れた方へ。ヘッドスパだけのメニュー ※詳細はホットペッパービューティー内をご確認ください',
+        description: '見て楽しいイヤースコープと、思わず眠ってしまう心地よさを両方体感できる耳集中コース。',
         badge: null,
       },
     ],
   },
   {
-    category: 'おすすめコース',
-    categoryKey: 'recommend',
-    description: 'オーダーメイドで贅沢な時間を',
+    category: 'イヤーエステ×オイルリンパ',
+    categoryKey: 'ear-oil',
+    description: 'イヤーエステ40分＋オイルリンパで全身まるごとケア',
     menus: [
       {
-        id: 'full-120',
-        name: 'じっくり流して整える、贅沢ロングコース 120分',
-        price: 13000, time: 120,
-        description: 'オイルでリンパを流した後、耳とヘッドをほぐし全身の疲労を取っていく至福の120分コース。いつも頑張っている自分へのご褒美に。',
-        badge: 'プレミアム', premium: true,
+        id: 'ear-oil-100-new',
+        name: '【新規】イヤーエステ40分＋オイルリンパ 100分',
+        price: 11800, originalPrice: 12500, time: 100,
+        description: EAR_OIL_DESC,
+        badge: '初回限定', newCustomer: true,
+      },
+      {
+        id: 'ear-oil-100',
+        name: 'イヤーエステ40分＋オイルリンパ 100分',
+        price: 12500, time: 100,
+        description: EAR_OIL_DESC,
+        badge: '人気', recommended: true,
+      },
+      {
+        id: 'ear-oil-130',
+        name: 'イヤーエステ40分＋オイルリンパ 130分',
+        price: 15500, time: 130,
+        description: EAR_OIL_DESC,
+        badge: null,
+      },
+      {
+        id: 'ear-oil-160',
+        name: 'イヤーエステ40分＋オイルリンパ 160分',
+        price: 17500, time: 160,
+        description: `${EAR_OIL_DESC}※1日2名様限定`,
+        badge: '1日2名限定', premium: true,
       },
     ],
   },
@@ -125,77 +111,36 @@ export const MENU_DATA: MenuCategory[] = [
         badge: null,
       },
       {
-        id: 'oil-60-weekday',
-        name: '【平日限定★】極上ドライヘッドスパ＆デコルテ付オイルリンパ',
-        price: 7800, time: 65,
-        description: '平日限定でお得に。オイルリンパにドライヘッドスパとデコルテケアをプラスした欲張りコース。頭から首肩までまるごとほぐしたい方に。',
-        badge: '平日限定',
+        id: 'oil-90-new',
+        name: '【新規】全身じんわりほぐして眠りへ導くリンパ時間 90分',
+        price: 9800, originalPrice: 11000, time: 90,
+        description: OIL_DESC,
+        badge: '初回限定', newCustomer: true,
       },
       {
         id: 'oil-90',
         name: '★全身じんわりほぐして眠りへ導くリンパ時間 90分',
         price: 11000, time: 90,
-        description: '厳選オイルを使用し、滞ったリンパをじっくり丁寧に流します。冷え性や浮腫み、身体の重だるさを解消したい方に。',
+        description: OIL_DESC,
         badge: '人気', recommended: true,
       },
-    ],
-  },
-  {
-    category: 'オプション',
-    categoryKey: 'option',
-    description: '単体予約不可・他メニューと自由に組み合わせ可能な追加オプションです。施術内容は当日ご相談いただけます。詳細はホットペッパービューティー内をご確認ください。',
-    menus: [
       {
-        id: 'option-head-15',
-        name: 'ヘッドスパ15分（追加）',
-        price: 1500, time: 15,
-        description: '他メニューに追加できるヘッドスパ15分。',
-        badge: 'オプション',
-      },
-      {
-        id: 'option-head-30',
-        name: 'ヘッドスパ30分（追加）',
-        price: 3500, time: 30,
-        description: '他メニューに追加できるヘッドスパ30分。',
-        badge: 'オプション',
-      },
-      {
-        id: 'option-foot-30',
-        name: '足つぼ30分（追加）',
-        price: 3500, time: 30,
-        description: '他メニューに追加できる足つぼ30分。',
-        badge: 'オプション',
-      },
-      {
-        id: 'option-foot-45',
-        name: '足つぼ45分',
-        price: 5500, time: 45,
-        description: '他メニューに追加できる足つぼ45分。',
-        badge: 'オプション',
-      },
-      {
-        id: 'option-oil-60',
-        name: 'オイル60分（追加）',
-        price: 6000, time: 60,
-        description: '他メニューに追加できるオイル60分。',
-        badge: 'オプション',
-      },
-      {
-        id: 'option-oil-30',
-        name: 'オイル30分（追加）',
-        price: 4000, time: 30,
-        description: '他メニューに追加できるオイル30分。',
-        badge: 'オプション',
-      },
-      {
-        id: 'option-jewelry',
-        name: '耳つぼジュエリー（追加）',
-        price: 3500, time: 10,
-        description: '他メニューに追加できる耳つぼジュエリーつけ放題。',
-        badge: 'オプション',
+        id: 'oil-120',
+        name: 'じっくり流して整える、贅沢オイルリンパ 120分',
+        price: 13000, time: 120,
+        description: OIL_DESC,
+        badge: null,
       },
     ],
   },
+  // TODO: オプション（ヘッドスパ10分延長 / 足つぼ / 部分オイルリンパ / 耳つぼジュエリー）
+  // 価格・時間 確定後に追加。description は下記を想定。
+  // {
+  //   category: 'オプション',
+  //   categoryKey: 'option',
+  //   description: '単体予約不可・他メニューと自由に組み合わせ可能な追加オプションです。施術内容は当日ご相談いただけます。',
+  //   menus: [ ... ],
+  // },
 ];
 
 export function getMenuStructuredData(): string {
