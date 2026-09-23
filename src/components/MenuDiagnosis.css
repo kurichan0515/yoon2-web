@@ -117,6 +117,18 @@
   margin-bottom: var(--spacing-lg);
 }
 
+/* 価格表記 */
+.diagnosis-card-price {
+  font-family: var(--font-primary);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 var(--spacing-md);
+}
+
+.diagnosis-card--dark .diagnosis-card-price {
+  color: var(--color-accent);
+}
+
 /* ボタン */
 .diagnosis-card-btn {
   width: 100%;

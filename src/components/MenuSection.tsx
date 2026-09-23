@@ -99,6 +99,16 @@ function MenuSection() {
   }, []);
 
   useEffect(() => {
+    const handler = (e: Event) => {
+      const categoryKey = (e as CustomEvent<{ categoryKey: string }>).detail?.categoryKey;
+      const idx = menus.findIndex(cat => cat.categoryKey === categoryKey);
+      if (idx >= 0) setActiveTab(idx);
+    };
+    window.addEventListener('menu-tab-select', handler);
+    return () => window.removeEventListener('menu-tab-select', handler);
+  }, []);
+
+  useEffect(() => {
     if (typeof window === 'undefined') return;
     const params = new URLSearchParams(window.location.search);
     if (!params.get('menu')) return;

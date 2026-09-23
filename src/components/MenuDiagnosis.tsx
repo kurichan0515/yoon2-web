@@ -22,6 +22,15 @@ function MenuDiagnosis() {
     document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
+  const scrollToMenuTab = (categoryKey: string) => {
+    window.dispatchEvent(new CustomEvent('menu-tab-select', { detail: { categoryKey } }));
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  };
+
   return (
     <section id="diagnosis" className="diagnosis-section section" ref={sectionRef}>
       <div className="container">
@@ -30,29 +39,6 @@ function MenuDiagnosis() {
           <h2 className="diagnosis-title">あなたにぴったりのメニューは<br />どちらですか？</h2>
         </div>
         <div className="diagnosis-cards">
-          <article className="diagnosis-card diagnosis-card--dark">
-            <div className="diagnosis-card-inner">
-              <div className="diagnosis-card-tag">女性におすすめ</div>
-              <h3 className="diagnosis-card-name">耳つぼジュエリー</h3>
-              <div className="diagnosis-card-divider" aria-hidden="true" />
-              <p className="diagnosis-card-target">慢性的な不調ケア＋オシャレを楽しみたい方へ</p>
-              <ul className="diagnosis-card-contents" aria-label="内容">
-                <li>耳つぼもみほぐし</li>
-                <li>ジュエリーつけ放題</li>
-              </ul>
-              <p className="diagnosis-card-desc">
-                耳つぼもみほぐしでカチカチの耳をほぐし血流UP！お悩みに合わせたジュエリーつけ放題で、24時間可愛く体質改善をサポート。耳掃除なしでその分もみほぐしをたっぷり。
-              </p>
-              <button className="diagnosis-card-btn diagnosis-card-btn--dark" onClick={scrollToMenu}>
-                料金・詳細を見る
-                <span className="visually-hidden">（耳つぼジュエリー）</span>
-              </button>
-              <Link href="/menu/mimitsubo" className="diagnosis-card-more-link">
-                詳しく見る
-                <span aria-hidden="true"> →</span>
-              </Link>
-            </div>
-          </article>
           <article className="diagnosis-card diagnosis-card--light">
             <div className="diagnosis-card-inner">
               <div className="diagnosis-card-tag">愛媛県初！</div>
@@ -97,6 +83,26 @@ function MenuDiagnosis() {
                 詳しく見る
                 <span aria-hidden="true"> →</span>
               </Link>
+            </div>
+          </article>
+          <article className="diagnosis-card diagnosis-card--dark">
+            <div className="diagnosis-card-inner">
+              <div className="diagnosis-card-tag">迷ったらコレ</div>
+              <h3 className="diagnosis-card-name">イヤーエステ×オイルリンパ</h3>
+              <div className="diagnosis-card-divider" aria-hidden="true" />
+              <p className="diagnosis-card-target">耳も全身もまるごとリセットしたい方へ</p>
+              <ul className="diagnosis-card-contents" aria-label="内容">
+                <li>イヤースコープで見る耳かき</li>
+                <li>全身オイルリンパ</li>
+              </ul>
+              <p className="diagnosis-card-desc">
+                オイルでリンパを流した後、耳とヘッドをほぐし全身の疲労を取っていく至福のコース。いつも頑張っている自分へのご褒美に。
+              </p>
+              <p className="diagnosis-card-price">100分 ¥11,800〜</p>
+              <button className="diagnosis-card-btn diagnosis-card-btn--dark" onClick={() => scrollToMenuTab('ear-oil')}>
+                料金・詳細を見る
+                <span className="visually-hidden">（イヤーエステ×オイルリンパ）</span>
+              </button>
             </div>
           </article>
         </div>
