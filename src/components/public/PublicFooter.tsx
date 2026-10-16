@@ -11,14 +11,15 @@ const PublicFooter = () => (
     <div className="public-footer-container">
       <div className="footer-content">
         <div className="footer-section">
+          <p className="footer-logo">yoon<sup>2</sup></p>
           <h3>{appConfig.shop.name}</h3>
           <p>{appConfig.shop.description ?? 'イヤーエステと耳つぼで心身のバランスを整える専門サロンです。'}</p>
         </div>
         <div className="footer-section">
           <h4>店舗情報</h4>
-          <p>📍 {appConfig.shop.address}</p>
-          <p>🕒 {appConfig.shop.hours.weekday}</p>
-          <p>📅 定休日: {appConfig.shop.holidays}</p>
+          <p>{appConfig.shop.address}</p>
+          <p>{appConfig.shop.hours.weekday}</p>
+          <p>定休日: {appConfig.shop.holidays}</p>
         </div>
         <div className="footer-section">
           <h4>アクセス</h4>
@@ -39,9 +40,9 @@ const PublicFooter = () => (
             className="footer-line-link"
             onClick={() => trackLineAddConversion()}
           >
-            💬 LINEで予約
+            LINEで予約
           </a>
-          {appConfig.shop.email && <p>📧 {appConfig.shop.email}</p>}
+          {appConfig.shop.email && <p>{appConfig.shop.email}</p>}
         </div>
       </div>
       <div className="footer-bottom">
