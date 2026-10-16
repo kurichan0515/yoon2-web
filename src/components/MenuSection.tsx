@@ -17,14 +17,15 @@ interface MenuItem {
   recommended?: boolean;
   newCustomer?: boolean;
 }
-interface MenuCategory { category: string; categoryKey: string; description: string; menus: MenuItem[]; hidden?: boolean; }
+interface MenuCategory { category: string; categoryKey: string; description: string; menus: MenuItem[]; }
 
 const BADGE_CLASS: Record<string, string> = {
   '初回限定': 'menu-badge--new',
   '人気': 'menu-badge--popular',
   'プレミアム': 'menu-badge--premium',
   'オプション': 'menu-badge--option',
-  '1日2名限定': 'menu-badge--premium',
+  '平日限定': 'menu-badge--popular',
+  '指名限定': 'menu-badge--premium',
 };
 
 function MenuCard({ menu, lineUrl }: { menu: MenuItem; lineUrl: string }) {
@@ -59,7 +60,7 @@ function MenuCard({ menu, lineUrl }: { menu: MenuItem; lineUrl: string }) {
   );
 }
 
-const menus = (MENU_DATA as MenuCategory[]).filter(cat => !cat.hidden);
+const menus = MENU_DATA as MenuCategory[];
 
 function getInitialTabIndex(): number {
   if (typeof window === 'undefined') return 0;
