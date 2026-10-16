@@ -1,7 +1,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Instagram, MapPin, Clock, Phone, Calendar, ArrowRight, MessageCircle } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Menu, X, Instagram, MapPin, Clock, Phone, Calendar, ArrowRight, MessageCircle, Car, Train } from 'lucide-react';
 import appConfig from '../config/appConfig';
 import AdSense from '../components/common/AdSense';
 import { trackPageView } from '../services/analyticsService';
@@ -108,22 +110,18 @@ const Hero = () => {
       <div className="relative z-20 text-center px-4 sm:px-6">
         <h1 className="text-3xl sm:text-5xl md:text-8xl text-white font-light mb-1 sm:mb-2" style={{ fontFamily: "'League Spartan', sans-serif", letterSpacing: '-0.05em' }}>yoon²</h1>
         <p className="text-white/80 text-sm sm:text-base mb-4 sm:mb-6" style={{ fontFamily: 'Cinzel, serif' }} aria-label="読み方">ゆんゆん</p>
-        <p className="text-white/80 text-xs sm:text-sm tracking-[0.3em] sm:tracking-[0.5em] mb-6 sm:mb-8" style={{ fontFamily: 'Cinzel, serif' }} aria-hidden="true">EAR ESTHETIC &amp; ACUPRESSURE</p>
+        <p className="text-white text-sm sm:text-base md:text-lg tracking-wide sm:tracking-widest mb-2">松山の耳つぼ・イヤーエステ専門サロン</p>
+        <p className="text-white/80 text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] mb-6 sm:mb-8" style={{ fontFamily: 'Cinzel, serif' }}>ear esthetic &amp; acupressure salon</p>
         <p className="text-white/90 max-w-lg mx-auto mb-6 sm:mb-8 text-xs sm:text-sm md:text-base leading-relaxed tracking-wide sm:tracking-wider px-2">
-          深い夜の静寂に包まれるような、究極の癒やし体験。<br className="sm:hidden" />耳から整う、心と身体の休息。
+          「取れる」快感と、耳から広がる深い眠り。<br />
+          迷走神経を優しく撫でる新感覚タッチで、蓄積した脳疲労をリセット。
         </p>
-        <div className="mx-auto mb-3 sm:mb-4 max-w-xs bg-white/95 border border-[#c9a96e]/50 px-4 sm:px-5 py-3 shadow-md shadow-black/20">
-          <p className="text-[#c9a96e] text-[0.7rem] sm:text-xs font-semibold tracking-[0.12em] mb-1 text-center uppercase">人気メニュー</p>
-          <p className="text-[#2c2c2c] text-sm sm:text-base font-semibold tracking-wide mb-1 text-center" style={{ fontFamily: "'Playfair Display', serif" }}>耳つぼジュエリー</p>
-          <div className="flex items-baseline justify-center gap-0.5 leading-none">
-            <span className="text-[#c9a96e] text-xl sm:text-2xl font-semibold">¥</span>
-            <span className="text-[#c9a96e] text-4xl sm:text-5xl font-bold" style={{ fontFamily: "'Playfair Display', serif" }}>3,500</span>
-            <span className="text-[#c9a96e] text-xl sm:text-2xl font-semibold">〜</span>
+        <div className="mx-auto mb-5 sm:mb-6 inline-block bg-white/95 px-5 sm:px-6 py-2.5 shadow-md shadow-black/20" aria-label="ホットペッパービューティー 評価4.93">
+          <div className="flex items-center justify-center gap-2 leading-none">
+            <span className="text-[#c9a96e] text-base sm:text-lg tracking-wider" aria-hidden="true">★★★★★</span>
+            <span className="text-[#2c2c2c] text-xl sm:text-2xl font-bold" style={{ fontFamily: "'Playfair Display', serif" }}>4.93</span>
           </div>
-          <p className="text-gray-500 text-[0.65rem] sm:text-xs text-center mt-1">もみほぐし＋ジュエリーつけ放題</p>
-        </div>
-        <div className="inline-flex items-center bg-white/90 px-3 sm:px-4 py-2 shadow-sm shadow-black/10 mb-5 sm:mb-6" aria-label="ホットペッパービューティー 高評価獲得">
-          <span className="text-gray-600 text-[0.65rem] sm:text-xs">ホットペッパービューティーにて多数の高評価をいただいています</span>
+          <p className="text-gray-500 text-[0.65rem] sm:text-xs text-center mt-1">ホットペッパービューティー</p>
         </div>
         <div className="mb-6 sm:mb-8 p-3 sm:p-4 border border-white/15 max-w-md mx-auto">
           <p className="text-white text-xs sm:text-sm mb-2 sm:mb-3 tracking-wide">SNSからご来店の方へ</p>
@@ -138,7 +136,7 @@ const Hero = () => {
           </a>
           <button type="button" onClick={() => document.getElementById('courses')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
             className="px-6 sm:px-10 py-3 sm:py-4 border border-white text-white font-semibold text-xs sm:text-sm tracking-wide sm:tracking-widest hover:bg-white/10 transition-all duration-300 whitespace-nowrap">
-            VIEW SERVICES
+            コースを見る
           </button>
         </div>
       </div>
@@ -154,12 +152,12 @@ const CONCERNS = [
   { num: '01', text: '休んでも疲れが取れない、頭や目が重い' },
   { num: '02', text: '自分の耳の中がどうなっているか見てみたい' },
   { num: '03', text: '肩こりや頭痛、むくみをどうにかしたい' },
-  { num: '04', text: '不調をケアしたいけど、オシャレも楽しみたい' },
+  { num: '04', text: '全身の冷えやむくみもまとめてケアしたい' },
 ];
 
 function ConcernSnsSection() {
   return (
-    <section id="concern" className="py-12 sm:py-16 md:py-24 bg-[#101827]">
+    <section id="concern" className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">
       <div className="max-w-7xl mx-auto px-3 sm:px-6">
         <div className="mb-8 sm:mb-12 md:mb-16">
           <span className="text-[#3B82F6] text-xs tracking-[0.15em] block mb-3 font-normal uppercase">FOR YOU</span>
@@ -177,6 +175,9 @@ function ConcernSnsSection() {
           <p className="text-white/70 text-sm sm:text-base tracking-wide">
             そのお悩み、yoon²の<span className="text-[#3B82F6] font-semibold">耳からのアプローチ</span>で解決できます
           </p>
+          <Link href="/about" className="inline-block mt-3 text-white/50 text-xs sm:text-sm hover:text-[#3B82F6] transition-colors border-b border-white/20 hover:border-[#3B82F6] pb-0.5">
+            yoon²についてはこちら<span aria-hidden="true"> →</span>
+          </Link>
         </div>
       </div>
     </section>
@@ -184,62 +185,95 @@ function ConcernSnsSection() {
 }
 
 // ---- MenuDiagnosisSnsSection ----
+interface DiagnosisCard {
+  key: string; tag: string; name: string; target: string; contents: string[]; desc: string;
+  images: string[]; detailHref?: string; tabKey?: string;
+  cardClass: string; tagClass: string; textClass: string; bulletClass: string; dividerClass: string; btnClass: string;
+}
+
+const DIAGNOSIS_CARDS: DiagnosisCard[] = [
+  {
+    key: 'ear', tag: '愛媛県初！', name: 'イヤーエステ',
+    target: '自分の耳の中を見てみたい方、休んでも疲れが取れない方へ',
+    contents: ['イヤースコープで見る耳かき', '自律神経を刺激してすっきり'],
+    desc: 'モニターを見ながらのプロの耳掃除で、耳の中をすっきり綺麗に。自律神経を刺激する耳掃除で、頭や目の重だるさもリセットできる愛媛県初の新感覚メニュー。',
+    images: ['/images/menus/ear-treatment-2.jpg'], detailHref: '/menu/ear-este',
+    cardClass: 'bg-[#2563EB]', tagClass: 'text-white', textClass: 'text-white', bulletClass: 'text-white', dividerClass: 'bg-white/40',
+    btnClass: 'bg-white text-[#2563EB] hover:bg-white/90',
+  },
+  {
+    key: 'oil', tag: '男性におすすめ', name: 'オイルリンパ',
+    target: '冷えやむくみ・全身の疲れをリセットしたい方へ',
+    contents: ['全身オイルトリートメント', 'リンパの流れを整える'],
+    desc: '五行和漢オイルでリンパの滞りをじっくり丁寧に流し、冷え性やむくみ、身体の重だるさをスッキリ解消。深いリラックスと巡りの良さを同時に体感。',
+    images: ['/images/menus/oil-treatment.jpg'], detailHref: '/menu/oil-lymph',
+    cardClass: 'bg-[#047857]', tagClass: 'text-white', textClass: 'text-white', bulletClass: 'text-white', dividerClass: 'bg-white/40',
+    btnClass: 'bg-white text-[#047857] hover:bg-white/90',
+  },
+  {
+    key: 'ear-oil', tag: '迷ったらコレ', name: 'イヤーエステ×オイルリンパ',
+    target: '耳も全身もまるごとリセットしたい方へ',
+    contents: ['イヤースコープで見る耳かき', '3種から選べる全身オイル'],
+    desc: '耳元の心地よい刺激で緊張を解きほぐした後、全身オイルリンパへ。その日の体調に合わせてオイルを選び、お疲れを根本からスッキリ解放。',
+    images: ['/images/menus/ear-treatment-2.jpg', '/images/menus/oil-treatment.jpg'], tabKey: 'ear-oil',
+    cardClass: 'bg-[#161B22] border border-white/5 hover:border-[#3B82F6]/30 transition-all duration-300', tagClass: 'text-[#3B82F6]', textClass: 'text-white/70', bulletClass: 'text-[#3B82F6]', dividerClass: 'bg-white/20',
+    btnClass: 'border border-[#3B82F6]/50 text-[#3B82F6] hover:bg-[#3B82F6]/10',
+  },
+];
+
 function MenuDiagnosisSnsSection() {
-  const scrollToMenu = () => document.getElementById('courses')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const scrollToMenu = (tabKey?: string) => {
+    if (tabKey) window.dispatchEvent(new CustomEvent('menu-tab-select', { detail: { categoryKey: tabKey } }));
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      document.getElementById('courses')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }));
+  };
   return (
-    <section id="diagnosis" className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">
+    <section id="diagnosis" className="py-12 sm:py-16 md:py-24 bg-[#101827]">
       <div className="max-w-7xl mx-auto px-3 sm:px-6">
         <div className="mb-8 sm:mb-12 md:mb-16">
           <span className="text-[#3B82F6] text-xs tracking-[0.15em] block mb-3 font-normal uppercase">MENU GUIDE</span>
           <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light" style={{ fontFamily: 'Cinzel, serif' }}>あなたにぴったりの<br />メニューはどちらですか？</h2>
         </div>
         <div className="grid sm:grid-cols-3 gap-4 sm:gap-6">
-          <article className="bg-[#2563EB] p-6 sm:p-8 flex flex-col">
-            <div className="text-white text-[0.65rem] sm:text-xs font-semibold tracking-[0.3em] mb-3">女性におすすめ</div>
-            <h3 className="text-white text-xl sm:text-2xl font-medium tracking-wide mb-3">耳つぼジュエリー</h3>
-            <div className="w-8 h-[1px] bg-white/40 mb-4" aria-hidden="true" />
-            <p className="text-white text-xs sm:text-sm mb-4 tracking-wide">慢性的な不調ケア＋オシャレを楽しみたい方へ</p>
-            <ul className="space-y-1 mb-5" aria-label="内容">
-              {['耳つぼもみほぐし', 'ジュエリーつけ放題'].map(t => (
-                <li key={t} className="flex items-center gap-2 text-white text-xs sm:text-sm">
-                  <span className="text-white flex-shrink-0" aria-hidden="true">›</span>{t}
-                </li>
-              ))}
-            </ul>
-            <p className="text-white text-xs leading-relaxed flex-1">耳つぼもみほぐしでカチカチの耳をほぐし血流UP！お悩みに合わせたジュエリーつけ放題で、24時間可愛く体質改善をサポート。耳掃除なしでその分もみほぐしをたっぷり。</p>
-            <button onClick={scrollToMenu} className="mt-6 w-full py-2.5 sm:py-3 bg-white text-[#2563EB] text-xs font-semibold tracking-widest hover:bg-white/90 transition-colors">料金・詳細を見る<span className="sr-only">（耳つぼジュエリー）</span></button>
-          </article>
-          <article className="bg-[#047857] p-6 sm:p-8 flex flex-col">
-            <div className="text-white text-[0.65rem] sm:text-xs font-semibold tracking-[0.3em] mb-3">男性におすすめ</div>
-            <h3 className="text-white text-xl sm:text-2xl font-medium tracking-wide mb-3">オイルリンパ</h3>
-            <div className="w-8 h-[1px] bg-white/40 mb-4" aria-hidden="true" />
-            <p className="text-white text-xs sm:text-sm mb-4 tracking-wide">冷えやむくみ・全身の疲れをリセットしたい方へ</p>
-            <ul className="space-y-1 mb-5" aria-label="内容">
-              {['全身オイルトリートメント', 'リンパの流れを整える'].map(t => (
-                <li key={t} className="flex items-center gap-2 text-white text-xs sm:text-sm">
-                  <span className="text-white flex-shrink-0" aria-hidden="true">›</span>{t}
-                </li>
-              ))}
-            </ul>
-            <p className="text-white text-xs leading-relaxed flex-1">厳選オイルでリンパの滞りをじっくり丁寧に流し、冷え性やむくみ、身体の重だるさをスッキリ解消。深いリラックスと巡りの良さを同時に体感。</p>
-            <button onClick={scrollToMenu} className="mt-6 w-full py-2.5 sm:py-3 bg-white text-[#047857] text-xs font-semibold tracking-widest hover:bg-white/90 transition-colors">料金・詳細を見る<span className="sr-only">（オイルリンパ）</span></button>
-          </article>
-          <article className="bg-[#161B22] border border-white/5 hover:border-[#3B82F6]/30 transition-all duration-300 p-6 sm:p-8 flex flex-col">
-            <div className="text-[#3B82F6] text-[0.65rem] sm:text-xs font-semibold tracking-[0.3em] mb-3">迷ったらこれ</div>
-            <h3 className="text-white text-xl sm:text-2xl font-medium tracking-wide mb-3">贅沢ロングコース</h3>
-            <div className="w-8 h-[1px] bg-white/20 mb-4" aria-hidden="true" />
-            <p className="text-white/70 text-xs sm:text-sm mb-4 tracking-wide">じっくり120分で全身の疲れをまるごとリセットしたい方へ</p>
-            <ul className="space-y-1 mb-5" aria-label="内容">
-              {['オイルリンパ', '耳つぼもみほぐし', 'ヘッドほぐし'].map(t => (
-                <li key={t} className="flex items-center gap-2 text-white/70 text-xs sm:text-sm">
-                  <span className="text-[#3B82F6] flex-shrink-0" aria-hidden="true">›</span>{t}
-                </li>
-              ))}
-            </ul>
-            <p className="text-white/60 text-xs leading-relaxed flex-1">オイルでリンパを流した後、耳とヘッドをほぐし全身の疲労を取っていく至福の120分コース。いつも頑張っている自分へのご褒美に。</p>
-            <button onClick={scrollToMenu} className="mt-6 w-full py-2.5 sm:py-3 border border-[#3B82F6]/50 text-[#3B82F6] text-xs font-semibold tracking-widest hover:bg-[#3B82F6]/10 transition-colors">料金・詳細を見る<span className="sr-only">（贅沢ロングコース）</span></button>
-          </article>
+          {DIAGNOSIS_CARDS.map(card => (
+            <article key={card.key} className={`${card.cardClass} flex flex-col overflow-hidden`}>
+              <div className="flex aspect-[4/3]" aria-hidden="true">
+                {card.images.map(src => (
+                  <div key={src} className="relative flex-1">
+                    <Image src={src} alt="" fill sizes={card.images.length > 1 ? '(max-width: 640px) 50vw, 200px' : '(max-width: 640px) 100vw, 400px'} style={{ objectFit: 'cover' }} />
+                  </div>
+                ))}
+              </div>
+              <div className="p-6 sm:p-8 flex flex-col flex-1">
+                <div className={`${card.tagClass} text-[0.65rem] sm:text-xs font-semibold tracking-[0.3em] mb-3`}>{card.tag}</div>
+                <h3 className="text-white text-xl sm:text-2xl font-medium tracking-wide mb-3">{card.name}</h3>
+                <div className={`w-8 h-[1px] ${card.dividerClass} mb-4`} aria-hidden="true" />
+                <p className={`${card.textClass} text-xs sm:text-sm mb-4 tracking-wide`}>{card.target}</p>
+                <ul className="space-y-1 mb-5" aria-label="内容">
+                  {card.contents.map(t => (
+                    <li key={t} className={`flex items-center gap-2 ${card.textClass} text-xs sm:text-sm`}>
+                      <span className={`${card.bulletClass} flex-shrink-0`} aria-hidden="true">›</span>{t}
+                    </li>
+                  ))}
+                </ul>
+                <p className={`${card.textClass} text-xs leading-relaxed flex-1`}>{card.desc}</p>
+                <button type="button" onClick={() => scrollToMenu(card.tabKey)} className={`mt-6 w-full py-2.5 sm:py-3 text-xs font-semibold tracking-widest transition-colors ${card.btnClass}`}>
+                  料金・詳細を見る<span className="sr-only">（{card.name}）</span>
+                </button>
+                {card.detailHref && (
+                  <Link href={card.detailHref} className={`mt-3 text-center ${card.textClass} text-xs tracking-wide underline underline-offset-4 hover:opacity-80`}>
+                    詳しく見る<span aria-hidden="true"> →</span>
+                  </Link>
+                )}
+              </div>
+            </article>
+          ))}
         </div>
+        <Link href="/event" className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-4 bg-[#161B22] border border-white/10 hover:border-[#3B82F6]/50 transition-colors px-4 py-4 text-white/80 text-xs sm:text-sm tracking-wide">
+          <span>出張イベント開催先 募集中</span>
+          <span className="text-[#3B82F6]">詳しくはこちら →</span>
+        </Link>
       </div>
     </section>
   );
@@ -286,7 +320,7 @@ function FlowSnsSection() {
 const SNS_REVIEWS = [
   { id: 'r1', text: '耳の中をスコープで確認しながら施術。不眠も改善して、通う価値しかないです！', age: '30代女性' },
   { id: 'r2', text: '完全個室で男性でも安心。仕事疲れが施術後スッと消えました。',              age: '40代男性' },
-  { id: 'r3', text: 'ジュエリーつけ放題なのに肩まで軽くなった！また絶対来ます。',              age: '20代女性' },
+  { id: 'r3', text: 'オイルリンパと耳のセットで全身ぽかぽか。気づいたら寝ていました。',        age: '20代女性' },
 ];
 
 function ReviewsSnsSection() {
@@ -380,6 +414,16 @@ function MenuSnsSection({ lineUrl }: { lineUrl: string }) {
     return () => { document.getElementById(id)?.remove(); };
   }, []);
 
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const categoryKey = (e as CustomEvent<{ categoryKey: string }>).detail?.categoryKey;
+      const idx = menus.findIndex(cat => cat.categoryKey === categoryKey);
+      if (idx >= 0) setActiveTab(idx);
+    };
+    window.addEventListener('menu-tab-select', handler);
+    return () => window.removeEventListener('menu-tab-select', handler);
+  }, []);
+
   const handleTabChange = (i: number) => {
     if (i === activeTab) return;
     setFading(true);
@@ -396,7 +440,8 @@ function MenuSnsSection({ lineUrl }: { lineUrl: string }) {
       <div className="max-w-7xl mx-auto px-3 sm:px-6">
         <div className="mb-8 sm:mb-12 md:mb-16">
           <span className="text-[#3B82F6] text-xs tracking-[0.15em] block mb-3 font-normal uppercase">MENU &amp; PRICE</span>
-          <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light" style={{ fontFamily: 'Cinzel, serif' }}>メニュー・料金</h2>
+          <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light mb-3" style={{ fontFamily: 'Cinzel, serif' }}>メニュー・料金</h2>
+          <p className="text-white/50 text-xs tracking-wide">あなたに合った癒しのメニューをお選びください</p>
         </div>
         <div className="flex flex-wrap gap-2 mb-4 sm:mb-6" role="tablist" aria-label="メニューカテゴリ">
           {menus.map((cat, i) => (
@@ -517,7 +562,8 @@ function FaqSnsSection({ lineUrl }: { lineUrl: string }) {
       <div className="max-w-7xl mx-auto px-3 sm:px-6">
         <div className="mb-8 sm:mb-12 md:mb-16">
           <span className="text-[#3B82F6] text-xs tracking-[0.15em] block mb-3 font-normal uppercase">FAQ</span>
-          <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light" style={{ fontFamily: 'Cinzel, serif' }}>よくある質問</h2>
+          <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide sm:tracking-widest font-light mb-3" style={{ fontFamily: 'Cinzel, serif' }}>よくある質問</h2>
+          <p className="text-white/50 text-xs tracking-wide">ご不明な点はお気軽にお問い合わせください</p>
         </div>
         <div className="flex flex-col gap-4 sm:gap-6 max-w-3xl mx-auto">
           {(FAQ_DATA as FaqCategory[]).map(category => {
@@ -582,8 +628,8 @@ const HomeSns = () => {
       <Navbar isScrolled={isScrolled} isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
       <Hero />
 
-      <ConcernSnsSection />
       <MenuDiagnosisSnsSection />
+      <ConcernSnsSection />
       <FlowSnsSection />
 
       <ReviewsSnsSection />
@@ -600,7 +646,16 @@ const HomeSns = () => {
             <div className="space-y-4 sm:space-y-6">
               {[
                 { icon: <MapPin className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '住所', content: <p className="text-xs sm:text-sm break-words !text-white/70">{shop.address}</p> },
-                { icon: <MapPin className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '最寄り駅', content: shop.access?.stations?.filter(Boolean).map((s, i) => <p key={i} className="text-xs sm:text-sm !text-white/70">{s}</p>) },
+                { icon: <Car className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '駐車場のご案内', content: (
+                  <div>
+                    <p className="text-xs sm:text-sm !text-white/70">店舗前に駐車スペースがございません。店舗近くの専用駐車場（北久米町412番地）をご利用ください。</p>
+                    <a href="https://maps.google.com/?cid=10357450395002350789" target="_blank" rel="noopener noreferrer"
+                      className="inline-block mt-2 px-4 py-2 border border-white/20 text-white/70 text-xs tracking-wide hover:border-[#3B82F6] hover:text-white transition-colors">
+                      駐車場の地図を見る
+                    </a>
+                  </div>
+                ) },
+                { icon: <Train className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '最寄り駅', content: shop.access?.stations?.filter(Boolean).map((s, i) => <p key={i} className="text-xs sm:text-sm !text-white/70">{s}</p>) },
                 { icon: <Clock className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '営業時間', content: <p className="text-xs sm:text-sm !text-white/70">{shop.hours?.weekday}（木曜定休）</p> },
                 { icon: <Phone className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '電話番号', content: <p className="text-xs sm:text-sm break-all !text-white/70">{shop.phone}</p> },
               ].map(({ icon, label, content }) => (
@@ -621,7 +676,9 @@ const HomeSns = () => {
         </div>
         {shop.access?.parkingPhotos?.accessGuide && (
           <div className="mb-8 sm:mb-12">
-            <p className="text-white/50 text-xs tracking-[0.15em] uppercase mb-2">Access Guide</p>
+            <p className="text-[#3B82F6] text-xs tracking-[0.15em] uppercase mb-2">Access</p>
+            <h3 className="text-white text-base sm:text-lg tracking-wide mb-1">アクセス案内</h3>
+            <p className="text-white/50 text-xs mb-1">お車でのアクセス方法をご確認ください</p>
             <p className="text-white/50 text-xs mb-3">駐車場：北久米町412番地</p>
             <div className="bg-[#161B22] border border-white/5 overflow-hidden">
               <img src={shop.access.parkingPhotos.accessGuide} alt="駐車場・店舗へのアクセスマップ" width={800} height={600} className="w-full h-auto" loading="lazy" onError={hideImg} />
@@ -630,6 +687,9 @@ const HomeSns = () => {
         )}
         {shop.access?.parkingPhotos?.parkingLot && (
           <div className="mb-8 sm:mb-12">
+            <p className="text-[#3B82F6] text-xs tracking-[0.15em] uppercase mb-2">Parking</p>
+            <h3 className="text-white text-base sm:text-lg tracking-wide mb-1">駐車場</h3>
+            <p className="text-white/50 text-xs mb-3">お車でお越しの際はこちらをご利用ください</p>
             <div className="bg-[#161B22] border border-white/5 overflow-hidden">
               <img src={shop.access.parkingPhotos.parkingLot} alt="駐車場の様子" width={800} height={450} className="w-full h-auto" loading="lazy" onError={hideImg} />
             </div>
@@ -637,6 +697,9 @@ const HomeSns = () => {
         )}
         {shop.access?.parkingPhotos?.routeToShop && (
           <div className="mb-8 sm:mb-12">
+            <p className="text-[#3B82F6] text-xs tracking-[0.15em] uppercase mb-2">Route</p>
+            <h3 className="text-white text-base sm:text-lg tracking-wide mb-1">駐車場から店舗までの道順</h3>
+            <p className="text-white/50 text-xs mb-3">駐車場から店舗までの道のりをご案内します</p>
             <div className="bg-[#161B22] border border-white/5 overflow-hidden">
               <img src={shop.access.parkingPhotos.routeToShop} alt="駐車場から店舗までの道順" width={800} height={450} className="w-full h-auto" loading="lazy" onError={hideImg} />
             </div>
@@ -644,6 +707,9 @@ const HomeSns = () => {
         )}
         {shop.notes && shop.notes.length > 0 && (
           <div className="bg-[#161B22] p-4 sm:p-6 md:p-8 border border-white/5">
+            <h3 className="text-white text-sm sm:text-base md:text-lg mb-1 tracking-wide">営業時間</h3>
+            <p className="text-white/70 text-xs sm:text-sm mb-1">月〜水・金〜日・祝　{shop.hours?.weekday ?? '10:00 - 20:00'}</p>
+            <p className="text-white/50 text-xs mb-4 sm:mb-6">定休日：木曜日</p>
             <h3 className="text-white text-sm sm:text-base md:text-lg mb-3 sm:mb-4 tracking-wide">ご確認事項</h3>
             <ul className="space-y-1.5 sm:space-y-2">{shop.notes.map((note, i) => <li key={i} className="text-white/70 text-xs sm:text-sm">{note}</li>)}</ul>
           </div>
