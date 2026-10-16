@@ -1,57 +1,57 @@
+/* Menu Guide: 3本柱。カード枠は使わず、余白＋1px細線で区切る */
 .diagnosis-section {
-  background-color: var(--color-primary);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  background-color: var(--color-light-gray);
 }
 
 .diagnosis-header {
   text-align: center;
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: 64px;
 }
 
 .diagnosis-title {
-  font-family: var(--font-primary);
-  font-size: 2.2rem;
+  font-family: var(--font-serif);
+  font-size: 1.875rem;
   font-weight: 400;
-  font-style: italic;
-  line-height: 1.45;
-  color: var(--color-text-primary);
-  margin-top: var(--spacing-sm);
+  line-height: 1.7;
+  letter-spacing: 0.1em;
+  color: var(--color-brown);
 }
 
-/* カード3列レイアウト */
 .diagnosis-cards {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: var(--spacing-lg);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* カード共通 */
 .diagnosis-card {
-  border-radius: var(--radius-lg);
-  overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 0 32px;
 }
 
-.diagnosis-card:hover {
-  transform: translateY(-6px);
+.diagnosis-card + .diagnosis-card {
+  border-left: 1px solid var(--color-line);
 }
 
-.diagnosis-card-inner {
-  padding: var(--spacing-xl);
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+.diagnosis-card:first-child {
+  padding-left: 0;
 }
 
-/* 画像2枚並び（イヤーエステ×オイルリンパカード） */
+.diagnosis-card:last-child {
+  padding-right: 0;
+}
+
+/* 写真（彩度を落とした暗めトーンに統一） */
 .diagnosis-card-images {
   display: flex;
-  height: 140px;
+  gap: 4px;
+  aspect-ratio: 4 / 3;
   flex-shrink: 0;
+  margin-bottom: 28px;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-brown);
 }
 
 .diagnosis-card-image-wrap {
@@ -59,309 +59,230 @@
   flex: 1;
 }
 
-/* MENU A/B タグ */
+.diagnosis-card-image-wrap img {
+  filter: saturate(0.6) brightness(0.88);
+}
+
+.diagnosis-card-inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .diagnosis-card-tag {
-  font-family: var(--font-secondary);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  margin-bottom: var(--spacing-sm);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  color: var(--color-green);
+  margin-bottom: 8px;
 }
 
-/* カード名 */
 .diagnosis-card-name {
-  font-family: var(--font-primary);
-  font-size: 1.8rem;
-  font-style: italic;
-  font-weight: 400;
-  line-height: 1.2;
-  margin-bottom: 0;
+  font-family: var(--font-serif);
+  font-size: 1.375rem;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.08em;
+  color: var(--color-brown);
+  margin: 0;
 }
 
-/* ゴールドライン */
 .diagnosis-card-divider {
-  width: 40px;
-  height: 2px;
-  background-color: var(--color-accent);
-  margin: var(--spacing-sm) 0;
+  width: 32px;
+  height: 1px;
+  background-color: var(--color-green);
+  margin: 16px 0 18px;
 }
 
-/* ターゲット */
 .diagnosis-card-target {
-  font-family: var(--font-secondary), var(--font-japanese);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  margin-bottom: var(--spacing-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.9;
+  color: var(--color-brown);
+  margin-bottom: 14px;
 }
 
-/* 内容リスト */
 .diagnosis-card-contents {
   list-style: none;
   padding: 0;
-  margin: 0 0 var(--spacing-md);
+  margin: 0 0 16px;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 4px;
 }
 
 .diagnosis-card-contents li {
-  font-family: var(--font-secondary), var(--font-japanese);
-  font-size: 0.9rem;
-  padding-left: 1.2em;
   position: relative;
-  line-height: 1.5;
+  padding-left: 1.4em;
+  font-size: 0.875rem;
+  line-height: 1.8;
+  color: var(--color-brown);
 }
 
 .diagnosis-card-contents li::before {
-  content: '—';
+  content: '';
   position: absolute;
   left: 0;
-  color: var(--color-accent);
-  font-weight: 300;
+  top: 0.9em;
+  width: 0.8em;
+  height: 1px;
+  background-color: var(--color-green);
 }
 
-/* 説明文 */
 .diagnosis-card-desc {
-  font-family: var(--font-secondary), var(--font-japanese);
-  font-size: 0.88rem;
-  line-height: 1.8;
+  font-size: 0.875rem;
+  line-height: 2;
+  color: var(--color-brown);
   flex: 1;
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: 28px;
 }
 
-/* ボタン */
+/* 副ボタン（pill・焦げ茶細枠・末尾→） */
 .diagnosis-card-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9em;
   width: 100%;
-  padding: 0.85rem var(--spacing-md);
-  border-radius: var(--radius-md);
-  font-family: var(--font-secondary), var(--font-japanese);
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  border: 2px solid var(--color-accent);
+  min-height: 48px;
+  padding: 0.75rem 1.5rem;
   margin-top: auto;
-}
-
-.diagnosis-card-more-link {
-  display: block;
-  text-align: center;
-  margin-top: 0.75rem;
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  color: var(--color-accent);
-  text-decoration: none;
-}
-
-.diagnosis-card-more-link:hover {
-  text-decoration: underline;
-}
-
-.diagnosis-card--oil .diagnosis-card-more-link {
-  color: #a8c4a2;
-}
-
-.diagnosis-card--dark .diagnosis-card-more-link {
-  color: var(--color-accent);
-}
-
-/* ===== ライトカード ===== */
-.diagnosis-card--light {
-  background: linear-gradient(145deg, #ffffff 0%, #fdf9f4 100%);
-  box-shadow:
-    0 2px 4px rgba(44, 44, 44, 0.04),
-    0 8px 24px rgba(44, 44, 44, 0.08),
-    0 24px 48px rgba(201, 169, 110, 0.08);
-  border-top: 2px solid var(--color-accent);
-}
-
-.diagnosis-card--light .diagnosis-card-tag {
-  color: var(--color-accent);
-}
-
-.diagnosis-card--light .diagnosis-card-name {
-  color: var(--color-text-primary);
-}
-
-.diagnosis-card--light .diagnosis-card-target {
-  color: var(--color-text-secondary);
-}
-
-.diagnosis-card--light .diagnosis-card-desc {
-  color: var(--color-text-secondary);
-}
-
-.diagnosis-card--light .diagnosis-card-contents li {
-  color: var(--color-text-primary);
-}
-
-.diagnosis-card-btn--light {
+  border-radius: var(--border-radius-pill);
+  border: 1px solid var(--color-brown);
   background: transparent;
-  color: var(--color-accent);
+  color: var(--color-brown);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
 }
 
-.diagnosis-card-btn--light:hover {
-  background: var(--color-accent);
-  color: var(--color-white);
+.diagnosis-card-btn::after {
+  content: '→';
+  content: '→' / '';
+  transition: transform 0.3s ease;
 }
 
-/* ===== オイルリンパ強調カード ===== */
-.diagnosis-card--oil {
-  background: linear-gradient(145deg, #3e5c4e 0%, #2c4438 100%);
-  box-shadow:
-    0 2px 4px rgba(0, 0, 0, 0.12),
-    0 8px 24px rgba(0, 0, 0, 0.18),
-    0 24px 48px rgba(62, 92, 78, 0.2);
-  border-top: 2px solid #a8c4a2;
+.diagnosis-card-btn:hover {
+  opacity: 0.72;
 }
 
-.diagnosis-card--oil .diagnosis-card-tag {
-  color: #a8c4a2;
+.diagnosis-card-btn:hover::after {
+  transform: translateX(3px);
 }
 
-.diagnosis-card--oil .diagnosis-card-name {
-  color: #f4f1eb;
-}
-
-.diagnosis-card--oil .diagnosis-card-divider {
-  background-color: #a8c4a2;
-}
-
-.diagnosis-card--oil .diagnosis-card-target {
-  color: rgba(244, 241, 235, 0.75);
-}
-
-.diagnosis-card--oil .diagnosis-card-desc {
-  color: rgba(244, 241, 235, 0.7);
-}
-
-.diagnosis-card--oil .diagnosis-card-contents li {
-  color: rgba(244, 241, 235, 0.85);
-}
-
-.diagnosis-card--oil .diagnosis-card-contents li::before {
-  color: #a8c4a2;
-}
-
-.diagnosis-card-btn--oil {
-  background: transparent;
-  color: #a8c4a2;
-  border: 2px solid #a8c4a2;
-}
-
-.diagnosis-card-btn--oil:hover {
-  background: #a8c4a2;
-  color: #1e1e1e;
-}
-
-/* ===== ダークカード ===== */
-.diagnosis-card--dark {
-  background: linear-gradient(145deg, #2c2c2c 0%, #1e1e1e 100%);
-  box-shadow:
-    0 2px 4px rgba(0, 0, 0, 0.12),
-    0 8px 24px rgba(0, 0, 0, 0.2),
-    0 24px 48px rgba(201, 169, 110, 0.1);
-  border-top: 2px solid var(--color-accent);
-}
-
-.diagnosis-card--dark .diagnosis-card-tag {
-  color: var(--color-accent);
-}
-
-.diagnosis-card--dark .diagnosis-card-name {
-  color: #f4f1eb;
-}
-
-.diagnosis-card--dark .diagnosis-card-target {
-  color: rgba(244, 241, 235, 0.75);
-}
-
-.diagnosis-card--dark .diagnosis-card-desc {
-  color: rgba(244, 241, 235, 0.7);
-}
-
-.diagnosis-card--dark .diagnosis-card-contents li {
-  color: rgba(244, 241, 235, 0.85);
-}
-
+/* 「迷ったらコレ」は主ボタン（深緑塗り） */
 .diagnosis-card-btn--dark {
-  background: transparent;
-  color: var(--color-accent);
+  background-color: var(--color-green);
+  border-color: var(--color-green);
+  color: var(--color-off-white);
 }
 
 .diagnosis-card-btn--dark:hover {
-  background: var(--color-accent);
-  color: var(--color-white);
+  opacity: 0.86;
+}
+
+.diagnosis-card-more-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  min-height: 44px;
+  margin-top: 4px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--color-brown);
+  text-decoration: underline;
+  text-decoration-color: var(--color-gray);
+  text-underline-offset: 0.4em;
+}
+
+.diagnosis-card-more-link:hover {
+  color: var(--color-brown);
+  opacity: 0.72;
 }
 
 /* 出張イベント募集バナー */
 .diagnosis-event-banner {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: var(--spacing-md);
+  justify-content: space-between;
+  gap: 16px;
   max-width: 1200px;
-  margin: var(--spacing-lg) auto 0;
-  padding: var(--spacing-md) var(--spacing-lg);
-  border: 1px solid var(--color-accent);
-  border-radius: var(--radius-md);
-  font-family: var(--font-secondary), var(--font-japanese);
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--color-text-primary);
+  margin: 72px auto 0;
+  padding: 24px 4px;
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--color-brown);
   text-decoration: none;
-  transition: background-color 0.25s ease;
+  transition: opacity 0.3s ease;
 }
 
 .diagnosis-event-banner:hover {
-  background-color: rgba(201, 169, 110, 0.08);
+  color: var(--color-brown);
+  opacity: 0.72;
 }
 
 .diagnosis-event-banner-arrow {
-  color: var(--color-accent);
-  font-weight: 600;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-green);
+  white-space: nowrap;
 }
 
-/* レスポンシブ: タブレットは2列 */
 @media (max-width: 1024px) {
-  .diagnosis-cards {
-    grid-template-columns: 1fr 1fr;
-    max-width: 700px;
+  .diagnosis-card {
+    padding: 0 20px;
   }
 }
 
-/* レスポンシブ: スマホは縦積み */
+/* スマホ: 縦積み、区切りは上線 */
 @media (max-width: 768px) {
-  .diagnosis-cards {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-md);
+  .diagnosis-header {
+    margin-bottom: 40px;
   }
 
   .diagnosis-title {
-    font-size: 1.6rem;
+    font-size: 1.375rem;
   }
 
-  .diagnosis-card-name {
-    font-size: 1.5rem;
+  .diagnosis-cards {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+  }
+
+  .diagnosis-card,
+  .diagnosis-card:first-child,
+  .diagnosis-card:last-child {
+    padding: 40px 0;
+  }
+
+  .diagnosis-card:first-child {
+    padding-top: 0;
+  }
+
+  .diagnosis-card + .diagnosis-card {
+    border-left: none;
+    border-top: 1px solid var(--color-line);
+  }
+
+  .diagnosis-card-images {
+    aspect-ratio: 16 / 9;
   }
 
   .diagnosis-event-banner {
     flex-direction: column;
-    gap: var(--spacing-sm);
     text-align: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .diagnosis-title {
-    font-size: 1.3rem;
-  }
-
-  .diagnosis-card-inner {
-    padding: var(--spacing-md);
+    margin-top: 32px;
+    gap: 8px;
   }
 }

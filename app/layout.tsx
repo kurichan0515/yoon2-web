@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
-import FontLoader from './font-loader';
+import SerifFontLoader from './serif-font-loader';
 import appConfig from '../src/config/appConfig';
 import '../src/App.css';
 
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#000000',
+  themeColor: '#332D28',
 };
 
 const localBusinessSchema = {
@@ -140,11 +140,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ja">
       <head>
         {/* LCP 画像 preload */}
-        <link rel="preload" as="image" href="/images/shop/play-room.webp" media="(min-width: 769px)" />
-        <link rel="preload" as="image" href="/images/hero/hero-sp.webp" media="(max-width: 768px)" />
-        {/* fonts.gstatic.com のみ preconnect (実際のフォントファイル取得先) */}
+        <link rel="preload" as="image" type="image/webp" href="/images/eastern/hero-pc.webp" media="(min-width: 769px)" />
+        <link rel="preload" as="image" type="image/webp" href="/images/eastern/hero-sp.webp" media="(max-width: 768px)" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <FontLoader />
+        <SerifFontLoader />
         {/* AdSense: <Script> で strategy を付けると data-nscript が付与され警告になるため直接 <script> タグを使用 */}
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script
@@ -165,7 +165,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
         />
       </head>
-      <body style={{ backgroundColor: '#f4f1eb', margin: 0 }}>
+      <body style={{ backgroundColor: 'var(--color-off-white)', margin: 0 }}>
         {children}
         {/* Google tag (gtag.js) */}
         <Script

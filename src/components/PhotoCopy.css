@@ -1,0 +1,76 @@
+.photo-copy {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: clamp(360px, 52vw, 560px);
+  padding: 64px max(8vw, 24px);
+  overflow: hidden;
+  background-color: var(--color-brown);
+}
+
+.photo-copy--left {
+  justify-content: flex-start;
+}
+
+.photo-copy-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  /* App.cssのimg[width][height]{height:auto}に打ち勝つため!important */
+  height: 100% !important;
+  object-fit: cover;
+  object-position: center;
+}
+
+.photo-copy-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(51, 45, 40, 0.35) 0%, rgba(51, 45, 40, 0.62) 100%);
+}
+
+.photo-copy--left .photo-copy-overlay {
+  background: linear-gradient(270deg, rgba(51, 45, 40, 0.35) 0%, rgba(51, 45, 40, 0.62) 100%);
+}
+
+.photo-copy-text {
+  position: relative;
+  z-index: 1;
+  writing-mode: vertical-rl;
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  font-weight: 400;
+  line-height: 2.2;
+  letter-spacing: 0.32em;
+  color: var(--color-off-white);
+  margin: 0;
+  padding-right: 22px;
+  border-right: 1px solid rgba(243, 242, 238, 0.55);
+  text-shadow: 0 0 18px rgba(51, 45, 40, 0.5);
+}
+
+.photo-copy-line {
+  display: block;
+}
+
+.photo-copy-line + .photo-copy-line {
+  /* 2行目は下げて段組み（縦書きの余韻） */
+  padding-top: 2.4em;
+  margin-block-start: 0.2em;
+}
+
+@media (max-width: 480px) {
+  .photo-copy {
+    min-height: 380px;
+    justify-content: center;
+  }
+
+  .photo-copy--left {
+    justify-content: center;
+  }
+
+  .photo-copy-overlay,
+  .photo-copy--left .photo-copy-overlay {
+    background: rgba(51, 45, 40, 0.55);
+  }
+}

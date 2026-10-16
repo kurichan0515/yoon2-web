@@ -88,8 +88,8 @@
 }
 
 .error-message-container.error-info {
-  background: #d1ecf1;
-  border-color: #17a2b8;
+  background: var(--color-light-gray);
+  border-color: var(--color-green);
 }
 
 @media (max-width: 768px) {

@@ -106,9 +106,9 @@ const AdSense = ({
             <div className="adsense-test-ad-image">
               <div className="adsense-test-ad-image-placeholder">
                 <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect width="100" height="100" fill="#f0f0f0"/>
-                  <path d="M30 40L50 25L70 40V70H30V40Z" fill="#d0d0d0"/>
-                  <circle cx="50" cy="50" r="8" fill="#b0b0b0"/>
+                  <rect width="100" height="100" style={{ fill: 'var(--color-light-gray)' }}/>
+                  <path d="M30 40L50 25L70 40V70H30V40Z" style={{ fill: 'var(--color-gray)', opacity: 0.5 }}/>
+                  <circle cx="50" cy="50" r="8" style={{ fill: 'var(--color-gray)' }}/>
                 </svg>
               </div>
             </div>

@@ -1,116 +1,146 @@
+/* フッター: 焦げ茶背景・オフホワイト文字 */
 .public-footer {
-  background-color: #2a2118;
-  color: #f4f1eb;
+  background-color: var(--color-brown);
+  color: var(--color-off-white);
   margin-top: auto;
 }
 
 .public-footer-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 56px 20px 28px;
+  padding: 72px 24px 32px;
 }
 
 .footer-content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 40px;
-  margin-bottom: 40px;
+  margin-bottom: 56px;
+}
+
+.footer-section .footer-logo {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: var(--color-off-white);
+  margin: 0 0 12px;
+}
+
+.footer-logo sup {
+  font-size: 0.5em;
+  vertical-align: super;
+  line-height: 0;
 }
 
 .footer-section h3,
 .footer-section h4 {
   margin: 0 0 16px 0;
-  color: #f4f1eb;
-  font-family: var(--font-display);
+  color: var(--color-off-white);
   font-weight: 400;
-  letter-spacing: 0.06em;
 }
 
 .footer-section h3 {
-  font-size: 1.4rem;
-  font-style: italic;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  letter-spacing: 0.12em;
 }
 
 .footer-section h4 {
-  font-size: 0.85rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-style: normal;
-  font-family: var(--font-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
   font-weight: 500;
-  color: rgba(244, 241, 235, 0.55);
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--color-light-gray);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-line-on-dark);
 }
 
 .footer-section p {
-  margin: 8px 0;
-  color: rgba(244, 241, 235, 0.6);
-  line-height: 1.7;
-  font-size: 0.9rem;
+  margin: 6px 0;
+  color: var(--color-light-gray);
+  line-height: 1.9;
+  font-size: 0.875rem;
 }
 
 .footer-line-link {
   display: inline-flex;
   align-items: center;
-  background-color: transparent;
-  color: var(--color-accent);
-  border: 1px solid var(--color-accent);
-  padding: 10px 20px;
-  border-radius: 0;
-  text-decoration: none;
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  gap: 0.8em;
+  min-height: 44px;
+  padding: 0 24px;
   margin: 8px 0;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  border-radius: var(--border-radius-pill);
+  border: 1px solid rgba(243, 242, 238, 0.7);
+  background-color: transparent;
+  color: var(--color-off-white);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.footer-line-link::after {
+  content: '→';
+  content: '→' / '';
+  transition: transform 0.3s ease;
 }
 
 .footer-line-link:hover {
-  background-color: var(--color-accent);
-  color: #ffffff;
+  color: var(--color-off-white);
+  opacity: 0.8;
+}
+
+.footer-line-link:hover::after {
+  transform: translateX(3px);
 }
 
 .footer-bottom {
-  border-top: 1px solid rgba(244, 241, 235, 0.1);
-  padding-top: 24px;
+  border-top: 1px solid var(--color-line-on-dark);
+  padding-top: 28px;
   text-align: center;
 }
 
 .footer-bottom p {
   margin: 0;
-  color: rgba(244, 241, 235, 0.6);
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
+  color: var(--color-light-gray);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
 }
 
 .footer-links-bottom {
-  margin-top: 12px;
+  margin-top: 16px;
   display: flex;
   justify-content: center;
-  gap: 24px;
+  gap: 8px 28px;
   flex-wrap: wrap;
 }
 
 .footer-link {
-  color: rgba(244, 241, 235, 0.6);
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--color-light-gray);
   text-decoration: none;
-  font-size: 0.8rem;
+  font-size: 0.8125rem;
   letter-spacing: 0.06em;
-  transition: color 0.2s ease;
+  transition: color 0.3s ease;
 }
 
 .footer-link:hover {
-  color: var(--color-accent);
+  color: var(--color-off-white);
 }
 
-/* レスポンシブ */
 @media (max-width: 768px) {
   .footer-content {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 32px;
+    margin-bottom: 40px;
   }
 
   .public-footer-container {
-    padding: 40px 20px 20px;
+    padding: 56px 20px 24px;
   }
 }
