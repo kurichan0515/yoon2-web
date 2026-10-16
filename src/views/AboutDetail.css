@@ -19,7 +19,7 @@
   font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-gray-text);
   margin-bottom: 0.25em;
 }
 

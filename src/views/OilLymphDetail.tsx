@@ -150,7 +150,7 @@ export default function OilLymphDetail() {
         </div>
       </section>
 
-      <section className="section" style={{ background: 'var(--color-white)' }}>
+      <section className="section" style={{ background: 'var(--color-light-gray)' }}>
         <div className="container">
           <div className="detail-section-header">
             <span className="detail-section-label">For You</span>
@@ -210,7 +210,7 @@ export default function OilLymphDetail() {
         </div>
       </section>
 
-      <section className="section" style={{ background: 'var(--color-white)' }}>
+      <section className="section" style={{ background: 'var(--color-light-gray)' }}>
         <div className="container">
           <div className="detail-section-header">
             <span className="detail-section-label">Flow</span>

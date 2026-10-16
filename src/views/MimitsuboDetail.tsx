@@ -164,7 +164,7 @@ export default function MimitsuboDetail() {
         </div>
       </section>
 
-      <section className="section" style={{ background: 'var(--color-white)' }}>
+      <section className="section" style={{ background: 'var(--color-light-gray)' }}>
         <div className="container">
           <div className="detail-section-header">
             <span className="detail-section-label">About the Treatment</span>
@@ -203,7 +203,7 @@ export default function MimitsuboDetail() {
         </div>
       </section>
 
-      <section className="section" style={{ background: 'var(--color-white)' }}>
+      <section className="section" style={{ background: 'var(--color-light-gray)' }}>
         <div className="container">
           <div className="detail-section-header">
             <span className="detail-section-label">Flow</span>
@@ -256,7 +256,7 @@ export default function MimitsuboDetail() {
         </div>
       </section>
 
-      <section className="section" style={{ background: 'var(--color-white)' }}>
+      <section className="section" style={{ background: 'var(--color-light-gray)' }}>
         <div className="container">
           <div className="detail-section-header">
             <span className="detail-section-label">FAQ</span>
