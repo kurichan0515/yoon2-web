@@ -40,7 +40,7 @@ const appConfig: AppConfig = {
     postalCode: '790-0923',
     address: '愛媛県松山市北久米町438',
     access: {
-      stations: ['北久米駅から徒歩5分/駐車場有り', '', ''],
+      stations: ['北久米駅から徒歩4分/駐車場有り', '', ''],
       landmarks: '',
       parking: '',
       parkingPhotos: {
