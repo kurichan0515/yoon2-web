@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
-import { notoSans, notoSerif } from './fonts';
+import SerifFontLoader from './serif-font-loader';
 import appConfig from '../src/config/appConfig';
 import '../src/App.css';
 
@@ -137,11 +137,14 @@ const breadcrumbSchema = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ja" className={`${notoSerif.variable} ${notoSans.variable}`}>
+    <html lang="ja">
       <head>
         {/* LCP 画像 preload */}
-        <link rel="preload" as="image" type="image/webp" href="/images/eastern/hero-pc.webp" media="(min-width: 769px)" fetchPriority="high" />
-        <link rel="preload" as="image" type="image/webp" href="/images/eastern/hero-sp.webp" media="(max-width: 768px)" fetchPriority="high" />
+        <link rel="preload" as="image" type="image/webp" href="/images/eastern/hero-pc.webp" media="(min-width: 769px)" />
+        <link rel="preload" as="image" type="image/webp" href="/images/eastern/hero-sp.webp" media="(max-width: 768px)" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <SerifFontLoader />
         {/* AdSense: <Script> で strategy を付けると data-nscript が付与され警告になるため直接 <script> タグを使用 */}
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script

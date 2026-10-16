@@ -1,4 +1,5 @@
-/* フォントは next/font（app/fonts.ts）で自己ホスト読み込み */
+/* 見出しの Noto Serif JP は app/serif-font-loader.tsx で非同期読み込み。
+   本文の Noto Sans JP は端末搭載フォント（Android: Noto Sans CJK / iOS: ヒラギノ）を利用 */
 
 /* CSS変数 - デザイントークン（東洋医学×和モダン） */
 :root {
@@ -59,8 +60,8 @@
   --color-border-new: var(--color-light-gray);
 
   /* ===== フォント ===== */
-  --font-serif: var(--font-noto-serif), 'Hiragino Mincho ProN', 'Yu Mincho', serif;
-  --font-sans: var(--font-noto-sans), 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', sans-serif;
+  --font-serif: 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+  --font-sans: 'Noto Sans JP', 'Noto Sans CJK JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', sans-serif;
   --font-primary: var(--font-serif);
   --font-display: var(--font-serif);
   --font-secondary: var(--font-sans);
