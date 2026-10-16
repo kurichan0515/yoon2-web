@@ -84,7 +84,7 @@ function MenuDiagnosis() {
                 <li>リンパの流れを整える</li>
               </ul>
               <p className="diagnosis-card-desc">
-                厳選オイルでリンパの滞りをじっくり丁寧に流し、冷え性やむくみ、身体の重だるさをスッキリ解消。深いリラックスと巡りの良さを同時に体感。
+                五行和漢オイルでリンパの滞りをじっくり丁寧に流し、冷え性やむくみ、身体の重だるさをスッキリ解消。深いリラックスと巡りの良さを同時に体感。
               </p>
               <button className="diagnosis-card-btn diagnosis-card-btn--oil" onClick={scrollToMenu}>
                 料金・詳細を見る
@@ -99,10 +99,7 @@ function MenuDiagnosis() {
           <article className="diagnosis-card diagnosis-card--dark">
             <div className="diagnosis-card-images" aria-hidden="true">
               <div className="diagnosis-card-image-wrap">
-                <Image src="/images/menus/ear-treatment-2.jpg" alt="" fill sizes="(max-width: 768px) 50vw, 200px" style={{ objectFit: 'cover' }} />
-              </div>
-              <div className="diagnosis-card-image-wrap">
-                <Image src="/images/menus/oil-treatment.jpg" alt="" fill sizes="(max-width: 768px) 50vw, 200px" style={{ objectFit: 'cover' }} />
+                <Image src="/images/menus/oil-treatment.jpg" alt="" fill sizes="(max-width: 768px) 50vw, 400px" style={{ objectFit: 'cover' }} />
               </div>
             </div>
             <div className="diagnosis-card-inner">
@@ -112,12 +109,12 @@ function MenuDiagnosis() {
               <p className="diagnosis-card-target">耳も全身もまるごとリセットしたい方へ</p>
               <ul className="diagnosis-card-contents" aria-label="内容">
                 <li>イヤースコープで見る耳かき</li>
-                <li>全身オイルリンパ</li>
+                <li>3種から選べる全身オイル</li>
               </ul>
               <p className="diagnosis-card-desc">
-                オイルでリンパを流した後、耳とヘッドをほぐし全身の疲労を取っていく至福のコース。いつも頑張っている自分へのご褒美に。
+                耳元の心地よい刺激で緊張を解きほぐした後、全身オイルリンパへ。その日の体調に合わせてオイルを選び、お疲れを根本からスッキリ解放。
               </p>
-              <p className="diagnosis-card-price">100分 ¥11,800〜</p>
+              <p className="diagnosis-card-price">100分 ¥11,800〜（初回）</p>
               <button className="diagnosis-card-btn diagnosis-card-btn--dark" onClick={() => scrollToMenuTab('ear-oil')}>
                 料金・詳細を見る
                 <span className="visually-hidden">（イヤーエステ×オイルリンパ）</span>
