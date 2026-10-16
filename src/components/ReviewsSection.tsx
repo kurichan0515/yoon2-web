@@ -10,7 +10,7 @@ interface Review { id: string; text: string; age: string; source: string; }
 const REVIEWS: Review[] = [
   { id: 'r1', text: '耳の中をスコープで確認しながら施術。不眠も改善して、通う価値しかないです！', age: '30代女性', source: 'ホットペッパー' },
   { id: 'r2', text: '完全個室で男性でも安心。仕事疲れが施術後スッと消えました。',              age: '40代男性', source: 'ホットペッパー' },
-  { id: 'r3', text: 'ジュエリーつけ放題なのに肩まで軽くなった！また絶対来ます。',              age: '20代女性', source: 'ホットペッパー' },
+  { id: 'r3', text: 'オイルリンパと耳のセットで全身ぽかぽか。気づいたら寝ていました。',        age: '20代女性', source: 'ホットペッパー' },
 ];
 
 function ReviewsSection() {

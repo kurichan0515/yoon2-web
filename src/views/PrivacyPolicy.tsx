@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, memo, RefCallback } from 'react';
 import AdSense from '../components/common/AdSense';
+import appConfig from '../config/appConfig';
 import './PrivacyPolicy.css';
 
 const PrivacyPolicy = memo(() => {
@@ -134,7 +135,7 @@ const PrivacyPolicy = memo(() => {
               <div className="contact-info">
                 <p><strong>yoon²ゆんゆん</strong></p>
                 <p>住所: 愛媛県松山市北久米町438</p>
-                <p>電話: 080-8478-1163</p>
+                <p>電話: {appConfig.shop.phone}</p>
                 <p>LINE: <a href="https://lin.ee/lyyKSqu" target="_blank" rel="noopener noreferrer">公式LINEアカウント</a></p>
               </div>
             </div>

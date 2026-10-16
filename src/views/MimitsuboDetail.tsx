@@ -4,7 +4,7 @@ import Breadcrumb from '../components/common/Breadcrumb';
 import ReservationCTA from '../components/common/ReservationCTA';
 import './MenuDetail.css';
 
-const mimitsuboMenus = MENU_DATA.find(c => c.categoryKey === 'mimitubo')?.menus ?? [];
+const mimitsuboMenus = MENU_DATA.flatMap(c => c.menus).filter(m => m.id === 'mimitubo-regular');
 const mimitsuboTimes = [...new Set(mimitsuboMenus.map(m => m.time))].sort((a, b) => a - b);
 const mimitsuboPrices = mimitsuboMenus.map(m => m.price);
 
@@ -37,7 +37,7 @@ export default function MimitsuboDetail() {
           <Breadcrumb
             items={[
               { name: 'トップ', href: '/' },
-              { name: 'メニュー', href: '/?menu=mimitubo' },
+              { name: 'メニュー', href: '/?menu=other' },
               { name: '耳つぼ' },
             ]}
           />

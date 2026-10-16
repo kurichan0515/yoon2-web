@@ -126,76 +126,6 @@
   text-wrap: pretty;
 }
 
-/* ===== Hero 初回価格バナー ===== */
-.hero-price-banner {
-  margin: 1.25rem auto 0.75rem;
-  text-align: center;
-  background: rgba(250, 247, 240, 0.9);
-  padding: 1.1rem 1.5rem 1rem;
-  border-radius: 2px;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(201, 169, 110, 0.5);
-  max-width: 320px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-.hero-price-label {
-  font-size: 0.72rem;
-  color: var(--color-accent);
-  font-weight: 500;
-  margin: 0 0 0.3rem;
-  letter-spacing: 0.12em;
-  font-family: var(--font-secondary), var(--font-japanese);
-  text-transform: uppercase;
-}
-
-.hero-price-menu {
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--color-text-primary);
-  margin: 0 0 0.4rem;
-  letter-spacing: 0.06em;
-  font-family: var(--font-primary);
-}
-
-.hero-price-wrapper {
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-  gap: 2px;
-  line-height: 1;
-}
-
-.hero-price-yen {
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--color-accent);
-  font-family: var(--font-primary);
-}
-
-.hero-price-amount {
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--color-accent);
-  line-height: 1;
-  font-family: var(--font-primary);
-}
-
-.hero-price-unit {
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--color-accent);
-  font-family: var(--font-primary);
-}
-
-.hero-price-note {
-  font-size: 0.78rem;
-  color: #888;
-  margin: 0.35rem 0 0;
-  font-family: var(--font-secondary), var(--font-japanese);
-}
-
 /* ===== Hero 口コミバッジ ===== */
 .hero-review-badge {
   display: inline-block;
@@ -207,6 +137,10 @@
   border: 1px solid rgba(201, 169, 110, 0.35);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+}
+
+.hero-review-badge--standalone {
+  margin-top: 1.5rem;
 }
 
 .hero-review-stars-row {
@@ -238,36 +172,6 @@
   text-align: center;
   font-family: var(--font-secondary), var(--font-japanese);
   letter-spacing: 0.03em;
-}
-
-/* ===== Hero 協会認定バッジ ===== */
-.hero-certification-badge {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4em;
-  text-align: center;
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  color: #666;
-  background: rgba(250, 247, 240, 0.88);
-  padding: 0.5rem 1rem;
-  border-radius: 2px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
-  margin: 0 auto 1.25rem;
-  border: 1px solid rgba(201, 169, 110, 0.35);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  text-decoration: none;
-  font-family: var(--font-secondary), var(--font-japanese);
-  max-width: 320px;
-  transition: border-color 0.3s ease, color 0.3s ease;
-}
-
-.hero-certification-badge:hover {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
 }
 
 .hero-actions {
@@ -850,32 +754,13 @@
     margin-right: auto;
   }
 
-  .hero-price-banner {
-    margin: 0.4rem auto 0.4rem;
-    padding: 0.6rem 1.5rem 0.5rem;
-  }
-
-  .hero-price-amount {
-    font-size: 2.2rem;
-  }
-
-  .hero-price-unit {
-    font-size: 1.1rem;
-  }
-
-  .hero-price-note {
-    margin-top: 0.15rem;
-  }
-
   .hero-review-badge {
     margin: 0 auto 0.4rem;
     padding: 0.3rem 0.9rem;
   }
 
-  .hero-certification-badge {
-    margin: 0 auto 1rem;
-    padding: 0.4rem 0.8rem;
-    font-size: 0.62rem;
+  .hero-review-badge--standalone {
+    margin-top: 1rem;
   }
 
   .hero-actions {
@@ -978,24 +863,6 @@
     font-size: 0.95rem;
   }
   
-  .hero-price-amount {
-    font-size: 2.4rem;
-  }
-
-  .hero-price-unit {
-    font-size: 1.1rem;
-  }
-
-  .hero-price-banner {
-    padding: 0.6rem 1rem 0.5rem;
-    max-width: 280px;
-    margin: 0.4rem auto 0.3rem;
-  }
-
-  .hero-price-amount {
-    font-size: 2rem;
-  }
-
   .hero-title-reading {
     margin-bottom: 0.2rem;
   }
@@ -2089,4 +1956,65 @@
   .about-text p {
     font-size: 0.85rem !important;
   }
+}
+
+/* ===== セクションデザイン刷新: カードの囲みをやめ、余白+細線区切りに（2026-10メニュー改定） ===== */
+
+/* セクション間の余白を拡大 */
+.home .section {
+  padding: calc(var(--spacing-xxl) * 1.5) 0;
+}
+
+@media (max-width: 768px) {
+  .home .section {
+    padding: calc(var(--spacing-xl) * 1.5) 0;
+  }
+}
+
+/* 隣接セクションの境目にアクセント細線 */
+.home .section + .section {
+  position: relative;
+}
+
+.home .section + .section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  height: 1px;
+  background-color: var(--color-accent);
+}
+
+/* 背景色の交互切り替えを廃止し統一 */
+.home .shop-section,
+.home .parking-section,
+.home .hours-section,
+.home .flow-section,
+.home .access-guide-section,
+.home .adsense-section {
+  background-color: var(--color-background);
+}
+
+/* カードの枠線・影・hover時の浮き上がりを除去 */
+.home .info-card,
+.home .hours-card,
+.home .menu-item-card,
+.home .review-card {
+  border: none;
+  box-shadow: none;
+}
+
+.home .info-card:hover,
+.home .hours-card:hover,
+.home .menu-item-card:hover,
+.home .review-card:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.home .faq-category,
+.home .faq-contact {
+  border: none;
 }

@@ -54,7 +54,7 @@ const appConfig: AppConfig = {
       weekday: '10:00 - 20:00', weekend: '10:00 - 20:00',
       note: '営業時間外でも対応できることがあります。お気軽にお問い合わせください。',
     },
-    holidays: '不定休',
+    holidays: '木曜日',
     description: 'イヤーエステと耳つぼで心身のバランスを整える専門サロンです。お客様一人ひとりに合わせたオーダーメイドの施術で、深いリラクゼーションを提供いたします。',
     email: '',
     lineUrl: 'https://lin.ee/lyyKSqu',

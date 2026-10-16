@@ -113,7 +113,7 @@ const Hero = () => {
           深い夜の静寂に包まれるような、究極の癒やし体験。<br className="sm:hidden" />耳から整う、心と身体の休息。
         </p>
         <div className="mx-auto mb-3 sm:mb-4 max-w-xs bg-white/95 border border-[#c9a96e]/50 px-4 sm:px-5 py-3 shadow-md shadow-black/20">
-          <p className="text-[#c9a96e] text-[0.7rem] sm:text-xs font-semibold tracking-[0.12em] mb-1 text-center uppercase">女性一番人気</p>
+          <p className="text-[#c9a96e] text-[0.7rem] sm:text-xs font-semibold tracking-[0.12em] mb-1 text-center uppercase">人気メニュー</p>
           <p className="text-[#2c2c2c] text-sm sm:text-base font-semibold tracking-wide mb-1 text-center" style={{ fontFamily: "'Playfair Display', serif" }}>耳つぼジュエリー</p>
           <div className="flex items-baseline justify-center gap-0.5 leading-none">
             <span className="text-[#c9a96e] text-xl sm:text-2xl font-semibold">¥</span>
@@ -328,7 +328,8 @@ const SNS_BADGE: Record<string, string> = {
   '人気': 'border border-[#3B82F6]/60 text-[#3B82F6]',
   'プレミアム': 'border border-white/30 text-white/70',
   'オプション': 'border border-white/20 text-white/50',
-  '女性一番人気': 'border border-[#3B82F6]/60 text-[#3B82F6]',
+  '平日限定': 'border border-[#3B82F6]/60 text-[#3B82F6]',
+  '指名限定': 'border border-white/30 text-white/70',
 };
 
 function MenuSnsCard({ menu, lineUrl }: { menu: MenuItem; lineUrl: string }) {
@@ -600,7 +601,7 @@ const HomeSns = () => {
               {[
                 { icon: <MapPin className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '住所', content: <p className="text-xs sm:text-sm break-words !text-white/70">{shop.address}</p> },
                 { icon: <MapPin className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '最寄り駅', content: shop.access?.stations?.filter(Boolean).map((s, i) => <p key={i} className="text-xs sm:text-sm !text-white/70">{s}</p>) },
-                { icon: <Clock className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '営業時間', content: <p className="text-xs sm:text-sm !text-white/70">{shop.hours?.weekday}</p> },
+                { icon: <Clock className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '営業時間', content: <p className="text-xs sm:text-sm !text-white/70">{shop.hours?.weekday}（木曜定休）</p> },
                 { icon: <Phone className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '電話番号', content: <p className="text-xs sm:text-sm break-all !text-white/70">{shop.phone}</p> },
               ].map(({ icon, label, content }) => (
                 <div key={label} className="flex items-start gap-2 sm:gap-3 md:gap-4 text-white/70">

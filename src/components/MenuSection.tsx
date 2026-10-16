@@ -24,7 +24,8 @@ const BADGE_CLASS: Record<string, string> = {
   '人気': 'menu-badge--popular',
   'プレミアム': 'menu-badge--premium',
   'オプション': 'menu-badge--option',
-  '女性一番人気': 'menu-badge--women',
+  '平日限定': 'menu-badge--popular',
+  '指名限定': 'menu-badge--premium',
 };
 
 function MenuCard({ menu, lineUrl }: { menu: MenuItem; lineUrl: string }) {
@@ -96,6 +97,16 @@ function MenuSection() {
     );
     obs.observe(el);
     return () => obs.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const categoryKey = (e as CustomEvent<{ categoryKey: string }>).detail?.categoryKey;
+      const idx = menus.findIndex(cat => cat.categoryKey === categoryKey);
+      if (idx >= 0) setActiveTab(idx);
+    };
+    window.addEventListener('menu-tab-select', handler);
+    return () => window.removeEventListener('menu-tab-select', handler);
   }, []);
 
   useEffect(() => {

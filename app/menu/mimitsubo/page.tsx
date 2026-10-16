@@ -3,7 +3,7 @@ import PublicLayout from '../../../src/layouts/PublicLayout';
 import MimitsuboDetail from '../../../src/views/MimitsuboDetail';
 import { MENU_DATA } from '../../../src/data/menuData';
 
-const mimitsuboMenus = MENU_DATA.find(c => c.categoryKey === 'mimitubo')?.menus ?? [];
+const mimitsuboMenus = MENU_DATA.flatMap(c => c.menus).filter(m => m.id === 'mimitubo-regular');
 const mimitsuboMinPrice = Math.min(...mimitsuboMenus.map(m => m.price));
 
 export const metadata: Metadata = {

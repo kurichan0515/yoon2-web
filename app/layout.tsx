@@ -1,16 +1,17 @@
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import FontLoader from './font-loader';
+import appConfig from '../src/config/appConfig';
 import '../src/App.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://yoon2.com'),
   title: 'yoon²|耳つぼ×イヤーエステ専門店【愛媛初・北久米駅5分】',
-  description: '愛媛初の耳つぼ×イヤーエステ専門サロン。ホットペッパービューティー評価4.93、協会認定技術で凝りやむくみをやさしくほぐす。北久米駅徒歩5分、初回3,500円〜。',
+  description: '愛媛初の耳つぼ×イヤーエステ専門サロン。ホットペッパービューティー評価4.93、協会認定技術で凝りやむくみをやさしくほぐす。北久米駅徒歩5分、初回4,500円〜。',
   openGraph: {
     type: 'website',
     title: 'yoon²|耳つぼ×イヤーエステ専門店【愛媛初・北久米駅5分】',
-    description: '愛媛初の耳つぼ×イヤーエステ専門サロン。ホットペッパービューティー評価4.93、協会認定技術で凝りやむくみをやさしくほぐす。北久米駅徒歩5分、初回3,500円〜。',
+    description: '愛媛初の耳つぼ×イヤーエステ専門サロン。ホットペッパービューティー評価4.93、協会認定技術で凝りやむくみをやさしくほぐす。北久米駅徒歩5分、初回4,500円〜。',
     url: 'https://yoon2.com',
     siteName: 'yoon²',
     locale: 'ja_JP',
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'yoon²|耳つぼ×イヤーエステ専門店【愛媛初・北久米駅5分】',
-    description: '愛媛初の耳つぼ×イヤーエステ専門サロン。ホットペッパービューティー評価4.93、協会認定技術で凝りやむくみをやさしくほぐす。北久米駅徒歩5分、初回3,500円〜。',
+    description: '愛媛初の耳つぼ×イヤーエステ専門サロン。ホットペッパービューティー評価4.93、協会認定技術で凝りやむくみをやさしくほぐす。北久米駅徒歩5分、初回4,500円〜。',
     images: ['https://yoon2.com/images/about/concept-interior.jpg'],
   },
   alternates: {
@@ -51,7 +52,7 @@ const localBusinessSchema = {
   name: 'yoon²ゆんゆん',
   description: 'イヤーエステと耳つぼで心身のバランスを整える専門サロンです。お客様一人ひとりに合わせたオーダーメイドの施術で、深いリラクゼーションを提供いたします。',
   url: 'https://yoon2.com',
-  telephone: '080-8478-1163',
+  telephone: appConfig.shop.phone,
   address: {
     '@type': 'PostalAddress',
     addressLocality: '松山市',
@@ -67,12 +68,12 @@ const localBusinessSchema = {
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Friday', 'Saturday', 'Sunday'],
       opens: '10:00',
       closes: '20:00',
     },
   ],
-  priceRange: '¥2,500-¥12,500',
+  priceRange: '¥3,500-¥17,500',
   paymentAccepted: '現金, クレジットカード, 電子マネー',
   currenciesAccepted: 'JPY',
   areaServed: { '@type': 'City', name: '松山市' },
@@ -94,25 +95,25 @@ const serviceSchema = {
       description: '耳周りの筋肉をほぐし、顔のむくみ・リフトアップに効果的なエステ',
       provider: { '@type': 'BeautySalon', name: 'yoon²ゆんゆん' },
       areaServed: { '@type': 'City', name: '松山市' },
-      offers: { '@type': 'Offer', priceCurrency: 'JPY', price: '3500' },
+      offers: { '@type': 'Offer', priceCurrency: 'JPY', price: '4500' },
     },
     {
       '@type': 'Service',
       position: 2,
-      name: '耳つぼもみほぐし',
-      description: '耳のツボを刺激し自律神経を整えるリラクゼーション施術',
+      name: '耳つぼ',
+      description: '耳のツボを刺激し自律神経を整えるリラクゼーション施術（ジュエリー込み）',
       provider: { '@type': 'BeautySalon', name: 'yoon²ゆんゆん' },
       areaServed: { '@type': 'City', name: '松山市' },
-      offers: { '@type': 'Offer', priceCurrency: 'JPY', price: '2500' },
+      offers: { '@type': 'Offer', priceCurrency: 'JPY', price: '3500' },
     },
     {
       '@type': 'Service',
       position: 3,
-      name: '耳つぼジュエリー',
-      description: '耳つぼもみほぐし＋ジュエリーつけ放題。女性人気No.1メニュー',
+      name: 'オイルリンパ',
+      description: '五行和漢オイルを使用した全身リンパトリートメント',
       provider: { '@type': 'BeautySalon', name: 'yoon²ゆんゆん' },
       areaServed: { '@type': 'City', name: '松山市' },
-      offers: { '@type': 'Offer', priceCurrency: 'JPY', price: '3500' },
+      offers: { '@type': 'Offer', priceCurrency: 'JPY', price: '7800' },
     },
     {
       '@type': 'Service',
@@ -121,6 +122,7 @@ const serviceSchema = {
       description: '頭皮マッサージで血行促進・ストレス解消',
       provider: { '@type': 'BeautySalon', name: 'yoon²ゆんゆん' },
       areaServed: { '@type': 'City', name: '松山市' },
+      offers: { '@type': 'Offer', priceCurrency: 'JPY', price: '4500' },
     },
   ],
 };
