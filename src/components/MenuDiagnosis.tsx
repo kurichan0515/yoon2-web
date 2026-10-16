@@ -117,7 +117,6 @@ function MenuDiagnosis() {
               <p className="diagnosis-card-desc">
                 耳元の心地よい刺激で緊張を解きほぐした後、全身オイルリンパへ。その日の体調に合わせてオイルを選び、お疲れを根本からスッキリ解放。
               </p>
-              <p className="diagnosis-card-price">100分 ¥11,800〜（初回）</p>
               <button className="diagnosis-card-btn diagnosis-card-btn--dark" onClick={() => scrollToMenuTab('ear-oil')}>
                 料金・詳細を見る
                 <span className="visually-hidden">（イヤーエステ×オイルリンパ）</span>
