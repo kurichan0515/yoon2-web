@@ -146,7 +146,7 @@ const Home = memo(() => {
                 )],
                 ['🚃','最寄り駅', shop.access?.stations?.filter(Boolean).map((s, i) => <p key={i}>{s}</p>)],
                 ['🕐','営業時間', <p key="hours">{shop.hours?.weekday ?? '10:00 - 20:00'}（木曜定休）</p>],
-                ['📞','電話番号', <p key="phone">{shop.phone ?? '080-8478-1163'}</p>],
+                ['📞','電話番号', <p key="phone">{shop.phone ?? appConfig.shop.phone}</p>],
               ].map(([icon, title, content]) => (
                 <div key={title as string} className="info-card">
                   <div className="info-icon" aria-hidden="true">{icon}</div>

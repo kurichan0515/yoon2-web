@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import FontLoader from './font-loader';
+import appConfig from '../src/config/appConfig';
 import '../src/App.css';
 
 export const metadata: Metadata = {
@@ -51,7 +52,7 @@ const localBusinessSchema = {
   name: 'yoon²ゆんゆん',
   description: 'イヤーエステと耳つぼで心身のバランスを整える専門サロンです。お客様一人ひとりに合わせたオーダーメイドの施術で、深いリラクゼーションを提供いたします。',
   url: 'https://yoon2.com',
-  telephone: '080-8478-1163',
+  telephone: appConfig.shop.phone,
   address: {
     '@type': 'PostalAddress',
     addressLocality: '松山市',
