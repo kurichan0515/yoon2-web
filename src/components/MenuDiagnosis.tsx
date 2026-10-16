@@ -99,7 +99,10 @@ function MenuDiagnosis() {
           <article className="diagnosis-card diagnosis-card--dark">
             <div className="diagnosis-card-images" aria-hidden="true">
               <div className="diagnosis-card-image-wrap">
-                <Image src="/images/menus/oil-treatment.jpg" alt="" fill sizes="(max-width: 768px) 50vw, 400px" style={{ objectFit: 'cover' }} />
+                <Image src="/images/menus/ear-treatment-2.jpg" alt="" fill sizes="(max-width: 768px) 50vw, 200px" style={{ objectFit: 'cover' }} />
+              </div>
+              <div className="diagnosis-card-image-wrap">
+                <Image src="/images/menus/oil-treatment.jpg" alt="" fill sizes="(max-width: 768px) 50vw, 200px" style={{ objectFit: 'cover' }} />
               </div>
             </div>
             <div className="diagnosis-card-inner">
