@@ -715,7 +715,7 @@ const HomeSns = () => {
 
       <footer className="py-8 sm:py-12 border-t border-white/5 text-center px-3">
         <div className="text-lg sm:text-xl font-bold text-white mb-4 sm:mb-6 whitespace-nowrap" style={{ fontFamily: "'League Spartan', sans-serif", letterSpacing: '-0.05em' }}>yoon²</div>
-        <p className="text-white/50 text-[0.65rem] sm:text-xs tracking-wide sm:tracking-widest break-words">&copy; 2025 yoon² EAR ESTHETIC SALON. ALL RIGHTS RESERVED.</p>
+        <p className="text-white/50 text-[0.65rem] sm:text-xs tracking-wide sm:tracking-widest break-words">&copy; 2025-{new Date().getFullYear()} yoon² EAR ESTHETIC SALON. ALL RIGHTS RESERVED.</p>
         <p className="mt-3">
           <a href="/privacy" className="text-white/50 text-[0.65rem] sm:text-xs tracking-wide hover:text-white/70 transition-colors">プライバシーポリシー</a>
         </p>

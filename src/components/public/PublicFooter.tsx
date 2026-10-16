@@ -45,7 +45,7 @@ const PublicFooter = () => (
         </div>
       </div>
       <div className="footer-bottom">
-        <p>&copy; 2025 {appConfig.shop.name}. All rights reserved.</p>
+        <p>&copy; 2025-{new Date().getFullYear()} {appConfig.shop.name}. All rights reserved.</p>
         <div className="footer-links-bottom">
           <Link href="/about" className="footer-link">yoon²について</Link>
           <Link href="/event" className="footer-link">出張イベント募集</Link>
