@@ -140,8 +140,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ja" className={`${notoSerif.variable} ${notoSans.variable}`}>
       <head>
         {/* LCP 画像 preload */}
-        <link rel="preload" as="image" href="/images/shop/play-room.webp" media="(min-width: 769px)" />
-        <link rel="preload" as="image" href="/images/hero/hero-sp.webp" media="(max-width: 768px)" />
+        <link rel="preload" as="image" type="image/webp" href="/images/eastern/hero-pc.webp" media="(min-width: 769px)" fetchPriority="high" />
+        <link rel="preload" as="image" type="image/webp" href="/images/eastern/hero-sp.webp" media="(max-width: 768px)" fetchPriority="high" />
         {/* AdSense: <Script> で strategy を付けると data-nscript が付与され警告になるため直接 <script> タグを使用 */}
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script

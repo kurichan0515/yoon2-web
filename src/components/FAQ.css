@@ -7,30 +7,28 @@
 .faq-categories {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  gap: 56px;
   max-width: 800px;
   margin: 0 auto;
 }
 
 /* カテゴリブロック */
 .faq-category {
-  background: var(--color-white);
-  border-radius: 0;
+  background: transparent;
   overflow: hidden;
-  border: 1px solid rgba(229, 224, 215, 0.8);
 }
 
 /* カテゴリタイトル — 全カテゴリ統一 */
 .faq-category-title {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  font-weight: 400;
-  font-style: italic;
-  padding: var(--spacing-md) var(--spacing-lg);
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  padding: 0 0 14px;
   margin: 0;
-  color: #f4f1eb;
-  letter-spacing: 0.06em;
-  background-color: #2a2118;
+  color: var(--color-brown);
+  letter-spacing: 0.1em;
+  background-color: transparent;
+  border-bottom: 1px solid var(--color-brown);
 }
 
 /* カテゴリ別カラーを廃止・統一 */
@@ -39,7 +37,7 @@
 .faq-category--mens .faq-category-title,
 .faq-category--access .faq-category-title,
 .faq-category--payment .faq-category-title {
-  background-color: #2a2118;
+  background-color: transparent;
 }
 
 /* FAQ アイテム一覧 */
@@ -50,11 +48,7 @@
 
 /* FAQ アイテム */
 .faq-item {
-  border-bottom: 1px solid rgba(229, 224, 215, 0.6);
-}
-
-.faq-item:last-child {
-  border-bottom: none;
+  border-bottom: 1px solid var(--color-line);
 }
 
 /* 質問ボタン */
@@ -64,7 +58,7 @@
   align-items: center;
   width: 100%;
   min-height: 56px;
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: 18px 4px;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -75,18 +69,15 @@
 }
 
 .faq-question:hover {
-  background-color: #faf9f7;
-}
-
-.faq-item--open .faq-question {
-  background-color: rgba(201, 169, 110, 0.05);
+  background-color: transparent;
+  opacity: 0.75;
 }
 
 .faq-question-text {
-  font-size: 0.95rem;
+  font-size: 0.9375rem;
   font-weight: 500;
   color: var(--color-text-primary);
-  line-height: 1.5;
+  line-height: 1.8;
   flex: 1;
 }
 
@@ -125,14 +116,14 @@
 
 /* 回答コンテンツ */
 .faq-answer {
-  padding: var(--spacing-md) var(--spacing-lg) var(--spacing-lg);
-  background-color: #faf9f7;
-  border-top: 1px solid rgba(201, 169, 110, 0.12);
+  padding: 20px 24px 24px;
+  background-color: var(--color-light-gray);
+  margin-bottom: 18px;
 }
 
 .faq-answer p {
-  font-size: 0.9rem;
-  line-height: 1.8;
+  font-size: 0.875rem;
+  line-height: 1.95;
   color: var(--color-text-secondary);
   margin: 0 0 var(--spacing-sm);
 }
@@ -151,12 +142,11 @@
 
 /* 補足テキスト */
 .faq-answer-note {
-  background: rgba(201, 169, 110, 0.08);
-  border-left: 2px solid var(--color-accent);
-  padding: var(--spacing-sm) var(--spacing-md) !important;
+  background: transparent;
+  border-left: 1px solid var(--color-accent);
+  padding: 4px 0 4px var(--spacing-md) !important;
   border-radius: 0;
   margin-top: var(--spacing-sm) !important;
-  font-style: italic;
 }
 
 /* リスト */
@@ -175,12 +165,13 @@
 }
 
 .faq-list li::before {
-  content: '—';
+  content: '';
   position: absolute;
   left: 0;
-  color: var(--color-accent);
-  font-weight: 300;
-  font-size: 0.8rem;
+  top: 0.85em;
+  width: 0.7em;
+  height: 1px;
+  background-color: var(--color-accent);
 }
 
 .faq-list a {
@@ -190,7 +181,7 @@
 }
 
 .faq-list a:hover {
-  color: #b8956a;
+  color: var(--color-brown);
 }
 
 /* 料金リスト */
@@ -200,7 +191,7 @@
 
 .faq-list--price strong {
   color: var(--color-accent);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 /* お支払いリスト */
@@ -210,10 +201,12 @@
 
 /* お問い合わせ CTA */
 .faq-contact {
-  margin-top: var(--spacing-xl);
-  padding: var(--spacing-xl) var(--spacing-lg);
+  margin-top: 72px;
+  padding: 40px var(--spacing-lg);
   background: transparent;
-  border: 1px solid rgba(229, 224, 215, 0.8);
+  border: none;
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
   border-radius: 0;
   text-align: center;
   max-width: 800px;
@@ -222,10 +215,11 @@
 }
 
 .faq-contact-text {
-  font-size: 1rem;
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  letter-spacing: 0.08em;
   color: var(--color-text-secondary);
   margin-bottom: var(--spacing-lg);
-  font-family: var(--font-secondary), var(--font-japanese);
 }
 
 .faq-contact-actions {
@@ -249,16 +243,11 @@
 /* レスポンシブ */
 @media (max-width: 768px) {
   .faq-categories {
-    gap: var(--spacing-md);
-  }
-
-  .faq-category-title {
-    font-size: 0.95rem;
-    padding: var(--spacing-sm) var(--spacing-md);
+    gap: 40px;
   }
 
   .faq-question {
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: 14px 2px;
     min-height: 52px;
   }
 
@@ -267,7 +256,7 @@
   }
 
   .faq-answer {
-    padding: var(--spacing-sm) var(--spacing-md) var(--spacing-md);
+    padding: 16px 18px 18px;
   }
 
   .faq-contact {
@@ -287,7 +276,7 @@
 
 @media (max-width: 480px) {
   .faq-question {
-    padding: 0.75rem 1rem;
+    padding: 0.875rem 2px;
     gap: 0.75rem;
   }
 
@@ -302,7 +291,7 @@
   }
 
   .faq-answer {
-    padding: 0.75rem 1rem 1rem;
+    padding: 0.875rem 1rem 1rem;
   }
 
   .faq-answer p,
@@ -312,13 +301,8 @@
 }
 
 @media (max-width: 320px) {
-  .faq-category-title {
-    font-size: 0.9rem;
-    padding: 0.625rem 0.75rem;
-  }
-
   .faq-question {
-    padding: 0.625rem 0.75rem;
+    padding: 0.625rem 2px;
     min-height: 48px;
   }
 
