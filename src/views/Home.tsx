@@ -145,12 +145,7 @@ const Home = memo(() => {
                   </div>
                 )],
                 ['🚃','最寄り駅', shop.access?.stations?.filter(Boolean).map((s, i) => <p key={i}>{s}</p>)],
-                ['🕐','営業時間', (
-                  <div key="hours">
-                    <p>営業時間 {shop.hours?.weekday ?? '10:00 - 20:00'}</p>
-                    <p>定休日: {shop.holidays ?? '木曜日'}</p>
-                  </div>
-                )],
+                ['🕐','営業時間', <p key="hours">{shop.hours?.weekday ?? '10:00 - 20:00'}（木曜定休）</p>],
                 ['📞','電話番号', <p key="phone">{shop.phone ?? '080-8478-1163'}</p>],
               ].map(([icon, title, content]) => (
                 <div key={title as string} className="info-card">
@@ -250,9 +245,9 @@ const Home = memo(() => {
           <div className="hours-content">
             <div className="hours-grid" style={{ gridTemplateColumns: '1fr' }}>
               <div className="hours-card">
-                <h3>営業時間</h3>
-                <p className="hours-time">営業時間 {shop.hours?.weekday ?? '10:00 - 20:00'}</p>
-                <p className="hours-note">定休日: {shop.holidays ?? '木曜日'}</p>
+                <h3>月〜水・金〜日・祝</h3>
+                <p className="hours-time">{shop.hours?.weekday ?? '10:00 - 20:00'}</p>
+                <p className="hours-note">定休日：木曜日</p>
               </div>
             </div>
             {shop.notes && shop.notes.length > 0 && (

@@ -601,7 +601,7 @@ const HomeSns = () => {
               {[
                 { icon: <MapPin className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '住所', content: <p className="text-xs sm:text-sm break-words !text-white/70">{shop.address}</p> },
                 { icon: <MapPin className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '最寄り駅', content: shop.access?.stations?.filter(Boolean).map((s, i) => <p key={i} className="text-xs sm:text-sm !text-white/70">{s}</p>) },
-                { icon: <Clock className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '営業時間', content: <p className="text-xs sm:text-sm !text-white/70">{shop.hours?.weekday}</p> },
+                { icon: <Clock className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '営業時間', content: <p className="text-xs sm:text-sm !text-white/70">{shop.hours?.weekday}（木曜定休）</p> },
                 { icon: <Phone className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '電話番号', content: <p className="text-xs sm:text-sm break-all !text-white/70">{shop.phone}</p> },
               ].map(({ icon, label, content }) => (
                 <div key={label} className="flex items-start gap-2 sm:gap-3 md:gap-4 text-white/70">
