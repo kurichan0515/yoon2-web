@@ -1,62 +1,75 @@
-/* フォントは index.html で非同期読み込み（レンダーブロック軽減） */
+/* フォントは next/font（app/fonts.ts）で自己ホスト読み込み */
 
-/* CSS変数 - デザインシステム */
+/* CSS変数 - デザイントークン（東洋医学×和モダン） */
 :root {
-  /* カラーパレット - ナチュラル・エレガント（既存デザイン） */
-  --color-primary: #f4f1eb;
-  --color-secondary: #e8e1d8;
-  --color-accent: #c9a96e;
-  --color-text-primary: #2c2c2c;
-  --color-text-secondary: #6b6b6b;
-  --color-text-light: #8e8e8e;
-  --color-white: #ffffff;
-  --color-background: #faf9f7;
-  --color-border: #e5e0d7;
-  
-  /* 新しいデザインシステム - モダン・クール */
-  /* プライマリカラー */
-  --color-primary-main: #2196F3;
-  --color-primary-light: #64B5F6;
-  --color-primary-dark: #1976D2;
-  --color-primary-background: #E3F2FD;
-  
-  /* セカンダリカラー */
-  --color-secondary-main: #4CAF50;
-  --color-secondary-light: #81C784;
-  --color-secondary-dark: #388E3C;
-  --color-secondary-background: #E8F5E9;
-  
-  /* アクセントカラー */
-  --color-accent-main: #FF9800;
-  --color-accent-light: #FFB74D;
-  --color-accent-dark: #F57C00;
-  --color-accent-background: #FFF3E0;
-  
-  /* ステータスカラー */
-  --color-status-error: #F44336;
-  --color-status-success: #4CAF50;
-  --color-status-warning: #FF9800;
-  --color-status-info: #2196F3;
-  
-  /* テキストカラー */
-  --color-text-primary-new: #333333;
-  --color-text-secondary-new: #666666;
-  --color-text-placeholder: #999999;
-  --color-text-disabled: #CCCCCC;
-  
-  /* 背景カラー */
-  --color-background-main: #F5F5F5;
-  --color-background-card: #FFFFFF;
-  
-  /* ボーダーカラー */
-  --color-border-new: #E0E0E0;
-  
-  /* フォント */
-  --font-primary: 'Playfair Display', serif;
-  --font-display: 'Cormorant Garamond', 'Playfair Display', serif;
-  --font-secondary: 'Montserrat', sans-serif;
-  --font-japanese: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'メイリオ', sans-serif;
-  
+  /* ===== ブランドカラー（正） ===== */
+  --color-gray: #777878;        /* ベース: 暗色面・区切り線・大きい補助テキスト */
+  --color-brown: #332D28;       /* メイン: 見出し・本文・暗色背景 */
+  --color-green: #263A34;       /* アクセント: 主ボタン・ライン・装飾（面積5〜10%） */
+  --color-light-gray: #D8D7D2;  /* サブ: セクション背景・区切り */
+  --color-off-white: #F3F2EE;   /* テキスト背景・余白 */
+
+  /* 小さいグレー文字用（#777878 は明色面で 3.95:1 と AA 未達のため同色相で暗くしたもの。
+     #F3F2EE 上 6.08:1 / #D8D7D2 上 4.73:1） */
+  --color-gray-text: #5A5B5B;
+  /* 細線（1px）: グレー系 */
+  --color-line: rgba(119, 120, 120, 0.35);
+  --color-line-on-dark: rgba(243, 242, 238, 0.22);
+
+  /* ===== 既存変数 → 新トークンへのエイリアス ===== */
+  --color-primary: var(--color-off-white);
+  --color-secondary: var(--color-light-gray);
+  --color-accent: var(--color-green);
+  --color-text-primary: var(--color-brown);
+  --color-text-secondary: var(--color-brown);
+  --color-text-light: var(--color-gray-text);
+  --color-white: var(--color-off-white);
+  --color-background: var(--color-off-white);
+  --color-border: var(--color-light-gray);
+
+  --color-primary-main: var(--color-green);
+  --color-primary-light: var(--color-gray);
+  --color-primary-dark: var(--color-brown);
+  --color-primary-background: var(--color-light-gray);
+
+  --color-secondary-main: var(--color-green);
+  --color-secondary-light: var(--color-gray);
+  --color-secondary-dark: var(--color-green);
+  --color-secondary-background: var(--color-light-gray);
+
+  --color-accent-main: var(--color-green);
+  --color-accent-light: var(--color-gray);
+  --color-accent-dark: var(--color-green);
+  --color-accent-background: var(--color-light-gray);
+
+  /* ステータスカラー（意味色のため据え置き） */
+  --color-status-error: #B3261E;
+  --color-status-success: var(--color-green);
+  --color-status-warning: #8A5A00;
+  --color-status-info: var(--color-green);
+
+  --color-text-primary-new: var(--color-brown);
+  --color-text-secondary-new: var(--color-brown);
+  --color-text-placeholder: var(--color-gray-text);
+  --color-text-disabled: var(--color-gray);
+
+  --color-background-main: var(--color-off-white);
+  --color-background-card: var(--color-off-white);
+
+  --color-border-new: var(--color-light-gray);
+
+  /* ===== フォント ===== */
+  --font-serif: var(--font-noto-serif), 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+  --font-sans: var(--font-noto-sans), 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', sans-serif;
+  --font-primary: var(--font-serif);
+  --font-display: var(--font-serif);
+  --font-secondary: var(--font-sans);
+  --font-japanese: var(--font-sans);
+
+  --letter-spacing-label: 0.2em;
+  --letter-spacing-body: 0.04em;
+  --line-height-text: 1.95;
+
   /* スペーシング - 既存（rem単位） */
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
@@ -64,7 +77,7 @@
   --spacing-lg: 2rem;
   --spacing-xl: 3rem;
   --spacing-xxl: 4rem;
-  
+
   /* スペーシング - 新しいデザインシステム（px単位） */
   --spacing-xs-px: 4px;
   --spacing-sm-px: 8px;
@@ -72,25 +85,25 @@
   --spacing-lg-px: 16px;
   --spacing-xl-px: 24px;
   --spacing-xxl-px: 32px;
-  
+
   /* ブレークポイント */
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  
-  /* シャドウ - ブランドカラーtinted */
-  --shadow-light: 0 2px 4px rgba(44,44,44,0.04), 0 8px 24px rgba(44,44,44,0.07);
-  --shadow-medium: 0 4px 8px rgba(44,44,44,0.06), 0 16px 40px rgba(44,44,44,0.1), 0 24px 56px rgba(201,169,110,0.08);
-  --shadow-heavy: 0 8px 16px rgba(44,44,44,0.08), 0 32px 64px rgba(44,44,44,0.14), 0 40px 80px rgba(201,169,110,0.12);
-  --shadow-gold: 0 8px 32px rgba(201, 169, 110, 0.2);
-  
-  /* ボーダー半径 */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
-  
+
+  /* シャドウ - 静かなトーンのためごく控えめ */
+  --shadow-light: 0 1px 2px rgba(51, 45, 40, 0.05);
+  --shadow-medium: 0 6px 20px rgba(51, 45, 40, 0.08);
+  --shadow-heavy: 0 12px 32px rgba(51, 45, 40, 0.12);
+  --shadow-gold: 0 6px 20px rgba(51, 45, 40, 0.08);
+
+  /* ボーダー半径 - 和モダンのため小さめ */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-xl: 8px;
+
   /* タイポグラフィ - 新しいデザインシステム */
   --font-size-h1: 28px;
   --font-size-h2: 24px;
@@ -99,7 +112,7 @@
   --font-size-caption: 12px;
   --font-size-count-large: 72px;
   --font-size-count-medium: 24px;
-  
+
   --line-height-h1: 34px;
   --line-height-h2: 29px;
   --line-height-h3: 22px;
@@ -107,11 +120,14 @@
   --line-height-caption: 18px;
   --line-height-count-large: 86px;
   --line-height-count-medium: 29px;
-  
+
   /* レイアウト - 新しいデザインシステム */
-  --border-radius-md-new: 8px;
-  --border-radius-lg-new: 12px;
+  --border-radius-md-new: 4px;
+  --border-radius-lg-new: 6px;
   --border-radius-pill: 9999px;
+
+  /* 固定ヘッダー高 */
+  --header-height: 70px;
 }
 
 /* メインアプリケーションのスタイル */
@@ -130,7 +146,7 @@
   display: flex;
   flex-direction: column;
   /* 固定ヘッダー分の上マージン（ノッチ時は Safe Area を加算） */
-  margin-top: calc(70px + env(safe-area-inset-top, 0px));
+  margin-top: calc(var(--header-height) + env(safe-area-inset-top, 0px));
   width: 100%;
   max-width: 100vw;
   overflow-x: hidden;
@@ -152,10 +168,12 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: var(--font-secondary), var(--font-japanese);
+  font-family: var(--font-sans);
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: 1.7;
+  line-height: var(--line-height-text);
+  letter-spacing: var(--letter-spacing-body);
   color: var(--color-text-primary);
   background-color: var(--color-background);
   overflow-x: hidden;
@@ -167,34 +185,31 @@ body {
   padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* タイポグラフィ */
+/* タイポグラフィ: 見出しは明朝（Noto Serif JP 400/500） */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-primary);
+  font-family: var(--font-serif);
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.6;
+  letter-spacing: 0.08em;
   margin: 0;
   color: var(--color-text-primary);
 }
 
 h1 {
-  font-size: 3.5rem;
-  font-weight: 300;
-  letter-spacing: -0.02em;
+  font-size: 3.25rem;
 }
 
 h2 {
-  font-size: 2.5rem;
-  font-weight: 400;
-  letter-spacing: -0.01em;
+  font-size: 1.875rem;
 }
 
 h3 {
-  font-size: 1.8rem;
+  font-size: 1.375rem;
   font-weight: 500;
 }
 
 h4 {
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   font-weight: 500;
 }
 
@@ -211,9 +226,9 @@ h4 {
 }
 
 p {
-  font-family: var(--font-secondary), var(--font-japanese);
+  font-family: var(--font-sans);
   color: var(--color-text-secondary);
-  line-height: 1.8;
+  line-height: var(--line-height-text);
   margin: 0;
 }
 
@@ -221,8 +236,8 @@ p {
 a {
   color: var(--color-accent);
   text-decoration: none;
-  transition: color 0.3s ease;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.08);
+  transition: color 0.3s ease, opacity 0.3s ease;
+  -webkit-tap-highlight-color: rgba(51, 45, 40, 0.08);
   touch-action: manipulation;
 }
 
@@ -233,13 +248,13 @@ a:hover {
 
 /* ボタンの基本スタイル */
 button {
-  font-family: var(--font-secondary), var(--font-japanese);
+  font-family: var(--font-sans);
   cursor: pointer;
   border: none;
   outline: none;
-  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
   font-weight: 500;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.08);
+  -webkit-tap-highlight-color: rgba(51, 45, 40, 0.08);
   touch-action: manipulation;
 }
 
@@ -249,9 +264,9 @@ a:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 3px solid var(--color-accent);
-  outline-offset: 2px;
-  box-shadow: 0 0 0 4px rgba(201, 169, 110, 0.2);
+  outline: 2px solid var(--color-green);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px rgba(243, 242, 238, 0.9);
 }
 
 button:focus:not(:focus-visible),
@@ -259,64 +274,122 @@ a:focus:not(:focus-visible) {
   outline: none;
 }
 
-.btn-primary {
-  background-color: var(--color-accent);
-  color: var(--color-text-primary);
-  padding: var(--spacing-md) var(--spacing-xl);
-  border-radius: 0;
-  font-size: 0.82rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  font-weight: 600;
-  box-shadow: none;
-  min-height: 44px;
-  min-width: 120px;
+/* ===== ボタン =====
+   主: 深緑塗り・pill・白文字・末尾「→」
+   副: 透明・焦げ茶細枠・pill・末尾「→」
+   hover は不透明度と矢印のわずかな移動のみ */
+.btn-primary,
+.btn-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.9em;
+  min-height: 48px;
+  min-width: 120px;
+  padding: 0.85rem 2rem;
+  border-radius: var(--border-radius-pill);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-primary::after,
+.btn-secondary::after {
+  content: '→';
+  content: '→' / '';
+  display: inline-block;
+  font-family: var(--font-sans);
+  transition: transform 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--color-green);
+  color: var(--color-off-white);
+  border: 1px solid var(--color-green);
 }
 
 .btn-primary:hover {
-  background-color: #b8956a;
-  box-shadow: 0 4px 20px rgba(201, 169, 110, 0.3);
-  transform: translateY(-1px);
+  background-color: var(--color-green);
+  color: var(--color-off-white);
+  opacity: 0.86;
 }
 
 .btn-secondary {
   background-color: transparent;
-  color: var(--color-text-primary);
-  padding: var(--spacing-md) var(--spacing-xl);
-  border: 1px solid var(--color-text-primary);
-  border-radius: 0;
-  font-size: 0.82rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  font-weight: 500;
-  min-height: 44px;
-  min-width: 120px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  color: var(--color-brown);
+  border: 1px solid var(--color-brown);
 }
 
 .btn-secondary:hover {
-  background-color: var(--color-text-primary);
-  color: var(--color-white);
+  background-color: transparent;
+  color: var(--color-brown);
+  opacity: 0.72;
+}
+
+.btn-primary:hover::after,
+.btn-secondary:hover::after {
+  transform: translateX(3px);
+}
+
+/* 暗色面上の副ボタン */
+.btn-secondary.btn-on-dark {
+  color: var(--color-off-white);
+  border-color: rgba(243, 242, 238, 0.7);
+}
+
+.btn-secondary.btn-on-dark:hover {
+  color: var(--color-off-white);
+}
+
+/* 英字セクションラベル（BRAND CONCEPT / MENU 等） */
+.section-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--color-gray-text);
+  margin-bottom: 0.75rem;
+}
+
+/* 区切り細線（カード枠の代わりに余白＋1px線） */
+.rule {
+  display: block;
+  width: 100%;
+  height: 1px;
+  border: 0;
+  background-color: var(--color-line);
+  margin: 0;
+}
+
+.rule--short {
+  width: 48px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--color-green);
 }
 
 /* フォーム要素の基本スタイル */
 input, select, textarea {
-  font-family: var(--font-secondary), var(--font-japanese);
-  border: 2px solid var(--color-border);
+  font-family: var(--font-sans);
+  border: 1px solid var(--color-gray);
   border-radius: var(--radius-sm);
   padding: var(--spacing-sm);
+  background-color: var(--color-off-white);
+  color: var(--color-brown);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 input:focus, select:focus, textarea:focus {
   outline: none;
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.1);
+  border-color: var(--color-green);
+  box-shadow: 0 0 0 3px rgba(38, 58, 52, 0.15);
 }
 
 /* 画像: width/height 指定で CLS 防止しつつレスポンシブに */
@@ -366,8 +439,8 @@ img[width][height] {
 /* フェードインアニメーション */
 .fade-in {
   opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 0.8s ease forwards;
+  transform: translateY(20px);
+  animation: fadeInUp 0.9s ease forwards;
 }
 
 @keyframes fadeInUp {
@@ -380,66 +453,64 @@ img[width][height] {
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
   .main-content {
-    margin-top: calc(70px + env(safe-area-inset-top, 0px));
     padding: 0;
     width: 100%;
     max-width: 100vw;
     overflow-x: hidden;
   }
-  
+
   .container {
-    padding: 0 var(--spacing-sm);
+    padding: 0 1.25rem;
     width: 100%;
     max-width: 100vw;
     margin: 0 auto;
     overflow-x: hidden;
   }
-  
-  /* 画面幅の制限を解除 */
+
   body {
     width: 100%;
     max-width: 100vw;
     overflow-x: hidden;
   }
-  
+
   .App {
     width: 100%;
     max-width: 100vw;
     overflow-x: hidden;
   }
-  
+
   h1 {
     font-size: 2.5rem;
   }
-  
+
   h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
-  
+
+  h3 {
+    font-size: 1.1875rem;
+  }
+
   .section {
     padding: var(--spacing-xl) 0;
   }
-  
+
   .loading-screen h2 {
     font-size: 1.5rem;
   }
 }
 
 @media (max-width: 480px) {
-  .main-content {
-    margin-top: calc(70px + env(safe-area-inset-top, 0px));
-  }
-  
   h1 {
     font-size: 2rem;
   }
-  
+
   h2 {
-    font-size: 1.5rem;
+    font-size: 1.375rem;
   }
-  
+
   .btn-primary, .btn-secondary {
-    padding: var(--spacing-sm) var(--spacing-lg);
+    padding: 0.8rem 1.6rem;
     font-size: 0.9rem;
   }
 }
