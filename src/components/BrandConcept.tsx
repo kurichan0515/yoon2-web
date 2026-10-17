@@ -2,7 +2,7 @@ import React from 'react';
 import './BrandConcept.css';
 
 // 五行アイコン（線画）。注記は漢字1字のみ（身体機能・効果は記載しない）
-const ELEMENTS: { kanji: string; icon: React.ReactNode }[] = [
+export const GOGYO_ELEMENTS: { kanji: string; icon: React.ReactNode }[] = [
   {
     kanji: '木',
     icon: (
@@ -68,7 +68,7 @@ function BrandConcept() {
             それが、ゆんゆんのイヤーエステです。
           </p>
           <ul className="gogyo-list" aria-label="五行">
-            {ELEMENTS.map(el => (
+            {GOGYO_ELEMENTS.map(el => (
               <li key={el.kanji} className="gogyo-item">
                 <svg className="gogyo-icon" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true" focusable="false">
                   {el.icon}
