@@ -5,9 +5,8 @@ import '@testing-library/jest-dom';
 jest.mock('../../services/analyticsService', () => ({
   default: { trackPageView: jest.fn() },
   trackPageView: jest.fn(), trackMenuView: jest.fn(), trackFaqView: jest.fn(),
-  trackReviewsView: jest.fn(), trackHotpepperClick: jest.fn(), trackLineClick: jest.fn(),
+  trackReviewsView: jest.fn(), trackHotpepperClick: jest.fn(), trackLineClick: jest.fn(), trackTelClick: jest.fn(),
 }));
-jest.mock('../../services/googleAdsService', () => ({ trackLineAddConversion: jest.fn(), trackPageView: jest.fn() }));
 
 jest.mock('../../components/SocialFeed', () => () => <div data-testid="social-feed" />);
 jest.mock('../../components/FAQ', () => () => <div data-testid="faq" />);
@@ -16,7 +15,6 @@ jest.mock('../../components/ReviewsSection', () => () => <div data-testid="revie
 jest.mock('../../components/ConcernSection', () => () => <div data-testid="concern" />);
 jest.mock('../../components/MenuDiagnosis', () => () => <div data-testid="diagnosis" />);
 jest.mock('../../components/FlowSection', () => () => <div data-testid="flow" />);
-jest.mock('../../components/common/AdSense', () => () => null);
 
 jest.mock('../../config/appConfig', () => ({
   default: {
@@ -32,7 +30,6 @@ jest.mock('../../config/appConfig', () => ({
       services: [],
     },
     social: { twitter: { url: '' }, instagram: { url: '', username: '' }, line: { url: 'https://lin.ee/test', note: '' } },
-    adsense: { enabled: false, publisherId: '', defaultAdSlot: '', devMode: false },
     googleAds: { conversionId: '', conversionLabel: '', enabled: false },
   },
   __esModule: true,

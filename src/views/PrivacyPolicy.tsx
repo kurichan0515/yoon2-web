@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useRef, memo, RefCallback } from 'react';
-import AdSense from '../components/common/AdSense';
 import appConfig from '../config/appConfig';
 import './PrivacyPolicy.css';
 
@@ -94,19 +93,7 @@ const PrivacyPolicy = memo(() => {
             </div>
 
             <div className="privacy-section" ref={addToRefs}>
-              <h2>6. Google AdSenseについて</h2>
-              <p>
-                当サイトでは、第三者配信の広告サービス「Google AdSense」を利用しています。
-                Google AdSenseは、お客様の興味に応じた広告を表示するため、当サイトや他のサイトへのアクセス情報を使用する場合があります。
-              </p>
-              <p>
-                お客様は、<a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer">Googleの広告設定</a>から、
-                パーソナライズ広告を無効にすることができます。
-              </p>
-            </div>
-
-            <div className="privacy-section" ref={addToRefs}>
-              <h2>7. アクセス解析ツールについて</h2>
+              <h2>6. アクセス解析ツールについて</h2>
               <p>
                 当サイトでは、サービス向上のため、Google Analyticsなどのアクセス解析ツールを使用しています。
                 収集されたデータは匿名で、個人を特定するものではありません。
@@ -114,7 +101,7 @@ const PrivacyPolicy = memo(() => {
             </div>
 
             <div className="privacy-section" ref={addToRefs}>
-              <h2>8. 個人情報の開示・訂正・削除</h2>
+              <h2>7. 個人情報の開示・訂正・削除</h2>
               <p>
                 お客様ご本人から、個人情報の開示、訂正、削除のご請求があった場合、ご本人確認の上、速やかに対応いたします。
               </p>
@@ -122,7 +109,7 @@ const PrivacyPolicy = memo(() => {
             </div>
 
             <div className="privacy-section" ref={addToRefs}>
-              <h2>9. プライバシーポリシーの変更</h2>
+              <h2>8. プライバシーポリシーの変更</h2>
               <p>
                 当サロンは、必要に応じて本プライバシーポリシーを変更する場合があります。
                 変更後のプライバシーポリシーは、本ページに掲載した時点で効力を生じるものとします。
@@ -130,7 +117,7 @@ const PrivacyPolicy = memo(() => {
             </div>
 
             <div className="privacy-section" ref={addToRefs}>
-              <h2>10. お問い合わせ</h2>
+              <h2>9. お問い合わせ</h2>
               <p>本プライバシーポリシーに関するお問い合わせは、以下までご連絡ください：</p>
               <div className="contact-info">
                 <p><strong>yoon²ゆんゆん</strong></p>
@@ -140,10 +127,8 @@ const PrivacyPolicy = memo(() => {
               </div>
             </div>
 
-            <AdSense adSlot="2647640133" adFormat="auto" />
-
             <div className="privacy-footer" ref={addToRefs}>
-              <p className="last-updated">最終更新日: 2026年1月15日</p>
+              <p className="last-updated">最終更新日: 2026年10月19日</p>
             </div>
           </div>
         </div>

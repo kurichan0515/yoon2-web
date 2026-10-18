@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import appConfig from '../config/appConfig';
-import { FAQ_DATA, getFaqStructuredData } from '../data/faqData';
-import { trackFaqView, trackHotpepperClick, trackLineClick } from '../services/analyticsService';
+import { FAQ_DATA } from '../data/faqData';
+import { trackFaqView, trackHotpepperClick, trackLineClick, trackTelClick } from '../services/analyticsService';
 import './FAQ.css';
 
 interface FaqListItem { text: string; href?: string; hrefKey?: string; }
@@ -104,16 +104,6 @@ function FAQ() {
     return () => obs.disconnect();
   }, []);
 
-  useEffect(() => {
-    if (document.getElementById('faq-structured-data')) return;
-    const script = document.createElement('script');
-    script.id = 'faq-structured-data';
-    script.type = 'application/ld+json';
-    script.textContent = getFaqStructuredData();
-    document.head.appendChild(script);
-    return () => { document.getElementById('faq-structured-data')?.remove(); };
-  }, []);
-
   return (
     <section id="faq" className="faq-section section" ref={sectionRef}>
       <div className="container">
@@ -148,7 +138,8 @@ function FAQ() {
               <span className="visually-hidden">（新しいウィンドウで開きます）</span>
             </a>
             <a href={`tel:${(appConfig.shop.phone as string).replace(/-/g, '')}`}
-              className="btn-secondary faq-tel-btn">
+              className="btn-secondary faq-tel-btn"
+              onClick={() => trackTelClick('FAQ Contact CTA')}>
               {appConfig.shop.phone as string}
             </a>
           </div>

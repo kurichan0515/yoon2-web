@@ -2,12 +2,11 @@
 
 import React, { useEffect, useRef, memo, RefCallback } from 'react';
 import dynamic from 'next/dynamic';
-import AdSense from '../components/common/AdSense';
 import BrandConcept from '../components/BrandConcept';
 import PhotoCopy from '../components/PhotoCopy';
 import appConfig from '../config/appConfig';
 import logger from '../utils/logger';
-import { trackLineAddConversion } from '../services/googleAdsService';
+import { trackLineClick, trackTelClick } from '../services/analyticsService';
 import './HeroBackground.css';
 import './Home.css';
 
@@ -80,13 +79,17 @@ const Home = memo(() => {
         </div>
         <div className="hero-inner">
           <div className="hero-content">
-            <h1 className="hero-title-main">yoon²</h1>
+            <h1 className="hero-title-main">
+              yoon²<span className="visually-hidden"> 松山の耳かき・イヤーエステ専門店</span>
+            </h1>
             <p className="hero-title-reading" aria-label="読み方">【ユンユン】</p>
-            <p className="hero-title-sub">イヤーエステ専門サロン</p>
+            <p className="hero-title-sub">
+              <span className="hero-title-sub-part">松山の見える耳かき・</span><span className="hero-title-sub-part">イヤーエステ専門サロン</span>
+            </p>
             <div className="hero-actions">
               <a href={lineUrl} target="_blank" rel="noopener noreferrer"
                 className="btn-primary hero-cta"
-                onClick={() => trackLineAddConversion()}>
+                onClick={() => trackLineClick('Hero')}>
                 ご予約はこちら
                 <span className="visually-hidden">（LINE、新しいウィンドウで開きます）</span>
               </a>
@@ -106,6 +109,7 @@ const Home = memo(() => {
       <section className="hero-intro" aria-label="yoon²の特徴">
         <div className="container">
           <p className="hero-description">
+            イヤースコープで耳の中を一緒に見ながら、やさしく耳掃除。<br />
             「取れる」快感と、耳から広がる深い眠り。<br />
             迷走神経を優しく撫でる新感覚タッチで、蓄積した脳疲労をリセット。
           </p>
@@ -153,7 +157,7 @@ const Home = memo(() => {
                 )],
                 ['最寄り駅', shop.access?.stations?.filter(Boolean).map((s, i) => <p key={i}>{s}</p>)],
                 ['営業時間', <p key="hours">{shop.hours?.weekday ?? '10:00 - 20:00'}（木曜定休）</p>],
-                ['電話番号', <p key="phone">{shop.phone ?? appConfig.shop.phone}</p>],
+                ['電話番号', <p key="phone"><a href={`tel:${(shop.phone ?? appConfig.shop.phone).replace(/-/g, '')}`} onClick={() => trackTelClick('Shop Info')}>{shop.phone ?? appConfig.shop.phone}</a></p>],
               ].map(([title, content]) => (
                 <div key={title as string} className="info-card">
                   <div className="info-content"><h3>{title}</h3>{content}</div>
@@ -281,19 +285,13 @@ const Home = memo(() => {
             <p>ご予約やお問い合わせは<strong>公式LINE</strong>にメッセージをお願いします。</p>
             <a href={lineUrl} target="_blank" rel="noopener noreferrer"
               className="btn-primary line-booking-btn"
-              onClick={() => trackLineAddConversion()}>
+              onClick={() => trackLineClick('Reserve')}>
               <span className="line-booking-text">
                 <span className="line-booking-line1">LINEで予約</span>
                 <span className="line-booking-line2">お問い合わせ</span>
               </span>
             </a>
           </div>
-        </div>
-      </section>
-
-      <section className="adsense-section section" ref={addToRefs}>
-        <div className="container">
-          <AdSense adSlot="2647640133" adFormat="auto" className="adsense-social" />
         </div>
       </section>
     </div>

@@ -37,7 +37,7 @@ export default function HomePage() {
 
       {/* サーバーレンダリング静的コンテンツ (クローラー向け) */}
       <div style={srOnly} aria-hidden="true">
-        <h2 id="ssg-shop">{shop.name} - 松山の耳つぼ・イヤーエステ専門サロン</h2>
+        <h2 id="ssg-shop">{shop.name} - 松山の耳かき・イヤーエステ専門店</h2>
         <p>住所: {shop.address}</p>
         <p>営業時間: {shop.hours.weekday}</p>
         <p>電話番号: {shop.phone}</p>

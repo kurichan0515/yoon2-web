@@ -5,13 +5,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Calendar } from 'lucide-react';
 import appConfig from '../config/appConfig';
-import AdSense from '../components/common/AdSense';
 import { GOGYO_ELEMENTS } from '../components/BrandConcept';
 import { trackPageView } from '../services/analyticsService';
-import { trackPageView as trackGoogleAdsPageView, trackLineAddConversion } from '../services/googleAdsService';
-import { FAQ_DATA, getFaqStructuredData } from '../data/faqData';
-import { MENU_DATA, HOTPEPPER_URL, getMenuStructuredData } from '../data/menuData';
-import { trackHotpepperClick, trackLineClick } from '../services/analyticsService';
+import { trackPageView as trackGoogleAdsPageView } from '../services/googleAdsService';
+import { FAQ_DATA } from '../data/faqData';
+import { MENU_DATA, HOTPEPPER_URL } from '../data/menuData';
+import { trackHotpepperClick, trackLineClick, trackTelClick } from '../services/analyticsService';
 import './HomeSns.css';
 import './HeroBackground.css';
 
@@ -112,7 +111,7 @@ const Header = ({ isScrolled, isMenuOpen, setIsMenuOpen, lineUrl }: HeaderProps)
           </ul>
           <a href={lineUrl} target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center min-h-[40px] px-5 rounded-full bg-[#2563EB] text-white text-xs font-medium tracking-widest hover:opacity-85 transition-opacity"
-            onClick={() => trackLineAddConversion()}>
+            onClick={() => trackLineClick('SNS Header')}>
             LINEで予約
             <span className="sr-only">（新しいウィンドウで開きます）</span>
           </a>
@@ -138,7 +137,7 @@ const Header = ({ isScrolled, isMenuOpen, setIsMenuOpen, lineUrl }: HeaderProps)
             ))}
           </ul>
           <a href={lineUrl} target="_blank" rel="noopener noreferrer" className={`${BTN_PRIMARY} w-full`}
-            onClick={() => { trackLineAddConversion(); setIsMenuOpen(false); }}>
+            onClick={() => { trackLineClick('SNS Drawer'); setIsMenuOpen(false); }}>
             LINEで予約<Arrow />
             <span className="sr-only">（新しいウィンドウで開きます）</span>
           </a>
@@ -165,11 +164,13 @@ const Hero = ({ lineUrl }: { lineUrl: string }) => (
       <div className="text-center max-w-xl px-4">
         <h1 className="text-[3.5rem] sm:text-7xl md:text-8xl text-white font-light leading-none mb-5" style={SPARTAN}>yoon²</h1>
         <p className="text-white text-[0.9375rem] sm:text-base tracking-[0.3em] mb-1.5" style={CINZEL} aria-label="読み方">【ユンユン】</p>
-        <p className="text-white text-base sm:text-lg tracking-[0.2em] sm:tracking-[0.24em] mb-9 sm:mb-11">イヤーエステ専門サロン</p>
+        <p className="text-white text-base sm:text-lg tracking-[0.2em] sm:tracking-[0.24em] mb-9 sm:mb-11">
+          <span className="inline-block">松山の見える耳かき・</span><span className="inline-block">イヤーエステ専門サロン</span>
+        </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
           <a href={lineUrl} target="_blank" rel="noopener noreferrer"
             className={`${BTN_PRIMARY} w-full max-w-[260px] sm:w-auto sm:min-w-[200px]`}
-            onClick={() => trackLineAddConversion()}>
+            onClick={() => trackLineClick('SNS Hero')}>
             ご予約はこちら<Arrow />
             <span className="sr-only">（LINE、新しいウィンドウで開きます）</span>
           </a>
@@ -197,6 +198,7 @@ const Hero = ({ lineUrl }: { lineUrl: string }) => (
 const HeroIntro = () => (
   <section className="bg-[#0A0A0A] pt-10 pb-16 px-5 text-center" aria-label="yoon²の特徴">
     <p className="text-white/90 text-sm sm:text-[0.9375rem] leading-loose tracking-wide max-w-xl mx-auto mb-6 text-left sm:text-center">
+      イヤースコープで耳の中を一緒に見ながら、やさしく耳掃除。<br className="hidden sm:inline" />
       「取れる」快感と、耳から広がる深い眠り。<br className="hidden sm:inline" />
       迷走神経を優しく撫でる新感覚タッチで、蓄積した脳疲労をリセット。
     </p>
@@ -273,7 +275,7 @@ const DIAGNOSIS_CARDS: DiagnosisCard[] = [
     key: 'oil', tag: '男性におすすめ', name: 'オイルリンパ',
     target: '冷えやむくみ・全身の疲れをリセットしたい方へ',
     contents: ['全身オイルトリートメント', 'リンパの流れを整える'],
-    desc: '五行和漢オイルでリンパの滞りをじっくり丁寧に流し、冷え性やむくみ、身体の重だるさをスッキリ解消。深いリラックスと巡りの良さを同時に体感。',
+    desc: '3種から選べるオイルでリンパの滞りをじっくり丁寧に流し、冷え性やむくみ、身体の重だるさをスッキリ解消。深いリラックスと巡りの良さを同時に体感。',
     images: ['/images/menus/oil-treatment.jpg'], detailHref: '/menu/oil-lymph',
   },
   {
@@ -430,7 +432,8 @@ function ReviewsSnsSection() {
           ))}
         </div>
         <div className="text-center">
-          <a href={HOTPEPPER_URL} target="_blank" rel="noopener noreferrer" className={TEXT_LINK}>
+          <a href={HOTPEPPER_URL} target="_blank" rel="noopener noreferrer" className={TEXT_LINK}
+            onClick={() => trackHotpepperClick('SNS Reviews')}>
             すべての口コミを見る →
             <span className="sr-only">（ホットペッパービューティー、新しいウィンドウで開きます）</span>
           </a>
@@ -473,7 +476,7 @@ function MenuSnsCard({ menu, lineUrl }: { menu: MenuItem; lineUrl: string }) {
         </a>
         <a href={lineUrl} target="_blank" rel="noopener noreferrer"
           className={`${BTN_SECONDARY} !px-4 !text-[0.8125rem] !tracking-wider`}
-          onClick={() => { trackLineClick(menu.name); trackLineAddConversion(); }}>
+          onClick={() => trackLineClick(menu.name)}>
           LINEで予約・相談<Arrow />
           <span className="sr-only">（{menu.name}、新しいウィンドウで開きます）</span>
         </a>
@@ -487,16 +490,6 @@ const menus = MENU_DATA as MenuCategory[];
 function MenuSnsSection({ lineUrl }: { lineUrl: string }) {
   const [activeTab, setActiveTab] = useState(0);
   const [fading, setFading] = useState(false);
-
-  useEffect(() => {
-    const id = 'menu-structured-data-sns';
-    if (document.getElementById(id)) return;
-    const script = document.createElement('script');
-    script.id = id; script.type = 'application/ld+json';
-    script.textContent = getMenuStructuredData();
-    document.head.appendChild(script);
-    return () => { document.getElementById(id)?.remove(); };
-  }, []);
 
   useEffect(() => {
     const handler = (e: Event) => {
@@ -618,16 +611,6 @@ function FaqSnsSection({ lineUrl }: { lineUrl: string }) {
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({});
   const toggleItem = (id: string) => setOpenItems(prev => ({ ...prev, [id]: !prev[id] }));
 
-  useEffect(() => {
-    const id = 'faq-structured-data-sns';
-    if (document.getElementById(id)) return;
-    const script = document.createElement('script');
-    script.id = id; script.type = 'application/ld+json';
-    script.textContent = getFaqStructuredData();
-    document.head.appendChild(script);
-    return () => { document.getElementById(id)?.remove(); };
-  }, []);
-
   return (
     <section id="faq" className="py-16 sm:py-24 md:py-28 bg-[#0A0A0A]">
       <div className="max-w-7xl mx-auto px-5 sm:px-6">
@@ -649,11 +632,12 @@ function FaqSnsSection({ lineUrl }: { lineUrl: string }) {
           <p className="text-white text-base sm:text-[1.0625rem] tracking-wider mb-6" style={CINZEL}>その他のご質問はお気軽にお問い合わせください</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
             <a href={lineUrl} target="_blank" rel="noopener noreferrer" className={BTN_PRIMARY}
-              onClick={() => trackLineAddConversion()}>
+              onClick={() => trackLineClick('SNS FAQ Contact CTA')}>
               LINEでお問い合わせ<Arrow />
               <span className="sr-only">（新しいウィンドウで開きます）</span>
             </a>
-            <a href={`tel:${(appConfig.shop.phone as string).replace(/-/g, '')}`} className={BTN_SECONDARY}>
+            <a href={`tel:${(appConfig.shop.phone as string).replace(/-/g, '')}`} className={BTN_SECONDARY}
+              onClick={() => trackTelClick('SNS FAQ Contact CTA')}>
               {appConfig.shop.phone as string}<Arrow />
             </a>
           </div>
@@ -677,7 +661,7 @@ function ShopSnsSection() {
     ) },
     { label: '最寄り駅', content: shop.access?.stations?.filter(Boolean).map((s, i) => <p key={i} className="text-white/90 text-[0.9375rem] leading-loose">{s}</p>) },
     { label: '営業時間', content: <p className="text-white/90 text-[0.9375rem] leading-loose">{shop.hours?.weekday}（木曜定休）</p> },
-    { label: '電話番号', content: <p className="text-white/90 text-[0.9375rem] leading-loose break-all">{shop.phone}</p> },
+    { label: '電話番号', content: <p className="text-white/90 text-[0.9375rem] leading-loose break-all"><a href={`tel:${(shop.phone ?? '').replace(/-/g, '')}`} className="text-white/90 underline underline-offset-4 decoration-white/30" onClick={() => trackTelClick('SNS Shop Info')}>{shop.phone}</a></p> },
   ];
   const photos = [
     shop.access?.parkingPhotos?.accessGuide && { label: 'Access', title: 'アクセス案内', descs: ['お車でのアクセス方法をご確認ください', '駐車場：北久米町412番地'], src: shop.access.parkingPhotos.accessGuide, alt: '駐車場・店舗へのアクセスマップ', h: 600 },
@@ -761,7 +745,7 @@ function ReserveSnsSection({ lineUrl, instagramUrl }: { lineUrl: string; instagr
             <p className="text-[#3B82F6] text-xs tracking-wider mb-4">公式LINEで予約・お問い合わせ</p>
             <p className="text-white/80 text-sm leading-loose mb-7 flex-1">{social.line.note ?? 'ご予約やお問い合わせの際はお手数ですが公式LINEにメッセージをお願いします'}</p>
             <a href={lineUrl} target="_blank" rel="noopener noreferrer" className={`${BTN_PRIMARY} self-center`}
-              onClick={() => trackLineAddConversion()}>
+              onClick={() => trackLineClick('SNS Reserve Card')}>
               <span className="line-booking-text"><span className="line-booking-line1">LINEで予約</span><span className="line-booking-line2">お問い合わせ</span></span><Arrow />
               <span className="sr-only">（新しいウィンドウで開きます）</span>
             </a>
@@ -780,7 +764,7 @@ function ReserveSnsSection({ lineUrl, instagramUrl }: { lineUrl: string; instagr
           <p className="text-white text-base sm:text-lg tracking-widest mb-2" style={CINZEL}>公式LINEで簡単予約</p>
           <p className="text-white/70 text-xs sm:text-sm tracking-wide mb-5">ご予約・お問い合わせは公式LINEからお気軽にどうぞ。24時間受付中！</p>
           <a href={lineUrl} target="_blank" rel="noopener noreferrer" className={`${BTN_PRIMARY} min-w-[260px]`}
-            onClick={() => trackLineAddConversion()}>
+            onClick={() => trackLineClick('SNS Reserve CTA')}>
             LINEを開く<Arrow />
             <span className="sr-only">（新しいウィンドウで開きます）</span>
           </a>
@@ -818,7 +802,7 @@ function FooterSns({ lineUrl }: { lineUrl: string }) {
             <h4 className="text-white/70 text-xs tracking-[0.2em] pb-3 mb-4 border-b border-white/15 font-medium">予約・お問い合わせ</h4>
             <a href={lineUrl} target="_blank" rel="noopener noreferrer"
               className="group inline-flex items-center gap-3 min-h-[44px] px-6 my-2 rounded-full border border-white/60 text-white text-sm tracking-widest hover:opacity-75 transition-opacity"
-              onClick={() => trackLineAddConversion()}>
+              onClick={() => trackLineClick('SNS Footer')}>
               LINEで予約<Arrow />
               <span className="sr-only">（新しいウィンドウで開きます）</span>
             </a>
@@ -871,12 +855,6 @@ const HomeSns = () => {
         <FaqSnsSection lineUrl={lineUrl} />
         <ShopSnsSection />
         <ReserveSnsSection lineUrl={lineUrl} instagramUrl={instagramUrl} />
-
-        <section className="py-10 bg-[#0A0A0A]">
-          <div className="max-w-7xl mx-auto px-6">
-            <AdSense adSlot="2647640133" adFormat="auto" className="adsense-reserve" />
-          </div>
-        </section>
       </main>
 
       <FooterSns lineUrl={lineUrl} />
@@ -884,7 +862,7 @@ const HomeSns = () => {
       <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 md:hidden">
         <a href={lineUrl} target="_blank" rel="noopener noreferrer"
           className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#3B82F6] text-white flex items-center justify-center shadow-lg shadow-blue-500/20"
-          aria-label="LINEで予約（新しいウィンドウで開きます）" onClick={() => trackLineAddConversion()}>
+          aria-label="LINEで予約（新しいウィンドウで開きます）" onClick={() => trackLineClick('SNS Floating')}>
           <Calendar className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden />
         </a>
       </div>

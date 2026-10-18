@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import appConfig from '../../config/appConfig';
 import './PublicFooter.css';
-import { trackLineAddConversion } from '../../services/googleAdsService';
+import { trackLineClick } from '../../services/analyticsService';
 
 const PublicFooter = () => (
   <footer className="public-footer">
@@ -38,7 +38,7 @@ const PublicFooter = () => (
             target="_blank"
             rel="noopener noreferrer"
             className="footer-line-link"
-            onClick={() => trackLineAddConversion()}
+            onClick={() => trackLineClick('Footer')}
           >
             LINEで予約
           </a>

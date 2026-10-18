@@ -54,7 +54,7 @@ export const setPageMeta = ({ title, description, path = '/', image = `${BASE_UR
 };
 
 export const resetPageMeta = () => setPageMeta({
-  title: 'yoon² | 松山の耳つぼ・イヤーエステ専門サロン',
-  description: '愛媛県松山市の耳つぼ・イヤーエステ専門サロン。初回4,500円～、オンライン予約OK。北久米駅徒歩4分、駐車場完備。',
+  title: '松山の耳かき・イヤーエステ専門店 yoon²｜見える耳掃除×オイルリンパ【北久米駅4分】',
+  description: '松山市北久米の耳かき・イヤーエステ専門店。イヤースコープで"見える耳掃除"、オイルリンパで凝り・むくみをやさしくケア。ホットペッパー評価4.93、初回40分4,500円〜。北久米駅徒歩4分・駐車場あり・木曜定休。',
   path: '/',
 });

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import './PublicHeader.css';
 import appConfig from '../../config/appConfig';
-import { trackLineAddConversion } from '../../services/googleAdsService';
+import { trackLineClick } from '../../services/analyticsService';
 
 const NAV_ITEMS = [
   { label: 'HOME', href: '/' },
@@ -129,7 +129,7 @@ const PublicHeader = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="line-button"
-            onClick={() => trackLineAddConversion()}
+            onClick={() => trackLineClick('Header')}
           >
             LINEで予約
             <span className="visually-hidden">（新しいウィンドウで開きます）</span>
@@ -165,7 +165,7 @@ const PublicHeader = () => {
           target="_blank"
           rel="noopener noreferrer"
           className="btn-primary mobile-drawer-cta"
-          onClick={() => { trackLineAddConversion(); closeMenu(); }}
+          onClick={() => { trackLineClick('Header Drawer'); closeMenu(); }}
         >
           LINEで予約
           <span className="visually-hidden">（新しいウィンドウで開きます）</span>

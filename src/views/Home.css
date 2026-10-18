@@ -83,6 +83,11 @@
   margin: 0 0 6px;
 }
 
+/* 狭い画面では「・」の位置で改行させ、1文字だけの折り返しを防ぐ */
+.hero-title-sub-part {
+  display: inline-block;
+}
+
 .hero-title-sub {
   font-family: var(--font-serif);
   font-size: clamp(1.0625rem, 2vw, 1.25rem);
@@ -328,10 +333,6 @@
   border-top: 1px solid var(--color-line);
 }
 
-.home .adsense-section {
-  background-color: var(--color-off-white);
-  padding: 40px 0;
-}
 
 /* ===================== 店舗情報（ACCESS） ===================== */
 .shop-info-content {
