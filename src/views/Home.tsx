@@ -79,11 +79,14 @@ const Home = memo(() => {
         </div>
         <div className="container">
           <div className="hero-content fade-in">
-            <h1 className="hero-title-main">yoon²</h1>
+            <h1 className="hero-title-main">
+              yoon²<span className="visually-hidden"> 松山の耳かき・イヤーエステ専門店</span>
+            </h1>
             <p className="hero-title-reading" aria-label="読み方">ゆんゆん</p>
-            <p className="hero-title-sub">松山の耳つぼ・イヤーエステ専門サロン</p>
+            <p className="hero-title-sub">松山の見える耳かき・イヤーエステ専門サロン</p>
             <p className="hero-subtitle">ear esthetic &amp; acupressure salon</p>
             <p className="hero-description">
+              イヤースコープで耳の中を一緒に見ながら、やさしく耳掃除。<br />
               「取れる」快感と、耳から広がる深い眠り。<br />
               迷走神経を優しく撫でる新感覚タッチで、蓄積した脳疲労をリセット。
             </p>

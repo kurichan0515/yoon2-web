@@ -55,7 +55,7 @@ const appConfig: AppConfig = {
       note: '営業時間外でも対応できることがあります。お気軽にお問い合わせください。',
     },
     holidays: '木曜日',
-    description: 'イヤーエステと耳つぼで心身のバランスを整える専門サロンです。お客様一人ひとりに合わせたオーダーメイドの施術で、深いリラクゼーションを提供いたします。',
+    description: '見える耳かき（イヤーエステ）と和漢オイルリンパの専門サロン。お客様一人ひとりに合わせた施術で、深いリラクゼーションを提供いたします。',
     email: '',
     lineUrl: 'https://lin.ee/lyyKSqu',
     instagramUrl: 'https://www.instagram.com/yoo.n.yoo.n/',

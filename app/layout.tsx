@@ -6,12 +6,12 @@ import '../src/App.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://yoon2.com'),
-  title: 'yoon²|イヤーエステ×オイルリンパ専門店【愛媛初・北久米駅4分】',
-  description: '愛媛初の耳つぼ×イヤーエステ専門サロン。ホットペッパービューティー評価4.93、見える耳かきとオイルリンパで凝りやむくみをやさしくほぐす。北久米駅徒歩4分、初回4,500円〜。',
+  title: '松山の耳かき・イヤーエステ専門店 yoon²｜見える耳掃除×オイルリンパ【北久米駅4分】',
+  description: '松山市北久米の耳かき・イヤーエステ専門店。イヤースコープで"見える耳掃除"、和漢オイルリンパで凝り・むくみをやさしくケア。ホットペッパー評価4.93、初回40分4,500円〜。北久米駅徒歩4分・駐車場あり・木曜定休。',
   openGraph: {
     type: 'website',
-    title: 'yoon²|イヤーエステ×オイルリンパ専門店【愛媛初・北久米駅4分】',
-    description: '愛媛初の耳つぼ×イヤーエステ専門サロン。ホットペッパービューティー評価4.93、見える耳かきとオイルリンパで凝りやむくみをやさしくほぐす。北久米駅徒歩4分、初回4,500円〜。',
+    title: '松山の耳かき・イヤーエステ専門店 yoon²｜見える耳掃除×オイルリンパ【北久米駅4分】',
+    description: '松山市北久米の耳かき・イヤーエステ専門店。イヤースコープで"見える耳掃除"、和漢オイルリンパで凝り・むくみをやさしくケア。ホットペッパー評価4.93、初回40分4,500円〜。北久米駅徒歩4分・駐車場あり・木曜定休。',
     url: 'https://yoon2.com',
     siteName: 'yoon²',
     locale: 'ja_JP',
@@ -20,14 +20,14 @@ export const metadata: Metadata = {
         url: 'https://yoon2.com/images/about/concept-interior.jpg',
         width: 1920,
         height: 1280,
-        alt: 'yoon² - 松山の耳つぼ・イヤーエステ専門サロン',
+        alt: 'yoon² - 松山の耳かき・イヤーエステ専門店',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'yoon²|イヤーエステ×オイルリンパ専門店【愛媛初・北久米駅4分】',
-    description: '愛媛初の耳つぼ×イヤーエステ専門サロン。ホットペッパービューティー評価4.93、見える耳かきとオイルリンパで凝りやむくみをやさしくほぐす。北久米駅徒歩4分、初回4,500円〜。',
+    title: '松山の耳かき・イヤーエステ専門店 yoon²｜見える耳掃除×オイルリンパ【北久米駅4分】',
+    description: '松山市北久米の耳かき・イヤーエステ専門店。イヤースコープで"見える耳掃除"、和漢オイルリンパで凝り・むくみをやさしくケア。ホットペッパー評価4.93、初回40分4,500円〜。北久米駅徒歩4分・駐車場あり・木曜定休。',
     images: ['https://yoon2.com/images/about/concept-interior.jpg'],
   },
   alternates: {
@@ -50,7 +50,7 @@ const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'BeautySalon',
   name: 'yoon²ゆんゆん',
-  description: 'イヤーエステと耳つぼで心身のバランスを整える専門サロンです。お客様一人ひとりに合わせたオーダーメイドの施術で、深いリラクゼーションを提供いたします。',
+  description: '見える耳かき（イヤーエステ）と和漢オイルリンパの専門サロン。お客様一人ひとりに合わせた施術で、深いリラクゼーションを提供いたします。',
   url: 'https://yoon2.com',
   telephone: appConfig.shop.phone,
   address: {
