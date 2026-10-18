@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef, KeyboardEvent } from 'react';
 import appConfig from '../config/appConfig';
-import { MENU_DATA, HOTPEPPER_URL, getMenuStructuredData } from '../data/menuData';
+import { MENU_DATA, HOTPEPPER_URL } from '../data/menuData';
 import { trackHotpepperClick, trackLineClick, trackMenuView } from '../services/analyticsService';
 import './MenuSection.css';
 
@@ -125,17 +125,6 @@ function MenuSection() {
         requestAnimationFrame(() => requestAnimationFrame(scrollToSection));
       }, { once: true });
     }
-  }, []);
-
-  useEffect(() => {
-    const id = 'menu-structured-data';
-    if (document.getElementById(id)) return;
-    const script = document.createElement('script');
-    script.id = id;
-    script.type = 'application/ld+json';
-    script.textContent = getMenuStructuredData();
-    document.head.appendChild(script);
-    return () => { document.getElementById(id)?.remove(); };
   }, []);
 
   const handleTabChange = (index: number) => {

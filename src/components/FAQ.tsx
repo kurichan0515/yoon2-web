@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import appConfig from '../config/appConfig';
-import { FAQ_DATA, getFaqStructuredData } from '../data/faqData';
+import { FAQ_DATA } from '../data/faqData';
 import { trackFaqView, trackHotpepperClick, trackLineClick } from '../services/analyticsService';
 import './FAQ.css';
 
@@ -102,16 +102,6 @@ function FAQ() {
     );
     obs.observe(el);
     return () => obs.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (document.getElementById('faq-structured-data')) return;
-    const script = document.createElement('script');
-    script.id = 'faq-structured-data';
-    script.type = 'application/ld+json';
-    script.textContent = getFaqStructuredData();
-    document.head.appendChild(script);
-    return () => { document.getElementById('faq-structured-data')?.remove(); };
   }, []);
 
   return (

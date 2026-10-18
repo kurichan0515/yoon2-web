@@ -8,8 +8,8 @@ import appConfig from '../config/appConfig';
 import AdSense from '../components/common/AdSense';
 import { trackPageView } from '../services/analyticsService';
 import { trackPageView as trackGoogleAdsPageView, trackLineAddConversion } from '../services/googleAdsService';
-import { FAQ_DATA, getFaqStructuredData } from '../data/faqData';
-import { MENU_DATA, HOTPEPPER_URL, getMenuStructuredData } from '../data/menuData';
+import { FAQ_DATA } from '../data/faqData';
+import { MENU_DATA, HOTPEPPER_URL } from '../data/menuData';
 import { trackHotpepperClick, trackLineClick } from '../services/analyticsService';
 import './HomeSns.css';
 import './HeroBackground.css';
@@ -405,16 +405,6 @@ function MenuSnsSection({ lineUrl }: { lineUrl: string }) {
   const [fading, setFading] = useState(false);
 
   useEffect(() => {
-    const id = 'menu-structured-data-sns';
-    if (document.getElementById(id)) return;
-    const script = document.createElement('script');
-    script.id = id; script.type = 'application/ld+json';
-    script.textContent = getMenuStructuredData();
-    document.head.appendChild(script);
-    return () => { document.getElementById(id)?.remove(); };
-  }, []);
-
-  useEffect(() => {
     const handler = (e: Event) => {
       const categoryKey = (e as CustomEvent<{ categoryKey: string }>).detail?.categoryKey;
       const idx = menus.findIndex(cat => cat.categoryKey === categoryKey);
@@ -546,16 +536,6 @@ const CATEGORY_COLORS: Record<string, { dot: string; label: string }> = {
 function FaqSnsSection({ lineUrl }: { lineUrl: string }) {
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({});
   const toggleItem = (id: string) => setOpenItems(prev => ({ ...prev, [id]: !prev[id] }));
-
-  useEffect(() => {
-    const id = 'faq-structured-data-sns';
-    if (document.getElementById(id)) return;
-    const script = document.createElement('script');
-    script.id = id; script.type = 'application/ld+json';
-    script.textContent = getFaqStructuredData();
-    document.head.appendChild(script);
-    return () => { document.getElementById(id)?.remove(); };
-  }, []);
 
   return (
     <section id="faq" className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">

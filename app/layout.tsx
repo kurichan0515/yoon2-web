@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import FontLoader from './font-loader';
 import appConfig from '../src/config/appConfig';
+import { MENU_DATA } from '../src/data/menuData';
 import '../src/App.css';
 
 export const metadata: Metadata = {
@@ -83,48 +84,34 @@ const localBusinessSchema = {
   ],
 };
 
+// 価格は menuData の新規/初回価格（初回が無いメニューは通常価格）に揃える
+const menuPrice = (id: string) => {
+  const menu = MENU_DATA.flatMap(cat => cat.menus).find(m => m.id === id);
+  if (!menu) throw new Error(`menuData に ${id} がありません`);
+  return String(menu.price);
+};
+
+const SERVICES = [
+  { name: 'イヤーエステ', menuId: 'ear-40-new', description: 'イヤースコープで見ながら行う耳かき・耳掃除と、耳まわりのケアで顔まわりもすっきり' },
+  { name: 'イヤーエステ×オイルリンパ', menuId: 'ear-oil-100-new', description: 'イヤーエステ40分と和漢オイルリンパを組み合わせたセットコース' },
+  { name: 'オイルリンパ', menuId: 'oil-90-new', description: '五行和漢オイルを使用した全身リンパトリートメント' },
+  { name: 'ヘッドスパ', menuId: 'headspa-40', description: '耳まわりからほぐすドライヘッドスパで頭と首のこわばりをリセット' },
+  { name: '耳つぼ', menuId: 'mimitubo-regular', description: '耳のツボを刺激し自律神経を整えるリラクゼーション施術（ジュエリー込み）' },
+];
+
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
   name: '施術メニュー',
-  itemListElement: [
-    {
-      '@type': 'Service',
-      position: 1,
-      name: 'イヤーエステ',
-      description: '耳周りの筋肉をほぐし、顔のむくみ・リフトアップに効果的なエステ',
-      provider: { '@type': 'BeautySalon', name: 'yoon²ゆんゆん' },
-      areaServed: { '@type': 'City', name: '松山市' },
-      offers: { '@type': 'Offer', priceCurrency: 'JPY', price: '4500' },
-    },
-    {
-      '@type': 'Service',
-      position: 2,
-      name: '耳つぼ',
-      description: '耳のツボを刺激し自律神経を整えるリラクゼーション施術（ジュエリー込み）',
-      provider: { '@type': 'BeautySalon', name: 'yoon²ゆんゆん' },
-      areaServed: { '@type': 'City', name: '松山市' },
-      offers: { '@type': 'Offer', priceCurrency: 'JPY', price: '3500' },
-    },
-    {
-      '@type': 'Service',
-      position: 3,
-      name: 'オイルリンパ',
-      description: '五行和漢オイルを使用した全身リンパトリートメント',
-      provider: { '@type': 'BeautySalon', name: 'yoon²ゆんゆん' },
-      areaServed: { '@type': 'City', name: '松山市' },
-      offers: { '@type': 'Offer', priceCurrency: 'JPY', price: '7800' },
-    },
-    {
-      '@type': 'Service',
-      position: 4,
-      name: 'ヘッドスパ',
-      description: '頭皮マッサージで血行促進・ストレス解消',
-      provider: { '@type': 'BeautySalon', name: 'yoon²ゆんゆん' },
-      areaServed: { '@type': 'City', name: '松山市' },
-      offers: { '@type': 'Offer', priceCurrency: 'JPY', price: '4500' },
-    },
-  ],
+  itemListElement: SERVICES.map((service, i) => ({
+    '@type': 'Service',
+    position: i + 1,
+    name: service.name,
+    description: service.description,
+    provider: { '@type': 'BeautySalon', name: 'yoon²ゆんゆん' },
+    areaServed: { '@type': 'City', name: '松山市' },
+    offers: { '@type': 'Offer', priceCurrency: 'JPY', price: menuPrice(service.menuId) },
+  })),
 };
 
 const breadcrumbSchema = {

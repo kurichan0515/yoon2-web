@@ -168,7 +168,7 @@ export default function OilLymphDetail() {
         <div className="container">
           <div className="detail-section-header">
             <span className="detail-section-label">About the Oil</span>
-            <h2>選べるアロマ・オイルリンパマッサージ</h2>
+            <h2>選べるアロマ・オイルリンパトリートメント</h2>
           </div>
           <div className="detail-body detail-oil-intro">
             <p>
