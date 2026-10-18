@@ -21,7 +21,6 @@ interface AppConfig {
     notes: string[];
     // メニュー価格・時間は src/data/menuData.ts (MENU_DATA) が単一の情報源。ここには置かない。
   };
-  adsense: { publisherId: string; defaultAdSlot: string; enabled: boolean; devMode: boolean };
   googleAds: { conversionId: string; conversionLabel: string; enabled: boolean };
 }
 
@@ -55,7 +54,7 @@ const appConfig: AppConfig = {
       note: '営業時間外でも対応できることがあります。お気軽にお問い合わせください。',
     },
     holidays: '木曜日',
-    description: 'イヤーエステと耳つぼで心身のバランスを整える専門サロンです。お客様一人ひとりに合わせたオーダーメイドの施術で、深いリラクゼーションを提供いたします。',
+    description: '見える耳かき（イヤーエステ）と和漢オイルリンパの専門サロン。お客様一人ひとりに合わせた施術で、深いリラクゼーションを提供いたします。',
     email: '',
     lineUrl: 'https://lin.ee/lyyKSqu',
     instagramUrl: 'https://www.instagram.com/yoo.n.yoo.n/',
@@ -82,13 +81,6 @@ const appConfig: AppConfig = {
       '無断キャンセルは施術料の100%',
       'ご理解の上ご予約ください',
     ],
-  },
-
-  adsense: {
-    publisherId: process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID ?? 'ca-pub-6862900859746528',
-    defaultAdSlot: process.env.NEXT_PUBLIC_ADSENSE_DEFAULT_SLOT ?? '2647640133',
-    enabled: process.env.NEXT_PUBLIC_ADSENSE_ENABLED === 'true',
-    devMode: process.env.NEXT_PUBLIC_ADSENSE_DEV_MODE === 'true',
   },
 
   googleAds: {

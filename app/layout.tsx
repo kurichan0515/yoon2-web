@@ -2,16 +2,17 @@ import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import FontLoader from './font-loader';
 import appConfig from '../src/config/appConfig';
+import { MENU_DATA } from '../src/data/menuData';
 import '../src/App.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://yoon2.com'),
-  title: 'yoon²|イヤーエステ×オイルリンパ専門店【愛媛初・北久米駅4分】',
-  description: '愛媛初の耳つぼ×イヤーエステ専門サロン。ホットペッパービューティー評価4.93、見える耳かきとオイルリンパで凝りやむくみをやさしくほぐす。北久米駅徒歩4分、初回4,500円〜。',
+  title: '松山の耳かき・イヤーエステ専門店 yoon²｜見える耳掃除×オイルリンパ【北久米駅4分】',
+  description: '松山市北久米の耳かき・イヤーエステ専門店。イヤースコープで"見える耳掃除"、和漢オイルリンパで凝り・むくみをやさしくケア。ホットペッパー評価4.93、初回40分4,500円〜。北久米駅徒歩4分・駐車場あり・木曜定休。',
   openGraph: {
     type: 'website',
-    title: 'yoon²|イヤーエステ×オイルリンパ専門店【愛媛初・北久米駅4分】',
-    description: '愛媛初の耳つぼ×イヤーエステ専門サロン。ホットペッパービューティー評価4.93、見える耳かきとオイルリンパで凝りやむくみをやさしくほぐす。北久米駅徒歩4分、初回4,500円〜。',
+    title: '松山の耳かき・イヤーエステ専門店 yoon²｜見える耳掃除×オイルリンパ【北久米駅4分】',
+    description: '松山市北久米の耳かき・イヤーエステ専門店。イヤースコープで"見える耳掃除"、和漢オイルリンパで凝り・むくみをやさしくケア。ホットペッパー評価4.93、初回40分4,500円〜。北久米駅徒歩4分・駐車場あり・木曜定休。',
     url: 'https://yoon2.com',
     siteName: 'yoon²',
     locale: 'ja_JP',
@@ -20,14 +21,14 @@ export const metadata: Metadata = {
         url: 'https://yoon2.com/images/about/concept-interior.jpg',
         width: 1920,
         height: 1280,
-        alt: 'yoon² - 松山の耳つぼ・イヤーエステ専門サロン',
+        alt: 'yoon² - 松山の耳かき・イヤーエステ専門店',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'yoon²|イヤーエステ×オイルリンパ専門店【愛媛初・北久米駅4分】',
-    description: '愛媛初の耳つぼ×イヤーエステ専門サロン。ホットペッパービューティー評価4.93、見える耳かきとオイルリンパで凝りやむくみをやさしくほぐす。北久米駅徒歩4分、初回4,500円〜。',
+    title: '松山の耳かき・イヤーエステ専門店 yoon²｜見える耳掃除×オイルリンパ【北久米駅4分】',
+    description: '松山市北久米の耳かき・イヤーエステ専門店。イヤースコープで"見える耳掃除"、和漢オイルリンパで凝り・むくみをやさしくケア。ホットペッパー評価4.93、初回40分4,500円〜。北久米駅徒歩4分・駐車場あり・木曜定休。',
     images: ['https://yoon2.com/images/about/concept-interior.jpg'],
   },
   alternates: {
@@ -50,7 +51,7 @@ const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'BeautySalon',
   name: 'yoon²ゆんゆん',
-  description: 'イヤーエステと耳つぼで心身のバランスを整える専門サロンです。お客様一人ひとりに合わせたオーダーメイドの施術で、深いリラクゼーションを提供いたします。',
+  description: '見える耳かき（イヤーエステ）と和漢オイルリンパの専門サロン。お客様一人ひとりに合わせた施術で、深いリラクゼーションを提供いたします。',
   url: 'https://yoon2.com',
   telephone: appConfig.shop.phone,
   address: {
@@ -83,48 +84,34 @@ const localBusinessSchema = {
   ],
 };
 
+// 価格は menuData の新規/初回価格（初回が無いメニューは通常価格）に揃える
+const menuPrice = (id: string) => {
+  const menu = MENU_DATA.flatMap(cat => cat.menus).find(m => m.id === id);
+  if (!menu) throw new Error(`menuData に ${id} がありません`);
+  return String(menu.price);
+};
+
+const SERVICES = [
+  { name: 'イヤーエステ', menuId: 'ear-40-new', description: 'イヤースコープで見ながら行う耳かき・耳掃除と、耳まわりのケアで顔まわりもすっきり' },
+  { name: 'イヤーエステ×オイルリンパ', menuId: 'ear-oil-100-new', description: 'イヤーエステ40分と和漢オイルリンパを組み合わせたセットコース' },
+  { name: 'オイルリンパ', menuId: 'oil-90-new', description: '五行和漢オイルを使用した全身リンパトリートメント' },
+  { name: 'ヘッドスパ', menuId: 'headspa-40', description: '耳まわりからほぐすドライヘッドスパで頭と首のこわばりをリセット' },
+  { name: '耳つぼ', menuId: 'mimitubo-regular', description: '耳のツボを刺激し自律神経を整えるリラクゼーション施術（ジュエリー込み）' },
+];
+
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
   name: '施術メニュー',
-  itemListElement: [
-    {
-      '@type': 'Service',
-      position: 1,
-      name: 'イヤーエステ',
-      description: '耳周りの筋肉をほぐし、顔のむくみ・リフトアップに効果的なエステ',
-      provider: { '@type': 'BeautySalon', name: 'yoon²ゆんゆん' },
-      areaServed: { '@type': 'City', name: '松山市' },
-      offers: { '@type': 'Offer', priceCurrency: 'JPY', price: '4500' },
-    },
-    {
-      '@type': 'Service',
-      position: 2,
-      name: '耳つぼ',
-      description: '耳のツボを刺激し自律神経を整えるリラクゼーション施術（ジュエリー込み）',
-      provider: { '@type': 'BeautySalon', name: 'yoon²ゆんゆん' },
-      areaServed: { '@type': 'City', name: '松山市' },
-      offers: { '@type': 'Offer', priceCurrency: 'JPY', price: '3500' },
-    },
-    {
-      '@type': 'Service',
-      position: 3,
-      name: 'オイルリンパ',
-      description: '五行和漢オイルを使用した全身リンパトリートメント',
-      provider: { '@type': 'BeautySalon', name: 'yoon²ゆんゆん' },
-      areaServed: { '@type': 'City', name: '松山市' },
-      offers: { '@type': 'Offer', priceCurrency: 'JPY', price: '7800' },
-    },
-    {
-      '@type': 'Service',
-      position: 4,
-      name: 'ヘッドスパ',
-      description: '頭皮マッサージで血行促進・ストレス解消',
-      provider: { '@type': 'BeautySalon', name: 'yoon²ゆんゆん' },
-      areaServed: { '@type': 'City', name: '松山市' },
-      offers: { '@type': 'Offer', priceCurrency: 'JPY', price: '4500' },
-    },
-  ],
+  itemListElement: SERVICES.map((service, i) => ({
+    '@type': 'Service',
+    position: i + 1,
+    name: service.name,
+    description: service.description,
+    provider: { '@type': 'BeautySalon', name: 'yoon²ゆんゆん' },
+    areaServed: { '@type': 'City', name: '松山市' },
+    offers: { '@type': 'Offer', priceCurrency: 'JPY', price: menuPrice(service.menuId) },
+  })),
 };
 
 const breadcrumbSchema = {
@@ -145,13 +132,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* fonts.gstatic.com のみ preconnect (実際のフォントファイル取得先) */}
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <FontLoader />
-        {/* AdSense: <Script> で strategy を付けると data-nscript が付与され警告になるため直接 <script> タグを使用 */}
-        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6862900859746528"
-          crossOrigin="anonymous"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}

@@ -5,12 +5,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Menu, X, Instagram, MapPin, Clock, Phone, Calendar, ArrowRight, MessageCircle, Car, Train } from 'lucide-react';
 import appConfig from '../config/appConfig';
-import AdSense from '../components/common/AdSense';
 import { trackPageView } from '../services/analyticsService';
-import { trackPageView as trackGoogleAdsPageView, trackLineAddConversion } from '../services/googleAdsService';
-import { FAQ_DATA, getFaqStructuredData } from '../data/faqData';
-import { MENU_DATA, HOTPEPPER_URL, getMenuStructuredData } from '../data/menuData';
-import { trackHotpepperClick, trackLineClick } from '../services/analyticsService';
+import { trackPageView as trackGoogleAdsPageView } from '../services/googleAdsService';
+import { FAQ_DATA } from '../data/faqData';
+import { MENU_DATA, HOTPEPPER_URL } from '../data/menuData';
+import { trackHotpepperClick, trackLineClick, trackTelClick } from '../services/analyticsService';
 import './HomeSns.css';
 import './HeroBackground.css';
 
@@ -110,9 +109,10 @@ const Hero = () => {
       <div className="relative z-20 text-center px-4 sm:px-6">
         <h1 className="text-3xl sm:text-5xl md:text-8xl text-white font-light mb-1 sm:mb-2" style={{ fontFamily: "'League Spartan', sans-serif", letterSpacing: '-0.05em' }}>yoon²</h1>
         <p className="text-white/80 text-sm sm:text-base mb-4 sm:mb-6" style={{ fontFamily: 'Cinzel, serif' }} aria-label="読み方">ゆんゆん</p>
-        <p className="text-white text-sm sm:text-base md:text-lg tracking-wide sm:tracking-widest mb-2">松山の耳つぼ・イヤーエステ専門サロン</p>
+        <p className="text-white text-sm sm:text-base md:text-lg tracking-wide sm:tracking-widest mb-2">松山の見える耳かき・イヤーエステ専門サロン</p>
         <p className="text-white/80 text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] mb-6 sm:mb-8" style={{ fontFamily: 'Cinzel, serif' }}>ear esthetic &amp; acupressure salon</p>
         <p className="text-white/90 max-w-lg mx-auto mb-6 sm:mb-8 text-xs sm:text-sm md:text-base leading-relaxed tracking-wide sm:tracking-wider px-2">
+          イヤースコープで耳の中を一緒に見ながら、やさしく耳掃除。<br />
           「取れる」快感と、耳から広がる深い眠り。<br />
           迷走神経を優しく撫でる新感覚タッチで、蓄積した脳疲労をリセット。
         </p>
@@ -130,7 +130,7 @@ const Hero = () => {
         <div className="flex flex-col md:flex-row gap-3 sm:gap-4 justify-center px-2">
           <a href={lineUrl} target="_blank" rel="noopener noreferrer"
             className="px-6 sm:px-10 py-3 sm:py-4 bg-white text-black font-semibold text-xs sm:text-sm tracking-wide sm:tracking-widest hover:bg-[#3B82F6] hover:text-white transition-all duration-300 transform hover:-translate-y-1 inline-block text-center shadow-lg shadow-white/20"
-            onClick={() => trackLineAddConversion()}>
+            onClick={() => trackLineClick('SNS Hero')}>
             <span className="line-booking-text"><span className="line-booking-line1">📱 LINEで予約</span><span className="line-booking-line2">お問い合わせ</span></span>
             <span className="sr-only">（新しいウィンドウで開きます）</span>
           </a>
@@ -346,7 +346,8 @@ function ReviewsSnsSection() {
         </div>
         <div className="text-center">
           <a href={HOTPEPPER_URL} target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-white/50 text-xs sm:text-sm hover:text-[#3B82F6] transition-colors duration-200 border-b border-white/20 hover:border-[#3B82F6] pb-1">
+            className="inline-flex items-center gap-2 text-white/50 text-xs sm:text-sm hover:text-[#3B82F6] transition-colors duration-200 border-b border-white/20 hover:border-[#3B82F6] pb-1"
+            onClick={() => trackHotpepperClick('SNS Reviews')}>
             すべての口コミを見る <ArrowRight size={14} aria-hidden />
             <span className="sr-only">（ホットペッパービューティー、新しいウィンドウで開きます）</span>
           </a>
@@ -388,7 +389,7 @@ function MenuSnsCard({ menu, lineUrl }: { menu: MenuItem; lineUrl: string }) {
         </a>
         <a href={lineUrl} target="_blank" rel="noopener noreferrer"
           className="block text-center px-4 py-2.5 border border-[#3B82F6]/50 text-[#3B82F6] text-xs font-semibold tracking-widest hover:bg-[#3B82F6]/10 transition-colors duration-200"
-          onClick={() => { trackLineClick(menu.name); trackLineAddConversion(); }}>
+          onClick={() => trackLineClick(menu.name)}>
           LINEで予約・相談
           <span className="sr-only">（{menu.name}、新しいウィンドウで開きます）</span>
         </a>
@@ -403,16 +404,6 @@ const menus = MENU_DATA as MenuCategory[];
 function MenuSnsSection({ lineUrl }: { lineUrl: string }) {
   const [activeTab, setActiveTab] = useState(0);
   const [fading, setFading] = useState(false);
-
-  useEffect(() => {
-    const id = 'menu-structured-data-sns';
-    if (document.getElementById(id)) return;
-    const script = document.createElement('script');
-    script.id = id; script.type = 'application/ld+json';
-    script.textContent = getMenuStructuredData();
-    document.head.appendChild(script);
-    return () => { document.getElementById(id)?.remove(); };
-  }, []);
 
   useEffect(() => {
     const handler = (e: Event) => {
@@ -547,16 +538,6 @@ function FaqSnsSection({ lineUrl }: { lineUrl: string }) {
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({});
   const toggleItem = (id: string) => setOpenItems(prev => ({ ...prev, [id]: !prev[id] }));
 
-  useEffect(() => {
-    const id = 'faq-structured-data-sns';
-    if (document.getElementById(id)) return;
-    const script = document.createElement('script');
-    script.id = id; script.type = 'application/ld+json';
-    script.textContent = getFaqStructuredData();
-    document.head.appendChild(script);
-    return () => { document.getElementById(id)?.remove(); };
-  }, []);
-
   return (
     <section id="faq" className="py-12 sm:py-16 md:py-24 bg-[#0A0A0A]">
       <div className="max-w-7xl mx-auto px-3 sm:px-6">
@@ -590,12 +571,13 @@ function FaqSnsSection({ lineUrl }: { lineUrl: string }) {
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a href={lineUrl} target="_blank" rel="noopener noreferrer"
                 className="inline-block px-6 sm:px-8 py-2.5 sm:py-3 bg-[#2563EB] text-white font-semibold text-xs sm:text-sm tracking-widest hover:bg-[#1d4ed8] transition-all duration-300 transform hover:-translate-y-1 whitespace-nowrap text-center"
-                onClick={() => trackLineAddConversion()}>
+                onClick={() => trackLineClick('SNS FAQ Contact CTA')}>
                 LINEでお問い合わせ →
                 <span className="sr-only">（新しいウィンドウで開きます）</span>
               </a>
               <a href={`tel:${(appConfig.shop.phone as string).replace(/-/g, '')}`}
-                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 border border-white/20 text-white/70 text-xs sm:text-sm tracking-widest hover:border-[#3B82F6] hover:text-white transition-all duration-300 whitespace-nowrap">
+                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 border border-white/20 text-white/70 text-xs sm:text-sm tracking-widest hover:border-[#3B82F6] hover:text-white transition-all duration-300 whitespace-nowrap"
+                onClick={() => trackTelClick('SNS FAQ Contact CTA')}>
                 <Phone size={14} aria-hidden />{appConfig.shop.phone as string}
               </a>
             </div>
@@ -657,7 +639,7 @@ const HomeSns = () => {
                 ) },
                 { icon: <Train className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '最寄り駅', content: shop.access?.stations?.filter(Boolean).map((s, i) => <p key={i} className="text-xs sm:text-sm !text-white/70">{s}</p>) },
                 { icon: <Clock className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '営業時間', content: <p className="text-xs sm:text-sm !text-white/70">{shop.hours?.weekday}（木曜定休）</p> },
-                { icon: <Phone className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '電話番号', content: <p className="text-xs sm:text-sm break-all !text-white/70">{shop.phone}</p> },
+                { icon: <Phone className="text-[#3B82F6] shrink-0 w-4 h-4 sm:w-5 sm:h-5" />, label: '電話番号', content: <p className="text-xs sm:text-sm break-all !text-white/70"><a href={`tel:${(shop.phone ?? '').replace(/-/g, '')}`} onClick={() => trackTelClick('SNS Shop Info')}>{shop.phone}</a></p> },
               ].map(({ icon, label, content }) => (
                 <div key={label} className="flex items-start gap-2 sm:gap-3 md:gap-4 text-white/70">
                   {icon}
@@ -667,7 +649,7 @@ const HomeSns = () => {
             </div>
             <div className="mt-6 sm:mt-8 md:mt-10 flex gap-3 sm:gap-4">
               <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="p-2 sm:p-3 bg-white/5 hover:bg-[#3B82F6] transition-colors flex-shrink-0" aria-label="Instagram"><Instagram className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden /></a>
-              <a href={lineUrl} target="_blank" rel="noopener noreferrer" className="p-2 sm:p-3 bg-white/5 hover:bg-[#3B82F6] transition-colors flex-shrink-0" aria-label="LINEで予約" onClick={() => trackLineAddConversion()}><Calendar className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden /></a>
+              <a href={lineUrl} target="_blank" rel="noopener noreferrer" className="p-2 sm:p-3 bg-white/5 hover:bg-[#3B82F6] transition-colors flex-shrink-0" aria-label="LINEで予約" onClick={() => trackLineClick('SNS Shop Info')}><Calendar className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden /></a>
             </div>
           </div>
           <div className="flex-1 h-64 md:h-auto bg-[#0A0A0A] relative overflow-hidden border border-white/10">
@@ -726,7 +708,7 @@ const HomeSns = () => {
           <div className="grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
             <a href={lineUrl} target="_blank" rel="noopener noreferrer"
               className="group bg-gradient-to-br from-[#161B22] to-[#0A0A0A] p-4 sm:p-6 md:p-8 lg:p-12 border-2 border-[#3B82F6]/30 hover:border-[#3B82F6] transition-all duration-500 relative overflow-hidden shadow-lg shadow-[#3B82F6]/20 hover:shadow-[#3B82F6]/40"
-              onClick={() => trackLineAddConversion()}>
+              onClick={() => trackLineClick('SNS Reserve Card')}>
               <div className="absolute top-0 right-0 p-2 sm:p-4 opacity-10 group-hover:opacity-100 transition-opacity"><MessageCircle className="text-[#3B82F6] w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" /></div>
               <div className="relative z-10">
                 <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6">
@@ -764,18 +746,12 @@ const HomeSns = () => {
               <p className="text-white/70 text-xs sm:text-sm tracking-wide mb-3 sm:mb-4">ご予約・お問い合わせは公式LINEからお気軽にどうぞ。24時間受付中！</p>
               <a href={lineUrl} target="_blank" rel="noopener noreferrer"
                 className="inline-block px-6 sm:px-8 py-2.5 sm:py-3 bg-[#2563EB] text-white font-semibold text-xs sm:text-sm tracking-wide sm:tracking-widest hover:bg-[#1d4ed8] transition-all duration-300 transform hover:-translate-y-1 whitespace-nowrap"
-                onClick={() => trackLineAddConversion()}>
+                onClick={() => trackLineClick('SNS Reserve CTA')}>
                 LINEを開く →
                 <span className="sr-only">（新しいウィンドウで開きます）</span>
               </a>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="py-12 bg-[#0A0A0A]">
-        <div className="max-w-7xl mx-auto px-6">
-          <AdSense adSlot="2647640133" adFormat="auto" className="adsense-reserve" />
         </div>
       </section>
 
@@ -790,7 +766,7 @@ const HomeSns = () => {
       <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 md:hidden">
         <a href={lineUrl} target="_blank" rel="noopener noreferrer"
           className="w-12 h-12 sm:w-14 sm:h-14 bg-[#3B82F6] text-white flex items-center justify-center shadow-lg shadow-blue-500/20"
-          aria-label="LINEで予約（新しいウィンドウで開きます）" onClick={() => trackLineAddConversion()}>
+          aria-label="LINEで予約（新しいウィンドウで開きます）" onClick={() => trackLineClick('SNS Floating')}>
           <Calendar className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden />
         </a>
       </div>

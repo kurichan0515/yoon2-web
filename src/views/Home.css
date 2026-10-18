@@ -89,6 +89,11 @@
     0 1px 5px rgba(0,0,0,0.7);
 }
 
+/* 狭い画面では「・」の位置で改行させ、1文字だけの折り返しを防ぐ */
+.hero-title-sub-part {
+  display: inline-block;
+}
+
 .hero-title-sub {
   font-size: 1.1rem;
   font-weight: 400;
@@ -1992,8 +1997,7 @@
 .home .parking-section,
 .home .hours-section,
 .home .flow-section,
-.home .access-guide-section,
-.home .adsense-section {
+.home .access-guide-section {
   background-color: var(--color-background);
 }
 

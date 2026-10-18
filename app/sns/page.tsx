@@ -3,6 +3,8 @@ import { MENU_DATA, getMenuStructuredData } from '../../src/data/menuData';
 import { FAQ_DATA, getFaqStructuredData } from '../../src/data/faqData';
 
 export const metadata = {
+  // SNS 導線専用ページ。トップと内容が重複するため検索結果には出さない
+  robots: { index: false, follow: true },
   title: 'yoon² | メニュー・予約 - 松山の耳つぼ・イヤーエステ',
   description: '愛媛県松山市の耳つぼ・イヤーエステ専門サロン yoon²のメニューと予約案内。初回割引あり。ホットペッパービューティー・LINE・お電話で予約受付中。',
   openGraph: {
@@ -64,7 +66,7 @@ export default function SnsPage() {
 
       {/* クローラー向け静的コンテンツ */}
       <div style={srOnly} aria-hidden="true">
-        <h1>yoon² メニュー・予約 - 松山の耳つぼ・イヤーエステ専門サロン</h1>
+        <h1>yoon² メニュー・予約 - 松山の耳かき・イヤーエステ専門店</h1>
 
         <h2>施術メニュー・料金</h2>
         {MENU_DATA.map(cat => (
