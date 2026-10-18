@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, memo, RefCallback } from 'react';
 import { Building2, Waves, HeartHandshake, Store, Briefcase } from 'lucide-react';
 import appConfig from '../config/appConfig';
-import { trackLineAddConversion } from '../services/googleAdsService';
+import { trackLineClick } from '../services/analyticsService';
 import './Event.css';
 
 const TARGET_FACILITIES = [
@@ -91,7 +91,7 @@ const Event = memo(() => {
             target="_blank"
             rel="noopener noreferrer"
             className="event-cta-btn"
-            onClick={() => trackLineAddConversion()}
+            onClick={() => trackLineClick('Event')}
           >
             💬 公式LINEで問い合わせる
             <span className="visually-hidden">（新しいウィンドウで開きます）</span>

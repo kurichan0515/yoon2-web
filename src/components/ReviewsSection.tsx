@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect } from 'react';
 import { HOTPEPPER_URL } from '../data/menuData';
-import { trackReviewsView } from '../services/analyticsService';
+import { trackHotpepperClick, trackReviewsView } from '../services/analyticsService';
 import './ReviewsSection.css';
 
 interface Review { id: string; text: string; age: string; source: string; }
@@ -51,7 +51,8 @@ function ReviewsSection() {
           ))}
         </div>
         <div className="reviews-cta">
-          <a href={HOTPEPPER_URL} target="_blank" rel="noopener noreferrer" className="reviews-link">
+          <a href={HOTPEPPER_URL} target="_blank" rel="noopener noreferrer" className="reviews-link"
+            onClick={() => trackHotpepperClick('Reviews')}>
             すべての口コミを見る →
             <span className="visually-hidden">（ホットペッパービューティー、新しいウィンドウで開きます）</span>
           </a>

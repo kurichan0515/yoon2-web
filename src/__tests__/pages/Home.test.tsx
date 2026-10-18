@@ -5,9 +5,8 @@ import '@testing-library/jest-dom';
 jest.mock('../../services/analyticsService', () => ({
   default: { trackPageView: jest.fn() },
   trackPageView: jest.fn(), trackMenuView: jest.fn(), trackFaqView: jest.fn(),
-  trackReviewsView: jest.fn(), trackHotpepperClick: jest.fn(), trackLineClick: jest.fn(),
+  trackReviewsView: jest.fn(), trackHotpepperClick: jest.fn(), trackLineClick: jest.fn(), trackTelClick: jest.fn(),
 }));
-jest.mock('../../services/googleAdsService', () => ({ trackLineAddConversion: jest.fn(), trackPageView: jest.fn() }));
 
 jest.mock('../../components/SocialFeed', () => () => <div data-testid="social-feed" />);
 jest.mock('../../components/FAQ', () => () => <div data-testid="faq" />);

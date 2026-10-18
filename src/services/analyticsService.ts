@@ -50,6 +50,10 @@ export function trackLineClick(menuName = '') {
   sendGoogleAdsConversion(process.env.NEXT_PUBLIC_GOOGLE_ADS_LINE_CONVERSION_LABEL, 5000);
 }
 
+export function trackTelClick(label = '') {
+  gtagCall('event', 'click_tel', { event_category: 'conversion', event_label: label || 'Tel Link' });
+}
+
 export function trackMenuView() {
   gtagCall('event', 'view_menu', { event_category: 'engagement', event_label: 'Menu Section Viewed' });
 }

@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import appConfig from '../config/appConfig';
 import { FAQ_DATA } from '../data/faqData';
-import { trackFaqView, trackHotpepperClick, trackLineClick } from '../services/analyticsService';
+import { trackFaqView, trackHotpepperClick, trackLineClick, trackTelClick } from '../services/analyticsService';
 import './FAQ.css';
 
 interface FaqListItem { text: string; href?: string; hrefKey?: string; }
@@ -138,7 +138,8 @@ function FAQ() {
               <span className="visually-hidden">（新しいウィンドウで開きます）</span>
             </a>
             <a href={`tel:${(appConfig.shop.phone as string).replace(/-/g, '')}`}
-              className="btn-secondary faq-tel-btn">
+              className="btn-secondary faq-tel-btn"
+              onClick={() => trackTelClick('FAQ Contact CTA')}>
               {appConfig.shop.phone as string}
             </a>
           </div>

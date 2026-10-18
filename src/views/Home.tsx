@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import AdSense from '../components/common/AdSense';
 import appConfig from '../config/appConfig';
 import logger from '../utils/logger';
-import { trackLineAddConversion } from '../services/googleAdsService';
+import { trackLineClick, trackTelClick } from '../services/analyticsService';
 import './HeroBackground.css';
 import './Home.css';
 
@@ -100,7 +100,7 @@ const Home = memo(() => {
             <div className="hero-actions">
               <a href={lineUrl} target="_blank" rel="noopener noreferrer"
                 className="btn-primary hero-cta line-booking-btn"
-                onClick={() => trackLineAddConversion()}>
+                onClick={() => trackLineClick('Hero')}>
                 <span className="line-booking-text">
                   <span className="line-booking-line1">LINEで予約</span>
                   <span className="line-booking-line2">お問い合わせ</span>
@@ -149,7 +149,7 @@ const Home = memo(() => {
                 )],
                 ['🚃','最寄り駅', shop.access?.stations?.filter(Boolean).map((s, i) => <p key={i}>{s}</p>)],
                 ['🕐','営業時間', <p key="hours">{shop.hours?.weekday ?? '10:00 - 20:00'}（木曜定休）</p>],
-                ['📞','電話番号', <p key="phone">{shop.phone ?? appConfig.shop.phone}</p>],
+                ['📞','電話番号', <p key="phone"><a href={`tel:${(shop.phone ?? appConfig.shop.phone).replace(/-/g, '')}`} onClick={() => trackTelClick('Shop Info')}>{shop.phone ?? appConfig.shop.phone}</a></p>],
               ].map(([icon, title, content]) => (
                 <div key={title as string} className="info-card">
                   <div className="info-icon" aria-hidden="true">{icon}</div>
@@ -279,7 +279,7 @@ const Home = memo(() => {
             <a href={lineUrl} target="_blank" rel="noopener noreferrer"
               className="btn-primary line-booking-btn"
               style={{ marginTop: '1rem', display: 'inline-block' }}
-              onClick={() => trackLineAddConversion()}>
+              onClick={() => trackLineClick('Reserve')}>
               <span className="line-booking-text">
                 <span className="line-booking-line1">LINEで予約</span>
                 <span className="line-booking-line2">お問い合わせ</span>
