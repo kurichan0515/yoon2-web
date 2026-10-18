@@ -30,7 +30,6 @@ jest.mock('../../config/appConfig', () => ({
       services: [],
     },
     social: { twitter: { url: '' }, instagram: { url: '', username: '' }, line: { url: 'https://lin.ee/test', note: '' } },
-    adsense: { enabled: false, publisherId: '', defaultAdSlot: '', devMode: false },
     googleAds: { conversionId: '', conversionLabel: '', enabled: false },
   },
   __esModule: true,

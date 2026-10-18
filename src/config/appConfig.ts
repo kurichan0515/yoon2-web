@@ -21,7 +21,6 @@ interface AppConfig {
     notes: string[];
     // メニュー価格・時間は src/data/menuData.ts (MENU_DATA) が単一の情報源。ここには置かない。
   };
-  adsense: { publisherId: string; defaultAdSlot: string; enabled: boolean; devMode: boolean };
   googleAds: { conversionId: string; conversionLabel: string; enabled: boolean };
 }
 
@@ -82,13 +81,6 @@ const appConfig: AppConfig = {
       '無断キャンセルは施術料の100%',
       'ご理解の上ご予約ください',
     ],
-  },
-
-  adsense: {
-    publisherId: process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID ?? 'ca-pub-6862900859746528',
-    defaultAdSlot: process.env.NEXT_PUBLIC_ADSENSE_DEFAULT_SLOT ?? '2647640133',
-    enabled: process.env.NEXT_PUBLIC_ADSENSE_ENABLED === 'true',
-    devMode: process.env.NEXT_PUBLIC_ADSENSE_DEV_MODE === 'true',
   },
 
   googleAds: {
