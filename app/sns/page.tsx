@@ -66,7 +66,7 @@ export default function SnsPage() {
 
       {/* クローラー向け静的コンテンツ */}
       <div style={srOnly} aria-hidden="true">
-        <h1>yoon² メニュー・予約 - 松山の耳つぼ・イヤーエステ専門サロン</h1>
+        <h1>yoon² メニュー・予約 - 松山の耳かき・イヤーエステ専門店</h1>
 
         <h2>施術メニュー・料金</h2>
         {MENU_DATA.map(cat => (

@@ -109,9 +109,10 @@ const Hero = () => {
       <div className="relative z-20 text-center px-4 sm:px-6">
         <h1 className="text-3xl sm:text-5xl md:text-8xl text-white font-light mb-1 sm:mb-2" style={{ fontFamily: "'League Spartan', sans-serif", letterSpacing: '-0.05em' }}>yoon²</h1>
         <p className="text-white/80 text-sm sm:text-base mb-4 sm:mb-6" style={{ fontFamily: 'Cinzel, serif' }} aria-label="読み方">ゆんゆん</p>
-        <p className="text-white text-sm sm:text-base md:text-lg tracking-wide sm:tracking-widest mb-2">松山の耳つぼ・イヤーエステ専門サロン</p>
+        <p className="text-white text-sm sm:text-base md:text-lg tracking-wide sm:tracking-widest mb-2">松山の見える耳かき・イヤーエステ専門サロン</p>
         <p className="text-white/80 text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] mb-6 sm:mb-8" style={{ fontFamily: 'Cinzel, serif' }}>ear esthetic &amp; acupressure salon</p>
         <p className="text-white/90 max-w-lg mx-auto mb-6 sm:mb-8 text-xs sm:text-sm md:text-base leading-relaxed tracking-wide sm:tracking-wider px-2">
+          イヤースコープで耳の中を一緒に見ながら、やさしく耳掃除。<br />
           「取れる」快感と、耳から広がる深い眠り。<br />
           迷走神経を優しく撫でる新感覚タッチで、蓄積した脳疲労をリセット。
         </p>
