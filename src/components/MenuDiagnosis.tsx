@@ -84,7 +84,7 @@ function MenuDiagnosis() {
                 <li>リンパの流れを整える</li>
               </ul>
               <p className="diagnosis-card-desc">
-                五行和漢オイルでリンパの滞りをじっくり丁寧に流し、冷え性やむくみ、身体の重だるさをスッキリ解消。深いリラックスと巡りの良さを同時に体感。
+                3種から選べるオイルでリンパの滞りをじっくり丁寧に流し、冷え性やむくみ、身体の重だるさをスッキリ解消。深いリラックスと巡りの良さを同時に体感。
               </p>
               <button className="diagnosis-card-btn diagnosis-card-btn--oil" onClick={scrollToMenu}>
                 料金・詳細を見る
