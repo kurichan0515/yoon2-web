@@ -102,13 +102,13 @@ export const MENU_DATA: MenuCategory[] = [
   {
     category: 'オイルリンパ',
     categoryKey: 'oil',
-    description: '五行和漢オイルでリンパの流れを整える ★メンズもOK',
+    description: '3種から選べるオイルでリンパの流れを整える ★メンズもOK',
     menus: [
       {
         id: 'oil-90-new',
         name: '【新規】和漢オイルリンパ90分☆メンズもOK',
         price: 9800, originalPrice: 11000, time: 90,
-        description: '身体に合わせて選ぶ五行和漢オイル。頭の重さ、慢性疲労、寝不足を一気に解消したい方へ。メンズもオイルリンパ可能！',
+        description: '身体に合わせて選べる3種のオイル。頭の重さ、慢性疲労、寝不足を一気に解消したい方へ。メンズもオイルリンパ可能！',
         badge: '初回限定', newCustomer: true,
       },
       {

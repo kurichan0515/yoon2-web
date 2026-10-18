@@ -8,11 +8,11 @@ import '../src/App.css';
 export const metadata: Metadata = {
   metadataBase: new URL('https://yoon2.com'),
   title: '松山の耳かき・イヤーエステ専門店 yoon²｜見える耳掃除×オイルリンパ【北久米駅4分】',
-  description: '松山市北久米の耳かき・イヤーエステ専門店。イヤースコープで"見える耳掃除"、和漢オイルリンパで凝り・むくみをやさしくケア。ホットペッパー評価4.93、初回40分4,500円〜。北久米駅徒歩4分・駐車場あり・木曜定休。',
+  description: '松山市北久米の耳かき・イヤーエステ専門店。イヤースコープで"見える耳掃除"、オイルリンパで凝り・むくみをやさしくケア。ホットペッパー評価4.93、初回40分4,500円〜。北久米駅徒歩4分・駐車場あり・木曜定休。',
   openGraph: {
     type: 'website',
     title: '松山の耳かき・イヤーエステ専門店 yoon²｜見える耳掃除×オイルリンパ【北久米駅4分】',
-    description: '松山市北久米の耳かき・イヤーエステ専門店。イヤースコープで"見える耳掃除"、和漢オイルリンパで凝り・むくみをやさしくケア。ホットペッパー評価4.93、初回40分4,500円〜。北久米駅徒歩4分・駐車場あり・木曜定休。',
+    description: '松山市北久米の耳かき・イヤーエステ専門店。イヤースコープで"見える耳掃除"、オイルリンパで凝り・むくみをやさしくケア。ホットペッパー評価4.93、初回40分4,500円〜。北久米駅徒歩4分・駐車場あり・木曜定休。',
     url: 'https://yoon2.com',
     siteName: 'yoon²',
     locale: 'ja_JP',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: '松山の耳かき・イヤーエステ専門店 yoon²｜見える耳掃除×オイルリンパ【北久米駅4分】',
-    description: '松山市北久米の耳かき・イヤーエステ専門店。イヤースコープで"見える耳掃除"、和漢オイルリンパで凝り・むくみをやさしくケア。ホットペッパー評価4.93、初回40分4,500円〜。北久米駅徒歩4分・駐車場あり・木曜定休。',
+    description: '松山市北久米の耳かき・イヤーエステ専門店。イヤースコープで"見える耳掃除"、オイルリンパで凝り・むくみをやさしくケア。ホットペッパー評価4.93、初回40分4,500円〜。北久米駅徒歩4分・駐車場あり・木曜定休。',
     images: ['https://yoon2.com/images/about/concept-interior.jpg'],
   },
   alternates: {
@@ -51,7 +51,7 @@ const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'BeautySalon',
   name: 'yoon²ゆんゆん',
-  description: '見える耳かき（イヤーエステ）と和漢オイルリンパの専門サロン。お客様一人ひとりに合わせた施術で、深いリラクゼーションを提供いたします。',
+  description: '見える耳かき（イヤーエステ）とオイルリンパの専門サロン。お客様一人ひとりに合わせた施術で、深いリラクゼーションを提供いたします。',
   url: 'https://yoon2.com',
   telephone: appConfig.shop.phone,
   address: {
@@ -93,8 +93,8 @@ const menuPrice = (id: string) => {
 
 const SERVICES = [
   { name: 'イヤーエステ', menuId: 'ear-40-new', description: 'イヤースコープで見ながら行う耳かき・耳掃除と、耳まわりのケアで顔まわりもすっきり' },
-  { name: 'イヤーエステ×オイルリンパ', menuId: 'ear-oil-100-new', description: 'イヤーエステ40分と和漢オイルリンパを組み合わせたセットコース' },
-  { name: 'オイルリンパ', menuId: 'oil-90-new', description: '五行和漢オイルを使用した全身リンパトリートメント' },
+  { name: 'イヤーエステ×オイルリンパ', menuId: 'ear-oil-100-new', description: 'イヤーエステ40分とオイルリンパを組み合わせたセットコース' },
+  { name: 'オイルリンパ', menuId: 'oil-90-new', description: '3種から選べるオイルを使用した全身リンパトリートメント' },
   { name: 'ヘッドスパ', menuId: 'headspa-40', description: '耳まわりからほぐすドライヘッドスパで頭と首のこわばりをリセット' },
   { name: '耳つぼ', menuId: 'mimitubo-regular', description: '耳のツボを刺激し自律神経を整えるリラクゼーション施術（ジュエリー込み）' },
 ];

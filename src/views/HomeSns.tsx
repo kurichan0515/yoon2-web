@@ -205,7 +205,7 @@ const DIAGNOSIS_CARDS: DiagnosisCard[] = [
     key: 'oil', tag: '男性におすすめ', name: 'オイルリンパ',
     target: '冷えやむくみ・全身の疲れをリセットしたい方へ',
     contents: ['全身オイルトリートメント', 'リンパの流れを整える'],
-    desc: '五行和漢オイルでリンパの滞りをじっくり丁寧に流し、冷え性やむくみ、身体の重だるさをスッキリ解消。深いリラックスと巡りの良さを同時に体感。',
+    desc: '3種から選べるオイルでリンパの滞りをじっくり丁寧に流し、冷え性やむくみ、身体の重だるさをスッキリ解消。深いリラックスと巡りの良さを同時に体感。',
     images: ['/images/menus/oil-treatment.jpg'], detailHref: '/menu/oil-lymph',
     cardClass: 'bg-[#047857]', tagClass: 'text-white', textClass: 'text-white', bulletClass: 'text-white', dividerClass: 'bg-white/40',
     btnClass: 'bg-white text-[#047857] hover:bg-white/90',
