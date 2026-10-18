@@ -82,7 +82,9 @@ const Home = memo(() => {
               yoon²<span className="visually-hidden"> 松山の耳かき・イヤーエステ専門店</span>
             </h1>
             <p className="hero-title-reading" aria-label="読み方">ゆんゆん</p>
-            <p className="hero-title-sub">松山の見える耳かき・イヤーエステ専門サロン</p>
+            <p className="hero-title-sub">
+              <span className="hero-title-sub-part">松山の見える耳かき・</span><span className="hero-title-sub-part">イヤーエステ専門サロン</span>
+            </p>
             <p className="hero-subtitle">ear esthetic &amp; acupressure salon</p>
             <p className="hero-description">
               イヤースコープで耳の中を一緒に見ながら、やさしく耳掃除。<br />
