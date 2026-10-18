@@ -286,3 +286,11 @@
     gap: 8px;
   }
 }
+
+/* 375px 前後で「は」1文字だけ折り返すのを防ぐ */
+@media (max-width: 480px) {
+  .diagnosis-title {
+    font-size: 1.25rem;
+    letter-spacing: 0.06em;
+  }
+}
