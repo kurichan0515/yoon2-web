@@ -2,7 +2,6 @@
 
 import React, { useEffect, useRef, memo, RefCallback } from 'react';
 import dynamic from 'next/dynamic';
-import AdSense from '../components/common/AdSense';
 import appConfig from '../config/appConfig';
 import logger from '../utils/logger';
 import { trackLineClick, trackTelClick } from '../services/analyticsService';
@@ -286,12 +285,6 @@ const Home = memo(() => {
               </span>
             </a>
           </div>
-        </div>
-      </section>
-
-      <section className="adsense-section section" ref={addToRefs}>
-        <div className="container">
-          <AdSense adSlot="2647640133" adFormat="auto" className="adsense-social" />
         </div>
       </section>
     </div>

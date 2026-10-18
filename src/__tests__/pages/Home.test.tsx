@@ -15,7 +15,6 @@ jest.mock('../../components/ReviewsSection', () => () => <div data-testid="revie
 jest.mock('../../components/ConcernSection', () => () => <div data-testid="concern" />);
 jest.mock('../../components/MenuDiagnosis', () => () => <div data-testid="diagnosis" />);
 jest.mock('../../components/FlowSection', () => () => <div data-testid="flow" />);
-jest.mock('../../components/common/AdSense', () => () => null);
 
 jest.mock('../../config/appConfig', () => ({
   default: {

@@ -1992,8 +1992,7 @@
 .home .parking-section,
 .home .hours-section,
 .home .flow-section,
-.home .access-guide-section,
-.home .adsense-section {
+.home .access-guide-section {
   background-color: var(--color-background);
 }
 

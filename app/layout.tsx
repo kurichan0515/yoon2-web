@@ -132,13 +132,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* fonts.gstatic.com のみ preconnect (実際のフォントファイル取得先) */}
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <FontLoader />
-        {/* AdSense: <Script> で strategy を付けると data-nscript が付与され警告になるため直接 <script> タグを使用 */}
-        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6862900859746528"
-          crossOrigin="anonymous"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}

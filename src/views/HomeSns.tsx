@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Menu, X, Instagram, MapPin, Clock, Phone, Calendar, ArrowRight, MessageCircle, Car, Train } from 'lucide-react';
 import appConfig from '../config/appConfig';
-import AdSense from '../components/common/AdSense';
 import { trackPageView } from '../services/analyticsService';
 import { trackPageView as trackGoogleAdsPageView } from '../services/googleAdsService';
 import { FAQ_DATA } from '../data/faqData';
@@ -752,12 +751,6 @@ const HomeSns = () => {
               </a>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="py-12 bg-[#0A0A0A]">
-        <div className="max-w-7xl mx-auto px-6">
-          <AdSense adSlot="2647640133" adFormat="auto" className="adsense-reserve" />
         </div>
       </section>
 
