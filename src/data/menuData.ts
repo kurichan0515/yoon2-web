@@ -3,6 +3,7 @@ export interface MenuItem {
   name: string;
   price: number;
   originalPrice?: number;
+  priceFrom?: boolean;
   time: number;
   description: string;
   badge?: string | null;
@@ -132,13 +133,6 @@ export const MENU_DATA: MenuCategory[] = [
         description: '仕事や運転、立ち仕事などで身体の疲れが溜まっている方や慢性的にお疲れの方へ。体調に合わせて選べるオイルで時間をかけてお身体を癒し、本来持っているイキイキとした元気を取り戻します。',
         badge: null,
       },
-      {
-        id: 'oil-65-weekday',
-        name: '【平日限定★】極上ドライヘッドスパ＆デコルテ付オイルリンパ 65分',
-        price: 7800, time: 65,
-        description: '大人気のドライヘッドスパと首肩・胸元まわりのリンパをプラス。耳まわりの血流を良くすることで、頭痛や目の疲れ、脳疲労をすっきり解放します。男性歓迎◎ ※平日午前中限定・2回目以降の方・他クーポン併用不可',
-        badge: '平日限定',
-      },
     ],
   },
   {
@@ -173,6 +167,13 @@ export const MENU_DATA: MenuCategory[] = [
         price: 3500, time: 40,
         description: '耳には自律神経が集中していて全身に繋がる200以上のツボがあります。耳を刺激することで全身の不調改善に繋がります。パーツも豊富♪',
         badge: null,
+      },
+      {
+        id: 'oil-65-weekday',
+        name: '【平日限定★】極上ドライヘッドスパ＆デコルテ付オイルリンパ 65分',
+        price: 7800, time: 65,
+        description: '大人気のドライヘッドスパと首肩・胸元まわりのリンパをプラス。耳まわりの血流を良くすることで、頭痛や目の疲れ、脳疲労をすっきり解放します。男性歓迎◎ ※平日午前中限定・2回目以降の方・他クーポン併用不可',
+        badge: '平日限定',
       },
     ],
   },
@@ -213,7 +214,14 @@ export const MENU_DATA: MenuCategory[] = [
         id: 'option-mimitubo-jewelry',
         name: '【追加】耳つぼジュエリー',
         price: 3500, time: 10,
-        description: '他メニューに追加できる耳つぼジュエリーつけ放題。1粒150円〜の追加も可能です。',
+        description: '他メニューに追加できる耳つぼジュエリーつけ放題。',
+        badge: 'オプション',
+      },
+      {
+        id: 'option-mimitubo-jewelry-single',
+        name: '【追加】耳つぼジュエリー（1粒）',
+        price: 150, priceFrom: true, time: 0,
+        description: '他メニューに1粒から追加できます。',
         badge: 'オプション',
       },
     ],

@@ -18,7 +18,7 @@ import './HeroBackground.css';
 interface NavLink { name: string; href: string; action: (() => void) | null; }
 
 interface MenuItem {
-  id: string; name: string; price: number; originalPrice?: number;
+  id: string; name: string; price: number; originalPrice?: number; priceFrom?: boolean;
   time: number; description: string; badge?: string;
   recommended?: boolean; newCustomer?: boolean;
 }
@@ -375,10 +375,10 @@ function MenuSnsCard({ menu, lineUrl }: { menu: MenuItem; lineUrl: string }) {
       )}
       <h3 className="text-white text-base sm:text-lg font-medium tracking-wide leading-snug">{menu.name}</h3>
       <div className="flex items-baseline gap-3 flex-wrap">
-        <span className="text-[#3B82F6] text-2xl sm:text-3xl font-bold tracking-tight">¥{menu.price.toLocaleString()}</span>
+        <span className="text-[#3B82F6] text-2xl sm:text-3xl font-bold tracking-tight">¥{menu.price.toLocaleString()}{menu.priceFrom && '〜'}</span>
         {menu.originalPrice && <span className="text-white/50 text-sm line-through">¥{menu.originalPrice.toLocaleString()}</span>}
       </div>
-      <div className="flex items-center gap-1.5 text-white/50 text-xs"><Clock size={12} aria-hidden /><span>約{menu.time}分</span></div>
+      {menu.time > 0 && <div className="flex items-center gap-1.5 text-white/50 text-xs"><Clock size={12} aria-hidden /><span>約{menu.time}分</span></div>}
       <p className="text-white/60 text-xs sm:text-sm leading-relaxed flex-1">{menu.description}</p>
       <div className="flex flex-col gap-2 mt-auto pt-2">
         <a href={HOTPEPPER_URL} target="_blank" rel="noopener noreferrer"
