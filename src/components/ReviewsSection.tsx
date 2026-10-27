@@ -15,17 +15,20 @@ const REVIEWS: Review[] = [
 
 function ReviewsSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = sectionRef.current;
-    if (!el) return;
+    const header = headerRef.current;
+    if (!el || !header) return;
+    // セクション全体ではなく見出しが画面に入った時点で計測する
     const trackObs = new IntersectionObserver(
-      (entries) => { entries.forEach(e => { if (e.isIntersecting) { trackReviewsView(); trackObs.disconnect(); } }); }, { threshold: 0.3 }
+      (entries) => { entries.forEach(e => { if (e.isIntersecting) { trackReviewsView(); trackObs.disconnect(); } }); }, { threshold: 0.5 }
     );
     const fadeObs = new IntersectionObserver(
       (entries) => { entries.forEach(e => { if (e.isIntersecting) { el.classList.add('fade-in'); fadeObs.disconnect(); } }); }, { threshold: 0.05 }
     );
-    trackObs.observe(el);
+    trackObs.observe(header);
     fadeObs.observe(el);
     return () => { trackObs.disconnect(); fadeObs.disconnect(); };
   }, []);
@@ -33,7 +36,7 @@ function ReviewsSection() {
   return (
     <section id="reviews" className="reviews-section section" ref={sectionRef}>
       <div className="container">
-        <div className="section-header">
+        <div className="section-header" ref={headerRef}>
           <span className="section-label">Reviews</span>
           <h2>お客様の声</h2>
           <p className="reviews-overall-note">ホットペッパービューティーにて多数の高評価をいただいています</p>

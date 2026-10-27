@@ -89,14 +89,16 @@ function MenuSection() {
   const [activeTab, setActiveTab] = useState(getInitialTabIndex);
   const [fading, setFading] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const tabsRef = useRef<HTMLDivElement>(null);
   const lineUrl = appConfig.shop.lineUrl as string;
 
+  // セクション全体は縦に長くSPで閾値を満たしにくいため、タブが画面に入った時点で計測する
   useEffect(() => {
-    const el = sectionRef.current;
+    const el = tabsRef.current;
     if (!el) return;
     const once = new IntersectionObserver(
       (entries) => { entries.forEach(e => { if (e.isIntersecting) { trackMenuView(); once.disconnect(); } }); },
-      { threshold: 0.3 }
+      { threshold: 0.5 }
     );
     once.observe(el);
     return () => once.disconnect();
@@ -169,7 +171,7 @@ function MenuSection() {
           <h2>メニュー・料金</h2>
           <p>あなたに合った癒しのメニューをお選びください</p>
         </div>
-        <div className="menu-tabs" role="tablist" aria-label="メニューカテゴリ">
+        <div className="menu-tabs" ref={tabsRef} role="tablist" aria-label="メニューカテゴリ">
           {menus.map((cat, i) => (
             <button key={cat.categoryKey} role="tab"
               aria-selected={i === activeTab}

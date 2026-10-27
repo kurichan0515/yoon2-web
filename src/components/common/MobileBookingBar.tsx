@@ -2,9 +2,10 @@
 
 import React, { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
+import { Phone } from 'lucide-react';
 import appConfig from '../../config/appConfig';
 import { HOTPEPPER_URL } from '../../data/menuData';
-import { trackHotpepperClick, trackLineClick } from '../../services/analyticsService';
+import { trackHotpepperClick, trackLineClick, trackTelClick } from '../../services/analyticsService';
 import './MobileBookingBar.css';
 
 const SHOW_AFTER_SCROLL_Y = 400;
@@ -34,6 +35,7 @@ const MobileBookingBar = () => {
   if (isExcluded) return null;
 
   const lineUrl = appConfig.shop.lineUrl || appConfig.social.line.url;
+  const telHref = `tel:${appConfig.shop.phone.replace(/-/g, '')}`;
 
   return (
     <>
@@ -53,6 +55,13 @@ const MobileBookingBar = () => {
           onClick={() => trackLineClick('StickyBar')}>
           LINEで空き確認
           <span className="visually-hidden">（新しいウィンドウで開きます）</span>
+        </a>
+        <a href={telHref}
+          className="btn-secondary mobile-booking-bar-btn mobile-booking-bar-tel"
+          aria-label="電話で予約・問い合わせ"
+          tabIndex={isVisible ? undefined : -1}
+          onClick={() => trackTelClick('StickyBar')}>
+          <Phone size={20} aria-hidden="true" />
         </a>
       </div>
     </>

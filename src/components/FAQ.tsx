@@ -83,14 +83,16 @@ function FaqItem({ item, isOpen, onToggle }: FaqItemProps) {
 function FAQ() {
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({});
   const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
   const toggleItem = (id: string) => setOpenItems(prev => ({ ...prev, [id]: !prev[id] }));
 
+  // セクション全体は縦に長くSPで閾値を満たしにくいため、見出しが画面に入った時点で計測する
   useEffect(() => {
-    const el = sectionRef.current;
+    const el = headerRef.current;
     if (!el) return;
     const once = new IntersectionObserver(
       (entries) => { entries.forEach(e => { if (e.isIntersecting) { trackFaqView(); once.disconnect(); } }); },
-      { threshold: 0.3 }
+      { threshold: 0.5 }
     );
     once.observe(el);
     return () => once.disconnect();
@@ -110,7 +112,7 @@ function FAQ() {
   return (
     <section id="faq" className="faq-section section" ref={sectionRef}>
       <div className="container">
-        <div className="section-header">
+        <div className="section-header" ref={headerRef}>
           <span className="section-label">FAQ</span>
           <h2>よくある質問</h2>
           <p>ご不明な点はお気軽にお問い合わせください</p>
