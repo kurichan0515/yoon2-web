@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     type: 'website',
     title: 'オイルこだわりのリンパトリートメント｜yoon²(松山市)',
     description: '愛媛県松山市のオイルリンパトリートメント。木・水・土の3種から選べる「5sトリートメントオイル」を使用し、滞ったリンパをじっくり丁寧に流します。ご予約は公式LINEから簡単に。',
-    url: 'https://yoon2.com/menu/oil-lymph',
+    url: 'https://yoon2.com/menu/oil-lymph/',
     siteName: 'yoon²',
     locale: 'ja_JP',
     images: [{
@@ -30,8 +30,8 @@ export const metadata: Metadata = {
     images: ['https://yoon2.com/images/menus/oil-treatment.jpg'],
   },
   alternates: {
-    canonical: 'https://yoon2.com/menu/oil-lymph',
-    languages: { ja: 'https://yoon2.com/menu/oil-lymph' },
+    canonical: 'https://yoon2.com/menu/oil-lymph/',
+    languages: { ja: 'https://yoon2.com/menu/oil-lymph/' },
   },
 };
 

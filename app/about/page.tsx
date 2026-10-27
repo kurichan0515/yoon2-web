@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     type: 'website',
     title: 'yoon²について｜愛媛県松山市の耳つぼ・イヤーエステ専門サロン',
     description: '愛媛県松山市北久米のイヤーエステ・耳つぼ専門サロンyoon²のご紹介。お店が生まれた経緯や大切にしている想いを掲載。',
-    url: 'https://yoon2.com/about',
+    url: 'https://yoon2.com/about/',
     siteName: 'yoon²',
     locale: 'ja_JP',
     images: [{
@@ -26,8 +26,8 @@ export const metadata: Metadata = {
     images: ['https://yoon2.com/images/about/concept-interior.jpg'],
   },
   alternates: {
-    canonical: 'https://yoon2.com/about',
-    languages: { ja: 'https://yoon2.com/about' },
+    canonical: 'https://yoon2.com/about/',
+    languages: { ja: 'https://yoon2.com/about/' },
   },
 };
 
@@ -35,7 +35,7 @@ const webPageSchema = {
   '@context': 'https://schema.org',
   '@type': 'AboutPage',
   name: 'yoon²について',
-  url: 'https://yoon2.com/about',
+  url: 'https://yoon2.com/about/',
   isPartOf: { '@type': 'WebSite', url: 'https://yoon2.com' },
 };
 

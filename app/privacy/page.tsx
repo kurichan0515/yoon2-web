@@ -5,8 +5,8 @@ export const metadata = {
   title: 'プライバシーポリシー | yoon²',
   description: 'yoon²（ゆんゆん）のプライバシーポリシー。個人情報の取り扱いについてご確認ください。',
   alternates: {
-    canonical: 'https://yoon2.com/privacy',
-    languages: { 'ja': 'https://yoon2.com/privacy' },
+    canonical: 'https://yoon2.com/privacy/',
+    languages: { 'ja': 'https://yoon2.com/privacy/' },
   },
 };
 
@@ -14,7 +14,7 @@ const webPageSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   name: 'プライバシーポリシー | yoon²',
-  url: 'https://yoon2.com/privacy',
+  url: 'https://yoon2.com/privacy/',
   isPartOf: { '@type': 'WebSite', url: 'https://yoon2.com' },
 };
 
@@ -23,7 +23,7 @@ const breadcrumbSchema = {
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'ホーム', item: 'https://yoon2.com/' },
-    { '@type': 'ListItem', position: 2, name: 'プライバシーポリシー', item: 'https://yoon2.com/privacy' },
+    { '@type': 'ListItem', position: 2, name: 'プライバシーポリシー', item: 'https://yoon2.com/privacy/' },
   ],
 };
 
