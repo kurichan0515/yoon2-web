@@ -25,12 +25,13 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: saturate(0.6);
 }
 
 .detail-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(44, 44, 44, 0.55) 0%, rgba(44, 44, 44, 0.75) 100%);
+  background: linear-gradient(180deg, rgba(51, 45, 40, 0.58) 0%, rgba(51, 45, 40, 0.78) 100%);
   z-index: 1;
 }
 
@@ -49,13 +50,15 @@
   font-size: 0.75rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-light-gray);
   margin-bottom: var(--spacing-sm);
 }
 
 .detail-hero-title {
   color: var(--color-white);
-  font-size: 2.4rem;
+  font-size: 2.125rem;
+  letter-spacing: 0.1em;
+  line-height: 1.6;
   margin-bottom: var(--spacing-md);
 }
 
@@ -73,7 +76,8 @@
   }
 
   .detail-hero-title {
-    font-size: 1.7rem;
+    font-size: 1.375rem;
+    letter-spacing: 0.06em;
   }
 
   .detail-hero-copy {
@@ -89,16 +93,24 @@
 
 .detail-section-label {
   display: inline-block;
-  font-family: var(--font-secondary);
+  font-family: var(--font-sans);
   font-size: 0.75rem;
-  letter-spacing: 0.2em;
+  font-weight: 500;
+  letter-spacing: var(--letter-spacing-label);
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-gray-text);
   margin-bottom: var(--spacing-xs);
 }
 
 .detail-section-header h2 {
-  font-size: 1.9rem;
+  font-size: 1.75rem;
+  letter-spacing: 0.12em;
+}
+
+@media (max-width: 768px) {
+  .detail-section-header h2 {
+    font-size: 1.375rem;
+  }
 }
 
 .detail-body p {
@@ -137,9 +149,9 @@
 }
 
 .detail-oil-card {
-  background: var(--color-white);
-  border: 1px solid var(--color-border);
-  padding: var(--spacing-lg);
+  background: transparent;
+  border-top: 1px solid var(--color-line);
+  padding: var(--spacing-lg) 0 0;
 }
 
 .detail-oil-card-label {
@@ -149,14 +161,15 @@
   letter-spacing: 0.15em;
   color: var(--color-accent);
   border: 1px solid var(--color-accent);
-  padding: 0.2em 0.7em;
+  border-radius: var(--border-radius-pill);
+  padding: 0.2em 0.9em;
   margin-bottom: var(--spacing-sm);
 }
 
 .detail-oil-card h3 {
   font-size: 1.15rem;
   margin-bottom: var(--spacing-xs);
-  color: var(--color-accent);
+  color: var(--color-brown);
 }
 
 .detail-oil-card-tagline {
@@ -171,8 +184,8 @@
 }
 
 .detail-oil-card-meta dt {
-  font-family: var(--font-secondary);
-  font-weight: 600;
+  font-family: var(--font-sans);
+  font-weight: 500;
   color: var(--color-text-primary);
   margin-top: 0.5em;
 }
@@ -195,32 +208,27 @@
   counter-reset: flow-step;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  border-top: 1px solid var(--color-line);
 }
 
 .detail-flow-step {
   counter-increment: flow-step;
   display: flex;
   gap: var(--spacing-md);
-  align-items: flex-start;
-  background: var(--color-white);
-  border: 1px solid var(--color-border);
-  padding: var(--spacing-md) var(--spacing-lg);
+  align-items: baseline;
+  background: transparent;
+  border-bottom: 1px solid var(--color-line);
+  padding: var(--spacing-md) 0;
 }
 
 .detail-flow-step::before {
-  content: counter(flow-step);
+  content: counter(flow-step, decimal-leading-zero);
   flex-shrink: 0;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: var(--color-accent);
-  color: var(--color-white);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-secondary);
-  font-weight: 600;
+  min-width: 2.2rem;
+  color: var(--color-green);
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 400;
 }
 
 .detail-flow-step h3 {
@@ -251,6 +259,7 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  filter: saturate(0.6) brightness(0.92);
 }
 
 /* 認定情報 */
@@ -258,9 +267,10 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-md);
-  background: var(--color-white);
-  border: 1px solid var(--color-border);
-  padding: var(--spacing-lg);
+  background: transparent;
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+  padding: var(--spacing-lg) 0;
 }
 
 .detail-cert-icon {
@@ -292,38 +302,40 @@
 .detail-recommend-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: var(--spacing-md);
+  gap: 0 var(--spacing-lg);
 }
 
 .detail-recommend-item {
   display: flex;
   align-items: flex-start;
   gap: var(--spacing-sm);
-  background: var(--color-white);
-  border: 1px solid var(--color-border);
-  padding: var(--spacing-md) var(--spacing-lg);
+  background: transparent;
+  border-bottom: 1px solid var(--color-line);
+  padding: var(--spacing-md) 0;
   font-size: 0.92rem;
 }
 
 .detail-recommend-item::before {
-  content: '✓';
+  content: '';
   flex-shrink: 0;
-  color: var(--color-accent);
-  font-weight: 700;
+  width: 0.8em;
+  height: 1px;
+  margin-top: 0.95em;
+  background-color: var(--color-accent);
 }
 
 /* よくある質問 */
 .detail-faq-list {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
   max-width: 760px;
   margin: 0 auto;
+  border-top: 1px solid var(--color-line);
 }
 
 .detail-faq-item {
-  border: 1px solid var(--color-border);
-  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--color-line);
+  padding: var(--spacing-md) 0;
 }
 
 .detail-faq-item h3 {
@@ -337,8 +349,8 @@
   content: 'Q';
   flex-shrink: 0;
   color: var(--color-accent);
-  font-family: var(--font-secondary);
-  font-weight: 700;
+  font-family: var(--font-serif);
+  font-weight: 500;
 }
 
 .detail-faq-item p {
@@ -352,8 +364,8 @@
   content: 'A';
   flex-shrink: 0;
   color: var(--color-text-light);
-  font-family: var(--font-secondary);
-  font-weight: 700;
+  font-family: var(--font-serif);
+  font-weight: 500;
 }
 
 /* パンくず */
@@ -363,7 +375,7 @@
 
 @media (max-width: 480px) {
   .detail-flow-step {
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: var(--spacing-sm) 0;
   }
 
   .detail-cert-box {

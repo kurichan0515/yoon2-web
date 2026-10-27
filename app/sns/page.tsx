@@ -1,4 +1,5 @@
 import HomeSns from '../../src/views/HomeSns';
+import FontLoader from '../font-loader';
 import { MENU_DATA, getMenuStructuredData } from '../../src/data/menuData';
 import { FAQ_DATA, getFaqStructuredData } from '../../src/data/faqData';
 
@@ -59,6 +60,9 @@ const srOnly: React.CSSProperties = {
 export default function SnsPage() {
   return (
     <>
+      {/* /sns 独自デザインで使う英字Webフォント（通常版は next/font の Noto に移行済み） */}
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+      <FontLoader />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: getMenuStructuredData() }} />

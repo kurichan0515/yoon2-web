@@ -1,190 +1,133 @@
 .flow-section {
-  background-color: var(--color-white);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  background-color: var(--color-light-gray);
 }
 
 .flow-header {
   text-align: center;
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: 64px;
 }
 
 .flow-title {
-  font-family: var(--font-primary);
-  font-size: 2.2rem;
+  font-family: var(--font-serif);
+  font-size: 1.875rem;
   font-weight: 400;
-  font-style: italic;
-  line-height: 1.45;
-  color: var(--color-text-primary);
-  margin-top: var(--spacing-sm);
+  line-height: 1.7;
+  letter-spacing: 0.1em;
+  color: var(--color-brown);
 }
 
-/* タイムライン: PC横並び・SP縦 */
+/* タイムライン: PC横並び・SP縦。番号＋細線で表現 */
 .flow-timeline {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  max-width: 900px;
-  margin: 0 auto var(--spacing-xl);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  max-width: 1000px;
+  margin: 0 auto 56px;
   position: relative;
 }
 
-/* 各ステップ */
 .flow-step {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  position: relative;
-  padding: 0 var(--spacing-sm);
+  padding: 0 24px;
 }
 
-/* ステップ間の横ライン（PC） */
-.flow-step-line {
-  position: absolute;
-  top: 28px; /* circle の中心 */
-  left: calc(50% + 28px);
-  right: calc(-50% + 28px);
-  height: 2px;
-  background: linear-gradient(to right, var(--color-accent), var(--color-border));
-  z-index: 0;
+.flow-step + .flow-step {
+  border-left: 1px solid var(--color-line);
 }
 
-/* サークル */
+/* 絵文字アイコンは静かなトーンに合わないため非表示（装飾・aria-hidden） */
+.flow-step-line,
 .flow-step-circle {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background-color: var(--color-primary);
-  border: 2px solid var(--color-accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 1;
-  margin-bottom: var(--spacing-sm);
-  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 2px 8px rgba(201, 169, 110, 0.2);
+  display: none;
 }
 
-.flow-step:hover .flow-step-circle {
-  background-color: var(--color-accent);
-  transform: scale(1.1);
-  box-shadow: 0 4px 16px rgba(201, 169, 110, 0.4);
-}
-
-/* ハイライトステップ（STEP3） */
-.flow-step--highlight .flow-step-circle {
-  background-color: var(--color-accent);
-  box-shadow: 0 4px 20px rgba(201, 169, 110, 0.4);
-  width: 64px;
-  height: 64px;
-}
-
-.flow-step-icon {
-  font-size: 1.4rem;
-  line-height: 1;
-}
-
-/* 番号（背景装飾） */
 .flow-step-num {
-  font-family: var(--font-primary);
-  font-size: 0.65rem;
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
   font-weight: 400;
-  letter-spacing: 0.1em;
-  color: var(--color-accent);
-  margin-bottom: 0.25rem;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: var(--color-green);
+  margin-bottom: 18px;
 }
 
-/* タイトル */
 .flow-step-title {
-  font-family: var(--font-primary);
-  font-size: 1rem;
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
   font-weight: 500;
-  color: var(--color-text-primary);
-  margin-bottom: var(--spacing-xs);
-  line-height: 1.4;
+  letter-spacing: 0.08em;
+  color: var(--color-brown);
+  margin-bottom: 10px;
 }
 
 .flow-step--highlight .flow-step-title {
-  color: var(--color-accent);
+  color: var(--color-green);
 }
 
-/* 説明 */
 .flow-step-desc {
-  font-family: var(--font-secondary), var(--font-japanese);
-  font-size: 0.82rem;
-  color: var(--color-text-secondary);
-  line-height: 1.7;
+  font-size: 0.875rem;
+  line-height: 1.95;
+  color: var(--color-brown);
 }
 
-/* 補足テキスト */
 .flow-note {
-  text-align: center;
-  font-family: var(--font-secondary), var(--font-japanese);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  color: var(--color-accent);
-  padding: var(--spacing-sm) var(--spacing-xl);
-  border: 1px solid var(--color-accent);
-  border-radius: var(--radius-md);
-  display: inline-block;
-  margin: 0 auto;
-  /* centerに */
   display: table;
+  margin: 0 auto;
+  padding: 10px 28px;
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+  font-family: var(--font-serif);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  color: var(--color-brown);
 }
 
-/* SP: 縦タイムライン */
+@media (max-width: 900px) {
+  .flow-step {
+    padding: 0 16px;
+  }
+}
+
 @media (max-width: 768px) {
+  .flow-header {
+    margin-bottom: 40px;
+  }
+
+  .flow-title {
+    font-size: 1.375rem;
+  }
+
   .flow-timeline {
     grid-template-columns: 1fr;
-    gap: 0;
-    max-width: 420px;
+    max-width: 480px;
+    margin-bottom: 40px;
   }
 
   .flow-step {
-    flex-direction: row;
-    text-align: left;
-    align-items: flex-start;
-    padding: 0 0 var(--spacing-lg);
-    gap: var(--spacing-md);
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    padding: 24px 0;
   }
 
-  /* 横ラインを縦ラインに変換 */
-  .flow-step-line {
-    top: 56px;
-    left: 27px; /* circle左端からの中心 */
-    right: auto;
-    width: 2px;
-    height: calc(100% - 28px);
-    background: linear-gradient(to bottom, var(--color-accent), var(--color-border));
-  }
-
-  .flow-step-circle {
-    flex-shrink: 0;
-    margin-bottom: 0;
-    margin-top: 0;
-  }
-
-  .flow-step--highlight .flow-step-circle {
-    margin-top: -4px;
+  .flow-step + .flow-step {
+    border-left: none;
+    border-top: 1px solid var(--color-line);
   }
 
   .flow-step-content {
-    padding-top: 0.25rem;
+    display: contents;
   }
 
-  .flow-title {
-    font-size: 1.6rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .flow-title {
-    font-size: 1.3rem;
+  .flow-step-num {
+    grid-row: 1 / span 2;
+    font-size: 1.375rem;
+    margin: 0;
   }
 
+  .flow-step-title,
   .flow-step-desc {
-    font-size: 0.8rem;
+    grid-column: 2;
   }
 }

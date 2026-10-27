@@ -40,25 +40,25 @@
 /* プライマリボタン */
 .btn-primary {
   background-color: var(--color-primary-main);
-  color: #FFFFFF;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: var(--color-off-white);
+  box-shadow: 0 2px 4px rgba(51, 45, 40, 0.1);
 }
 
 .btn-primary:hover:not(:disabled) {
   background-color: var(--color-primary-dark);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 8px rgba(51, 45, 40, 0.15);
   transform: translateY(-1px);
 }
 
 .btn-primary:active:not(:disabled) {
   background-color: var(--color-primary-dark);
   transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(51, 45, 40, 0.1);
 }
 
 /* セカンダリボタン */
 .btn-secondary {
-  background-color: #FFFFFF;
+  background-color: var(--color-off-white);
   color: var(--color-primary-main);
   border: 1px solid var(--color-primary-main);
 }
@@ -74,7 +74,7 @@
 
 /* 危険ボタン（削除など） */
 .btn-danger {
-  background-color: #FFFFFF;
+  background-color: var(--color-off-white);
   color: var(--color-status-error);
   border: 1px solid var(--color-status-error);
 }
@@ -91,13 +91,13 @@
 /* 成功ボタン */
 .btn-success {
   background-color: var(--color-status-success);
-  color: #FFFFFF;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: var(--color-off-white);
+  box-shadow: 0 2px 4px rgba(51, 45, 40, 0.1);
 }
 
 .btn-success:hover:not(:disabled) {
   background-color: var(--color-secondary-dark);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 8px rgba(51, 45, 40, 0.15);
   transform: translateY(-1px);
 }
 
@@ -109,13 +109,13 @@
 /* 警告ボタン */
 .btn-warning {
   background-color: var(--color-status-warning);
-  color: #FFFFFF;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: var(--color-off-white);
+  box-shadow: 0 2px 4px rgba(51, 45, 40, 0.1);
 }
 
 .btn-warning:hover:not(:disabled) {
   background-color: var(--color-accent-dark);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 8px rgba(51, 45, 40, 0.15);
   transform: translateY(-1px);
 }
 

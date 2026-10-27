@@ -13,9 +13,9 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const TEXT_COLORS: Record<Variant, string> = {
-  primary: '#FFFFFF',
-  success: '#FFFFFF',
-  warning: '#FFFFFF',
+  primary: 'var(--color-off-white)',
+  success: 'var(--color-off-white)',
+  warning: 'var(--color-off-white)',
   secondary: 'var(--color-primary-main)',
   danger: 'var(--color-status-error)',
 };

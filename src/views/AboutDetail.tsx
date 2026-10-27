@@ -74,7 +74,7 @@ export default function AboutDetail() {
         </div>
       </section>
 
-      <section className="section" style={{ background: 'var(--color-white)' }}>
+      <section className="section" style={{ background: 'var(--color-light-gray)' }}>
         <div className="container">
           <div className="detail-section-header">
             <span className="detail-section-label">Our Values</span>
@@ -114,7 +114,7 @@ export default function AboutDetail() {
         </div>
       </section>
 
-      <section className="section" style={{ background: 'var(--color-white)' }}>
+      <section className="section" style={{ background: 'var(--color-light-gray)' }}>
         <div className="container">
           <div className="detail-section-header">
             <span className="detail-section-label">Gallery</span>

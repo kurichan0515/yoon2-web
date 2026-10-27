@@ -2,6 +2,8 @@
 
 import React, { useEffect, useRef, memo, RefCallback } from 'react';
 import dynamic from 'next/dynamic';
+import BrandConcept from '../components/BrandConcept';
+import PhotoCopy from '../components/PhotoCopy';
 import appConfig from '../config/appConfig';
 import logger from '../utils/logger';
 import { trackLineClick, trackTelClick } from '../services/analyticsService';
@@ -67,60 +69,65 @@ const Home = memo(() => {
       <section className="hero" ref={heroRef}>
         <div className="hero-background">
           <picture>
-            <source media="(max-width: 768px)" srcSet="/images/hero/hero-sp.webp" type="image/webp" />
-            <source media="(max-width: 768px)" srcSet="/images/hero/hero-sp.jpg" />
-            <source srcSet="/images/shop/play-room.webp" type="image/webp" />
+            <source media="(max-width: 768px)" srcSet="/images/eastern/hero-sp.webp" type="image/webp" />
+            <source srcSet="/images/eastern/hero-pc.webp" type="image/webp" />
             <img src="/images/shop/play-room.jpg" alt=""
-              width={1920} height={1280}
+              width={1920} height={1080}
               fetchPriority="high" decoding="async" className="hero-bg-img" />
           </picture>
           <div className="hero-overlay"></div>
         </div>
-        <div className="container">
-          <div className="hero-content fade-in">
+        <div className="hero-inner">
+          <div className="hero-content">
             <h1 className="hero-title-main">
               yoon²<span className="visually-hidden"> 松山の耳かき・イヤーエステ専門店</span>
             </h1>
-            <p className="hero-title-reading" aria-label="読み方">ゆんゆん</p>
+            <p className="hero-title-reading" aria-label="読み方">【ユンユン】</p>
             <p className="hero-title-sub">
               <span className="hero-title-sub-part">松山の見える耳かき・</span><span className="hero-title-sub-part">イヤーエステ専門サロン</span>
             </p>
-            <p className="hero-subtitle">ear esthetic &amp; acupressure salon</p>
-            <p className="hero-description">
-              イヤースコープで耳の中を一緒に見ながら、やさしく耳掃除。<br />
-              「取れる」快感と、耳から広がる深い眠り。<br />
-              迷走神経を優しく撫でる新感覚タッチで、蓄積した脳疲労をリセット。
-            </p>
-            <div className="hero-review-badge hero-review-badge--standalone" aria-label="ホットペッパービューティー 評価4.93">
-              <div className="hero-review-stars-row">
-                <span className="hero-review-stars" aria-hidden="true">★★★★★</span>
-                <span className="hero-review-rating">4.93</span>
-              </div>
-              <p className="hero-review-source">ホットペッパービューティー</p>
-            </div>
             <div className="hero-actions">
               <a href={lineUrl} target="_blank" rel="noopener noreferrer"
-                className="btn-primary hero-cta line-booking-btn"
+                className="btn-primary hero-cta"
                 onClick={() => trackLineClick('Hero')}>
-                <span className="line-booking-text">
-                  <span className="line-booking-line1">LINEで予約</span>
-                  <span className="line-booking-line2">お問い合わせ</span>
-                </span>
-                <span className="visually-hidden">（新しいウィンドウで開きます）</span>
+                ご予約はこちら
+                <span className="visually-hidden">（LINE、新しいウィンドウで開きます）</span>
               </a>
               <button onClick={() => document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-                className="btn-secondary" style={{ whiteSpace: 'nowrap' }}>
+                className="btn-secondary btn-on-dark hero-sub-cta">
                 コースを見る
               </button>
             </div>
           </div>
+          <p className="hero-vertical">耳から、心地よく整える。</p>
+        </div>
+        <svg className="hero-wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <path d="M0 48C180 20 360 8 540 22s360 52 540 50 270-30 360-44V80H0z" />
+        </svg>
+      </section>
+
+      <section className="hero-intro" aria-label="yoon²の特徴">
+        <div className="container">
+          <p className="hero-description">
+            イヤースコープで耳の中を一緒に見ながら、やさしく耳掃除。<br />
+            「取れる」快感と、耳から広がる深い眠り。<br />
+            迷走神経を優しく撫でる新感覚タッチで、蓄積した脳疲労をリセット。
+          </p>
+          <div className="hero-review-badge" aria-label="ホットペッパービューティー 評価4.93">
+            <span className="hero-review-stars" aria-hidden="true">★★★★★</span>
+            <span className="hero-review-rating">4.93</span>
+            <span className="hero-review-source">ホットペッパービューティー</span>
+          </div>
         </div>
       </section>
 
+      <BrandConcept />
       <MenuDiagnosis />
+      <PhotoCopy image="/images/eastern/senses.webp" lines={['五感をやさしく満たす、', '特別な時間。']} align="right" />
       <ConcernSection />
       <FlowSection />
       <ReviewsSection />
+      <PhotoCopy image="/images/eastern/gogyo.webp" lines={['五行の力で、', '本来のわたしに還る。']} align="left" />
       <MenuSection />
       <FAQ />
 
@@ -138,22 +145,21 @@ const Home = memo(() => {
           <div className="shop-info-content">
             <div className="shop-info-details">
               {[
-                ['📍','住所', <p key="addr">{shop.address ?? '住所情報を取得中...'}</p>],
-                ['🚗','駐車場のご案内', (
+                ['住所', <p key="addr">{shop.address ?? '住所情報を取得中...'}</p>],
+                ['駐車場のご案内', (
                   <div key="parking">
                     <p>店舗前に駐車スペースがございません。店舗近くの専用駐車場（北久米町412番地）をご利用ください。</p>
                     <a href="https://maps.google.com/?cid=10357450395002350789" target="_blank" rel="noopener noreferrer"
-                      className="btn-secondary" style={{ display: 'inline-block', marginTop: 'var(--spacing-sm)' }}>
+                      className="btn-secondary" style={{ marginTop: 'var(--spacing-sm)' }}>
                       駐車場の地図を見る
                     </a>
                   </div>
                 )],
-                ['🚃','最寄り駅', shop.access?.stations?.filter(Boolean).map((s, i) => <p key={i}>{s}</p>)],
-                ['🕐','営業時間', <p key="hours">{shop.hours?.weekday ?? '10:00 - 20:00'}（木曜定休）</p>],
-                ['📞','電話番号', <p key="phone"><a href={`tel:${(shop.phone ?? appConfig.shop.phone).replace(/-/g, '')}`} onClick={() => trackTelClick('Shop Info')}>{shop.phone ?? appConfig.shop.phone}</a></p>],
-              ].map(([icon, title, content]) => (
+                ['最寄り駅', shop.access?.stations?.filter(Boolean).map((s, i) => <p key={i}>{s}</p>)],
+                ['営業時間', <p key="hours">{shop.hours?.weekday ?? '10:00 - 20:00'}（木曜定休）</p>],
+                ['電話番号', <p key="phone"><a href={`tel:${(shop.phone ?? appConfig.shop.phone).replace(/-/g, '')}`} onClick={() => trackTelClick('Shop Info')}>{shop.phone ?? appConfig.shop.phone}</a></p>],
+              ].map(([title, content]) => (
                 <div key={title as string} className="info-card">
-                  <div className="info-icon" aria-hidden="true">{icon}</div>
                   <div className="info-content"><h3>{title}</h3>{content}</div>
                 </div>
               ))}
@@ -162,7 +168,7 @@ const Home = memo(() => {
               <iframe
                 src={shop.googleMapsUrl ?? ''}
                 width="100%" height="300"
-                style={{ border: 0, borderRadius: '8px' }}
+                style={{ border: 0 }}
                 allowFullScreen loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 title="yoon²ゆんゆん 店舗位置"
@@ -256,7 +262,7 @@ const Home = memo(() => {
             </div>
             {shop.notes && shop.notes.length > 0 && (
               <div className="hours-notes">
-                <h3>📋 ご確認事項</h3>
+                <h3>ご確認事項</h3>
                 <ul>{shop.notes.map((note, i) => <li key={i}>{note}</li>)}</ul>
               </div>
             )}
@@ -273,13 +279,12 @@ const Home = memo(() => {
           </div>
           <div className="contact-info">
             <h3 className="contact-heading">
-              <span className="contact-heading-line1">💬 ご予約</span>
+              <span className="contact-heading-line1">ご予約</span>
               <span className="contact-heading-line2">お問い合わせについて</span>
             </h3>
             <p>ご予約やお問い合わせは<strong>公式LINE</strong>にメッセージをお願いします。</p>
             <a href={lineUrl} target="_blank" rel="noopener noreferrer"
               className="btn-primary line-booking-btn"
-              style={{ marginTop: '1rem', display: 'inline-block' }}
               onClick={() => trackLineClick('Reserve')}>
               <span className="line-booking-text">
                 <span className="line-booking-line1">LINEで予約</span>
