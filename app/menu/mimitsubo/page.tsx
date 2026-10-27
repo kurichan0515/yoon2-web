@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     type: 'website',
     title: '耳つぼ施術詳細｜日本フランス式耳つぼ協会認定｜yoon²',
     description: '愛媛県松山市の耳つぼ施術。200以上のツボをもみほぐし、ジュエリーつけ放題で24時間体質改善をサポート。日本フランス式耳つぼ協会認定。公式LINEから簡単予約。',
-    url: 'https://yoon2.com/menu/mimitsubo',
+    url: 'https://yoon2.com/menu/mimitsubo/',
     siteName: 'yoon²',
     locale: 'ja_JP',
     images: [{
@@ -30,8 +30,8 @@ export const metadata: Metadata = {
     images: ['https://yoon2.com/images/shop/play-room.jpg'],
   },
   alternates: {
-    canonical: 'https://yoon2.com/menu/mimitsubo',
-    languages: { ja: 'https://yoon2.com/menu/mimitsubo' },
+    canonical: 'https://yoon2.com/menu/mimitsubo/',
+    languages: { ja: 'https://yoon2.com/menu/mimitsubo/' },
   },
 };
 

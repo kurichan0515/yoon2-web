@@ -11,7 +11,43 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  
+
+  <!-- サロン紹介ページ -->
+  <url>
+    <loc>https://yoon2.com/about/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- メニュー詳細ページ -->
+  <url>
+    <loc>https://yoon2.com/menu/ear-este/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://yoon2.com/menu/mimitsubo/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://yoon2.com/menu/oil-lymph/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- イベントページ -->
+  <url>
+    <loc>https://yoon2.com/event/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- プライバシーポリシーページ -->
   <url>
     <loc>https://yoon2.com/privacy/</loc>

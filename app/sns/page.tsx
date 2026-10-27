@@ -11,7 +11,7 @@ export const metadata = {
     type: 'website' as const,
     title: 'yoon² | メニュー・予約',
     description: '愛媛県松山市の耳つぼ・イヤーエステ専門サロン。初回割引あり。ホットペッパー・LINE予約受付中。',
-    url: 'https://yoon2.com/sns',
+    url: 'https://yoon2.com/sns/',
     siteName: 'yoon²',
     locale: 'ja_JP',
     images: [{
@@ -28,8 +28,8 @@ export const metadata = {
     images: ['https://yoon2.com/images/about/concept-interior.jpg'],
   },
   alternates: {
-    canonical: 'https://yoon2.com/sns',
-    languages: { 'ja': 'https://yoon2.com/sns' },
+    canonical: 'https://yoon2.com/sns/',
+    languages: { 'ja': 'https://yoon2.com/sns/' },
   },
 };
 
@@ -37,7 +37,7 @@ const webPageSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   name: 'yoon² メニュー・予約',
-  url: 'https://yoon2.com/sns',
+  url: 'https://yoon2.com/sns/',
   isPartOf: { '@type': 'WebSite', url: 'https://yoon2.com' },
 };
 
@@ -46,7 +46,7 @@ const breadcrumbSchema = {
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'ホーム', item: 'https://yoon2.com/' },
-    { '@type': 'ListItem', position: 2, name: 'メニュー・予約', item: 'https://yoon2.com/sns' },
+    { '@type': 'ListItem', position: 2, name: 'メニュー・予約', item: 'https://yoon2.com/sns/' },
   ],
 };
 

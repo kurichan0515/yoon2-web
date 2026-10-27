@@ -8,7 +8,7 @@ export const metadata = {
     type: 'website' as const,
     title: '出張イヤーエステイベント募集｜yoon²（ゆんゆん）愛媛・松山',
     description: '愛媛県松山市の耳つぼ・イヤーエステ専門サロンyoon²が、出張イベント開催先を募集中。ホテル・温泉施設・福祉施設・マルシェなどで開催できる施設様を探しています。',
-    url: 'https://yoon2.com/event',
+    url: 'https://yoon2.com/event/',
     siteName: 'yoon²',
     locale: 'ja_JP',
     images: [{
@@ -25,8 +25,8 @@ export const metadata = {
     images: ['https://yoon2.com/images/about/concept-interior.jpg'],
   },
   alternates: {
-    canonical: 'https://yoon2.com/event',
-    languages: { 'ja': 'https://yoon2.com/event' },
+    canonical: 'https://yoon2.com/event/',
+    languages: { 'ja': 'https://yoon2.com/event/' },
   },
 };
 
@@ -34,7 +34,7 @@ const webPageSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   name: '出張イヤーエステイベント募集',
-  url: 'https://yoon2.com/event',
+  url: 'https://yoon2.com/event/',
   isPartOf: { '@type': 'WebSite', url: 'https://yoon2.com' },
 };
 
@@ -43,7 +43,7 @@ const breadcrumbSchema = {
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'ホーム', item: 'https://yoon2.com/' },
-    { '@type': 'ListItem', position: 2, name: '出張イベント募集', item: 'https://yoon2.com/event' },
+    { '@type': 'ListItem', position: 2, name: '出張イベント募集', item: 'https://yoon2.com/event/' },
   ],
 };
 

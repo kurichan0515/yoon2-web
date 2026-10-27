@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     type: 'website',
     title: 'イヤーエステ｜愛媛初の見る耳かき｜yoon²(松山市)',
     description: '愛媛県初、イヤースコープで耳の中を見ながら受けられる新感覚のイヤーエステ。プロによる見る耳かきと自律神経ケアを体験できます。',
-    url: 'https://yoon2.com/menu/ear-este',
+    url: 'https://yoon2.com/menu/ear-este/',
     siteName: 'yoon²',
     locale: 'ja_JP',
     images: [{
@@ -30,8 +30,8 @@ export const metadata: Metadata = {
     images: ['https://yoon2.com/images/menus/ear-treatment-2.jpg'],
   },
   alternates: {
-    canonical: 'https://yoon2.com/menu/ear-este',
-    languages: { ja: 'https://yoon2.com/menu/ear-este' },
+    canonical: 'https://yoon2.com/menu/ear-este/',
+    languages: { ja: 'https://yoon2.com/menu/ear-este/' },
   },
 };
 
