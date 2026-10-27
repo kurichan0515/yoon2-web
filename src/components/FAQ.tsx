@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 import appConfig from '../config/appConfig';
 import { FAQ_DATA } from '../data/faqData';
 import { trackFaqView, trackHotpepperClick, trackLineClick, trackTelClick } from '../services/analyticsService';
@@ -31,7 +32,9 @@ function renderContent(content: FaqContent | undefined, lineUrl: string) {
         <ul className="faq-list">
           {listItems.map((item, i) => (
             <li key={i}>
-              {item.href ? (
+              {item.href?.startsWith('/') ? (
+                <Link href={item.href}>{item.text}</Link>
+              ) : item.href ? (
                 <a href={item.href} target="_blank" rel="noopener noreferrer"
                   onClick={() => { if (isHotpepper(item.href)) trackHotpepperClick('FAQ Link'); }}>
                   {item.text}

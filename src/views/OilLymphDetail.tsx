@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { MENU_DATA } from '../data/menuData';
 import Breadcrumb from '../components/common/Breadcrumb';
 import ReservationCTA from '../components/common/ReservationCTA';
@@ -247,6 +248,25 @@ export default function OilLymphDetail() {
                 <p>{item.a}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section" style={{ background: 'var(--color-white)' }}>
+        <div className="container">
+          <div className="detail-section-header">
+            <span className="detail-section-label">Combination</span>
+            <h2>組み合わせて受けるなら</h2>
+          </div>
+          <div className="detail-related-grid">
+            <Link href="/menu/ear-este/" className="detail-related-card">
+              <span className="detail-related-card-label">Ear Esthetic</span>
+              <span className="detail-related-card-name">イヤーエステについて詳しく見る<span aria-hidden="true"> →</span></span>
+            </Link>
+            <Link href="/?menu=ear-oil#menu" className="detail-related-card">
+              <span className="detail-related-card-label">Set Course</span>
+              <span className="detail-related-card-name">イヤーエステ×オイルリンパのセットを見る<span aria-hidden="true"> →</span></span>
+            </Link>
           </div>
         </div>
       </section>

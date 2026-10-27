@@ -356,6 +356,44 @@
   font-weight: 700;
 }
 
+/* 組み合わせ導線 */
+.detail-related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--spacing-md);
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.detail-related-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-md) var(--spacing-lg);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: border-color 0.2s ease;
+}
+
+.detail-related-card:hover {
+  border-color: var(--color-accent);
+}
+
+.detail-related-card-label {
+  font-family: var(--font-secondary);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.detail-related-card-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
 /* パンくず */
 .detail-breadcrumb-wrap {
   background: var(--color-background);

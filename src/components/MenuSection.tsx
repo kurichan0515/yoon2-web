@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef, KeyboardEvent } from 'react';
+import Link from 'next/link';
 import appConfig from '../config/appConfig';
 import { MENU_DATA, HOTPEPPER_URL } from '../data/menuData';
 import { trackHotpepperClick, trackLineClick, trackMenuView } from '../services/analyticsService';
@@ -65,6 +66,16 @@ function MenuCard({ menu, lineUrl }: { menu: MenuItem; lineUrl: string }) {
 
 const menus = MENU_DATA as MenuCategory[];
 
+// カテゴリごとの詳細ページ導線（other / option はリンクなし）
+const DETAIL_LINKS: Record<string, { href: string; label: string }[]> = {
+  'ear-este': [{ href: '/menu/ear-este/', label: 'イヤーエステ（見える耳かき）について詳しく見る' }],
+  'ear-oil': [
+    { href: '/menu/ear-este/', label: 'イヤーエステについて詳しく見る' },
+    { href: '/menu/oil-lymph/', label: 'オイルリンパについて詳しく見る' },
+  ],
+  'oil': [{ href: '/menu/oil-lymph/', label: 'オイルリンパについて詳しく見る' }],
+};
+
 function getInitialTabIndex(): number {
   if (typeof window === 'undefined') return 0;
   const params = new URLSearchParams(window.location.search);
@@ -116,6 +127,8 @@ function MenuSection() {
     if (typeof window === 'undefined') return;
     const params = new URLSearchParams(window.location.search);
     if (!params.get('menu')) return;
+    // クライアント遷移では初期化時点でURLが未反映のことがあるため、マウント後にも同期する
+    setActiveTab(getInitialTabIndex());
 
     const scrollToSection = () => {
       sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -146,6 +159,7 @@ function MenuSection() {
   const visibleMenus = (appConfig.features as { firstVisitDiscount?: boolean }).firstVisitDiscount
     ? current.menus
     : current.menus.filter(m => !m.newCustomer);
+  const detailLinks = DETAIL_LINKS[current.categoryKey];
 
   return (
     <section id="menu" className="menu-section section" ref={sectionRef}>
@@ -169,6 +183,15 @@ function MenuSection() {
           ))}
         </div>
         <p className="menu-category-desc">{current.description}</p>
+        {detailLinks && (
+          <div className="menu-detail-links">
+            {detailLinks.map(link => (
+              <Link key={link.href} href={link.href} className="menu-detail-link">
+                {link.label}<span aria-hidden="true"> →</span>
+              </Link>
+            ))}
+          </div>
+        )}
         <div id={`menu-panel-${current.categoryKey}`} role="tabpanel"
           aria-labelledby={`menu-tab-${current.categoryKey}`}
           className={`menu-item-grid${fading ? ' menu-item-grid--fading' : ''}`}>
