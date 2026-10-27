@@ -5,8 +5,12 @@ import appConfig from '../src/config/appConfig';
 import { MENU_DATA } from '../src/data/menuData';
 import '../src/App.css';
 
+// プレビューチャネル（PRごとの確認用URL）向けビルド。計測タグを読み込まず、検索結果にも出さない
+const isPreview = process.env.NEXT_PUBLIC_DEPLOY_ENV === 'preview';
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://yoon2.com'),
+  ...(isPreview && { robots: { index: false, follow: false } }),
   title: '松山の耳かき・イヤーエステ専門店 yoon²｜見える耳掃除×オイルリンパ【北久米駅4分】',
   description: '松山市北久米の耳かき・イヤーエステ専門店。イヤースコープで"見える耳掃除"、オイルリンパで凝り・むくみをやさしくケア。ホットペッパー評価4.93、初回40分4,500円〜。北久米駅徒歩4分・駐車場あり・木曜定休。',
   openGraph: {
@@ -147,20 +151,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body style={{ backgroundColor: 'var(--color-off-white)', margin: 0 }}>
         {children}
-        {/* Google tag (gtag.js) */}
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=AW-621590738`}
-          strategy="afterInteractive"
-        />
-        <Script id="gtag-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'AW-621590738');
-            gtag('config', '${process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID || ''}');
-          `}
-        </Script>
+        {/* Google tag (gtag.js)。プレビューでは読み込まない（window.gtag 未定義→各計測関数は何もしない） */}
+        {!isPreview && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=AW-621590738`}
+              strategy="afterInteractive"
+            />
+            <Script id="gtag-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'AW-621590738');
+                gtag('config', '${process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID || ''}');
+              `}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   );

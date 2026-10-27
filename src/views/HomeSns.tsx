@@ -19,7 +19,7 @@ import './HeroBackground.css';
 // ---- 型定義 ----
 
 interface MenuItem {
-  id: string; name: string; price: number; originalPrice?: number;
+  id: string; name: string; price: number; originalPrice?: number; priceFrom?: boolean;
   time: number; description: string; badge?: string;
   recommended?: boolean; newCustomer?: boolean;
 }
@@ -462,10 +462,10 @@ function MenuSnsCard({ menu, lineUrl }: { menu: MenuItem; lineUrl: string }) {
       )}
       <h3 className="text-white text-[1.0625rem] sm:text-lg font-medium tracking-wide leading-relaxed">{menu.name}</h3>
       <div className="flex items-baseline gap-3 flex-wrap">
-        <span className="text-[#3B82F6] text-2xl sm:text-[1.625rem] font-bold tracking-tight">¥{menu.price.toLocaleString()}</span>
+        <span className="text-[#3B82F6] text-2xl sm:text-[1.625rem] font-bold tracking-tight">¥{menu.price.toLocaleString()}{menu.priceFrom && '〜'}</span>
         {menu.originalPrice && <span className="text-white/60 text-sm line-through">¥{menu.originalPrice.toLocaleString()}</span>}
       </div>
-      <div className="text-white/70 text-[0.8125rem] tracking-wider">約{menu.time}分</div>
+      {menu.time > 0 && <div className="text-white/70 text-[0.8125rem] tracking-wider">約{menu.time}分</div>}
       <p className="text-white/70 text-sm leading-loose flex-1">{menu.description}</p>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-2.5 mt-auto pt-3">
         <a href={HOTPEPPER_URL} target="_blank" rel="noopener noreferrer"

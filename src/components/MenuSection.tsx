@@ -11,6 +11,7 @@ interface MenuItem {
   name: string;
   price: number;
   originalPrice?: number;
+  priceFrom?: boolean;
   time: number;
   description: string;
   badge?: string;
@@ -34,13 +35,15 @@ function MenuCard({ menu, lineUrl }: { menu: MenuItem; lineUrl: string }) {
       {menu.badge && <span className={`menu-badge ${BADGE_CLASS[menu.badge] ?? ''}`}>{menu.badge}</span>}
       <h3 className="menu-item-name">{menu.name}</h3>
       <div className="menu-item-price-row">
-        <span className="menu-item-price">¥{menu.price.toLocaleString()}</span>
+        <span className="menu-item-price">¥{menu.price.toLocaleString()}{menu.priceFrom && '〜'}</span>
         {menu.originalPrice && <span className="menu-item-original-price">¥{menu.originalPrice.toLocaleString()}</span>}
       </div>
-      <div className="menu-item-time">
-        <span className="menu-item-time-icon" aria-hidden="true">🕐</span>
-        <span>約{menu.time}分</span>
-      </div>
+      {menu.time > 0 && (
+        <div className="menu-item-time">
+          <span className="menu-item-time-icon" aria-hidden="true">🕐</span>
+          <span>約{menu.time}分</span>
+        </div>
+      )}
       <p className="menu-item-description">{menu.description}</p>
       <div className="menu-item-actions">
         <a href={HOTPEPPER_URL} target="_blank" rel="noopener noreferrer"
@@ -171,6 +174,19 @@ function MenuSection() {
           className={`menu-item-grid${fading ? ' menu-item-grid--fading' : ''}`}>
           {visibleMenus.map(menu => <MenuCard key={menu.id} menu={menu} lineUrl={lineUrl} />)}
         </div>
+        {current.categoryKey === 'option' && (
+          <div className="menu-option-notes">
+            <p>回数券をお持ちの方、チラシをお持ちの方はご予約時にお知らせください。</p>
+            <p>
+              <a href={lineUrl} target="_blank" rel="noopener noreferrer"
+                onClick={() => trackLineClick('option-notes-coupon')}>
+                公式LINE
+                <span className="visually-hidden">（新しいウィンドウで開きます）</span>
+              </a>
+              お友だち登録で新規300円引きクーポンを配布中です。
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );

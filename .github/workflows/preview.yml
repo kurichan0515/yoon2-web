@@ -1,0 +1,107 @@
+name: Preview channel
+
+# PR ごとに Firebase Hosting のプレビューチャネル（本番とは別の一時URL）へデプロイし、URL を PR にコメントする。
+# 本番（live チャネル）には影響しない。PR を閉じるとチャネルを削除する。
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize, reopened, closed]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+env:
+  CHANNEL_ID: pr-${{ github.event.pull_request.number }}
+
+jobs:
+  deploy_preview:
+    # フォークからの PR には Secrets が渡らないため、同一リポジトリのブランチのみ対象
+    if: github.event.action != 'closed' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+      # 計測タグ（Google 広告・GA4）は読み込まない。GA4/広告の ID も渡さない
+      - name: Build project (preview)
+        run: npm run build
+        env:
+          NODE_OPTIONS: '--max-old-space-size=2048'
+          NEXT_TELEMETRY_DISABLED: '1'
+          NEXT_PUBLIC_DEPLOY_ENV: 'preview'
+          NEXT_PUBLIC_GOOGLE_ADS_ENABLED: 'false'
+
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Deploy to preview channel
+        id: deploy
+        run: |
+          firebase hosting:channel:deploy "$CHANNEL_ID" --expires 30d --json --token "${{ secrets.FIREBASE_TOKEN }}" > deploy.json
+          url=$(jq -r '.result | to_entries[0].value.url' deploy.json)
+          expire=$(jq -r '.result | to_entries[0].value.expireTime' deploy.json)
+          if [ -z "$url" ] || [ "$url" = "null" ]; then cat deploy.json; exit 1; fi
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "expire=$expire" >> "$GITHUB_OUTPUT"
+
+      - name: Comment preview URL on PR
+        uses: actions/github-script@v7
+        env:
+          PREVIEW_URL: ${{ steps.deploy.outputs.url }}
+          PREVIEW_EXPIRE: ${{ steps.deploy.outputs.expire }}
+        with:
+          script: |
+            const marker = '<!-- preview-channel -->';
+            const url = process.env.PREVIEW_URL.replace(/\/$/, '');
+            const body = [
+              marker,
+              '### プレビュー',
+              '',
+              `- トップ: ${url}/`,
+              `- SNS版: ${url}/sns/`,
+              `- メニュー直リンク: ${url}/?menu=ear-este#menu`,
+              '',
+              `コミット ${context.payload.pull_request.head.sha.slice(0, 7)} を反映。有効期限: ${process.env.PREVIEW_EXPIRE}`,
+              '',
+              '計測タグ（Google 広告・GA4）は読み込まず、noindex を付けています。',
+            ].join('\n');
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+            const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number });
+            const existing = comments.find(c => c.body?.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({ owner, repo, comment_id: existing.id, body });
+            } else {
+              await github.rest.issues.createComment({ owner, repo, issue_number, body });
+            }
+
+  delete_preview:
+    if: github.event.action == 'closed' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Delete preview channel
+        run: firebase hosting:channel:delete "$CHANNEL_ID" --force --token "${{ secrets.FIREBASE_TOKEN }}"
+        continue-on-error: true
