@@ -295,3 +295,17 @@
     min-height: 40px;
   }
 }
+
+/* ===== オプション注意書き ===== */
+.menu-option-notes {
+  margin-top: var(--spacing-xl);
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+}
+
+.menu-option-notes a {
+  color: inherit;
+  text-decoration: underline;
+}
