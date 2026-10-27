@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { MENU_DATA } from '../data/menuData';
 import Breadcrumb from '../components/common/Breadcrumb';
 import ReservationCTA from '../components/common/ReservationCTA';
@@ -15,8 +16,8 @@ const OILS = [
     name: '身体をほぐす木のオイル',
     tagline: 'ストレスや疲労、カチカチの筋肉に',
     scent: 'グレープフルーツ、ベルガモットの爽やかな柑橘系',
-    for: 'イライラしやすい、肩こりや筋肉のハリが気になる、自律神経を整えたい方へ',
-    description: '自律神経やホルモンバランスにアプローチし、心身の緊張を解きほぐします。イヤーエステやヘッドスパと合わせることで、さらに深い「寝落ち体験」へと導きます。',
+    for: 'イライラしやすい、肩こりや筋肉のハリが気になる、心身ともにゆるめたい方へ',
+    description: '柑橘系の爽やかな香りとともに、こわばった身体をやさしくほぐしていきます。イヤーエステやヘッドスパと合わせて、ゆったりとした「寝落ち体験」をお楽しみください。',
   },
   {
     key: 'sui',
@@ -25,7 +26,7 @@ const OILS = [
     tagline: 'むくみや冷え、重だるい身体のデトックスに',
     scent: 'サイプレス、ゼラニウムのすっきりとしたフローラル・ウッディ系',
     for: '夕方になると足がむくむ、足腰がだるい、体内の老廃物をスッキリ流したい方へ',
-    description: '水分代謝を促し、体に溜まった余分な水分や老廃物の排出をサポートします。血の巡りを良くして、全身のラインをシャープに整えます。',
+    description: '水分代謝に着目した処方のオイルで、むくみや重だるさが気になる脚から全身まで、すっきりと流していきます。',
   },
   {
     key: 'do',
@@ -34,7 +35,7 @@ const OILS = [
     tagline: '元気が出ない、疲れが抜けない時のパワーチャージに',
     scent: 'ペパーミント、レモンのリフレッシュ系',
     for: '胃腸の調子が優れない、気力が湧かない、栄養や元気が足りていないと感じる方へ',
-    description: '消化機能や栄養代謝にアプローチ。スーッと突き抜ける爽やかな香りで心身をリフレッシュさせながら、体に活力を与えます。',
+    description: '消化や栄養代謝に着目した処方のオイル。スーッと突き抜ける爽やかな香りで、心身ともにリフレッシュしていただけます。',
   },
 ];
 
@@ -247,6 +248,25 @@ export default function OilLymphDetail() {
                 <p>{item.a}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section" style={{ background: 'var(--color-white)' }}>
+        <div className="container">
+          <div className="detail-section-header">
+            <span className="detail-section-label">Combination</span>
+            <h2>組み合わせて受けるなら</h2>
+          </div>
+          <div className="detail-related-grid">
+            <Link href="/menu/ear-este/" className="detail-related-card">
+              <span className="detail-related-card-label">Ear Esthetic</span>
+              <span className="detail-related-card-name">イヤーエステについて詳しく見る<span aria-hidden="true"> →</span></span>
+            </Link>
+            <Link href="/?menu=ear-oil#menu" className="detail-related-card">
+              <span className="detail-related-card-label">Set Course</span>
+              <span className="detail-related-card-name">イヤーエステ×オイルリンパのセットを見る<span aria-hidden="true"> →</span></span>
+            </Link>
           </div>
         </div>
       </section>

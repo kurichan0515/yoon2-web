@@ -53,10 +53,10 @@ function MenuDiagnosis() {
               <p className="diagnosis-card-target">自分の耳の中を見てみたい方、休んでも疲れが取れない方へ</p>
               <ul className="diagnosis-card-contents" aria-label="内容">
                 <li>イヤースコープで見る耳かき</li>
-                <li>自律神経を刺激してすっきり</li>
+                <li>耳まわりもやさしくほぐす</li>
               </ul>
               <p className="diagnosis-card-desc">
-                モニターを見ながらのプロの耳掃除で、耳の中をすっきり綺麗に。自律神経を刺激する耳掃除で、頭や目の重だるさもリセットできる愛媛県初の新感覚メニュー。
+                モニターを見ながらのプロの耳掃除で、耳の中をすっきり綺麗にしながら、耳まわりもやさしくほぐす愛媛県初の新感覚メニュー。
               </p>
               <button className="diagnosis-card-btn diagnosis-card-btn--light" onClick={scrollToMenu}>
                 料金・詳細を見る
@@ -84,7 +84,7 @@ function MenuDiagnosis() {
                 <li>リンパの流れを整える</li>
               </ul>
               <p className="diagnosis-card-desc">
-                3種から選べるオイルでリンパの滞りをじっくり丁寧に流し、冷え性やむくみ、身体の重だるさをスッキリ解消。深いリラックスと巡りの良さを同時に体感。
+                3種から選べるオイルでリンパの滞りをじっくり丁寧に流し、冷えやむくみ、身体の重だるさが気になる方に。深いリラックスの時間をお過ごしいただけます。
               </p>
               <button className="diagnosis-card-btn diagnosis-card-btn--oil" onClick={scrollToMenu}>
                 料金・詳細を見る

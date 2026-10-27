@@ -39,7 +39,7 @@ const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   name: 'オイルリンパトリートメント',
-  description: '厳選オイルを使用したリンパドレナージュ。冷え性やむくみ、身体の重だるさを解消。',
+  description: '厳選オイルを使用したリンパドレナージュ。冷えやむくみ、身体の重だるさが気になる方に。',
   provider: { '@type': 'BeautySalon', name: 'yoon²ゆんゆん' },
   areaServed: { '@type': 'City', name: '松山市' },
   offers: { '@type': 'Offer', priceCurrency: 'JPY', price: String(oilMinPrice) },

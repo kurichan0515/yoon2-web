@@ -53,6 +53,13 @@
   .mobile-booking-bar-btn.btn-secondary {
     background-color: var(--color-white);
   }
+
+  /* 電話は HPB・LINE を主とした補助ボタン（正方形） */
+  .mobile-booking-bar-tel {
+    flex: 0 0 48px;
+    width: 48px;
+    padding: 0;
+  }
 }
 
 @media (max-width: 768px) and (prefers-reduced-motion: reduce) {
