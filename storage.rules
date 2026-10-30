@@ -1,0 +1,11 @@
+rules_version = '2';
+
+// 現行サイトは Firebase Storage を使っていない（画像は public/ から配信）。
+// 旧アプリのルールが残っていると、ログインした第三者が画像を置けるため、全アクセスを拒否する。
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
