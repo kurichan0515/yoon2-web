@@ -78,7 +78,7 @@
   margin-right: auto;
 }
 
-.event-hero .section-label {
+.event-page .event-hero .section-label {
   color: rgba(255,255,255,0.9);
   text-shadow:
     0 0 4px rgba(0,0,0,0.9),
@@ -86,8 +86,8 @@
     0 1px 5px rgba(0,0,0,0.7);
 }
 
-/* Section Label（非ヒーロー部） */
-.section-label {
+/* Section Label（非ヒーロー部）。.section-label/.section-header/.sectionは他ページでも使う汎用クラス名のため.event-pageスコープに限定 */
+.event-page .section-label {
   font-family: var(--font-secondary);
   font-size: 0.8rem;
   color: var(--color-accent);
@@ -98,12 +98,12 @@
   margin-bottom: var(--spacing-sm);
 }
 
-.section-header {
+.event-page .section-header {
   text-align: center;
   margin-bottom: var(--spacing-xl);
 }
 
-.section-header h2 {
+.event-page .section-header h2 {
   font-family: var(--font-primary);
   font-size: 1.9rem;
   font-weight: 400;
@@ -204,15 +204,15 @@
   transform: translateY(-2px);
 }
 
-/* Section Animation */
-.section {
+/* Section Animation（出張イベントページのみに限定。SPA遷移後に他ページの.sectionがopacity:0のまま残るのを防ぐ） */
+.event-page .section {
   padding: var(--spacing-xxl) 0;
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.8s ease;
 }
 
-.section.fade-in {
+.event-page .section.fade-in {
   opacity: 1;
   transform: translateY(0);
 }
