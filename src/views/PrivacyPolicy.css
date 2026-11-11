@@ -36,7 +36,13 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(244, 241, 235, 0.1);
+  /* 写真上の白文字を読みやすくする暗めのグラデーション（LPヒーローと同系統） */
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.28) 0%,
+    rgba(0,0,0,0.40) 50%,
+    rgba(0,0,0,0.52) 100%
+  );
 }
 
 .privacy-hero .hero-content {
@@ -54,7 +60,13 @@
   font-weight: 300;
   margin: var(--spacing-sm) 0 var(--spacing-md);
   letter-spacing: -0.02em;
-  color: var(--color-text-primary);
+  /* 背景写真に負けないよう白文字＋影（Event/詳細ページのヒーローと統一） */
+  color: #ffffff;
+  -webkit-text-stroke: 1px rgba(0,0,0,0.55);
+  text-shadow:
+    0 0 6px rgba(0,0,0,0.9),
+    0 0 16px rgba(0,0,0,0.75),
+    0 2px 8px rgba(0,0,0,0.7);
 }
 
 .privacy-hero .hero-description {
@@ -62,14 +74,18 @@
   font-size: 1.2rem;
   line-height: 1.8;
   margin: 0;
-  color: var(--color-text-secondary);
+  color: rgba(255,255,255,0.9);
+  text-shadow:
+    0 0 4px rgba(0,0,0,0.9),
+    0 0 10px rgba(0,0,0,0.75),
+    0 1px 5px rgba(0,0,0,0.7);
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* Section Label */
-.section-label {
+/* Section Label（.section-labelは他ページでも使う汎用クラス名のためスコープ限定） */
+.privacy-policy-page .section-label {
   font-family: var(--font-secondary);
   font-size: 0.8rem;
   color: var(--color-accent);
@@ -78,6 +94,14 @@
   font-weight: 500;
   display: block;
   margin-bottom: var(--spacing-sm);
+}
+
+.privacy-policy-page .privacy-hero .section-label {
+  color: rgba(255,255,255,0.9);
+  text-shadow:
+    0 0 4px rgba(0,0,0,0.9),
+    0 0 10px rgba(0,0,0,0.75),
+    0 1px 5px rgba(0,0,0,0.7);
 }
 
 /* Privacy Content Section */
@@ -156,26 +180,26 @@
   color: var(--color-accent-dark);
 }
 
-/* Contact Info */
-.contact-info {
+/* Contact Info（.contact-infoはLPでも使うクラス名のためスコープ限定） */
+.privacy-policy-page .contact-info {
   background: var(--color-primary);
   padding: var(--spacing-lg);
   border-radius: var(--radius-md);
   margin-top: var(--spacing-lg);
 }
 
-.contact-info p {
+.privacy-policy-page .contact-info p {
   margin-bottom: var(--spacing-sm);
   color: var(--color-text-primary);
 }
 
-.contact-info strong {
+.privacy-policy-page .contact-info strong {
   font-family: var(--font-primary);
   font-size: 1.2rem;
   color: var(--color-text-primary);
 }
 
-.contact-info a {
+.privacy-policy-page .contact-info a {
   color: var(--color-accent);
   text-decoration: underline;
 }

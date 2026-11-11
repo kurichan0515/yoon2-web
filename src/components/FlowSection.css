@@ -72,14 +72,6 @@
   box-shadow: 0 4px 16px rgba(201, 169, 110, 0.4);
 }
 
-/* ハイライトステップ（STEP3） */
-.flow-step--highlight .flow-step-circle {
-  background-color: var(--color-accent);
-  box-shadow: 0 4px 20px rgba(201, 169, 110, 0.4);
-  width: 64px;
-  height: 64px;
-}
-
 .flow-step-icon {
   font-size: 1.4rem;
   line-height: 1;
@@ -103,10 +95,6 @@
   color: var(--color-text-primary);
   margin-bottom: var(--spacing-xs);
   line-height: 1.4;
-}
-
-.flow-step--highlight .flow-step-title {
-  color: var(--color-accent);
 }
 
 /* 説明 */
@@ -164,10 +152,6 @@
     flex-shrink: 0;
     margin-bottom: 0;
     margin-top: 0;
-  }
-
-  .flow-step--highlight .flow-step-circle {
-    margin-top: -4px;
   }
 
   .flow-step-content {
