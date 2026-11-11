@@ -1,6 +1,8 @@
-/* /sns 用ヒーロー背景CSS切り出し(Home.cssの該当ルールから移動) */
+/* LP(/)・/sns 用ヒーロー背景CSS切り出し(Home.cssの該当ルールから移動)
+   .hero-background/.hero-overlayは/privacy・/eventでも使うクラス名のため、.home/.sns-heroスコープに限定 */
 
-.hero-background {
+.home .hero-background,
+.sns-hero .hero-background {
   position: absolute;
   top: 0;
   left: 0;
@@ -11,7 +13,8 @@
   background-color: var(--color-primary);
 }
 
-.hero-bg-img {
+.home .hero-bg-img,
+.sns-hero .hero-bg-img {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -22,7 +25,8 @@
   z-index: 0;
 }
 
-.hero-background::after {
+.home .hero-background::after,
+.sns-hero .hero-background::after {
   content: '';
   position: absolute;
   top: 0;
@@ -37,7 +41,8 @@
   );
 }
 
-.hero-overlay {
+.home .hero-overlay,
+.sns-hero .hero-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -47,7 +52,8 @@
 }
 
 @media (max-width: 768px) {
-  .hero-background::after {
+  .home .hero-background::after,
+  .sns-hero .hero-background::after {
     background: linear-gradient(
       to bottom,
       rgba(0,0,0,0.55) 0%,

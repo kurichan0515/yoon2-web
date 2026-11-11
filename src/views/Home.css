@@ -1569,13 +1569,13 @@
   background-color: var(--color-background);
 }
 
-.contact-info {
+.home .contact-info {
   max-width: 800px;
   margin: 0 auto;
   text-align: center;
 }
 
-.contact-info h3 {
+.home .contact-info h3 {
   font-family: var(--font-primary);
   font-size: 1.2rem;
   font-weight: 500;
@@ -1583,7 +1583,7 @@
   color: var(--color-text-primary);
 }
 
-.contact-info p {
+.home .contact-info p {
   font-family: var(--font-secondary);
   color: var(--color-text-secondary);
   line-height: 1.6;
@@ -1618,7 +1618,7 @@
   }
 }
 
-.contact-info .btn-primary {
+.home .contact-info .btn-primary {
   background-color: var(--color-accent);
   color: var(--color-text-primary);
   text-decoration: none;
@@ -1628,7 +1628,7 @@
   transition: all 0.3s ease;
 }
 
-.contact-info .btn-primary:hover {
+.home .contact-info .btn-primary:hover {
   background-color: #b8956a;
   color: var(--color-text-primary);
   text-decoration: none;
@@ -1909,19 +1909,19 @@
   }
   
   /* 予約セクション */
-  .contact-info {
+  .home .contact-info {
     padding: 0 0.5rem;
   }
   
-  .contact-info h3 {
+  .home .contact-info h3 {
     font-size: 1rem !important;
   }
   
-  .contact-info p {
+  .home .contact-info p {
     font-size: 0.85rem !important;
   }
   
-  .contact-info .btn-primary {
+  .home .contact-info .btn-primary {
     padding: 0.625rem 1rem !important;
     font-size: 0.75rem !important;
     width: 100%;

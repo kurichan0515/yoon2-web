@@ -95,7 +95,7 @@ const Navbar = ({ isScrolled, isMobileMenuOpen, setIsMobileMenuOpen }: NavbarPro
 const Hero = () => {
   const lineUrl = (shop.lineUrl ?? social.line.url) as string;
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section className="sns-hero relative h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0 hero-background">
         <picture>
           <source media="(max-width: 768px)" srcSet="/images/hero/hero-sp.webp" type="image/webp" />

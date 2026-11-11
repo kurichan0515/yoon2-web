@@ -36,7 +36,13 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(244, 241, 235, 0.1);
+  /* 写真上の白文字を読みやすくする暗めのグラデーション（LPヒーローと同系統） */
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.28) 0%,
+    rgba(0,0,0,0.40) 50%,
+    rgba(0,0,0,0.52) 100%
+  );
 }
 
 .event-hero .hero-content {
