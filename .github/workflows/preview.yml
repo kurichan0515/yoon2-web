@@ -47,13 +47,19 @@ jobs:
           NEXT_PUBLIC_DEPLOY_ENV: 'preview'
           NEXT_PUBLIC_GOOGLE_ADS_ENABLED: 'false'
 
+      # デプロイ専用サービスアカウントで認証（旧 FIREBASE_TOKEN 方式は非推奨）
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.FIREBASE_DEPLOY_SA_KEY }}
+
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
       - name: Deploy to preview channel
         id: deploy
         run: |
-          firebase hosting:channel:deploy "$CHANNEL_ID" --expires 30d --json --token "${{ secrets.FIREBASE_TOKEN }}" > deploy.json
+          firebase hosting:channel:deploy "$CHANNEL_ID" --expires 30d --json > deploy.json
           url=$(jq -r '.result | to_entries[0].value.url' deploy.json)
           expire=$(jq -r '.result | to_entries[0].value.expireTime' deploy.json)
           if [ -z "$url" ] || [ "$url" = "null" ]; then cat deploy.json; exit 1; fi
@@ -99,9 +105,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # デプロイ専用サービスアカウントで認証（旧 FIREBASE_TOKEN 方式は非推奨）
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.FIREBASE_DEPLOY_SA_KEY }}
+
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
       - name: Delete preview channel
-        run: firebase hosting:channel:delete "$CHANNEL_ID" --force --token "${{ secrets.FIREBASE_TOKEN }}"
+        run: firebase hosting:channel:delete "$CHANNEL_ID" --force
         continue-on-error: true
